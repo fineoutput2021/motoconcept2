@@ -4172,21 +4172,21 @@ echo json_encode($res);
 public function get_two_images(){
 
 $this->db->select('*');
-$this->db->from('tbl_sale');
+$this->db->from('tbl_two_images');
 $this->db->where('is_active',1);
 $this->db->order_by('id','desc');
-$salesdata= $this->db->get();
-$sales=[];
-foreach($salesdata->result() as $data) {
-$sales[] = array(
-'image'=> base_url().$data->image,
-'link'=>$data->link,
-);
+$two_image_data= $this->db->get();
+$two_image=[];
+foreach($two_image_data->result() as $data) {
+$two_image[] = array(
+'image1'=> base_url().$data->image1,
+'image2'=> base_url().$data->image2,
+  );
 }
 header('Access-Control-Allow-Origin: *');
 $res = array('message'=>"success",
 'status'=>200,
-'data'=>$sales
+'data'=>$two_image
 );
 
 echo json_encode($res);
