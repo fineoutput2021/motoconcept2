@@ -1,7 +1,7 @@
 <?php
     if ( ! defined('BASEPATH')) exit('No direct script access allowed');
        require_once(APPPATH . 'core/CI_finecontrol.php');
-       class Sale extends CI_finecontrol{
+       class Two_image extends CI_finecontrol{
        function __construct()
            {
              parent::__construct();
@@ -11,7 +11,7 @@
              $this->load->library('upload');
            }
 
-         public function view_sale(){
+         public function view_two_image(){
 
             if(!empty($this->session->userdata('admin_data'))){
 
@@ -24,12 +24,12 @@
               // exit;
 
                            $this->db->select('*');
-               $this->db->from('tbl_sale');
+               $this->db->from('tbl_two_image');
                //$this->db->where('id',$usr);
                $data['sale_data']= $this->db->get();
 
               $this->load->view('admin/common/header_view',$data);
-              $this->load->view('admin/sale/view_sale');
+              $this->load->view('admin/two_image/view_two_image');
               $this->load->view('admin/common/footer_view');
 
           }
@@ -40,12 +40,12 @@
 
           }
 
-              public function add_sale(){
+              public function add_two_image(){
 
                  if(!empty($this->session->userdata('admin_data'))){
 
                    $this->load->view('admin/common/header_view');
-                   $this->load->view('admin/sale/add_sale');
+                   $this->load->view('admin/two_image/add_two_image');
                    $this->load->view('admin/common/footer_view');
 
                }
@@ -56,7 +56,7 @@
 
                }
 
-               public function update_sale($idd){
+               public function update_two_image($idd){
 
                    if(!empty($this->session->userdata('admin_data'))){
 
@@ -72,13 +72,13 @@
                      $data['id']=$idd;
 
                             $this->db->select('*');
-                            $this->db->from('tbl_sale');
+                            $this->db->from('tbl_two_image');
                             $this->db->where('id',$id);
                             $data['sale_data']= $this->db->get()->row();
 
 
                      $this->load->view('admin/common/header_view',$data);
-                     $this->load->view('admin/sale/update_sale');
+                     $this->load->view('admin/two_image/update_two_image');
                      $this->load->view('admin/common/footer_view');
 
                  }
@@ -89,7 +89,7 @@
 
                  }
 
-                        public function add_sale_data($t,$iw="")
+                        public function add_two_image_data($t,$iw="")
 
                           {
 
@@ -119,12 +119,12 @@ $this->load->library('upload');
 
                                         $file_check=($_FILES['fileToUpload1']['error']);
                                         if($file_check!=4){
-                                      	$image_upload_folder = FCPATH . "assets/uploads/sale/";
+                                      	$image_upload_folder = FCPATH . "assets/uploads/two_image/";
                               						if (!file_exists($image_upload_folder))
                               						{
                               							mkdir($image_upload_folder, DIR_WRITE_MODE, true);
                               						}
-                              						$new_file_name="sale".date("Ymdhms");
+                              						$new_file_name="two_image".date("Ymdhms");
                               						$this->upload_config = array(
                               								'upload_path'   => $image_upload_folder,
                               								'file_name' => $new_file_name,
@@ -143,7 +143,7 @@ $this->load->library('upload');
 
                               							$file_info = $this->upload->data();
 
-                              							$videoNAmePath = "assets/uploads/sale/".$new_file_name.$file_info['file_ext'];
+                              							$videoNAmePath = "assets/uploads/two_image/".$new_file_name.$file_info['file_ext'];
                               							$file_info['new_name']=$videoNAmePath;
                               							// $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
                               							// $nnnn2=$file_info['file_name'];
@@ -175,7 +175,7 @@ $this->load->library('upload');
 
 
 
-                      $last_id=$this->base_model->insert_table("tbl_sale",$data_insert,1) ;
+                      $last_id=$this->base_model->insert_table("tbl_two_image",$data_insert,1) ;
 
                       }
                       if($typ==2){
@@ -183,7 +183,7 @@ $this->load->library('upload');
                $idw=base64_decode($iw);
 
                $this->db->select('*');
-                           $this->db->from('tbl_sale');
+                           $this->db->from('tbl_two_image');
                            $this->db->where('id',$idw);
                            $dsa= $this->db->get()->row();
 
@@ -204,7 +204,7 @@ $this->load->library('upload');
 
 
                         $this->db->where('id', $idw);
-                        $last_id=$this->db->update('tbl_sale', $data_insert);
+                        $last_id=$this->db->update('tbl_two_image', $data_insert);
 
                       }
 
@@ -213,7 +213,7 @@ $this->load->library('upload');
 
                                           $this->session->set_flashdata('smessage','Data inserted successfully');
 
-                                          redirect("dcadmin/Sale/view_sale","refresh");
+                                          redirect("dcadmin/Two_image/view_two_image","refresh");
 
                                                   }
 
@@ -254,7 +254,7 @@ $this->load->library('upload');
                       }
 
 
-               public function updatesaleStatus($idd,$t){
+               public function updatetwo_imageStatus($idd,$t){
 
                         if(!empty($this->session->userdata('admin_data'))){
 
@@ -275,10 +275,10 @@ $this->load->library('upload');
                         );
 
                         $this->db->where('id', $id);
-                       $zapak=$this->db->update('tbl_sale', $data_update);
+                       $zapak=$this->db->update('tbl_two_image', $data_update);
 
                             if($zapak!=0){
-                            redirect("dcadmin/sale/view_sale","refresh");
+                            redirect("dcadmin/Two_image/view_two_image","refresh");
                                     }
                                     else
                                     {
@@ -293,10 +293,10 @@ $this->load->library('upload');
                          );
 
                          $this->db->where('id', $id);
-                         $zapak=$this->db->update('tbl_sale', $data_update);
+                         $zapak=$this->db->update('tbl_two_image', $data_update);
 
                              if($zapak!=0){
-                             redirect("dcadmin/sale/view_sale","refresh");
+                             redirect("dcadmin/Two_image/view_two_image","refresh");
                                      }
                                      else
                                      {
@@ -319,7 +319,7 @@ $this->load->library('upload');
 
 
 
-               public function delete_sale($idd){
+               public function delete_two_image($idd){
 
                       if(!empty($this->session->userdata('admin_data'))){
 
@@ -334,17 +334,17 @@ $this->load->library('upload');
                        if($this->load->get_var('position')=="Super Admin"){
 
                      $this->db->select('image');
-                     $this->db->from('tbl_sale');
+                     $this->db->from('tbl_two_image');
                      $this->db->where('id',$id);
                      $dsa= $this->db->get();
                      $da=$dsa->row();
                      $img=$da->image;
 
- $zapak=$this->db->delete('tbl_sale', array('id' => $id));
+ $zapak=$this->db->delete('tbl_two_image', array('id' => $id));
  if($zapak!=0){
         $path = FCPATH .$img;
           unlink($path);
-        redirect("dcadmin/sale/view_sale","refresh");
+        redirect("dcadmin/Two_image/view_two_image","refresh");
                 }
                 else
                 {

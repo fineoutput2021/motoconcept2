@@ -77,13 +77,13 @@
         <ul class="dropdown-menu" role="menu">
 
         <?php if($data->is_active==1){ ?>
-        <li><a href="<?php echo base_url() ?>dcadmin/sale/updatesaleStatus/<?php echo
+        <li><a href="<?php echo base_url() ?>dcadmin/Two_image/updatetwo_imageStatus/<?php echo
         base64_encode($data->id) ?>/inactive">Inactive</a></li>
         <?php } else { ?>
-        <li><a href="<?php echo base_url() ?>dcadmin/sale/updatesaleStatus/<?php echo
+        <li><a href="<?php echo base_url() ?>dcadmin/Two_image/updatetwo_imageStatus/<?php echo
         base64_encode($data->id) ?>/active">Active</a></li>
         <?php } ?>
-        <li><a href="<?php echo base_url() ?>dcadmin/sale/update_sale/<?php echo
+        <li><a href="<?php echo base_url() ?>dcadmin/Two_image/update_two_image/<?php echo
         base64_encode($data->id) ?>">Edit</a></li>
         <!-- <li><a href="javascript:;" class="dCnf" mydata="<?php echo $i ?>">Delete</a></li> -->
         </ul>
@@ -92,7 +92,7 @@
 
         <div style="display:none" id="cnfbox<?php echo $i ?>">
         <p> Are you sure delete this </p>
-        <a href="<?php echo base_url() ?>dcadmin/sale/delete_sale/<?php echo
+        <a href="<?php echo base_url() ?>dcadmin/Two_image/delete_two_image/<?php echo
         base64_encode($data->id); ?>" class="btn btn-danger" >Yes</a>
         <a href="javasript:;" class="cans btn btn-default" mydatas="<?php echo $i ?>" >No</a>
         </div>
