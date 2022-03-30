@@ -4143,6 +4143,55 @@ echo json_encode($res);
 }
 
 }
+// ========= gallery =========
+public function get_gallery(){
 
+$this->db->select('*');
+$this->db->from('tbl_gallery');
+$gallerydata= $this->db->get();
+$gallery=[];
+foreach($gallerydata->result() as $data) {
+$gallery[] = array(
+'name'=> $data->name,
+'link'=> $data->link,
+'image'=> base_url().$data->image,
+
+);
+}
+header('Access-Control-Allow-Origin: *');
+$res = array('message'=>"success",
+'status'=>200,
+'data'=>$gallery
+);
+
+echo json_encode($res);
+
+}
+
+// ========= Get Two images =============
+public function get_two_images(){
+
+$this->db->select('*');
+$this->db->from('tbl_sale');
+$this->db->where('is_active',1);
+$this->db->order_by('id','desc');
+$salesdata= $this->db->get();
+$sales=[];
+foreach($salesdata->result() as $data) {
+$sales[] = array(
+'image'=> base_url().$data->image,
+'link'=>$data->link,
+);
+}
+header('Access-Control-Allow-Origin: *');
+$res = array('message'=>"success",
+'status'=>200,
+'data'=>$sales
+);
+
+echo json_encode($res);
+
+
+}
 
 }
