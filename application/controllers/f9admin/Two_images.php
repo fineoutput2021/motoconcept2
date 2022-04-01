@@ -121,8 +121,6 @@
 
                                    $videoNAmePath = "assets/uploads/two_images/".$new_file_name.$file_info['file_ext'];
                                    $file_info['new_name']=$videoNAmePath;
-                                   // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
-                                   $nnnn=$file_info['file_name'];
                                    $nnnn0=$videoNAmePath;
 
                                    // echo json_encode($file_info);
@@ -159,8 +157,6 @@
 
                                    $videoNAmePath = "assets/uploads/two_images/".$new_file_name.$file_info['file_ext'];
                                    $file_info['new_name']=$videoNAmePath;
-                                   // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
-                                   $nnnn=$file_info['file_name'];
                                    $nnnn1=$videoNAmePath;
 
                                    // echo json_encode($file_info);
@@ -303,7 +299,7 @@
                            }
                            if ($last_id!=0) {
                                $this->session->set_flashdata('smessage', 'Data inserted successfully');
-                               redirect("dcadmin/two_images/view_two_images", "refresh");
+                               redirect("dcadmin/Two_images/view_two_images", "refresh");
                            } else {
                                $this->session->set_flashdata('emessage', 'Sorry error occured');
                                redirect($_SERVER['HTTP_REFERER']);
