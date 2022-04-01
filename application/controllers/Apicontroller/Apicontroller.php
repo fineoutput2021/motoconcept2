@@ -4178,7 +4178,7 @@ $this->db->order_by('id','desc');
 $two_image_data= $this->db->get();
 $two_image=[];
 foreach($two_image_data->result() as $data) {
-$two_image[] = array(
+$two_image = array(
 'image1'=> base_url().$data->image1,
 'image2'=> base_url().$data->image2,
   );
