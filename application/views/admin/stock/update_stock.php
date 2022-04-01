@@ -52,9 +52,10 @@
                                                 <td>
                           <input type="text" name="message"  class="form-control" placeholder="" required value="<?=$data->stockmessage?>" />
                                               </td>
+                        </tr>
 
                       <tr>
-                                                <td> <strong>Image</strong>  <span style="color:red;">*</span></strong> </td>
+                                                <td> <strong>Image1</strong>  <span style="color:red;">*</span></strong> </td>
                                                 <td>
                           <input type="file" name="fileToUpload1"  class="form-control" placeholder=""  value="" />
 
@@ -67,8 +68,14 @@
                         </td>
                                               </td>
                         </tr>
+                        <tr>
+                                                  <td> <strong>Link1</strong>  <span style="color:red;">*</span></strong> </td>
+                                                  <td>
+                            <input type="text" name="link1"  class="form-control" placeholder="" required value="<?=$data->link1?>" />
+                                                </td>
+                          </tr>
                       <tr>
-                                                <td> <strong>Background Image</strong>  <span style="color:red;">*</span></strong> </td>
+                                                <td> <strong>Image2</strong>  <span style="color:red;">*</span></strong> </td>
                                                 <td>
                           <input type="file" name="fileToUpload2"  class="form-control" placeholder=""  value="" />
 
@@ -81,6 +88,12 @@
                         </td>
                                               </td>
                         </tr>
+                        <tr>
+                                                  <td> <strong>Link2</strong>  <span style="color:red;">*</span></strong> </td>
+                                                  <td>
+                            <input type="text" name="link2"  class="form-control" placeholder="" required value="<?=$data->link2?>" />
+                                                </td>
+                          </tr>
                           <tr>
                             <td colspan="2" >
                               <input type="submit" class="btn btn-success" value="save">

@@ -37,7 +37,9 @@
                     <tr>
                       <th>#</th>
                       <th>Image1</th>
+                      <th>Link1</th>
                       <th>Image2</th>
+                      <th>Link2</th>
                       <th>Status</th>
                       <th>Action</th>
                     </tr>
@@ -56,7 +58,7 @@
                         Sorry No File Found
                         <?php } ?>
                       </td>
-
+                      <td><?php echo $data->link1 ?> </td>
 
                       <td>
                         <?php if ($data->image2!="") { ?>
@@ -67,6 +69,7 @@
                         <?php } ?>
                       </td>
 
+                      <td><?php echo $data->link2 ?> </td>
 
 
 

@@ -41,11 +41,25 @@
                         <?php if ($two_images_data->image1!="") { ?> <img id="slide_img_path" height=200 width=300 src="<?php echo base_url().$two_images_data->image1; ?> "> <?php } else { ?> Sorry No File Found <?php } ?> </td>
                     </tr>
                     <tr>
+                      <td>
+                         <strong>Link1</strong> <span style="color:red;">*</span></strong></td>
+                         <td>
+                           <input type="text" name="link1" class="form-control" value="<?=$two_images_data->link1?>">
+                         </td>
+
+                    </tr>
+                    <tr>
                       <td> <strong>Image2</strong> <span style="color:red;">*</span></strong> </td>
                       <td> <input type="file" name="image2" class="form-control" placeholder="" />
                         <?php if ($two_images_data->image2!="") { ?> <img id="slide_img_path" height=200 width=300 src="<?php echo base_url().$two_images_data->image2; ?> "> <?php } else { ?> Sorry No File Found <?php } ?> </td>
                     </tr>
-
+                    <tr>
+                      <td>
+                         <strong>Link2</strong> <span style="color:red;">*</span></strong></td>
+                         <td>
+                           <input type="text" name="link2" class="form-control" value="<?=$two_images_data->link2?>">
+                         </td>
+                    </tr>
 
                     <tr>
                       <td colspan="2">

@@ -76,11 +76,15 @@ function __construct()
                                     // exit;
                                     $this->form_validation->set_rules('name', 'name', 'required|customAlpha|xss_clean');
                                     $this->form_validation->set_rules('message', 'message', 'required|xss_clean');
+                                    $this->form_validation->set_rules('link1', 'link1', 'required|xss_clean');
+                                    $this->form_validation->set_rules('link2', 'link2', 'required|xss_clean');
 
                                     if($this->form_validation->run()== TRUE)
                                     {
                                       $name=$this->input->post('name');
                                       $message=$this->input->post('message');
+                                      $link1=$this->input->post('link1');
+                                      $link2=$this->input->post('link2');
                             $this->load->library('upload');
 
                           $img1='fileToUpload1';
@@ -170,6 +174,8 @@ function __construct()
                                           'stockmessage'=>$message,
                                           'image1'=>$nnnn,
                                           'image2'=>$nnnn2,
+                                          'link1'=>$link1,
+                                          'link2'=>$link2,
                                           'ip' =>$ip,
                                           'added_by' =>$addedby,
                                           'is_active' =>1,
@@ -224,6 +230,8 @@ function __construct()
 																		'stockmessage'=>$message,
 																		'image1'=>$n1,
 																		'image2'=>$n2,
+																		'link1'=>$link1,
+																		'link2'=>$link2,
 
 
                                           );

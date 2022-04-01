@@ -1,7 +1,7 @@
 <div class="content-wrapper">
                <section class="content-header">
                   <h1>
-                 Add New Brands
+                 Add New Car Brands
                  </h1>
 
                </section>
@@ -11,7 +11,7 @@
 
                                <div class="panel panel-default">
                                    <div class="panel-heading">
-                                       <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Add New Brands</h3>
+                                       <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Add New Car Brands</h3>
                                    </div>
 
                                             <? if(!empty($this->session->flashdata('smessage'))){  ?>
@@ -75,5 +75,3 @@
 
 <script type="text/javascript" src=" <?php echo base_url()  ?>assets/slider/ajaxupload.3.5.js"></script>
      <link href=" <? echo base_url()  ?>assets/cowadmin/css/jqvmap.css" rel='stylesheet' type='text/css' />
-
-       

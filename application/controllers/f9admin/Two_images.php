@@ -82,9 +82,15 @@
                    $this->load->helper(array('form', 'url'));
                    $this->load->library('form_validation');
                    $this->load->helper('security');
-                   // if ($this->input->post()) {
-                   //
-                   //     if ($this->form_validation->run()== true) {
+                   if ($this->input->post()) {
+                     $this->form_validation->set_rules('link1', 'link1', 'required|xss_clean');
+                     $this->form_validation->set_rules('link2', 'link2', 'required|xss_clean');
+
+                       if ($this->form_validation->run()== true) {
+
+                         $link1=$this->input->post('link1');
+                         $link2=$this->input->post('link2');
+
                            $ip = $this->input->ip_address();
                            date_default_timezone_set("Asia/Calcutta");
                            $cur_date=date("Y-m-d H:i:s");
@@ -168,6 +174,8 @@
                                $data_insert = array(
                   'image1'=>$nnnn0,
                   'image2'=>$nnnn1,
+                  'link1'=>$link1,
+                  'link2'=>$link2,
 
                      'ip' =>$ip,
                      'added_by' =>$addedby,
@@ -292,6 +300,8 @@
                                $data_insert = array(
                   'image1'=>$nnnn0,
                   'image2'=>$nnnn1,
+                  'link1'=>$link1,
+                  'link2'=>$link2,
 
                      );
                                $this->db->where('id', $idw);
@@ -304,14 +314,14 @@
                                $this->session->set_flashdata('emessage', 'Sorry error occured');
                                redirect($_SERVER['HTTP_REFERER']);
                            }
-                   //     } else {
-                   //         $this->session->set_flashdata('emessage', validation_errors());
-                   //         redirect($_SERVER['HTTP_REFERER']);
-                   //     }
-                   // } else {
-                   //     $this->session->set_flashdata('emessage', 'Please insert some data, No data available');
-                   //     redirect($_SERVER['HTTP_REFERER']);
-                   // }
+                       } else {
+                           $this->session->set_flashdata('emessage', validation_errors());
+                           redirect($_SERVER['HTTP_REFERER']);
+                       }
+                   } else {
+                       $this->session->set_flashdata('emessage', 'Please insert some data, No data available');
+                       redirect($_SERVER['HTTP_REFERER']);
+                   }
                } else {
                    redirect("login/admin_login", "refresh");
                }

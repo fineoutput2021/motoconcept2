@@ -2,17 +2,17 @@
         <div class="content-wrapper">
         <section class="content-header">
         <h1>
-          View Brands
+          View Car Brands
         </h1>
         </section>
         <section class="content">
         <div class="row">
         <div class="col-lg-12">
         <a class="btn btn-info cticket" href="<?php echo base_url() ?>dcadmin/brands/add_brands"
-        role="button" style="margin-bottom:12px;"> Add brands</a>
+        role="button" style="margin-bottom:12px;"> Add car brands</a>
         <div class="panel panel-default">
         <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-money fa-fw"></i>View brands</h3>
+        <h3 class="panel-title"><i class="fa fa-money fa-fw"></i>View Car brands</h3>
         </div>
         <div class="panel panel-default">
 
@@ -87,14 +87,16 @@
         <ul class="dropdown-menu" role="menu">
 
         <?php if($data->is_active==1){ ?>
-        <li><a href="<?php echo base_url() ?>dcadmin/brands/updatebrandsStatus/<?php echo
+        <li><a href="<?php echo base_url() ?>dcadmin/Brands/updatebrandsStatus/<?php echo
         base64_encode($data->id) ?>/inactive">Inactive</a></li>
         <?php } else { ?>
-        <li><a href="<?php echo base_url() ?>dcadmin/brands/updatebrandsStatus/<?php echo
+        <li><a href="<?php echo base_url() ?>dcadmin/Brands/updatebrandsStatus/<?php echo
         base64_encode($data->id) ?>/active">Active</a></li>
         <?php } ?>
-        <li><a href="<?php echo base_url() ?>dcadmin/brands/update_brands/<?php echo
+        <li><a href="<?php echo base_url() ?>dcadmin/Brands/update_brands/<?php echo
         base64_encode($data->id) ?>">Edit</a></li>
+        <li><a href="<?php echo base_url() ?>dcadmin/Car_model/view_car_model/<?php echo
+        base64_encode($data->id) ?>">View Models</a></li>
         <li><a href="javascript:;" class="dCnf" mydata="<?php echo $i ?>">Delete</a></li>
         </ul>
         </div>
@@ -158,7 +160,3 @@
         <!-- <script type="text/javascript" src="<?php echo base_url()
         ?>assets/slider/ajaxupload.3.5.js"></script>
         <script type="text/javascript" src="<?php echo base_url() ?>assets/slider/rs.js"></script> -->
-
-
-
-        

@@ -32,9 +32,10 @@
 
                                    <div class="panel-body">
                                        <div class="col-lg-10">
-                                          <form action=" <?php echo base_url()  ?>dcadmin/products/add_products_data/<? echo base64_encode(1);  ?>" method="POST" id="slide_frm" enctype="multipart/form-data">
+                                          <form action=" <?php echo base_url()  ?>dcadmin/Products/add_products_data/<? echo base64_encode(1);  ?>" method="POST" id="slide_frm" enctype="multipart/form-data">
                                        <div class="table-responsive">
                                            <table class="table table-hover">
+                                             <input type="hidden" name="category_id" value="<?=base64_decode($id)?>">
 
 
   <tr>
@@ -42,22 +43,6 @@
 <td> <input type="text" name="productname"  class="form-control" placeholder="" required value="" />  </td>
 </tr>
 
-<input type="hidden" name="category_id" value="<?=base64_decode($id)?>">
-
-  <!-- <tr>
-<td> <strong>Category </strong>  <span style="color:red;">*</span></strong> </td>
-<td>
-    <select class="form-control" id="cid" name="category_id">
-      <option value="">Please select category</option>
-
-      <?
-
-       foreach($category_data->result() as $value) {?>
-         <option value="<?=$value->id;?>"><?=$value->category;?></option>
-       <? }?>
-    </select>
-  </td>
-</tr> -->
 
   <tr>
 <td> <strong>Subcategory </strong>  <span style="color:red;">*</span></strong> </td>
@@ -70,34 +55,41 @@
          <option value="<?=$value->id;?>"><?=$value->subcategory;?></option>
        <? }?>
   </select>
-
-
   </td>
 </tr>
-  <tr>
-<td> <strong>Minor Category</strong>  <span style="color:red;">*</span></strong> </td>
-<td>
-    <select class="form-control" id="mid" name="minorcategory_id" required>
-
-    </select>
-  </td>
+<tr>
+<td> <strong>Brand</strong>  <span style="color:red;"></span></strong> </td>
+<td> <select class="form-control" id="brand_id" name="brands"> />
+<option value="" selected>Select Brand</option>
+<?php foreach ($brand_data->result() as $brands) { ?>
+   <option value="<?=$brands->id;?>"><?=$brands->name;?></option>
+ <? } ?>
+   </select>
+</td>
 </tr>
+<tr>
+<td> <strong>Car Model</strong>  <span style="color:red;"></span></strong> </td>
+<td> <select class="form-control" id="car_model_id" name="car_model_id"> />
+   <option value=""></option>
 
+   </select>
+</td>
+</tr>
   <tr>
 <td> <strong>image</strong>  <span style="color:red;"></span></strong> </td>
-<td> <input type="file" name="image"  class="form-control" placeholder=""  value="" />  </td>
+<td> <input type="file" name="image"  class="form-control" required placeholder=""  value="" />  </td>
 </tr>
   <tr>
-<td> <strong>image1</strong>  <span style="color:red;"></span></strong> </td>
+<td> <strong>image1</strong>  </strong> </td>
 <td> <input type="file" name="image1"  class="form-control" placeholder=""  value="" />  </td>
 </tr>
   <tr>
-<td> <strong>Video1</strong>  <span style="color:red;"></span></strong> </td>
-<td> <input type="file" name="video1"  class="form-control" placeholder=""  value="" />  </td>
+<td> <strong>image2</strong> </strong> </td>
+<td> <input type="file" name="image2"  class="form-control" placeholder=""  value="" />  </td>
 </tr>
   <tr>
-<td> <strong>Video2</strong>  <span style="color:red;"></span></strong> </td>
-<td> <input type="file" name="video2"  class="form-control" placeholder=""  value="" />  </td>
+<td> <strong>image3</strong> </strong> </td>
+<td> <input type="file" name="image3"  class="form-control" placeholder=""  value="" />  </td>
 </tr>
   <tr>
 <td> <strong>MRP</strong>  <span style="color:red;"></span></strong> </td>
@@ -130,11 +122,7 @@
 </tr>
   <tr>
 <td> <strong>Inventory</strong>  <span style="color:red;">*</span></strong> </td>
-<td> <input type="number" name="Inventory"  class="form-control" placeholder="" required value="" />  </td>
-</tr>
-  <tr>
-<td> <strong>weight</strong>  <span style="color:red;">*</span></strong> </td>
-<td> <input type="text" onkeypress="return valide_weight(event)" name="weight"  class="form-control" placeholder="" required value="" />  </td>
+<td> <input type="number" name="inventory"  class="form-control" placeholder="" required value="" />  </td>
 </tr>
   <tr>
 <td> <strong>Feature Product</strong>  <span style="color:red;">*</span></strong> </td>
@@ -152,160 +140,57 @@
      </select>
  </td>
 </tr>
-
-
-
-
   <tr>
-<td> <strong>Brand</strong>  <span style="color:red;"></span></strong> </td>
-<td> <select class="form-control" id="polpularpid" name="brands"> />
-  <option value="" selected>Select Brand</option>
-  <?php foreach ($brand_data->result() as $brands) { ?>
-     <option value="<?=$brands->id;?>"><?=$brands->name;?></option>
-   <? } ?>
-     </select>
- </td>
-</tr>
-  <tr>
-<td> <strong>Resolution</strong>  <span style="color:red;"></span></strong> </td>
-<td> <select class="form-control" id="polpularpid" name="resolution"> />
-  <option value="" selected>Select Resolution</option>
-  <?php foreach ($resolution_data->result() as $resolution) { ?>
-     <option value="<?=$resolution->id;?>"><?=$resolution->filtername;?></option>
-   <? } ?>
-     </select>
- </td>
-</tr>
-  <tr>
-<td> <strong>Lens</strong>  <span style="color:red;"></span></strong> </td>
-<td> <select class="form-control" id="polpularpid" name="lens"> />
-  <option value="" selected>Select Lens</option>
-  <?php foreach ($lens_data->result() as $lens) { ?>
-     <option value="<?=$lens->id;?>"><?=$lens->filtername;?></option>
-   <? } ?>
-     </select>
- </td>
-</tr>
-  <tr>
-<td> <strong>IR Distance</strong>  <span style="color:red;"></span></strong> </td>
-<td> <select class="form-control" id="polpularpid" name="irdistance"> />
-  <option value="" selected>Select IR Distance</option>
-  <?php foreach ($distance_data->result() as $distance) { ?>
-     <option value="<?=$distance->id;?>"><?=$distance->filtername;?></option>
-   <? } ?>
-     </select>
- </td>
-</tr>
-  <tr>
-<td> <strong>Camera type</strong>  <span style="color:red;"></span></strong> </td>
-<td> <select class="form-control" id="polpularpid" name="cameratype"> />
-  <option value="" selected>Select Camera type</option>
-  <?php foreach ($camera_data->result() as $camera) { ?>
-     <option value="<?=$camera->id;?>"><?=$camera->filtername;?></option>
-   <? } ?>
-     </select>
- </td>
-</tr>
-  <tr>
-<td> <strong>Body Material</strong>  <span style="color:red;"></span></strong> </td>
-<td> <select class="form-control" id="polpularpid" name="bodymaterial"> />
-  <option value="" selected>Select Body Material</option>
-  <?php foreach ($body_data->result() as $body) { ?>
-     <option value="<?=$body->id;?>"><?=$body->filter_name;?></option>
-   <? } ?>
-     </select>
- </td>
-</tr>
-  <tr>
-<td> <strong>Video Channel</strong>  <span style="color:red;"></span></strong> </td>
-<td> <select class="form-control" id="polpularpid" name="videochannel"> />
-  <option value="" selected>Select Video Channel</option>
-  <?php foreach ($video_data->result() as $video) { ?>
-     <option value="<?=$video->id;?>"><?=$video->filter_name;?></option>
-   <? } ?>
-     </select>
- </td>
-</tr>
-  <tr>
-<td> <strong>POE Ports</strong>  <span style="color:red;"></span></strong> </td>
-<td> <select class="form-control" id="polpularpid" name="poeports"> />
-  <option value="" selected>Select POE Ports</option>
-  <?php foreach ($port_data->result() as $port) { ?>
-     <option value="<?=$port->id;?>"><?=$port->filter_name;?></option>
-   <? } ?>
- </td>
-</tr>
-  <tr>
-<td> <strong>POE Type</strong>  <span style="color:red;"></span></strong> </td>
-<td> <select class="form-control" id="polpularpid" name="poetype"> />
-  <option value="" selected>Select POE Type</option>
-  <?php foreach ($port_data->result() as $port) { ?>
-     <option value="<?=$port->id;?>"><?=$port->filter_name;?></option>
-   <? } ?>
- </td>
-     </select>
- </td>
-</tr>
-  <tr>
-<td> <strong>SATA Ports</strong>  <span style="color:red;"></span></strong> </td>
-<td> <select class="form-control" id="polpularpid" name="sataports"> />
-  <option value="" selected>Select SATA Ports</option>
-  <?php foreach ($sata_data->result() as $sata) { ?>
-     <option value="<?=$sata->id;?>"><?=$sata->filter_name;?></option>
-   <? } ?>
-     </select>
- </td>
-</tr>
-  <tr>
-<td> <strong>Length</strong>  <span style="color:red;"></span></strong> </td>
-<td> <select class="form-control" id="polpularpid" name="length"> />
-  <option value="" selected>Select Length</option>
-  <?php foreach ($length_data->result() as $length) { ?>
-     <option value="<?=$length->id;?>"><?=$length->filter_name;?></option>
-   <? } ?>
-     </select>
- </td>
-</tr>
-  <tr>
-<td> <strong>Screen Size</strong>  <span style="color:red;"></span></strong> </td>
-<td> <select class="form-control" id="polpularpid" name="screensize"> />
-  <option value="" selected>Select Screen Size</option>
-  <?php foreach ($screen_data->result() as $screen) { ?>
-     <option value="<?=$screen->id;?>"><?=$screen->filter_name;?></option>
-   <? } ?>
-     </select>
- </td>
-</tr>
-  <tr>
-<td> <strong>LED Type</strong>  <span style="color:red;"></span></strong> </td>
-<td> <select class="form-control" id="polpularpid" name="ledtype"> />
-  <option value="" selected>Select LED Type</option>
-  <?php foreach ($led_data->result() as $led) { ?>
-     <option value="<?=$led->id;?>"><?=$led->filter_name;?></option>
+<td> <strong>Wattage</strong>  <span style="color:red;"></span></strong> </td>
+<td> <select class="form-control" id="polpularpid" name="wattage"> />
+  <option value="" selected>Select wattage</option>
+  <?php foreach ($wattage_data->result() as $wattage) { ?>
+     <option value="<?=$wattage->id;?>"><?=$wattage->name;?></option>
    <? } ?>
      </select>
  </td>
 </tr>
   <tr>
 <td> <strong>Size</strong>  <span style="color:red;"></span></strong> </td>
-<td> <select class="form-control" id="polpularpid" name="size_data"> />
-  <option value="" selected>Select Size</option>
+<td> <select class="form-control" id="polpularpid" name="size"> />
+  <option value="" selected>Select size</option>
   <?php foreach ($size_data->result() as $size) { ?>
-     <option value="<?=$size->id;?>"><?=$size->filter_name;?></option>
+     <option value="<?=$size->id;?>"><?=$size->name;?></option>
    <? } ?>
+     </select>
  </td>
 </tr>
-<tr>
-<td> <strong>Max Limit</strong>  <span style="color:red;">*</span></strong> </td>
-<td>
-<input type="text" name="max" class="form-control" value="" required>
-</td>
+  <tr>
+<td> <strong>Type</strong>  <span style="color:red;"></span></strong> </td>
+<td> <select class="form-control" id="polpularpid" name="type"> />
+  <option value="" selected>Select type</option>
+  <?php foreach ($type_data->result() as $type) { ?>
+     <option value="<?=$type->id;?>"><?=$type->name;?></option>
+   <? } ?>
+     </select>
+ </td>
 </tr>
-
-
-
-
-                                 <tr>
+  <tr>
+<td> <strong>Filter Product</strong>  <span style="color:red;"></span></strong> </td>
+<td> <select class="form-control" id="polpularpid" name="filter_product"> />
+  <option value="" selected>Select filter_product</option>
+  <?php foreach ($filter_product_data->result() as $filter_product) { ?>
+     <option value="<?=$filter_product->id;?>"><?=$filter_product->name;?></option>
+   <? } ?>
+     </select>
+ </td>
+</tr>
+  <tr>
+<td> <strong>Color</strong>  <span style="color:red;"></span></strong> </td>
+<td> <select class="form-control" id="polpularpid" name="color"> />
+  <option value="" selected>Select color</option>
+  <?php foreach ($color_data->result() as $color) { ?>
+     <option value="<?=$color->id;?>"><?=$color->name;?></option>
+   <? } ?>
+     </select>
+ </td>
+</tr>
+             <tr>
                                    <td colspan="2" >
                                      <input type="submit" class="btn btn-success" value="save">
                                    </td>
@@ -423,4 +308,51 @@ $(document).ready(function(){
 
 });
 
+</script>
+<script>
+$(document).ready(function(){
+  	$("#brand_id").change(function(){
+
+		var vf=$(this).val();
+    // alert(vf);
+    // var yr = $("#year_id option:selected").val();
+		if(vf==""){
+			return false;
+
+		}else{
+			$('#car_model_id option').remove();
+			  var opton="<option value=''>Please Select Car Model</option>";
+			$.ajax({
+				url:base_url+"dcadmin/Products/getcarmodel?isf="+vf,
+				// url:base_url+"dcadmin/products/getMinorcategory?isl="+vf,
+				data : '',
+				type: "get",
+				success : function(html){
+						if(html!="NA")
+						{
+							var s = jQuery.parseJSON(html);
+							$.each(s, function(i) {
+							opton +='<option value="'+s[i]['brand_id']+'">'+s[i]['name']+'</option>';
+							});
+							$('#car_model_id').append(opton);
+							//$('#city').append("<option value=''>Please Select State</option>");
+
+                      //var json = $.parseJSON(html);
+                      //var ayy = json[0].name;
+                      //var ayys = json[0].pincode;
+						}
+						else
+						{
+							alert('No Model Found');
+							return false;
+						}
+
+					}
+
+				})
+		}
+
+
+	})
+  });
 </script>

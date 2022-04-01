@@ -40,26 +40,23 @@
         <th>#</th>
 
  	 <th>Product Name</th>
- 	 <!-- <th>Category</th> -->
  	 <th>Subcategory</th>
- 	 <th>Minor Category</th>
- 	 <th>image</th>
+   <th>Car Brand</th>
+   <th>Car Model</th>
  	 <th>Image 1</th>
- 	 <th>Video 1</th>
- 	 <th>Video 2</th>
+ 	 <th>Image 2</th>
+ 	 <th>Image 3</th>
+ 	 <th>Image 4</th>
  	 <th>MRP</th>
  	 <th>Selling Price</th>
  	 <th>Gst %</th>
  	 <th>Gst price</th>
  	 <th>Selling Price(Gst)</th>
-
  	 <th>Product Description</th>
  	 <th>Model No.</th>
  	 <th>Inventory</th>
- 	 <th>weight</th>
  	 <th>feature_product</th>
    <th>popular_product</th>
-   <th>Max Limit</th>
 
 
         <th>Status</th>
@@ -71,19 +68,6 @@
         <tr>
         <td><?php echo $i ?> </td>
         <td><?php echo $data->productname?></td>
-
-
- <!-- <?
-            $this->db->select('*');
-$this->db->from('tbl_category');
-$this->db->where('id',$data->category_id);
-$category_data= $this->db->get()->row();
-if(!empty($category_data)){
-$category_name=$category_data->category;
-}else{
-$category_name="";
-}
-?> -->
  <?
             $this->db->select('*');
 $this->db->from('tbl_subcategory');
@@ -95,24 +79,31 @@ $subcategory_name=$subcategory_data->subcategory;
   $subcategory_name="";
 }
 
-?>
- <?
             $this->db->select('*');
-$this->db->from('tbl_minorcategory');
-$this->db->where('id',$data->minorcategory_id);
-$minorcategory_data= $this->db->get()->row();
-// print_r($subcategory_data);
-// exit;
-
-if(!empty($minorcategory_data)){
-  $minorcategory_name=$minorcategory_data->minorcategoryname;
+$this->db->from('tbl_brands');
+$this->db->where('id',$data->brand_id);
+$brands_data= $this->db->get()->row();
+if(!empty($subcategory_data)){
+$brands_name=$brands_data->name;
 }else{
-  $minorcategory_name="";
+  $brands_name="";
 }
+
+            $this->db->select('*');
+$this->db->from('tbl_car_model');
+$this->db->where('id',$data->car_model_id);
+$car_model_data= $this->db->get()->row();
+if(!empty($car_model_data)){
+$car_model_name=$car_model_data->name;
+}else{
+  $car_model_name="";
+}
+
 ?>
- 	 <!-- <td><?php echo $category_name?></td> -->
+
  	 <td><?php echo $subcategory_name?></td>
- 	 <td><?php echo $minorcategory_name?></td>
+ 	 <td><?php echo $brands_name?></td>
+ 	 <td><?php echo $car_model_name?></td>
 
         <td>
         <?php if($data->image!=""){ ?>
@@ -135,10 +126,10 @@ if(!empty($minorcategory_data)){
 
 
         <td>
-        <?php if($data->video1!=""){ ?>
+        <?php if($data->image2!=""){ ?>
         <!-- <img id="slide_img_path" height=50 width=100 src="<?php echo base_url().$data->video1
         ?>" > -->
-        <video id="slide_img_path"  height=50 width=100 src="<?php echo base_url().$data->video1
+        <video id="slide_img_path"  height=50 width=100 src="<?php echo base_url().$data->image2
         ?>" autoplay poster="">
 
         </video>
@@ -149,8 +140,8 @@ if(!empty($minorcategory_data)){
 
 
         <td>
-        <?php if($data->video2!=""){ ?>
-          <video id="slide_img_path"  height=50 width=100 src="<?php echo base_url().$data->video2
+        <?php if($data->image3!=""){ ?>
+          <video id="slide_img_path"  height=50 width=100 src="<?php echo base_url().$data->image3
           ?>" autoplay poster="">
         <?php }else { ?>
         Sorry No File Found
@@ -165,22 +156,7 @@ if(!empty($minorcategory_data)){
 
  	 <td><?php echo $data->productdescription ?></td>
  	 <td><?php echo $data->modelno ?></td>
-   <!-- <?
-              $this->db->select('*');
-  $this->db->from('tbl_inventory');
-  $this->db->where('product_id',$data->id);
-  $inventory_data= $this->db->get()->row();
-  $inventory_dat=$inventory_data->quantity;
-  if(!empty($inventory_data)){
-  $inventory_dat=$inventory_data->quantity;
-}else{
-   $inventory_dat="";
-}
-
-
-  ?> -->
- 	 <td><?php echo $inventory_dat ?></td>
- 	 <td><?php echo $data->weight ?></td>
+ 	 <td><?php echo $data->inventory ?></td>
  	 <td><?php $feature_product= $data->feature_product;
 if($feature_product==1){
   echo "yes";
@@ -197,7 +173,6 @@ if($feature_product==1){
 
     ?></td>
 
-<td><?php echo $data->max ?></td>
 
 
         <td><?php if($data->is_active==1){ ?>
