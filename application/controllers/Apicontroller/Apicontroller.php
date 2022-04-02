@@ -1743,7 +1743,7 @@ $product_data1= $this->db->get()->row();
 
 if(!empty($product_data1)){
 
-if($inventory_data1->quantity >= $data1->quantity){
+if($inventory_data->inventory >= $data1->quantity){
 
 $total2 = $product_data1->sellingpricegst * $data1->quantity ;
 $order2_insert = array('main_id'=>$last_id,
@@ -2962,7 +2962,7 @@ foreach($order2_data->result() as $data1) {
 $updated_inventory = $product_data->inventory - $data1->quantity;
 
 
-$data_update = array('quantity'=>$updated_inventory);
+$data_update = array('inventory'=>$updated_inventory);
 
 $this->db->where('id', $product_data->id);
 $last_id=$this->db->update('tbl_products', $data_update);
