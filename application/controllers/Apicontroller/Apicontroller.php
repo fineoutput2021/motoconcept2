@@ -1610,8 +1610,6 @@ foreach($related_data->result() as $data) {
 
 if($data->id!=$id){
 
-
-}
 $related_info[]  = array(
 'product_id'=>$data->id,
 'productname'=>$data->productname,
@@ -1621,7 +1619,7 @@ $related_info[]  = array(
 'price'=>$data->sellingpricegst,
 );
 }
-
+}
 header('Access-Control-Allow-Origin: *');
 $res = array('message'=>"success",
 'status'=>200,
@@ -3236,7 +3234,6 @@ $order2[]=array(
 'quantity'=> $data->quantity,
 'price'=>$data->product_mrp,
 'total amount'=>$data->total_amount,
-'weight'=>$product_data->weight,
 
 
 
@@ -3440,7 +3437,7 @@ $total_quantity=$data->quantity + $data_inventory->inventory;
 
 
 $data_update=array(
-'quantity'=>$total_quantity
+'inventory'=>$total_quantity
 );
 $this->db->where('id', $data->product_id);
 $last_id2=$this->db->update('tbl_products', $data_update);
