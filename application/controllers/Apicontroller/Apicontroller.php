@@ -339,29 +339,25 @@ $this->db->from('tbl_inventory');
 $this->db->where('product_id',$productsdata->id);
 $inventory_data= $this->db->get()->row();
 
-if(!empty($inventory_data)){
-if($inventory_data->quantity>0){
+if($productsdata->inventory>0){
 $stock = 1;
 }else{
 $stock =0;
 }
-}else{
-$stock =0;
-}
+
 
 $products[] = array(
 'id'=> $productsdata->id,
 'productname'=> $productsdata->productname,
 'productimage1'=> base_url().$productsdata->image,
 'productimage2'=> base_url().$productsdata->image1,
-'productvideo1'=> base_url().$productsdata->video1,
-'productvideo2'=> base_url().$productsdata->video2,
+'productimage3'=> base_url().$productsdata->image2,
+'productimage4'=> base_url().$productsdata->image3,
 'mrp'=> $productsdata->mrp,
 'price'=> $productsdata->sellingpricegst,
 'productdescription'=> $productsdata->productdescription,
 'modelno'=> $productsdata->modelno,
 'stock'=> $stock,
-'max'=>$productsdata->max
 );
 
 
@@ -1621,7 +1617,7 @@ $product_data= $this->db->get()->row();
 
 $this->db->select('*');
 $this->db->from('tbl_products');
-$this->db->where('minorcategory_id',$product_data->minorcategory_id);
+$this->db->where('subcategory_id',$product_data->subcategory_id);
 $related_data= $this->db->get();
 
 $related_info = [];
@@ -1638,7 +1634,6 @@ $related_info[]  = array(
 'productdescription'=>$data->productdescription,
 'mrp'=>$data->mrp,
 'price'=>$data->sellingpricegst,
-'max'=>$data->max
 );
 }
 
