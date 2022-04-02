@@ -340,11 +340,8 @@
                            } else {
                                $file_info = $this->upload->data();
 
-                               $videoNAmePath = "assets/uploads/products/".$new_file_name.$file_info['file_ext'];
-                               $file_info['new_name']=$videoNAmePath;
-                               // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
-                               $nnnn=$file_info['file_name'];
-                               $nnnn2=$videoNAmePath;
+                               $videoNAmePath2 = "assets/uploads/products/".$new_file_name.$file_info['file_ext'];
+                               $nnnn2=$videoNAmePath2;
 
                                // echo json_encode($file_info);
                            }
@@ -366,10 +363,10 @@
                            if (!file_exists($image_upload_folder)) {
                                mkdir($image_upload_folder, DIR_WRITE_MODE, true);
                            }
-                           $new_file_name="products1".date("Ymdhms");
+                           $new_file_name2="products1".date("Ymdhms");
                            $this->upload_config = array(
                              'upload_path'   => $image_upload_folder,
-                             'file_name' => $new_file_name,
+                             'file_name' => $new_file_name2,
                              'allowed_types' =>'jpg|jpeg|png',
                              'max_size'      => 25000
                      );
@@ -380,11 +377,8 @@
                            } else {
                                $file_info = $this->upload->data();
 
-                               $videoNAmePath = "assets/uploads/products/".$new_file_name.$file_info['file_ext'];
-                               $file_info['new_name']=$videoNAmePath;
-                               // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
-                               $nnnn=$file_info['file_name'];
-                               $nnnn3=$videoNAmePath;
+                               $videoNAmePath3 = "assets/uploads/products/".$new_file_name2.$file_info['file_ext'];
+                               $nnnn3=$videoNAmePath3;
 
                                // echo json_encode($file_info);
                            }
@@ -402,11 +396,11 @@
                            if (!file_exists($image_upload_folder)) {
                                mkdir($image_upload_folder, DIR_WRITE_MODE, true);
                            }
-                           $new_file_name="products2".date("Ymdhms");
+                           $new_file_name3="products2".date("Ymdhms");
                            $this->upload_config = array(
                              'upload_path'   => $image_upload_folder,
-                             'file_name' => $new_file_name,
-                             'allowed_types' =>'mp4|MOV|WMV|FLV|AVI|WebM|MKV',
+                             'file_name' => $new_file_name3,
+                             'allowed_types' =>'jpg|jpeg|png',
                              'max_size'      => 25000
                      );
                            $this->upload->initialize($this->upload_config);
@@ -415,11 +409,8 @@
                            } else {
                                $file_info = $this->upload->data();
 
-                               $videoNAmePath = "assets/uploads/products/".$new_file_name.$file_info['file_ext'];
-                               $file_info['new_name']=$videoNAmePath;
-                               // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
-                               $nnnn=$file_info['file_name'];
-                               $nnnn4=$videoNAmePath;
+                               $videoNAmePath4 = "assets/uploads/products/".$new_file_name3.$file_info['file_ext'];
+                               $nnnn4=$videoNAmePath4;
 
                                // echo json_encode($file_info);
                            }
@@ -437,11 +428,11 @@
                            if (!file_exists($image_upload_folder)) {
                                mkdir($image_upload_folder, DIR_WRITE_MODE, true);
                            }
-                           $new_file_name="products3".date("Ymdhms");
+                           $new_file_name4="products3".date("Ymdhms");
                            $this->upload_config = array(
                              'upload_path'   => $image_upload_folder,
-                             'file_name' => $new_file_name,
-                             'allowed_types' =>'mp4|MOV|WMV|FLV|AVI|WebM|MKV',
+                             'file_name' => $new_file_name4,
+                             'allowed_types' =>'jpg|jpeg|png',
                              'max_size'      => 25000
                      );
                            $this->upload->initialize($this->upload_config);
@@ -450,11 +441,9 @@
                            } else {
                                $file_info = $this->upload->data();
 
-                               $videoNAmePath = "assets/uploads/products/".$new_file_name.$file_info['file_ext'];
-                               $file_info['new_name']=$videoNAmePath;
-                               // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
-                               $nnnn=$file_info['file_name'];
-                               $nnnn5=$videoNAmePath;
+                               $videoNAmePath5 = "assets/uploads/products/".$new_file_name4.$file_info['file_ext'];
+
+                               $nnnn5=$videoNAmePath5;
 
                                // echo json_encode($file_info);
                            }
@@ -469,7 +458,7 @@
                            date_default_timezone_set("Asia/Calcutta");
                            $cur_date=date("Y-m-d H:i:s");
                            $addedby=$this->session->userdata('admin_id');
-
+// echo $nnnn2."<br />".$nnnn3."<br />".$nnnn4."<br />".$nnnn5;die();
                            if ($typ==1) {
                                $data_insert = array(
                   'productname'=>$productname,
