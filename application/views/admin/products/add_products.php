@@ -58,8 +58,8 @@
   </td>
 </tr>
 <tr>
-<td> <strong>Brand</strong>  <span style="color:red;"></span></strong> </td>
-<td> <select class="form-control" id="brand_id" name="brands"> />
+<td> <strong>Brand</strong>  <span style="color:red;">*</span></strong> </td>
+<td> <select class="form-control" required id="brand_id" name="brands"> />
 <option value="" selected>Select Brand</option>
 <?php foreach ($brand_data->result() as $brands) { ?>
    <option value="<?=$brands->id;?>"><?=$brands->name;?></option>
@@ -68,15 +68,15 @@
 </td>
 </tr>
 <tr>
-<td> <strong>Car Model</strong>  <span style="color:red;"></span></strong> </td>
-<td> <select class="form-control" id="car_model_id" name="car_model_id"> />
+<td> <strong>Car Model</strong>  <span style="color:red;">*</span></strong> </td>
+<td> <select class="form-control" required id="car_model_id" name="car_model_id"> />
    <option value=""></option>
 
    </select>
 </td>
 </tr>
   <tr>
-<td> <strong>image</strong>  <span style="color:red;"></span></strong> </td>
+<td> <strong>image</strong>  <span style="color:red;">*</span></strong> </td>
 <td> <input type="file" name="image"  class="form-control" required placeholder=""  value="" />  </td>
 </tr>
   <tr>
@@ -92,28 +92,28 @@
 <td> <input type="file" name="image3"  class="form-control" placeholder=""  value="" />  </td>
 </tr>
   <tr>
-<td> <strong>MRP</strong>  <span style="color:red;"></span></strong> </td>
-<td> <input type="number" name="mrp"  class="form-control" id="mrp"  placeholder=""  value="" />  </td>
+<td> <strong>MRP</strong>  <span style="color:red;"></span>*</strong> </td>
+<td> <input type="number" name="mrp" required class="form-control" id="mrp"  placeholder=""  value="" />  </td>
 </tr>
   <!-- <tr> -->
   <tr>
-<td> <strong>Selling Price(without Gst%)</strong>  <span style="color:red;"></span></strong> </td>
-<td> <input type="number" name="sellingprice"  class="form-control" id="sellingprice" placeholder=""  value="" />  </td>
+<td> <strong>Selling Price(without Gst%)</strong>  <span style="color:red;">*</span></strong> </td>
+<td> <input type="number" name="sellingprice" required class="form-control" id="sellingprice" placeholder=""  value="" />  </td>
 </tr>
   <tr>
-<td> <strong>Gst %</strong>  <span style="color:red;"></span></strong> </td>
-<td> <input type="number" name="gst" id="gst"  class="form-control" placeholder=""  value="" />  </td>
+<td> <strong>Gst %</strong>  <span style="color:red;">*</span></strong> </td>
+<td> <input type="number" name="gst" id="gst" required class="form-control" placeholder=""  value="" />  </td>
 </tr>
   <tr>
-<td> <strong>Gst Price</strong>  <span style="color:red;"></span></strong> </td>
-<td> <input type="text" name="gstprice" id="gstprice"  class="form-control" placeholder=""  value="" />  </td>
+<td> <strong>Gst Price</strong>  <span style="color:red;">*</span></strong> </td>
+<td> <input type="text" name="gstprice" id="gstprice" required class="form-control" placeholder=""  value="" />  </td>
 </tr>
   <tr>
 <td> <strong>Selling price</strong>  <span style="color:red;">*</span></strong> </td>
 <td> <input type="number" name="sp" id="sp" class="form-control" placeholder="" required value="" />  </td>
 </tr>
   <tr>
-<td> <strong>Product Description</strong>  <span style="color:red;">*</span></strong> </td>
+<td> <strong>Product Description</strong>  </td>
 <td> <textarea name="productdescription" id="editor1" rows="3" cols="80"></textarea>  </td>
 </tr>
   <tr>
@@ -141,7 +141,7 @@
  </td>
 </tr>
   <tr>
-<td> <strong>Wattage</strong>  <span style="color:red;"></span></strong> </td>
+<td> <strong>Wattage</strong>  </td>
 <td> <select class="form-control" id="polpularpid" name="wattage"> />
   <option value="" selected>Select wattage</option>
   <?php foreach ($wattage_data->result() as $wattage) { ?>
@@ -151,7 +151,7 @@
  </td>
 </tr>
   <tr>
-<td> <strong>Size</strong>  <span style="color:red;"></span></strong> </td>
+<td> <strong>Size</strong> </td>
 <td> <select class="form-control" id="polpularpid" name="size"> />
   <option value="" selected>Select size</option>
   <?php foreach ($size_data->result() as $size) { ?>
@@ -161,7 +161,7 @@
  </td>
 </tr>
   <tr>
-<td> <strong>Type</strong>  <span style="color:red;"></span></strong> </td>
+<td> <strong>Type</strong>  </td>
 <td> <select class="form-control" id="polpularpid" name="type"> />
   <option value="" selected>Select type</option>
   <?php foreach ($type_data->result() as $type) { ?>
@@ -171,7 +171,7 @@
  </td>
 </tr>
   <tr>
-<td> <strong>Filter Product</strong>  <span style="color:red;"></span></strong> </td>
+<td> <strong>Filter Product</strong> </td>
 <td> <select class="form-control" id="polpularpid" name="filter_product"> />
   <option value="" selected>Select filter_product</option>
   <?php foreach ($filter_product_data->result() as $filter_product) { ?>
@@ -181,7 +181,7 @@
  </td>
 </tr>
   <tr>
-<td> <strong>Color</strong>  <span style="color:red;"></span></strong> </td>
+<td> <strong>Color</strong>  </td>
 <td> <select class="form-control" id="polpularpid" name="color"> />
   <option value="" selected>Select color</option>
   <?php foreach ($color_data->result() as $color) { ?>

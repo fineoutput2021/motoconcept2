@@ -334,10 +334,6 @@ $this->db->where('is_active',1);
 $productsdata= $this->db->get()->row();
 if(!empty($productsdata)){
 
-$this->db->select('*');
-$this->db->from('tbl_inventory');
-$this->db->where('product_id',$productsdata->id);
-$inventory_data= $this->db->get()->row();
 
 if($productsdata->inventory>0){
 $stock = 1;
@@ -574,13 +570,9 @@ $check_product= $this->db->get();
 $check_product_id=$check_product->row();
 
 if(!empty($check_product_id)){
-$this->db->select('*');
-$this->db->from('tbl_inventory');
-$this->db->where('product_id',$product_id);
-$check_inventory= $this->db->get();
-$check_inventory_id=$check_inventory->row();
 
-if($check_inventory_id->quantity >= $quantity){
+
+if($check_product_id->inventory >= $quantity){
 
 }else{
 header('Access-Control-Allow-Origin: *');
@@ -705,14 +697,8 @@ $check_product_id=$check_product->row();
 
 if(!empty($check_product_id)){
 
-$this->db->select('*');
-$this->db->from('tbl_inventory');
-$this->db->where('product_id',$product_id);
-$check_inventory= $this->db->get();
-$check_inventory_id=$check_inventory->row();
 
-
-if($check_inventory_id->quantity >= $quantity){
+  if($check_product_id->inventory >= $quantity){
 
 }else{
 header('Access-Control-Allow-Origin: *');
@@ -1044,15 +1030,15 @@ if($user_data->authentication==$authentication){
 
 
 $this->db->select('*');
-$this->db->from('tbl_inventory');
-$this->db->where('product_id',$product_id);
+$this->db->from('tbl_products');
+$this->db->where('id',$product_id);
 $inventory_data= $this->db->get()->row();
 
 // echo $inventory_data->quantity;
 // exit;
 //----inventory_check----------
 
-if($inventory_data->quantity >= $quantity){
+if($inventory_data->inventory >= $quantity){
 
 }else{
 header('Access-Control-Allow-Origin: *');
@@ -1120,16 +1106,17 @@ echo json_encode($res);
 else{
 
 
-$this->db->select('*');
-$this->db->from('tbl_inventory');
-$this->db->where('product_id',$product_id);
-$inventory_data= $this->db->get()->row();
 
-// echo $inventory_data->quantity;
-// exit;
-//----inventory_check----------
+  $this->db->select('*');
+  $this->db->from('tbl_products');
+  $this->db->where('id',$product_id);
+  $inventory_data= $this->db->get()->row();
 
-if($inventory_data->quantity >= $quantity){
+  // echo $inventory_data->quantity;
+  // exit;
+  //----inventory_check----------
+
+  if($inventory_data->inventory >= $quantity){
 
 }else{
 header('Access-Control-Allow-Origin: *');
@@ -1500,7 +1487,6 @@ $products[] = array(
 'mrp'=> $limit->mrp,
 'price'=>$limit->sellingpricegst,
 'productdescription'=> $limit->productdescription,
-'max'=>$limit->max,
 // 'inventory'=> $data->inventory
 );
 }
@@ -1743,13 +1729,13 @@ if(!empty($cart_check1)){
 $total2=0;
 foreach($cart_data1->result() as $data1) {
 
+  $this->db->select('*');
+  $this->db->from('tbl_products');
+  $this->db->where('id',$data1->product_id);
+  $inventory_data= $this->db->get()->row();
 
-$this->db->select('*');
-$this->db->from('tbl_inventory');
-$this->db->where('product_id',$data1->product_id);
-$inventory_data1= $this->db->get()->row();
 
-if(!empty($inventory_data1)){
+if(!empty($inventory_data)){
 
 $this->db->select('*');
 $this->db->from('tbl_products');
@@ -2910,12 +2896,9 @@ $this->db->from('tbl_products');
 $this->db->where('id',$data->product_id);
 $product_data= $this->db->get()->row();
 
-$this->db->select('*');
-$this->db->from('tbl_inventory');
-$this->db->where('product_id',$data->product_id);
-$inventory_data= $this->db->get()->row();
 
-if($inventory_data->quantity >= $data->quantity){
+
+if($product_data->inventory >= $data->quantity){
 
 
 }else{
@@ -2970,18 +2953,20 @@ foreach($order2_data->result() as $data1) {
 
 
 
-$this->db->select('*');
-$this->db->from('tbl_inventory');
-$this->db->where('product_id',$data1->product_id);
-$product_data1= $this->db->get()->row();
+  $this->db->select('*');
+  $this->db->from('tbl_products');
+  $this->db->where('id',$data->product_id);
+  $product_data= $this->db->get()->row();
 
-$updated_inventory = $product_data1->quantity - $data1->quantity;
+
+
+$updated_inventory = $product_data->inventory - $data1->quantity;
 
 
 $data_update = array('quantity'=>$updated_inventory);
 
-$this->db->where('id', $product_data1->id);
-$last_id=$this->db->update('tbl_inventory', $data_update);
+$this->db->where('id', $product_data->id);
+$last_id=$this->db->update('tbl_products', $data_update);
 
 }//end of foreach
 }//end of order2
@@ -3447,19 +3432,19 @@ $data_order1= $this->db->get();
 if(!empty($data_order1)){
 foreach($data_order1->result() as $data) {
 $this->db->select('*');
-$this->db->from('tbl_inventory');
-$this->db->where('product_id',$data->product_id);
+$this->db->from('tbl_products');
+$this->db->where('id',$data->product_id);
 $data_inventory= $this->db->get()->row();
 
-$total_quantity=$data->quantity + $data_inventory->quantity;
+$total_quantity=$data->quantity + $data_inventory->inventory;
 
 
 
 $data_update=array(
 'quantity'=>$total_quantity
 );
-$this->db->where('product_id', $data->product_id);
-$last_id2=$this->db->update('tbl_inventory', $data_update);
+$this->db->where('id', $data->product_id);
+$last_id2=$this->db->update('tbl_products', $data_update);
 }
 
 
@@ -3544,117 +3529,53 @@ if($this->input->post())
 {
 
 
-$this->form_validation->set_rules('brand_id', 'brand_id', 'xss_clean|trim');
-$this->form_validation->set_rules('resolution_id', 'resolution_id', 'xss_clean|trim');
-$this->form_validation->set_rules('irdistance_id', 'irdistance_id', 'xss_clean|trim');
-$this->form_validation->set_rules('cameratype_id', 'cameratype_id', 'xss_clean|trim');
-$this->form_validation->set_rules('bodymaterial_id', 'bodymaterial_id', 'xss_clean|trim');
-$this->form_validation->set_rules('videochannel_id', 'videochannel_id', 'xss_clean|trim');
-$this->form_validation->set_rules('poeports_id', 'poeports_id', 'xss_clean|trim');
-$this->form_validation->set_rules('poetype_id', 'poetype_id', 'xss_clean|trim');
-$this->form_validation->set_rules('sataports_id', 'sataports_id', 'xss_clean|trim');
-$this->form_validation->set_rules('length_id', 'length_id', 'xss_clean|trim');
-$this->form_validation->set_rules('screensize_id', 'screensize_id', 'xss_clean|trim');
-$this->form_validation->set_rules('ledtype_id', 'ledtype_id', 'xss_clean|trim');
-$this->form_validation->set_rules('size_id', 'size_id', 'xss_clean|trim');
-$this->form_validation->set_rules('lens_id', 'lens_id', 'xss_clean|trim');
+$this->form_validation->set_rules('type', 'type', 'xss_clean|trim');
+$this->form_validation->set_rules('wattage', 'wattage', 'xss_clean|trim');
+$this->form_validation->set_rules('size', 'size', 'xss_clean|trim');
+$this->form_validation->set_rules('filter_product', 'filter_product', 'xss_clean|trim');
+$this->form_validation->set_rules('color', 'color', 'xss_clean|trim');
 
 
 
 if($this->form_validation->run()== TRUE)
 {
 
-$brand_id=$this->input->post('brand_id');
-$resolution_id=$this->input->post('resolution_id');
-$irdistance_id=$this->input->post('irdistance_id');
-$cameratype_id=$this->input->post('cameratype_id');
-$bodymaterial_id=$this->input->post('bodymaterial_id');
-$videochannel_id=$this->input->post('videochannel_id');
-$poeports_id=$this->input->post('poeports_id');
-$poetype_id=$this->input->post('poetype_id');
-
-$sataports_id=$this->input->post('sataports_id');
-$length_id=$this->input->post('length_id');
-$screensize_id=$this->input->post('screensize_id');
-$ledtype_id=$this->input->post('ledtype_id');
-$size_id=$this->input->post('size_id');
-$lens_id=$this->input->post('lens_id');
+$type=$this->input->post('type');
+$wattage=$this->input->post('wattage');
+$size=$this->input->post('size');
+$filter_product=$this->input->post('filter_product');
+$color=$this->input->post('color');
 
 
-$brand_info = explode(',',$brand_id);
-$resolution_info = explode(',',$resolution_id);
-$irdistance_info = explode(',',$irdistance_id);
-$cameratype_info = explode(',',$cameratype_id);
-$bodymaterial_info = explode(',',$bodymaterial_id);
-$videochannel_info = explode(',',$videochannel_id);
-$poeports_info = explode(',',$poeports_id);
-$poetype_info = explode(',',$poetype_id);
-$sataports_info = explode(',',$sataports_id);
-$length_info = explode(',',$length_id);
-$screensize_info = explode(',',$screensize_id);
-$ledtype_info = explode(',',$ledtype_id);
-$size_info = explode(',',$size_id);
-$lens_info = explode(',',$lens_id);
+$type = explode(',',$type);
+$wattage = explode(',',$wattage);
+$size = explode(',',$size);
+$filter_product = explode(',',$filter_product);
+$color = explode(',',$color);
 
 
 $this->db->select('*');
 $this->db->from('tbl_products');
 
-if(!empty($brand_info[0])){
-foreach($brand_info as $data0) {
-$this->db->or_where('brand',$data0, NULL, FALSE);
+if(!empty($type_info[0])){
+foreach($type_info as $data0) {
+$this->db->or_where('type',$data0, NULL, FALSE);
 }}
-if(!empty($resolution_info[0])){
-foreach($resolution_info as $data) {
-$this->db->or_where('resolution',$data, NULL, FALSE);
-}}
-if(!empty($irdistance_info[0])){
-foreach($irdistance_info as $data1) {
-$this->db->or_where('irdistance',$data1, NULL, FALSE);
-}}
-if(!empty($cameratype_info[0])){
-foreach($cameratype_info as $data2) {
-$this->db->or_where('cameratype',$data2, NULL, FALSE);
-}}
-if(!empty($bodymaterial_info[0])){
-foreach($bodymaterial_info as $data3) {
-$this->db->or_where('bodymaterial',$data3, NULL, FALSE);
-}}
-if(!empty($videochannel_info[0])){
-foreach($videochannel_info as $data4) {
-$this->db->or_where('videochannel',$data4, NULL, FALSE);
-}}
-if(!empty($poeports_info[0])){
-foreach($poeports_info as $data5) {
-$this->db->or_where('poeports',$data5, NULL, FALSE);
-}}
-if(!empty($poetype_info[0])){
-foreach($poetype_info as $data6) {
-$this->db->or_where('poetype',$data6, NULL, FALSE);
-}}
-if(!empty($sataports_info[0])){
-foreach($sataports_info as $data7) {
-$this->db->or_where('sataports',$data7, NULL, FALSE);
-}}
-if(!empty($length_info[0])){
-foreach($length_info as $data8) {
-$this->db->or_where('length',$data8, NULL, FALSE);
-}}
-if(!empty($screensize_info[0])){
-foreach($screensize_info as $data9) {
-$this->db->or_where('screensize',$data9, NULL, FALSE);
-}}
-if(!empty($ledtype_info[0])){
-foreach($ledtype_info as $data10) {
-$this->db->or_where('ledtype',$data10, NULL, FALSE);
+if(!empty($wattage_info[0])){
+foreach($wattage_info as $data) {
+$this->db->or_where('wattage',$data, NULL, FALSE);
 }}
 if(!empty($size_info[0])){
-foreach($size_info as $data11) {
-$this->db->or_where('size',$data11, NULL, FALSE);
+foreach($size_info as $data1) {
+$this->db->or_where('size',$data1, NULL, FALSE);
 }}
-if(!empty($lens_info[0])){
-foreach($lens_info as $data12) {
-$this->db->or_where('lens',$data12, NULL, FALSE);
+if(!empty($filter_product_info[0])){
+foreach($filter_product_info as $data2) {
+$this->db->or_where('filter_product',$data2, NULL, FALSE);
+}}
+if(!empty($color_info[0])){
+foreach($color_info as $data3) {
+$this->db->or_where('color',$data3, NULL, FALSE);
 }}
 
 
@@ -3672,8 +3593,6 @@ $filter_info[] = array(
 'productdescription'=>$data->productdescription,
 'MRP'=>$data->mrp,
 'price'=>$data->sellingpricegst,
-'max'=>$data->max
-
 );
 }
 }
