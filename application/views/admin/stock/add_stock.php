@@ -40,18 +40,6 @@
                                                           <div class="table-responsive">
                                                               <table class="table table-hover">
 
-                          											<tr>
-                                                                          <td> <strong>Name</strong>  <span style="color:red;">*</span></strong> </td>
-                                                                          <td>
-                          													<input type="text" name="name"  class="form-control" placeholder="" required value="" />
-                          	                                            </td>
-                              										</tr>
-
-                          											<tr>
-                                                                          <td> <strong>Message</strong>  <span style="color:red;">*</span></strong> </td>
-                                                                          <td>
-                          													<input type="text" name="message"  class="form-control" placeholder="" required value="" />
-                          	                                            </td>
 
                           											<tr>
                                                                           <td> <strong>Image</strong>  <span style="color:red;">*</span></strong> </td>

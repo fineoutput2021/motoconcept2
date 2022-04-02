@@ -21,13 +21,13 @@ public function get_slider(){
 $this->db->select('*');
 $this->db->from('tbl_slider');
 $this->db->where('is_active',1);
-
 $sliderdata= $this->db->get();
 $slider=[];
 foreach($sliderdata->result() as $data) {
 $slider[] = array(
 'name'=> $data->title,
-'image'=> base_url().$data->slider_image
+'image'=> base_url().$data->slider_image,
+'app_image'=> base_url().$data->app_image
 );
 }
 header('Access-Control-Allow-Origin: *');
@@ -402,27 +402,10 @@ $sub= $this->db->get();
 $subcategory=[];
 foreach($sub->result() as $data2) {
 
-$this->db->select('*');
-$this->db->from('tbl_minorcategory');
-$this->db->where('category_id',$c_id);
-$this->db->where('subcategory_id',$data2->id);
-$minor_category= $this->db->get();
-$minorcategory=[];
-foreach($minor_category->result() as $m_id){
-$minorcategory[]=array(
-'minor_id'=>$m_id->id,
-'minor_name' =>$m_id->minorcategoryname
-);
-}
-
-
 
 $subcategory[] = array(
 'sub_id' => $data2->id,
 'name'=> $data2->subcategory,
-'minor_category'=>$minorcategory
-
-
 
 );
 }
@@ -1516,8 +1499,8 @@ $products[] = array(
 // 'minorcategory'=>$m1,
 'productimage'=> base_url().$limit->image,
 'productimage1'=> base_url().$limit->image1,
-'productimage2'=> base_url().$limit->video1,
-'productimage3'=> base_url().$limit->video2,
+'productimage2'=> base_url().$limit->image2,
+'productimage3'=> base_url().$limit->image3,
 'mrp'=> $limit->mrp,
 'price'=>$limit->sellingpricegst,
 'productdescription'=> $limit->productdescription,
@@ -1548,9 +1531,10 @@ $stock=[];
 foreach ($data->result() as $value) {
 $stock[]=array(
 'image'=>base_url().$value->image1,
-'background_image'=>base_url().$value->image2,
-'name'=>$value->stockname,
-'message'=>$value->stockmessage
+'link1'=>base_url().$value->link1,
+'image2'=>base_url().$value->image2,
+'link2'=>base_url().$value->link2,
+
 
 );
 }
@@ -3740,9 +3724,9 @@ echo json_encode($res);
 public function view_filter($id){
 
 $this->db->select('*');
-$this->db->from('tbl_minorcategory');
+$this->db->from('tbl_subcategory');
 $this->db->where('id',$id);
-$minorcategory_data= $this->db->get()->row();
+$subcategory_data= $this->db->get()->row();
 
   //resoultation
 $this->db->select('*');
@@ -4194,4 +4178,48 @@ echo json_encode($res);
 
 }
 
+//===============get_brands=================================
+public function get_brands(){
+
+              $this->db->select('*');
+  $this->db->from('tbl_brands');
+  $this->db->where('is_active',1);
+  $brand_data= $this->db->get();
+  $brands=[];
+  foreach ($brand_data->result() as $data){
+    $brands[] = array('id'=>$data->id,
+    'name'=>$data->name
+    );
+  }
+  header('Access-Control-Allow-Origin: *');
+  $res = array('message'=>"success",
+  'status'=>200,
+  'data'=>$brands
+  );
+
+  echo json_encode($res);
+}
+//================get_car_model==================
+public function get_car_model($idd){
+
+
+  $this->db->select('*');
+  $this->db->from('tbl_car_model');
+  $this->db->where('brand_id',$idd);
+  $this->db->where('is_active', 1);
+  $car_model_data= $this->db->get();
+  $car_model=[];
+  foreach($car_model_data->result() as $data){
+    $car_model[] = array('id'=>$data->id,
+    'name'=>$data->name
+    );
+  }
+  header('Access-Control-Allow-Origin: *');
+  $res = array('message'=>"success",
+  'status'=>200,
+  'data'=>$car_model
+  );
+
+  echo json_encode($res);
+}
 }

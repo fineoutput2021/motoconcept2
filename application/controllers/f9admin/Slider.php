@@ -116,23 +116,43 @@ public function add_slider(){
 								  							$file_info = $this->upload->data();
 
 								  							$image = "assets/uploads/slider/".$new_file_name.$file_info['file_ext'];
-								  							$file_info['new_name']=$image;
-								  							// $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
-								  							$nnn=$file_info['file_name'];
+								  							$nnn=$image;
 								  							// echo json_encode($file_info);
 								  						}
 								            }
+								$img2='app_image';
 
+								            $file_check=($_FILES['app_image']['error']);
+								            if($file_check!=4){
+								          	$image_upload_folder = FCPATH . "assets/uploads/slider/";
+								  						if (!file_exists($image_upload_folder))
+								  						{
+								  							mkdir($image_upload_folder, DIR_WRITE_MODE, true);
+								  						}
+								  						$new_file_name="app_image".date("Ymdhms");
+								  						$this->upload_config = array(
+								  								'upload_path'   => $image_upload_folder,
+								  								'file_name' => $new_file_name,
+								  								'allowed_types' =>'jpg|jpeg|png',
+								  								'max_size'      => 25000
+								  						);
+								  						$this->upload->initialize($this->upload_config);
+								  						if (!$this->upload->do_upload($img2))
+								  						{
+								  							$upload_error = $this->upload->display_errors();
+								  							// echo json_encode($upload_error);
+								  							echo $upload_error;
+								  						}
+								  						else
+								  						{
 
-                  // $slider = time() . '_' . $_FILES["slider_image"]["name"];
-					        // $liciense_tmp_name = $_FILES["slider_image"]["tmp_name"];
-					        // $error = $_FILES["slider_image"]["error"];
-					        // $liciense_path = 'assets/admin/slider/' . $slider;
-					        // move_uploaded_file($liciense_tmp_name, $liciense_path);
-					        // $image = $liciense_path;
+								  							$file_info = $this->upload->data();
 
-
-
+								  							$image2 = "assets/uploads/slider/".$new_file_name.$file_info['file_ext'];
+								  							$nnn1=$image2;
+								  							// echo json_encode($file_info);
+								  						}
+								            }
                   $ip = $this->input->ip_address();
           date_default_timezone_set("Asia/Calcutta");
                   $cur_date=date("Y-m-d H:i:s");
@@ -144,6 +164,7 @@ public function add_slider(){
 
           $data_insert = array('title'=>$title,
                     'slider_image'=>$image,
+                    'app_image'=>$image2,
                     'added_by' =>$addedby,
                     'is_active' =>1,
                     'date'=>$cur_date
@@ -159,31 +180,27 @@ public function add_slider(){
           if($typ==2){
 
    $idw=base64_decode($iw);
+                              $this->db->select('*');
+                  $this->db->from('tbl_slider');
+                  $this->db->where('id',$idw);
+                  $data= $this->db->get()->row();
 
-// $this->db->select('*');
-//     $this->db->from('tbl_minor_category');
-//    $this->db->where('name',$name);
-//     $damm= $this->db->get();
-//    foreach($damm->result() as $da) {
-//      $uid=$da->id;
-// if($uid==$idw)
-// {
-//
-//  }
-// else{
-//    echo "Multiple Entry of Same Name";
-//       exit;
-//  }
-//     }
-if(!empty($image)){
-          $data_insert = array('title'=>$title,
-                    'slider_image'=>$image,
-                    );
+                  if(!empty($nnn)){
+                    $d1=$nnn;
+                  }else{
+                    $d1=$data->slider_image;
+                  }
+                  if(!empty($nnn1)){
+                    $d2=$nnn1;
+                  }else{
+                    $d2=$data->app_image;
+                  }
 
-}else{
-	$data_insert = array('title'=>$title,
-						);
-}
+
+$data_insert = array('title'=>$title,
+          'slider_image'=>$d1,
+          'app_image'=>$d2,
+          );
 
 
           	$this->db->where('id', $idw);
@@ -196,7 +213,7 @@ if(!empty($image)){
 
                               $this->session->set_flashdata('smessage','Data inserted successfully');
 
-                              redirect("dcadmin/slider/view_slider","refresh");
+                              redirect("dcadmin/Slider/view_slider","refresh");
 
                                       }
 

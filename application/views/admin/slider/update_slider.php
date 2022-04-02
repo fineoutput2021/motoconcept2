@@ -1,11 +1,11 @@
 <div class="content-wrapper">
         <section class="content-header">
            <h1>
-            Add New Slider Image
+            Update Slider Image
           </h1>
           <ol class="breadcrumb">
            <li><a href="<?php echo base_url() ?>dcadmin/dashboard"><i class="fa fa-dashboard"></i>Home</a></li>
-            <li><a href="<?php echo base_url() ?>dcadmin/slider/view_slider"><i class="fa fa-dashboard"></i> Slider List</a></li>
+            <li><a href="<?php echo base_url() ?>dcadmin/Slider/view_slider"><i class="fa fa-dashboard"></i> Slider List</a></li>
 
           </ol>
         </section>
@@ -15,7 +15,7 @@
 
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Add New Slider Image</h3>
+                                <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Update Slider Image</h3>
                             </div>
 
                                     <? if(!empty($this->session->flashdata('smessage'))){ ?>
@@ -36,7 +36,7 @@
 
                             <div class="panel-body">
                                 <div class="col-lg-10">
-                                   <form action="<?php echo base_url() ?>dcadmin/slider/add_slider_data/<? echo base64_encode(2); ?>/<?= $id ?>" method="POST" id="slide_frm" enctype="multipart/form-data">
+                                   <form action="<?php echo base_url() ?>dcadmin/Slider/add_slider_data/<? echo base64_encode(2); ?>/<?= $id ?>" method="POST" id="slide_frm" enctype="multipart/form-data">
                                 <div class="table-responsive">
                                     <table class="table table-hover">
 
@@ -51,11 +51,27 @@
                                                       <td>
                                 <input type="file" name="slider_image"  class="form-control" placeholder=""  value="<?= $slider->slider_image; ?>" />
                                                     </td>
-                                                
+
 
                                                     <td>
                                                         <?php if($slider->slider_image!=""){  ?>
                                   <img id="slide_img_path" height=50 width=100  src="<?php echo base_url() ?><?php echo $slider->slider_image; ?>">
+                                                    <?php }else {  ?>
+                                                    Sorry No image Found
+                                                    <?php } ?>
+                                                      </td>
+
+                              </tr>
+                            <tr>
+                                                      <td> <strong>App Image</strong>  <span style="color:red;">*</span></strong> </td>
+                                                      <td>
+                                <input type="file" name="app_image"  class="form-control" placeholder=""  value="<?= $slider->app_image; ?>" />
+                                                    </td>
+
+
+                                                    <td>
+                                                        <?php if($slider->app_image!=""){  ?>
+                                  <img id="slide_img_path" height=50 width=100  src="<?php echo base_url() ?><?php echo $slider->app_image; ?>">
                                                     <?php }else {  ?>
                                                     Sorry No image Found
                                                     <?php } ?>

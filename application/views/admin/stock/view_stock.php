@@ -41,8 +41,6 @@
                                           <thead>
                                               <tr>
                                                   <th>#</th>
-                                                  <th>Name</th>
-                                                  <th>Message</th>
                                                   <th>Image1</th>
                                                   <th>Link1</th>
                                                    <th>Image2</th>
@@ -55,10 +53,6 @@
                                                 	<?php $i=1; foreach($stock_data->result() as $data) { ?>
                         <tr>
                             <td><?php echo $i ?> </td>
-                            <td><?php echo $data->stockname ?></td>
-                            <td><?php echo $data->stockmessage ?></td>
-
-
                             <td>
                                 <?php if($data->image1!=""){  ?>
           <img id="slide_img_path" height=50 width=100  src="<?php echo base_url().$data->image1 ?>" >
@@ -67,7 +61,7 @@
                             <?php } ?>
                               </td>
                               <td><?php echo $data->link1 ?></td>
-                              
+
                             <td>
                                 <?php if($data->image2!=""){  ?>
           <img id="slide_img_path" height=50 width=100  src="<?php echo base_url().$data->image2 ?>" >

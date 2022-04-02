@@ -38,21 +38,7 @@
                                 <div class="col-lg-10">
                                    <form action="<?php echo base_url() ?>dcadmin/stock/add_stock_data/<? echo base64_encode(2); ?>/<?=$id?>" method="POST" id="slide_frm" enctype="multipart/form-data">
                                 <div class="table-responsive">
-                                    <table class="table table-hover">
-
-                      <tr>
-                                                <td> <strong>Name</strong>  <span style="color:red;">*</span></strong> </td>
-                                                <td>
-                          <input type="text" name="name"  class="form-control" placeholder="" required value="<?=$data->stockname?>" />
-                                              </td>
-                        </tr>
-
-                      <tr>
-                                                <td> <strong>Message</strong>  <span style="color:red;">*</span></strong> </td>
-                                                <td>
-                          <input type="text" name="message"  class="form-control" placeholder="" required value="<?=$data->stockmessage?>" />
-                                              </td>
-                        </tr>
+                                    <table class="table table-hover">                     
 
                       <tr>
                                                 <td> <strong>Image1</strong>  <span style="color:red;">*</span></strong> </td>

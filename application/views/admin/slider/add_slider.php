@@ -5,7 +5,7 @@
                                     </h1>
                                     <ol class="breadcrumb">
                                      <li><a href="<?php echo base_url() ?>dcadmin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
-                                      <li><a href="<?php echo base_url() ?>dcadmin/slider/view_slider"><i class="fa fa-dashboard"></i> All Slider </a></li>
+                                      <li><a href="<?php echo base_url() ?>dcadmin/Slider/view_slider"><i class="fa fa-dashboard"></i> All Slider </a></li>
 
                                     </ol>
                                   </section>
@@ -36,7 +36,7 @@
 
                                                       <div class="panel-body">
                                                           <div class="col-lg-10">
-                                                             <form action="<?php echo base_url() ?>dcadmin/slider/add_slider_data/<? echo base64_encode(1); ?>" method="POST" id="slide_frm" enctype="multipart/form-data">
+                                                             <form action="<?php echo base_url() ?>dcadmin/Slider/add_slider_data/<? echo base64_encode(1); ?>" method="POST" id="slide_frm" enctype="multipart/form-data">
                                                           <div class="table-responsive">
                                                               <table class="table table-hover">
 
@@ -50,6 +50,12 @@
                                                                                 <td> <strong>Image</strong>  <span style="color:red;">*</span></strong> </td>
                                                                                 <td>
                                                           <input type="file" name="slider_image"  class="form-control" placeholder="" required value="" />
+                                                                              </td>
+                                                        </tr>
+                                                      <tr>
+                                                                                <td> <strong>App Image</strong>  <span style="color:red;">*</span></strong> </td>
+                                                                                <td>
+                                                          <input type="file" name="app_image"  class="form-control" placeholder="" required value="" />
                                                                               </td>
                                                         </tr>
                                                   	<tr>
@@ -78,3 +84,4 @@
 
 <script type="text/javascript" src="<?php echo base_url() ?>assets/slider/ajaxupload.3.5.js"></script>
                       	<link href="<? echo base_url() ?>assets/cowadmin/css/jqvmap.css" rel='stylesheet' type='text/css' />
+dcadmin/Slider
