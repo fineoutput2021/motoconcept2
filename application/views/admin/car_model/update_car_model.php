@@ -35,21 +35,7 @@
                            <form action=" <?php echo base_url(); ?>dcadmin/car_model/add_car_model_data/<? echo base64_encode(2); ?>/<?=$id;?>" method="POST" id="slide_frm" enctype="multipart/form-data">
                         <div class="table-responsive">
                             <table class="table table-hover">
-                              <tr>
-                              <td> <strong>Brand </strong>  <span style="color:red;">*</span></strong> </td>
-                              <td>
-                              <select class="form-control" name="brand_id">
-                              <?
-                              $this->db->select('*');
-                              $this->db->from('tbl_brands');
-                              $car_brand_data= $this->db->get();
-                               foreach($car_brand_data->result() as $value) {?>
-                                   <option value="<?=$value->id;?>"<?php if($car_model_data->brand_id == $value->id){ echo "selected"; } ?>><?=$value->name;?></option>
-                               <? }?>
-
-                              </select>
-                              </td>
-                              </tr>
+                                <input type="hidden" name="brand_id" value="<?=$id?>">
 <tr>
 <td> <strong>Name</strong>  <span style="color:red;">*</span></strong> </td>
 <td> <input type="text" name="name"  class="form-control" placeholder="" required value="<?=$car_model_data->name;?>" />  </td>

@@ -42,11 +42,13 @@
 
           }
 
-              public function add_car_model(){
+              public function add_car_model($id){
 
                  if(!empty($this->session->userdata('admin_data'))){
+                    // $id=base64_decode($id);
+                   $data['id']=$id;
 
-                   $this->load->view('admin/common/header_view');
+                   $this->load->view('admin/common/header_view',$data);
                    $this->load->view('admin/car_model/add_car_model');
                    $this->load->view('admin/common/footer_view');
 
@@ -105,7 +107,7 @@
              {
                // print_r($this->input->post());
                // exit;
-  $this->form_validation->set_rules('brand_id', 'brand_id', 'required');
+  $this->form_validation->set_rules('brand_id', 'brand_id');
   $this->form_validation->set_rules('name', 'name', 'required');
 
 
@@ -129,7 +131,7 @@
 
 
            $data_insert = array(
-                  'brand_id'=>$brand_id,
+                  'brand_id'=>base64_decode($brand_id),
   'name'=>$name,
 
                      'ip' =>$ip,
@@ -162,7 +164,6 @@
 
 
            $data_insert = array(
-                  'brand_id'=>$brand_id,
   'name'=>$name,
 
                      );

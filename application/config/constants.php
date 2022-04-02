@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 
-define('SITE_NAME','Fineoutput');
+define('SITE_NAME','Motoconcept');
 define('ADMIN_URL','dcadmin');
 
 

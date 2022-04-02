@@ -8,7 +8,7 @@
         <section class="content">
         <div class="row">
         <div class="col-lg-12">
-        <a class="btn btn-info cticket" href="<?php echo base_url() ?>dcadmin/Car_model/add_car_model"
+        <a class="btn btn-info cticket" href="<?php echo base_url() ?>dcadmin/Car_model/add_car_model/<?php echo $id ?>"
         role="button" style="margin-bottom:12px;"> Add car model</a>
         <a class="btn btn-info cticket" href="<?php echo base_url() ?>dcadmin/Brands/view_brands"
         role="button" style="margin-bottom:12px;"> Back</a>
@@ -40,11 +40,7 @@
         <thead>
         <tr>
         <th>#</th>
-
- 	 <th>Car Brand</th>
- 	 <th>Name</th>
-
-
+ 	      <th>Name</th>
         <th>Status</th>
         <th>Action</th>
         </tr>
@@ -53,18 +49,6 @@
         <?php $i=1; foreach($car_model_data->result() as $data) { ?>
         <tr>
         <td><?php echo $i ?> </td>
-
- 	 <td><?php
-    $this->db->select('*');
-    $this->db->from('tbl_brands');
-    $this->db->where('id',$data->brand_id);
-    $brand_data= $this->db->get()->row();
-    if(!empty($brand_data)){
-      echo $brand_data->name;
-    }else{
-      echo "NA";
-    }
-    ?></td>
  	 <td><?php echo $data->name ?></td>
 
 

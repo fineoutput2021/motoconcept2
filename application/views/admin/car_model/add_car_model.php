@@ -32,25 +32,12 @@
 
                                    <div class="panel-body">
                                        <div class="col-lg-10">
-                                          <form action=" <?php echo base_url()  ?>dcadmin/Car_model/add_car_model_data/<? echo base64_encode(1);  ?>" method="POST" id="slide_frm" enctype="multipart/form-data">
+                                          <form action=" <?php echo base_url()  ?>dcadmin/Car_model/add_car_model_data/<? echo base64_encode(1);?>" method="POST" id="slide_frm" enctype="multipart/form-data">
+                                            <input type="hidden" name="brand_id" value="<?=$id?>">
                                        <div class="table-responsive">
                                            <table class="table table-hover">
-  <tr>
-    <td> <strong>Brand</strong>  <span style="color:red;">*</span></strong> </td>
-    <td>
-        <select class="form-control" name="brand_id">
-          <?
-          $this->db->select('*');
-          $this->db->from('tbl_brands');
-          $car_brand_data= $this->db->get();
-           foreach($car_brand_data->result() as $value) {?>
-             <option value="<?=$value->id;?>"><?=$value->name;?></option>
-           <? }?>
-        </select>
 
-    </td>
-  </tr>
-  <tr>
+<tr>
 <td> <strong>Name</strong>  <span style="color:red;">*</span></strong> </td>
 <td> <input type="text" name="name"  class="form-control" placeholder="" required value="" />  </td>
 </tr>
