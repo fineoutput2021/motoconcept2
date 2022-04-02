@@ -857,7 +857,6 @@ $cart_info[] = array('product_id'=>$data->product_id,
 'quantity'=>$data->quantity,
 'price'=>$product_data->sellingpricegst,
 'total='=>$total = $product_data->sellingpricegst * $data->quantity,
-'max'=>$product_data->max,
 
 );
 $sub_total= $sub_total + $total;
