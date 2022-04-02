@@ -43,11 +43,35 @@
               public function add_subcategory(){
 
                  if(!empty($this->session->userdata('admin_data'))){
+                    $this->db->select('*');
+                    $this->db->from('tbl_category');
+                    $this->db->where('is_active',1);
+                    $data['category_data']= $this->db->get();
 
-            $this->db->select('*');
-$this->db->from('tbl_category');
-$this->db->where('is_active',1);
-$data['category_data']= $this->db->get();
+                    $this->db->select('*');
+                    $this->db->from('tbl_type');
+                    $this->db->where('is_active',1);
+                    $data['type_data']= $this->db->get();
+
+                    $this->db->select('*');
+                    $this->db->from('tbl_wattage');
+                    $this->db->where('is_active',1);
+                    $data['wattage_data']= $this->db->get();
+
+                    $this->db->select('*');
+                    $this->db->from('tbl_size');
+                    $this->db->where('is_active',1);
+                    $data['size_data']= $this->db->get();
+
+                    $this->db->select('*');
+                    $this->db->from('tbl_filter_product');
+                    $this->db->where('is_active',1);
+                    $data['filter_product_data']= $this->db->get();
+
+                    $this->db->select('*');
+                    $this->db->from('tbl_color');
+                    $this->db->where('is_active',1);
+                    $data['color_data']= $this->db->get();
 
 
                    $this->load->view('admin/common/header_view',$data);
@@ -82,10 +106,35 @@ $data['category_data']= $this->db->get();
                             $this->db->where('id',$id);
                             $data['subcategory_data']= $this->db->get()->row();
 
-                                        $this->db->select('*');
+                            $this->db->select('*');
                             $this->db->from('tbl_category');
                             //$this->db->where('id',$usr);
                             $data['category_data']= $this->db->get();
+
+                            $this->db->select('*');
+                            $this->db->from('tbl_type');
+                            $this->db->where('is_active',1);
+                            $data['type_data']= $this->db->get();
+
+                            $this->db->select('*');
+                            $this->db->from('tbl_wattage');
+                            $this->db->where('is_active',1);
+                            $data['wattage_data']= $this->db->get();
+
+                            $this->db->select('*');
+                            $this->db->from('tbl_size');
+                            $this->db->where('is_active',1);
+                            $data['size_data']= $this->db->get();
+
+                            $this->db->select('*');
+                            $this->db->from('tbl_filter_product');
+                            $this->db->where('is_active',1);
+                            $data['filter_product_data']= $this->db->get();
+
+                            $this->db->select('*');
+                            $this->db->from('tbl_color');
+                            $this->db->where('is_active',1);
+                            $data['color_data']= $this->db->get();
 
 
                      $this->load->view('admin/common/header_view',$data);
@@ -117,6 +166,12 @@ $data['category_data']= $this->db->get();
   $this->form_validation->set_rules('category_id', 'category_id', 'required|trim');
   $this->form_validation->set_rules('subcategory', 'subcategory', 'required|trim');
 
+  $this->form_validation->set_rules('type[]', 'type', 'trim');
+  $this->form_validation->set_rules('wattage[]', 'wattage', 'trim');
+  $this->form_validation->set_rules('size[]', 'size', 'trim');
+  $this->form_validation->set_rules('filter_product[]', 'filter_product', 'trim');
+  $this->form_validation->set_rules('color[]', 'color', 'trim');
+
 
 
 
@@ -125,6 +180,12 @@ $data['category_data']= $this->db->get();
                {
   $category_id=$this->input->post('category_id');
   $subcategory=$this->input->post('subcategory');
+  $type=json_encode($this->input->post('type[]'));
+  $wattage=json_encode($this->input->post('wattage[]'));
+  $size=json_encode($this->input->post('size[]'));
+  $filter_product=json_encode($this->input->post('filter_product[]'));
+  $color=json_encode($this->input->post('color[]'));
+
 
                    $ip = $this->input->ip_address();
                    date_default_timezone_set("Asia/Calcutta");
@@ -139,7 +200,12 @@ $data['category_data']= $this->db->get();
 
            $data_insert = array(
                   'category_id'=>$category_id,
-  'subcategory'=>$subcategory,
+                  'subcategory'=>$subcategory,
+                  'type'=>$type,
+                  'wattage'=>$wattage,
+                  'size'=>$size,
+                  'filter_product'=>$filter_product,
+                  'color'=>$color,
                      'ip' =>$ip,
                      'added_by' =>$addedby,
                      'is_active' =>1,
@@ -168,6 +234,11 @@ $data['category_data']= $this->db->get();
            $data_insert = array(
                   'category_id'=>$category_id,
   'subcategory'=>$subcategory,
+  'type'=>$type,
+  'wattage'=>$wattage,
+  'size'=>$size,
+  'filter_product'=>$filter_product,
+  'color'=>$color,
 
                      );
              $this->db->where('id', $idw);
@@ -175,7 +246,7 @@ $data['category_data']= $this->db->get();
            }
                        if($last_id!=0){
                                $this->session->set_flashdata('smessage','Data inserted successfully');
-                               redirect("dcadmin/subcategory/view_subcategory","refresh");
+                               redirect("dcadmin/Subcategory/view_subcategory","refresh");
                               }
                                else
                                    {
@@ -232,7 +303,7 @@ $data['category_data']= $this->db->get();
                        $zapak=$this->db->update('tbl_subcategory', $data_update);
 
                             if($zapak!=0){
-                            redirect("dcadmin/subcategory/view_subcategory","refresh");
+                            redirect("dcadmin/Subcategory/view_subcategory","refresh");
                                     }
                                     else
                                     {
@@ -250,7 +321,7 @@ $data['category_data']= $this->db->get();
                          $zapak=$this->db->update('tbl_subcategory', $data_update);
 
                              if($zapak!=0){
-                             redirect("dcadmin/subcategory/view_subcategory","refresh");
+                             redirect("dcadmin/Subcategory/view_subcategory","refresh");
                                      }
                                      else
                                      {
@@ -297,7 +368,7 @@ $data['category_data']= $this->db->get();
  $zapak=$this->db->delete('tbl_subcategory', array('id' => $id));
  if($zapak!=0){
 
-        redirect("dcadmin/subcategory/view_subcategory","refresh");
+        redirect("dcadmin/Subcategory/view_subcategory","refresh");
                 }
                 else
                 {

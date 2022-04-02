@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
 <div class="content-wrapper">
                <section class="content-header">
                   <h1>
@@ -52,6 +53,57 @@
 <td> <strong>Sub-Category</strong>  <span style="color:red;">*</span></strong> </td>
 <td> <input type="" name="subcategory"  class="form-control" placeholder="" required value="" />  </td>
 </tr>
+<tr>
+  <td> <strong>Type</strong> <span style="color:red;">*</span></strong> </td>
+  <td>
+    <select class="selectpicker form-control" multiple="multiple" name="type[]" >
+      <?php foreach ($type_data->result() as $value) {?>
+      <option value="<?=$value->id;?>"><?=$value->name?></option>
+
+      <?php } ?>
+    </select>
+  </td>
+  <td> <strong>Wattage</strong> <span style="color:red;">*</span></strong> </td>
+  <td>
+    <select class="selectpicker form-control" multiple="multiple" name="wattage[]" >
+      <?php foreach ($wattage_data->result() as $value) {?>
+      <option value="<?=$value->id;?>"><?=$value->name?></option>
+
+      <?php } ?>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td> <strong>Size</strong> <span style="color:red;">*</span></strong> </td>
+  <td>
+    <select class="selectpicker form-control" multiple="multiple" name="size[]" >
+      <?php foreach ($size_data->result() as $value) {?>
+      <option value="<?=$value->id;?>"><?=$value->name?></option>
+
+      <?php } ?>
+    </select>
+  </td>
+  <td> <strong>Filter product</strong> <span style="color:red;">*</span></strong> </td>
+  <td>
+    <select class="selectpicker form-control" multiple="multiple" name="filter_product[]" >
+      <?php foreach ($filter_product_data->result() as $value) {?>
+      <option value="<?=$value->id;?>"><?=$value->name?></option>
+
+      <?php } ?>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td> <strong>Color</strong> <span style="color:red;">*</span></strong> </td>
+  <td>
+    <select class="selectpicker form-control" multiple="multiple" name="color[]" >
+      <?php foreach ($color_data->result() as $value) {?>
+      <option value="<?=$value->id;?>"><?=$value->name?></option>
+
+      <?php } ?>
+    </select>
+  </td>
+</tr>
 
 
                                  <tr>
@@ -80,3 +132,52 @@
 
 <script type="text/javascript" src=" <?php echo base_url()  ?>assets/slider/ajaxupload.3.5.js"></script>
      <link href=" <? echo base_url()  ?>assets/cowadmin/css/jqvmap.css" rel='stylesheet' type='text/css' />
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+     <script type="text/javascript">
+       $(document).ready(function() {
+         $('.selectpicker').multiselect();
+       });
+     </script>
+     <script>
+       $(document).ready(function() {
+         $("#cid").change(function() {
+           var vf = $(this).val();
+           // var yr = $("#year_id option:selected").val();
+           if (vf == "") {
+             return false;
+
+           } else {
+             $('#sid option').remove();
+             var opton = "<option value=''>Please Select </option>";
+             $.ajax({
+               url: base_url + "dcadmin/minorcategory/getSubcategory?isl=" + vf,
+               // url:base_url+"dcadmin/products/getMinorcategory?isl="+vf,
+               data: '',
+               type: "get",
+               success: function(html) {
+                 if (html != "NA") {
+                   var s = jQuery.parseJSON(html);
+                   $.each(s, function(i) {
+                     opton += '<option value="' + s[i]['sub_id'] + '">' + s[i]['sub_name'] + '</option>';
+                   });
+                   $('#sid').append(opton);
+                   //$('#city').append("<option value=''>Please Select State</option>");
+
+                   //var json = $.parseJSON(html);
+                   //var ayy = json[0].name;
+                   //var ayys = json[0].pincode;
+                 } else {
+                   alert('No Subcategory Found');
+                   return false;
+                 }
+
+               }
+
+             })
+           }
+
+
+         })
+       });
+     </script>

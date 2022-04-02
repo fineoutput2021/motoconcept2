@@ -119,13 +119,6 @@
            public function getSubcategory()
            {
 
-                                  // $data['user_name']=$this->load->get_var('user_name');
-
-               // echo SITE_NAME;
-               // echo $this->session->userdata('image');
-               // echo $this->session->userdata('position');
-               // exit;
-
                $id=$_GET['isl'];
                $this->db->select('*');
                $this->db->from('tbl_subcategory');
