@@ -57,7 +57,7 @@ foreach($category_data->result() as $value) {?>
   <td>
     <select class="selectpicker form-control" multiple="multiple" name="type[]" >
       <?php
-      $type=json_decode($minorcategory_data->type);
+      $type=json_decode($subcategory_data->type);
       foreach ($type_data->result() as $value) {
         $a=0;
          foreach ($type as $data) {
@@ -75,7 +75,7 @@ foreach($category_data->result() as $value) {?>
   <td>
     <select class="selectpicker form-control" multiple="multiple" name="wattage[]" >
       <?php
-      $wattage=json_decode($minorcategory_data->wattage);
+      $wattage=json_decode($subcategory_data->wattage);
       foreach ($wattage_data->result() as $value) {
         $a=0;
          foreach ($wattage as $data) {
@@ -95,7 +95,7 @@ foreach($category_data->result() as $value) {?>
   <td>
     <select class="selectpicker form-control" multiple="multiple" name="size[]" >
       <?php
-      $size=json_decode($minorcategory_data->size);
+      $size=json_decode($subcategory_data->size);
       foreach ($size_data->result() as $value) {
         $a=0;
          foreach ($size as $data) {
@@ -113,7 +113,7 @@ foreach($category_data->result() as $value) {?>
   <td>
     <select class="selectpicker form-control" multiple="multiple" name="filter_product[]" >
       <?php
-      $filter_product=json_decode($minorcategory_data->filter_product);
+      $filter_product=json_decode($subcategory_data->filter_product);
       foreach ($filter_product_data->result() as $value) {
         $a=0;
          foreach ($filter_product as $data) {
@@ -133,7 +133,7 @@ foreach($category_data->result() as $value) {?>
   <td>
     <select class="selectpicker form-control" multiple="multiple" name="color[]" >
       <?php
-      $color=json_decode($minorcategory_data->color);
+      $color=json_decode($subcategory_data->color);
       foreach ($color_data->result() as $value) {
         $a=0;
          foreach ($color as $data) {
