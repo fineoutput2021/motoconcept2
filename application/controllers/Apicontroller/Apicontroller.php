@@ -3946,25 +3946,13 @@ public function get_brands(){
 //   echo json_encode($res);
 // }
 
-public function get_rel_products($b_id,$m_id){
-  // $this->load->helper(array('form', 'url'));
-  // $this->load->library('form_validation');
-  // $this->load->helper('security');
-  // if($this->input->post())
-  // {
-  // $this->form_validation->set_rules('brand_id', 'brand_id', 'required|xss_clean|trim');
-  // $this->form_validation->set_rules('car_model_id', 'car_model_id', 'required|xss_clean|trim');
-  //
-  //
-  // if($this->form_validation->run()== TRUE)
-  // {
-  // $b_id=$this->input->post('brand_id');
-  // $m_id=$this->input->post('car_model_id');
-
+public function get_car_products($b_id,$m_id=""){
   $this->db->select('*');
   $this->db->from('tbl_products');
   $this->db->where('brand_id',$b_id);
+  if(!empty($m_id)){
   $this->db->where('car_model_id',$m_id);
+  }
   $products_data= $this->db->get();
   $products=[];
   foreach($products_data->result() as $data){
@@ -3983,26 +3971,4 @@ public function get_rel_products($b_id,$m_id){
 
   echo json_encode($res);
 }
-// else{
-//
-// header('Access-Control-Allow-Origin: *');
-// $res = array('message'=>validation_errors(),
-// 'status'=>201
-// );
-//
-// echo json_encode($res);
-//
-//
-// }
-//
-// }else{
-// header('Access-Control-Allow-Origin: *');
-// $res = array('message'=>"Please insert some data, No data available",
-// 'status'=>201
-// );
-//
-// echo json_encode($res);
-//
-// }
-// }
 }
