@@ -1341,60 +1341,16 @@ class Apicontroller extends CI_Controller
         $productslimitdata= $this->db->get();
         $products=[];
         foreach ($productslimitdata->result() as $limit) {
-
-//category
-            //   $this->db->select('*');
-            //   $this->db->from('tbl_category');
-            //   $this->db->where('id',$limit->subcategory_id);
-            //   $cat= $this->db->get()->row();
-            //   if(!empty($cat)){
-            //   $c1=$cat->category;
-            //   }
-            //   else{
-            //   $c1="";
-            //   }
-//
-//
-            //   //subcategory
-            //   $this->db->select('*');
-            //   $this->db->from('tbl_subcategory');
-            //   $this->db->where('id',$limit->subcategory_id);
-            //   $sub= $this->db->get()->row();
-            //   if(!empty($sub)){
-            //   $s1=$sub->subcategory;
-            //   }else{
-            //   $s1="";
-            //   }
-//
-            //   //type --
-            //   $this->db->select('*');
-            //   $this->db->from('tbl_minorcategory');
-//     $this->db->where('id',$limit->minorcategory_id);
-            //   $minor= $this->db->get()->row();
-            //   if(!empty($minor)){
-//     $m1=$minor->minorcategoryname;
-            // }else{
-            //   $m1="";
-            // }
-
-
-
-
-
             $products[] = array(
 'product_id'=>$limit->id,
 'productname'=> $limit->productname,
-// 'category'=> $c1,
-// 'sucategory'=> $s1,
-// 'minorcategory'=>$m1,
 'productimage'=> base_url().$limit->image,
 'productimage1'=> base_url().$limit->image1,
-'productimage2'=> base_url().$limit->video1,
-'productimage3'=> base_url().$limit->video2,
+'productimage2'=> base_url().$limit->image2,
+'productimage3'=> base_url().$limit->image3,
 'mrp'=> $limit->mrp,
 'price'=>$limit->sellingpricegst,
 'productdescription'=> $limit->productdescription,
-'max'=>$limit->max
 
 // 'colours'=> $limit->colours,
 // 'inventory'=> $data->inventory
