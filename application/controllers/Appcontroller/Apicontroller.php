@@ -290,127 +290,101 @@ class Apicontroller extends CI_Controller
     //---------------------
 
     // ========= Get Product Details =========================
-    public function get_productdetails($id)
-    {
-        $this->db->select('*');
-        $this->db->from('tbl_products');
-        $this->db->where('id', $id);
-        $this->db->where('is_active', 1);
-        $productsdata= $this->db->get()->row();
-        if (!empty($productsdata)) {
-            $image=array(base_url().$productsdata->image,base_url().$productsdata->image1,base_url().$productsdata->video1,base_url().$productsdata->video2);
-            $this->db->select('*');
-            $this->db->from('tbl_inventory');
-            $this->db->where('product_id', $productsdata->id);
-            $inventory_data= $this->db->get()->row();
+    public function get_productdetails($id){
 
-            if (!empty($inventory_data)) {
-                if ($inventory_data->quantity>0) {
-                    $stock = "In Stock";
-                } else {
-                    $stock ="Out of stock";
-                }
-            } else {
-                $stock ="Out of stock";
-            }
-            $products = array(
-  'id'=> $productsdata->id,
-  'productname'=> $productsdata->productname,
-  // 'productimage1'=> base_url().$productsdata->image,
-  // 'productimage2'=> base_url().$productsdata->image1,
-  // 'image'=> $image,
-  // 'video1'=> base_url().$productsdata->video1,
-  // 'video2'=> base_url().$productsdata->video2,
-  'mrp'=> $productsdata->mrp,
-  'price'=> $productsdata->sellingpricegst,
-  'productdescription'=> $productsdata->productdescription,
-  'modelno'=> $productsdata->modelno,
-  'stock'=> $stock,
-  'max'=>$productsdata->max
-
-);
+    $this->db->select('*');
+    $this->db->from('tbl_products');
+    $this->db->where('id',$id);
+    $this->db->where('is_active',1);
+    $productsdata= $this->db->get()->row();
+    if(!empty($productsdata)){
 
 
+    if($productsdata->inventory>0){
+    $stock = 1;
+    }else{
+    $stock =0;
+    }
 
-            $res = array('message'=>"success",
+
+    $products[] = array(
+    'id'=> $productsdata->id,
+    'productname'=> $productsdata->productname,
+    'productimage1'=> base_url().$productsdata->image,
+    'productimage2'=> base_url().$productsdata->image1,
+    'productimage3'=> base_url().$productsdata->image2,
+    'productimage4'=> base_url().$productsdata->image3,
+    'mrp'=> $productsdata->mrp,
+    'price'=> $productsdata->sellingpricegst,
+    'productdescription'=> $productsdata->productdescription,
+    'modelno'=> $productsdata->modelno,
+    'stock'=> $stock,
+    );
+
+
+    header('Access-Control-Allow-Origin: *');
+    $res = array('message'=>"success",
     'status'=>200,
-    'image'=>$image,
     'data'=>$products
     );
 
-            echo json_encode($res);
-        } else {
-            $res = array('message'=>"not valid",
+    echo json_encode($res);
+
+    }
+    else{
+    $res = array('message'=>"not valid",
     'status'=>201,
-);
-            echo json_encode($res);
-        }
+    );
+    echo json_encode($res);
     }
 
+    }
+
+
     //get all category
-    public function get_allcategory()
-    {
-        $this->db->select('*');
-        $this->db->from('tbl_category');
-        $this->db->where('is_active', 1);
-        $catdata= $this->db->get();
-        $is_false ="false";
-        $category=[];
-        foreach ($catdata->result() as $cat) {
-            $this->db->select('*');
-            $this->db->from('tbl_subcategory');
-            $this->db->where('category_id', $cat->id);
-            $sub= $this->db->get();
-            // if(!empty($sub->row())){
-            //   $is_sub = "True";
-            // }else{
-            //   $is_sub ="False";
-            // }
-            $subcategory=[];
-            foreach ($sub->result() as $data2) {
-                $this->db->select('*');
-                $this->db->from('tbl_minorcategory');
-                $this->db->where('category_id', $cat->id);
-                $this->db->where('subcategory_id', $data2->id);
-                $minor_category= $this->db->get();
-                // if(!empty($minor_category->row())){
-                //   $is_min = "True";
-                // }else{
-                //   $is_min ="False";
-                // }
-                $minorcategory=[];
-                foreach ($minor_category->result() as $m_id) {
-                    $minorcategory[]=array(
-                  'minor_id'=>$m_id->id,
-                  'minor_name' =>$m_id->minorcategoryname
-                );
-                }
+    public function get_allcategory(){
 
-                $subcategory[] = array(
-                      'sub_id' => $data2->id,
-                      'name'=> $data2->subcategory,
-                      'is_min'=> $is_false,
-                      'minor_category'=>$minorcategory
+    $this->db->select('*');
+    $this->db->from('tbl_category');
+    $this->db->where('is_active',1);
+    $categorydata= $this->db->get();
+    $category=[];
+    foreach($categorydata->result() as $data) {
+    $c_id=$data->id;
+    $this->db->select('*');
+    $this->db->from('tbl_subcategory');
+    $this->db->where('category_id',$data->id);
+    $this->db->where('is_active',1);
+    $sub= $this->db->get();
+    $subcategory=[];
+    foreach($sub->result() as $data2) {
 
 
+    $subcategory[] = array(
+    'sub_id' => $data2->id,
+    'name'=> $data2->subcategory,
 
-  );
-            }
+    );
+    }
+    // $catt=array('name'=> $data->categoryname,'sub_name'=>$subcategory);
 
-            $category[]=array(
-    'category_id'=>$cat->id,
-   'categoryname'=> $cat->category,
-   'image'=>base_url().$cat->image2,
-   'is_sub'=>$is_false,
-   'data'=>$subcategory,
- );
-        }
-        $res = array('message'=>"success",
-      'status'=>200,
-      'data'=>$category,
-      );
+    $cat[] = array(
+    'id' =>$data->id,
+    'name' =>$data->category,
+    'sub_category' =>$subcategory
 
-        echo json_encode($res);
+    );
+
+
+    }
+    $res = array('message'=>"success",
+    'status'=>200,
+    'data'=>$cat,
+    );
+
+    echo json_encode($res);
+
+
     }
     public function get_allcategory2()
     {
@@ -633,25 +607,6 @@ class Apicontroller extends CI_Controller
                                 $check_product_id=$check_product->row();
 
                                 if (!empty($check_product_id)) {
-                                    $this->db->select('*');
-                                    $this->db->from('tbl_inventory');
-                                    $this->db->where('product_id', $product_id);
-                                    $check_inventory= $this->db->get();
-                                    $check_inventory_id=$check_inventory->row();
-
-                                    if ($check_inventory_id->quantity >= $quantity) {
-                                    } else {
-                                        $res = array('message'=> "$check_product_id->productname Product is out of stock",
-    'status'=>201
-    );
-
-                                        echo json_encode($res);
-                                        exit;
-                                    }
-
-
-
-
                                     $data_insert = array('product_id'=>$product_id,
 'quantity'=>$quantity,
 'user_id'=>$check_id->id,
@@ -679,7 +634,7 @@ class Apicontroller extends CI_Controller
                                         echo json_encode($res);
                                     }
                                 } else {
-                                    $res = array('message'=>'product_id is not exist',
+                                    $res = array('message'=>'product_id does not exist',
 'status'=>201
 );
 
@@ -726,25 +681,6 @@ class Apicontroller extends CI_Controller
                         $check_product_id=$check_product->row();
 
                         if (!empty($check_product_id)) {
-                            $this->db->select('*');
-                            $this->db->from('tbl_inventory');
-                            $this->db->where('product_id', $product_id);
-                            $check_inventory= $this->db->get();
-                            $check_inventory_id=$check_inventory->row();
-
-
-                            if ($check_inventory_id->quantity >= $quantity) {
-                            } else {
-                                $res = array('message'=> "$check_product_id->productname Product is out of stock",
-                                     'status'=>201
-                                     );
-
-                                echo json_encode($res);
-                                exit;
-                            }
-
-
-
                             $data_insert = array('product_id'=>$product_id,
                                       'quantity'=>$quantity,
                                       'token_id'=>$token_id,
@@ -858,15 +794,14 @@ class Apicontroller extends CI_Controller
 
 
                             $cart_info[] = array('product_id'=>$data->product_id,
-'product_name'=>$product_data->productname,
-'product_image'=>base_url().$product_data->image,
-'quantity'=>$data->quantity,
-'price'=>$product_data->sellingpricegst,
-'total='=>$total = $product_data->sellingpricegst * $data->quantity,
-'max'=>$product_data->max,
+                            'product_name'=>$product_data->productname,
+                            'product_image'=>base_url().$product_data->image,
+                            'quantity'=>$data->quantity,
+                            'price'=>$product_data->sellingpricegst,
+                            'total='=>$total = $product_data->sellingpricegst * $data->quantity,
 
 
-);
+                            );
                             $sub_total= $sub_total + $total;
                         }
 
@@ -1023,27 +958,6 @@ class Apicontroller extends CI_Controller
                     $user_data=$dsa->row();
                     if (!empty($user_data)) {
                         if ($user_data->authentication==$password) {
-                            $this->db->select('*');
-                            $this->db->from('tbl_inventory');
-                            $this->db->where('product_id', $product_id);
-                            $inventory_data= $this->db->get()->row();
-
-                            // echo $inventory_data->quantity;
-                            // exit;
-                            //----inventory_check----------
-
-                            if ($inventory_data->quantity >= $quantity) {
-                            } else {
-                                $res = array('message'=> " Product is out of stock",
-  'status'=>201
-  );
-
-                                echo json_encode($res);
-                                exit;
-                            }
-
-
-
                             $data_insert = array('product_id'=>$product_id,
 'quantity'=>$quantity
 
@@ -1085,27 +999,6 @@ class Apicontroller extends CI_Controller
                 //-----update with token id------
                 else {
                     if (!empty($token_id)) {
-                        $this->db->select('*');
-                        $this->db->from('tbl_inventory');
-                        $this->db->where('product_id', $product_id);
-                        $inventory_data= $this->db->get()->row();
-
-                        // echo $inventory_data->quantity;
-                        // exit;
-                        //----inventory_check----------
-
-                        if ($inventory_data->quantity >= $quantity) {
-                        } else {
-                            $res = array('message'=> "Product is out of stock",
-  'status'=>201
-  );
-
-                            echo json_encode($res);
-                            exit;
-                        }
-
-
-
                         $data_insert = array('product_id'=>$product_id,
 'quantity'=>$quantity
 
@@ -1527,9 +1420,10 @@ class Apicontroller extends CI_Controller
         $stock=[];
         foreach ($data->result() as $value) {
             $stock[]=array(
-         'image'=>base_url().$value->image1,
-         'name'=>$value->stockname,
-         'message'=>$value->stockmessage
+         'image1'=>base_url().$value->image1,
+         'link1'=>$value->link1,
+         'image2'=>base_url().$value->image2,
+         'link2'=>$value->link2
 
        );
         }
@@ -1602,18 +1496,17 @@ class Apicontroller extends CI_Controller
         $feature=[];
         foreach ($data->result() as $limit) {
             $feature[] = array(
-'product_id'=>$limit->id,
-'productname'=> $limit->productname,
-'productimage'=> base_url().$limit->image,
-'productimage1'=> base_url().$limit->image1,
-'productimage2'=> base_url().$limit->video1,
-'productimage3'=> base_url().$limit->video2,
-'mrp'=> $limit->mrp,
-'price'=>$limit->sellingpricegst,
-'productdescription'=> $limit->productdescription,
-'max'=>$limit->max
+            'product_id'=>$limit->id,
+            'productname'=> $limit->productname,
+            'productimage'=> base_url().$limit->image,
+            'productimage1'=> base_url().$limit->image1,
+            'productimage2'=> base_url().$limit->image2,
+            'productimage3'=> base_url().$limit->image3,
+            'mrp'=> $limit->mrp,
+            'price'=>$limit->sellingpricegst,
+            'productdescription'=> $limit->productdescription,
 
-);
+            );
         }
         $res=array(
            'message'=>"success",
@@ -1658,7 +1551,7 @@ class Apicontroller extends CI_Controller
 
         $this->db->select('*');
         $this->db->from('tbl_products');
-        $this->db->where('minorcategory_id', $product_data->minorcategory_id);
+        $this->db->where('subcategory_id', $product_data->subcategory_id);
         $related_data= $this->db->get();
 
         $related_info = [];
@@ -1670,11 +1563,8 @@ class Apicontroller extends CI_Controller
 'productname'=>$data->productname,
 'productimage'=>base_url().$data->image,
 'productdescription'=>$data->productdescription,
-'minorcategory_id'=>$data->minorcategory_id,
 'mrp'=>$data->mrp,
 'price'=>$data->sellingpricegst,
-'max'=>$data->max
-
 );
         }
 
@@ -1758,36 +1648,43 @@ class Apicontroller extends CI_Controller
                             $cart_data1= $this->db->get();
                             $cart_check1=$cart_data->row();
 
-                            if (!empty($cart_check1)) {
-                                $total2=0;
-                                foreach ($cart_data1->result() as $data1) {
-                                    $this->db->select('*');
-                                    $this->db->from('tbl_products');
-                                    $this->db->where('id', $data1->product_id);
-                                    $product_data1= $this->db->get()->row();
+                            if(!empty($cart_check1)){
+                            $total2=0;
+                            foreach($cart_data1->result() as $data1) {
 
-                                    $this->db->select('*');
-                                    $this->db->from('tbl_inventory');
-                                    $this->db->where('product_id', $product_data1->id);
-                                    $check_inventory= $this->db->get();
-                                    $check_inventory_id=$check_inventory->row();
-                                    if (!empty($check_inventory_id)) {
-                                        if ($check_inventory_id->quantity >= $data1->quantity) {
-                                            $total2 = $product_data1->sellingpricegst * $data1->quantity ;
-                                            $order2_insert = array('main_id'=>$last_id,
-          'product_id'=>$data1->product_id,
-          'quantity'=>$data1->quantity,
-          'product_mrp'=>$product_data1->mrp,
-          // 'gst'=>$product_data1->gst,
-          // 'gst_percentage'=>$product_data1->gst_percentage,
-          'total_amount'=>$total2,
-          'ip' =>$ip,
-          'date'=>$cur_date
+                              $this->db->select('*');
+                              $this->db->from('tbl_products');
+                              $this->db->where('id',$data1->product_id);
+                              $inventory_data= $this->db->get()->row();
 
-          );
 
-                                            $last_id2=$this->base_model->insert_table("tbl_order2", $order2_insert, 1) ;
-                                        } else {
+                            if(!empty($inventory_data)){
+
+                            $this->db->select('*');
+                            $this->db->from('tbl_products');
+                            $this->db->where('id',$data1->product_id);
+                            $product_data1= $this->db->get()->row();
+
+                            if(!empty($product_data1)){
+
+                            if($inventory_data->inventory >= $data1->quantity){
+
+                            $total2 = $product_data1->sellingpricegst * $data1->quantity ;
+                            $order2_insert = array('main_id'=>$last_id,
+                            'product_id'=>$data1->product_id,
+                            'quantity'=>$data1->quantity,
+                            'product_mrp'=>$product_data1->mrp,
+                            // 'gst'=>$product_data1->gst,
+                            // 'gst_percentage'=>$product_data1->gst_percentage,
+                            'total_amount'=>$total2,
+                            'ip' =>$ip,
+                            'date'=>$cur_date
+
+                            );
+
+                            $last_id2=$this->base_model->insert_table("tbl_order2",$order2_insert,1) ;
+
+                            }else {
                                             $res = array('message'=>"Product is out of stock! Please remove this ".$product_data1->productname,
                                         'status'=>201,
                                       );
@@ -1804,7 +1701,7 @@ class Apicontroller extends CI_Controller
                                         exit;
                                     }
                                 }//end of foreach
-
+                              }
 
                                 $res = array('message'=>"success",
                     'status'=>200,
@@ -1821,7 +1718,7 @@ class Apicontroller extends CI_Controller
                                 echo json_encode($res);
                             }
                         } else {
-                            $res = array('message'=>"Some erro occured",
+                            $res = array('message'=>"Some error occured",
         'status'=>201,
         );
 
@@ -1829,7 +1726,7 @@ class Apicontroller extends CI_Controller
                         }
                     }
                 } else {
-                    $res = array('message'=>"Wromg Password",
+                    $res = array('message'=>"Wrong Password",
           'status'=>201,
           );
 
@@ -2447,7 +2344,6 @@ class Apicontroller extends CI_Controller
 'quantity'=> $data->quantity,
 'price'=>$data->product_mrp,
 'total_amount'=>$data->total_amount,
-'weight'=>$product_data->weight,
 
 
 
@@ -2864,32 +2760,14 @@ class Apicontroller extends CI_Controller
                         $data_order1= $this->db->get();
 
                         if (!empty($data_order1)) {
-                            foreach ($data_order1->result() as $data) {
-                                $this->db->select('*');
-                                $this->db->from('tbl_inventory');
-                                $this->db->where('product_id', $data->product_id);
-                                $data_inventory= $this->db->get()->row();
-
-                                $total_quantity=$data->quantity + $data_inventory->quantity;
-
-
-
-                                $data_update=array(
-                                                'quantity'=>$total_quantity
-                                       );
-                                $this->db->where('product_id', $data->product_id);
-                                $last_id2=$this->db->update('tbl_inventory', $data_update);
-                            }
 
                             if (!empty($last_id)) {
-                                header('Access-Control-Allow-Origin: *');
                                 $res = array('message'=>'success',
                   'status'=>200
                   );
 
                                 echo json_encode($res);
                             } else {
-                                header('Access-Control-Allow-Origin: *');
                                 $res = array('message'=>'some error occured',
                   'status'=>201
                   );
@@ -2897,7 +2775,6 @@ class Apicontroller extends CI_Controller
                                 echo json_encode($res);
                             }
                         } else {
-                            header('Access-Control-Allow-Origin: *');
                             $res = array('message'=>'Order id not found',
                 'status'=>201
                 );
@@ -3315,23 +3192,9 @@ class Apicontroller extends CI_Controller
                                             $this->db->where('id', $data->product_id);
                                             $product_data= $this->db->get()->row();
 
-                                            $this->db->select('*');
-                                            $this->db->from('tbl_inventory');
-                                            $this->db->where('product_id', $data->product_id);
-                                            $inventory_data= $this->db->get()->row();
-
-                                            if ($inventory_data->quantity >= $data->quantity) {
-                                            } else {
-                                                $res = array('message'=>$product_data->productname.'is out of stock! Please remove this before checkout',
-          'status'=>201
-          );
-
-                                                echo json_encode($res);
-                                                exit;
-                                            }
                                         }//end of foreach
                                     }//end of order2
-$total = $order1_data->total_amount;
+                                    $total = $order1_data->total_amount;
                                     $discount = $order1_data->discount;
 
                                     if (empty($discount)) {
@@ -3354,31 +3217,10 @@ $total = $order1_data->total_amount;
           'store_id'=>$store_id,
           'payment_status'=>1,
           'order_status'=>1,
-
           );
 
                                     $this->db->where('txnid', $txn_id);
                                     $last_id=$this->db->update('tbl_order1', $data_insert);
-
-
-                                    //----------------inventory update---------
-
-                                    if (!empty($order2_check)) {
-                                        foreach ($order2_data->result() as $data1) {
-                                            $this->db->select('*');
-                                            $this->db->from('tbl_inventory');
-                                            $this->db->where('product_id', $data1->product_id);
-                                            $product_data1= $this->db->get()->row();
-
-                                            $updated_inventory = $product_data1->quantity - $data1->quantity;
-
-
-                                            $data_update = array('quantity'=>$updated_inventory);
-
-                                            $this->db->where('id', $product_data1->id);
-                                            $last_id=$this->db->update('tbl_inventory', $data_update);
-                                        }//end of foreach
-                                    }//end of order2
 
 //------------cart clear--------------
                                     $this->db->select('*');
@@ -3444,21 +3286,6 @@ $total = $order1_data->total_amount;
                                             $this->db->from('tbl_products');
                                             $this->db->where('id', $data->product_id);
                                             $product_data= $this->db->get()->row();
-
-                                            $this->db->select('*');
-                                            $this->db->from('tbl_inventory');
-                                            $this->db->where('product_id', $data->product_id);
-                                            $inventory_data= $this->db->get()->row();
-
-                                            if ($inventory_data->quantity >= $data->quantity) {
-                                            } else {
-                                                $res = array('message'=>$product_data->productname.'is out of stock! Please remove this before checkout',
-    'status'=>201
-    );
-
-                                                echo json_encode($res);
-                                                exit;
-                                            }
                                         }//end of foreach
                                     }//end of order2
   $total = $order1_data->total_amount;
@@ -3489,26 +3316,6 @@ $total = $order1_data->total_amount;
 
                                     $this->db->where('txnid', $txn_id);
                                     $last_id=$this->db->update('tbl_order1', $data_insert);
-
-
-                                    //----------------inventory update---------
-
-                                    if (!empty($order2_check)) {
-                                        foreach ($order2_data->result() as $data1) {
-                                            $this->db->select('*');
-                                            $this->db->from('tbl_inventory');
-                                            $this->db->where('product_id', $data1->product_id);
-                                            $product_data1= $this->db->get()->row();
-
-                                            $updated_inventory = $product_data1->quantity - $data1->quantity;
-
-
-                                            $data_update = array('quantity'=>$updated_inventory);
-
-                                            $this->db->where('id', $product_data1->id);
-                                            $last_id=$this->db->update('tbl_inventory', $data_update);
-                                        }//end of foreach
-                                    }//end of order2
 
   //------------cart clear--------------
                                     $this->db->select('*');
@@ -4043,5 +3850,88 @@ $total = $order1_data->total_amount;
       );
 
         echo json_encode($res);
+    }
+
+    //===============get_brands=================================
+    public function get_brands(){
+
+      $this->db->select('*');
+      $this->db->from('tbl_brands');
+      $this->db->where('is_active',1);
+      $brand_data= $this->db->get();
+      $brands=[];
+      foreach ($brand_data->result() as $data){
+        $this->db->select('*');
+        $this->db->from('tbl_car_model');
+        $this->db->where('brand_id',$data->id);
+        $this->db->where('is_active', 1);
+        $car_model_data= $this->db->get();
+        $car_model=[];
+        foreach($car_model_data->result() as $data2){
+          $car_model[] = array('id'=>$data2->id,
+          'name'=>$data2->name
+          );
+        }
+        $brands[] = array('id'=>$data->id,
+        'name'=>$data->name,
+        'car_model'=>$car_model
+        );
+      }
+      $res = array('message'=>"success",
+      'status'=>200,
+      'data'=>$brands
+      );
+
+      echo json_encode($res);
+    }
+
+    // ========= gallery =========
+    public function get_gallery(){
+
+    $this->db->select('*');
+    $this->db->from('tbl_gallery');
+    $gallerydata= $this->db->get();
+    $gallery=[];
+    foreach($gallerydata->result() as $data) {
+    $gallery[] = array(
+    'name'=> $data->name,
+    'link'=> $data->link,
+    'image'=> base_url().$data->image,
+
+    );
+    }
+    $res = array('message'=>"success",
+    'status'=>200,
+    'data'=>$gallery
+    );
+
+    echo json_encode($res);
+
+    }
+
+    // ========= Get Two images =============
+    public function get_two_images(){
+
+    $this->db->select('*');
+    $this->db->from('tbl_two_images');
+    $this->db->where('is_active',1);
+    $this->db->order_by('id','desc');
+    $two_image_data= $this->db->get();
+    $two_image=[];
+    foreach($two_image_data->result() as $data) {
+    $two_image = array(
+    'image1'=> base_url().$data->image1,
+    'image2'=> base_url().$data->image2,
+      );
+    }
+    header('Access-Control-Allow-Origin: *');
+    $res = array('message'=>"success",
+    'status'=>200,
+    'data'=>$two_image
+    );
+
+    echo json_encode($res);
+
+
     }
 }

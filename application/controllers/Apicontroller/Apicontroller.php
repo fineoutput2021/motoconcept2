@@ -1593,24 +1593,23 @@ echo json_encode($res);
 
 //-------------------related product------------
 
-public function related_products($id){
+public function related_products($id)
+{
+    $this->db->select('*');
+    $this->db->from('tbl_products');
+    $this->db->where('id', $id);
+    $product_data= $this->db->get()->row();
 
-$this->db->select('*');
-$this->db->from('tbl_products');
-$this->db->where('id',$id);
-$product_data= $this->db->get()->row();
+    $this->db->select('*');
+    $this->db->from('tbl_products');
+    $this->db->where('subcategory_id', $product_data->subcategory_id);
+    $related_data= $this->db->get();
 
-$this->db->select('*');
-$this->db->from('tbl_products');
-$this->db->where('subcategory_id',$product_data->subcategory_id);
-$related_data= $this->db->get();
-
-$related_info = [];
-foreach($related_data->result() as $data) {
-
-if($data->id!=$id){
-
-$related_info[]  = array(
+    $related_info = [];
+    foreach ($related_data->result() as $data) {
+        if ($data->id!=$id) {
+        }
+        $related_info[]  = array(
 'product_id'=>$data->id,
 'productname'=>$data->productname,
 'productimage'=>base_url().$data->image,
@@ -1618,19 +1617,16 @@ $related_info[]  = array(
 'mrp'=>$data->mrp,
 'price'=>$data->sellingpricegst,
 );
-}
-}
-header('Access-Control-Allow-Origin: *');
-$res = array('message'=>"success",
+    }
+    header('Access-Control-Allow-Origin: *');
+    $res = array('message'=>"success",
 'status'=>200,
 'data'=>$related_info
 
 );
 
-echo json_encode($res);
-exit();
-
-
+    echo json_encode($res);
+    exit();
 }
 
 //------calculate------------
