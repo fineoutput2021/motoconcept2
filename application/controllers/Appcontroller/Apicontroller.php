@@ -306,14 +306,16 @@ class Apicontroller extends CI_Controller
     $stock =0;
     }
 
-
+    $images=array(
+      'image1'=> base_url().$productsdata->image,
+      'image2'=> base_url().$productsdata->image1,
+      'image3'=> base_url().$productsdata->image2,
+      'image4'=> base_url().$productsdata->image3,
+    );
     $products[] = array(
     'id'=> $productsdata->id,
     'productname'=> $productsdata->productname,
-    'productimage1'=> base_url().$productsdata->image,
-    'productimage2'=> base_url().$productsdata->image1,
-    'productimage3'=> base_url().$productsdata->image2,
-    'productimage4'=> base_url().$productsdata->image3,
+    'image'=> $images,
     'mrp'=> $productsdata->mrp,
     'price'=> $productsdata->sellingpricegst,
     'productdescription'=> $productsdata->productdescription,
