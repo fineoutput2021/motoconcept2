@@ -294,6 +294,7 @@ $product=[];
 foreach ($product_data->result() as $data) {
 
 $product[] = array(
+'modelno'=>$data->modelno,
 'product_id'=>$data->id,
 'product_name'=>$data->productname,
 'description'=> $data->productdescription,
@@ -3942,7 +3943,7 @@ public function get_brands(){
 //   echo json_encode($res);
 // }
 
-public function get_car_products($b_id,$m_id=""){
+public function get_rel_products($b_id,$m_id=""){
   $this->db->select('*');
   $this->db->from('tbl_products');
   $this->db->where('brand_id',$b_id);
@@ -3952,11 +3953,13 @@ public function get_car_products($b_id,$m_id=""){
   $products_data= $this->db->get();
   $products=[];
   foreach($products_data->result() as $data){
-    $products[] = array ('id'=>$data->id,
-    'name'=>$data->productname,
-    'model number'=>$data->modelno,
-    'price'=>$data->sellingpricegst
-
+    $products[] = array (  'modelno'=>$data->modelno,
+      'product_id'=>$data->id,
+      'product_name'=>$data->productname,
+      'description'=> $data->productdescription,
+      'mrp'=> $data->mrp,
+      'price'=>$data->sellingpricegst,
+      'image'=>base_url().$data->image,
     );
   }
   header('Access-Control-Allow-Origin: *');
