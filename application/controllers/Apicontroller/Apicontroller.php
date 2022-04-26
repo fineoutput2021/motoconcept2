@@ -3952,6 +3952,19 @@ public function get_rel_products($b_id,$m_id=""){
   }
   $products_data= $this->db->get();
   $products=[];
+  if(empty($m_id)){
+    $this->db->select('*');
+    $this->db->from('tbl_brands');
+    $this->db->where('id',$b_id);
+    $bdata= $this->db->get()->row();
+    $heading= $bdata->name;
+  }else{
+$this->db->select('*');
+$this->db->from('tbl_car_model');
+$this->db->where('id',$m_id);
+$mdata= $this->db->get()->row();
+  $heading= $mdata->name;
+  }
   foreach($products_data->result() as $data){
     $products[] = array (  'modelno'=>$data->modelno,
       'product_id'=>$data->id,
@@ -3965,7 +3978,8 @@ public function get_rel_products($b_id,$m_id=""){
   header('Access-Control-Allow-Origin: *');
   $res = array('message'=>"success",
   'status'=>200,
-  'data'=>$products
+  'data'=>$products,
+  'heading'=>$heading
   );
 
   echo json_encode($res);
