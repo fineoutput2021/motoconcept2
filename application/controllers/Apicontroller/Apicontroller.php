@@ -123,6 +123,7 @@ $minorcategory_id=$this->input->post('minorcategory_id');
 
 $this->db->select('*');
 $this->db->from('tbl_products');
+$this->db->where('is_active',1);
 // $this->db->where('category_id',$category_id);
 // $this->db->where('subcategory_id',$subcategory_id);
 $this->db->where('minorcategory_id',$minorcategory_id);
@@ -131,6 +132,7 @@ $product_data= $this->db->get();
 
 $this->db->select('*');
 $this->db->from('tbl_minorcategory');
+$this->db->where('is_active',1);
 $this->db->where('id',$minorcategory_id);
 $get_minorcategory= $this->db->get()->row();
 if(!empty($get_minorcategory)){
@@ -204,6 +206,7 @@ $product_data= $this->db->get();
 
 $this->db->select('*');
 $this->db->from('tbl_category');
+$this->db->where('is_active',1);
 $this->db->where('id',$category_id);
 $get_category_id= $this->db->get()->row();
 if(!empty($get_category_id)){
@@ -284,6 +287,7 @@ $product_data= $this->db->get();
 $this->db->select('*');
 $this->db->from('tbl_subcategory');
 $this->db->where('id',$subcategory_id);
+$this->db->where('is_active',1);
 $get_subcategory_data= $this->db->get()->row();
 
 if(!empty($get_subcategory_data)){
@@ -2785,19 +2789,31 @@ $this->load->helper('security');
 if($this->input->post())
 {
 
+  $this->form_validation->set_rules('payment_type', 'payment_type', 'required|xss_clean|trim');
+  if(!empty($this->input->post('store_id'))){
+    $this->form_validation->set_rules('name', 'name', 'xss_clean|trim');
+    $this->form_validation->set_rules('contact', 'contact', 'xss_clean|trim');
+    $this->form_validation->set_rules('pincode', 'pincode', 'xss_clean|trim');
+    $this->form_validation->set_rules('state', 'state', 'xss_clean|trim');
+    $this->form_validation->set_rules('city', 'city', 'xss_clean|trim');
+    $this->form_validation->set_rules('house_no', 'house_no', 'xss_clean|trim');
+    $this->form_validation->set_rules('street_address', 'street_address', 'xss_clean|trim');
+  }else{
+    $this->form_validation->set_rules('name', 'name', 'required|xss_clean|trim');
+    $this->form_validation->set_rules('contact', 'contact', 'required|xss_clean|trim');
+    $this->form_validation->set_rules('pincode', 'pincode', 'required|xss_clean|trim');
+    $this->form_validation->set_rules('state', 'state', 'required|xss_clean|trim');
+    $this->form_validation->set_rules('city', 'city', 'required|xss_clean|trim');
+    $this->form_validation->set_rules('house_no', 'house_no', 'required|xss_clean|trim');
+    $this->form_validation->set_rules('street_address', 'street_address', 'required|xss_clean|trim');
+  }
+
 $this->form_validation->set_rules('phone', 'phone', 'required|xss_clean|trim');
 $this->form_validation->set_rules('authentication', 'authentication', 'required|xss_clean|trim');
 $this->form_validation->set_rules('token_id', 'token_id', 'required|xss_clean|trim');
 $this->form_validation->set_rules('txn_id', 'txn_id', 'required|xss_clean|trim');
-$this->form_validation->set_rules('payment_type', 'payment_type', 'required|xss_clean|trim');
-// $this->form_validation->set_rules('name', 'name', 'required|xss_clean|trim');
-// $this->form_validation->set_rules('contact', 'contact', 'required|xss_clean|trim');
-// $this->form_validation->set_rules('pincode', 'pincode', 'required|xss_clean|trim');
-// $this->form_validation->set_rules('state', 'state', 'required|xss_clean|trim');
-// $this->form_validation->set_rules('city', 'city', 'required|xss_clean|trim');
-// $this->form_validation->set_rules('house_no', 'house_no', 'required|xss_clean|trim');
-// $this->form_validation->set_rules('street_address', 'street_address', 'required|xss_clean|trim');
 $this->form_validation->set_rules('store_id', 'store_id', 'xss_clean|trim');
+
 
 if($this->form_validation->run()== TRUE)
 {
@@ -2807,19 +2823,18 @@ $authentication=$this->input->post('authentication');
 $token_id=$this->input->post('token_id');
 $txn_id=$this->input->post('txn_id');
 $payment_type=$this->input->post('payment_type');
-// $name=$this->input->post('name');
-// $contact=$this->input->post('contact');
-// $pincode=$this->input->post('pincode');
-// $state=$this->input->post('state');
-// $city=$this->input->post('city');
-// $house_no=$this->input->post('house_no');
-// $street_address=$this->input->post('street_address');
+$name=$this->input->post('name');
+$contact=$this->input->post('contact');
+$pincode=$this->input->post('pincode');
+$state=$this->input->post('state');
+$city=$this->input->post('city');
+$house_no=$this->input->post('house_no');
+$street_address=$this->input->post('street_address');
 $store_id=$this->input->post('store_id');
 
 $this->load->library('upload');
 
 $image="";
-if($payment_type == 1){
 $img1='image';
 $file_check=($_FILES['image']['error']);
 if($file_check!=4){
@@ -2854,7 +2869,7 @@ $image=$videoNAmePath;
 // echo json_encode($file_info);
 }
 }
-}
+
 $this->db->select('*');
 $this->db->from('tbl_users');
 $this->db->where('phone',$phone);
@@ -2887,6 +2902,7 @@ foreach($order2_data->result() as $data) {
 
 $this->db->select('*');
 $this->db->from('tbl_products');
+$this->db->where('is_active',1);
 $this->db->where('id',$data->product_id);
 $product_data= $this->db->get()->row();
 
@@ -2917,26 +2933,62 @@ $discount=0;
 $final_amount = $total - $discount;
 
 //----------order1 entry-------
+if($payment_type==2){         //------------2 for pay on store------------------------------------
+if(!empty($store_id)){
+  $data_insert = array('payment_type'=>$payment_type,
+  'final_amount'=>$final_amount,
+  'store_id'=>$store_id,
+  'payment_status'=>1,
+  'payment_type'=>2,
+  'order_status'=>1,
+  );
+}else{
+  $data_insert = array('payment_type'=>$payment_type,
+  'name'=>$name,
+  'phone'=>$phone,
+  'pincode'=>$pincode,
+  'state'=>$state,
+  'city'=>$city,
+  'house_no'=>$house_no,
+  'street_address'=>$street_address,
+  'final_amount'=>$final_amount,
+  'payment_status'=>1,
+  'payment_type'=>2,
+  'order_status'=>1,
+  );
+}
+}elseif($payment_type==1){         //------------1 for bank transfer------------------------------------
+if(!empty($store_id)){
+  $data_insert = array('payment_type'=>$payment_type,
+  'final_amount'=>$final_amount,
+  'bank_receipt'=>$image,   //-------compulsary
+  'store_id'=>$store_id,
+  'payment_status'=>1,
+  'payment_type'=>1,
+  'order_status'=>1,
+  );
+}else{
+  $data_insert = array('payment_type'=>$payment_type,
+  'name'=>$name,
+  'phone'=>$phone,
+  'pincode'=>$pincode,
+  'state'=>$state,
+  'city'=>$city,
+  'house_no'=>$house_no,
+  'street_address'=>$street_address,
+  'final_amount'=>$final_amount,
+  'bank_receipt'=>$image,     //------compulsary
+  'payment_status'=>1,
+  'payment_type'=>1,
+  'order_status'=>1,
+  );
+}
 
-$data_insert = array('payment_type'=>$payment_type,
-'name'=>$user_data->name,
-'phone'=>$user_data->phone,
-'pincode'=>$user_data->zipcode,
-'state'=>$user_data->state,
-'city'=>$user_data->city,
-// 'house_no'=>$user_data->house_no,
-'street_address'=>$user_data->address,
-'final_amount'=>$final_amount,
-'bank_receipt'=>$image,
-'store_id'=>$store_id,
-'payment_status'=>1,
-'order_status'=>1,
+}
 
-);
-
+// print_r($data_insert);die();
 $this->db->where('txnid', $txn_id);
 $last_id=$this->db->update('tbl_order1', $data_insert);
-
 
 //----------------inventory update---------
 
@@ -2949,6 +3001,7 @@ foreach($order2_data->result() as $data1) {
 
   $this->db->select('*');
   $this->db->from('tbl_products');
+  $this->db->where('is_active',1);
   $this->db->where('id',$data->product_id);
   $product_data= $this->db->get()->row();
 
@@ -3037,6 +3090,7 @@ echo json_encode($res);
 
 
 }
+
 
 
 public function view_order(){
@@ -3943,28 +3997,35 @@ public function get_brands(){
 //   echo json_encode($res);
 // }
 
-public function get_rel_products($b_id,$m_id=""){
+public function get_rel_products($b_id="",$m_id=""){
   $this->db->select('*');
   $this->db->from('tbl_products');
+  $this->db->where('is_active',1);
+  if(!empty($b_id)){
   $this->db->where('brand_id',$b_id);
+  }
   if(!empty($m_id)){
   $this->db->where('car_model_id',$m_id);
   }
   $products_data= $this->db->get();
   $products=[];
-  if(empty($m_id)){
+  if(!empty($b_id)){
     $this->db->select('*');
     $this->db->from('tbl_brands');
     $this->db->where('id',$b_id);
+    $this->db->where('is_active',1);
     $bdata= $this->db->get()->row();
     $heading= $bdata->name;
-  }else{
+  }elseif(!empty($m_id)){
 $this->db->select('*');
 $this->db->from('tbl_car_model');
+$this->db->where('is_active',1);
 $this->db->where('id',$m_id);
 $mdata= $this->db->get()->row();
   $heading= $mdata->name;
-  }
+}else{
+  $heading = "Shop By Car";
+}
   foreach($products_data->result() as $data){
     $products[] = array (  'modelno'=>$data->modelno,
       'product_id'=>$data->id,
