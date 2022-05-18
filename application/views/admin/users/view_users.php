@@ -5,14 +5,14 @@ Users
 </h1>
 <ol class="breadcrumb">
 <li><a href="<?php echo base_url() ?>admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
-<li><a href="<?php echo base_url() ?>dcadmin/users/view_users"><i class="fa fa-dashboard"></i> All Users </a></li>
+<li><a href="<?php echo base_url() ?>dcadmin/Users/view_users"><i class="fa fa-dashboard"></i> All Users </a></li>
 <li class="active">View Users</li>
 </ol>
 </section>
 <section class="content">
 <div class="row">
 <div class="col-lg-12">
-<a class="btn btn-info cticket" href="<?php echo base_url() ?>dcadmin/users/add_users" role="button" style="margin-bottom:12px;"> Add Users</a>
+<!-- <a class="btn btn-info cticket" href="<?php echo base_url() ?>dcadmin/Users/add_users" role="button" style="margin-bottom:12px;"> Add Users</a> -->
 <div class="panel panel-default">
 <div class="panel-heading">
 <h3 class="panel-title"><i class="fa fa-money fa-fw"></i>View Users</h3>
@@ -43,7 +43,6 @@ if(!empty($this->session->flashdata('emessage'))){ ?>
 <th>#</th>
 <th>Name</th>
 <th>Email</th>
-<th>Password</th>
 <!-- <th>Address</th> -->
 <th>Status</th>
 <th>Action</th>
@@ -55,7 +54,6 @@ if(!empty($this->session->flashdata('emessage'))){ ?>
 <td><?php echo $i ?> </td>
 <td><?php echo $data->name ?></td>
 <td><?php echo $data->email ?></td>
-<td><?php echo $data->password ?></td>
 <!-- <td><?php echo $data->address ?></td> -->
 <td><?php if($data->is_active==1){ ?>
 <p class="label bg-green" >Active</p>
@@ -73,11 +71,11 @@ if(!empty($this->session->flashdata('emessage'))){ ?>
 <ul class="dropdown-menu" role="menu">
 
 <?php if($data->is_active==1){ ?>
-<li><a href="<?php echo base_url() ?>dcadmin/users/updateuserStatus/<?php echo base64_encode($data->id) ?>/inactive">Inactive</a></li>
+<li><a href="<?php echo base_url() ?>dcadmin/Users/updateuserStatus/<?php echo base64_encode($data->id) ?>/inactive">Inactive</a></li>
 <?php } else { ?>
-<li><a href="<?php echo base_url() ?>dcadmin/users/updateuserStatus/<?php echo base64_encode($data->id) ?>/active">Active</a></li>
+<li><a href="<?php echo base_url() ?>dcadmin/Users/updateuserStatus/<?php echo base64_encode($data->id) ?>/active">Active</a></li>
 <?php		}   ?>
-<li><a href="<?php echo base_url() ?>dcadmin/users/update_users/<?php echo base64_encode($data->id) ?>">Edit</a></li>
+<!-- <li><a href="<?php echo base_url() ?>dcadmin/Users/update_users/<?php echo base64_encode($data->id) ?>">Edit</a></li> -->
 <li><a href="javascript:;" class="dCnf" mydata="<?php echo $i ?>">Delete</a></li>
 </ul>
 </div>
@@ -85,7 +83,7 @@ if(!empty($this->session->flashdata('emessage'))){ ?>
 
 <div style="display:none" id="cnfbox<?php echo $i ?>">
 <p> Are you sure delete this </p>
-<a href="<?php echo base_url() ?>dcadmin/users/delete_users/<?php echo base64_encode($data->id); ?>" class="btn btn-danger" >Yes</a>
+<a href="<?php echo base_url() ?>dcadmin/Users/delete_users/<?php echo base64_encode($data->id); ?>" class="btn btn-danger" >Yes</a>
 <a href="javasript:;" class="cans btn btn-default" mydatas="<?php echo $i ?>" >No</a>
 </div>
 </td>

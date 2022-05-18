@@ -47,6 +47,7 @@ $this->db->where('phone', $phone);
 $dsa= $this->db->get();
 $da=$dsa->row();
 if (!empty($da)) {
+  if($da->is_active==1){
 $OTP = random_int(100000, 999999);
 // $OTP = 123456;
 $msg= "Welcome to supremetech.com and Your One Time Password (OTP) for Login Into your account is ".$OTP."." ;
@@ -103,6 +104,13 @@ $res=array(
   'code'=>201,
 );
 echo json_encode($res);
+}
+}else{
+  $res=array(
+    'message'=>'Waiting for admin to accept account request',
+    'code'=>201,
+  );
+  echo json_encode($res);
 }
 } else {
 $res=array(
@@ -166,13 +174,18 @@ $this->db->select('*');
 $this->db->from('tbl_users');
 $this->db->where('phone', $phone);
 $user_data= $this->db->get()->row();
-
+if($user_data->is_active==1){
 $res = array('message'=>'success',
 'status'=>200,
 'authentication'=>$user_data->authentication
 );
 
 echo json_encode($res);
+}else{
+  $res = array('message'=>'Your account is inactive. Please contact admin.',
+  'status'=>201
+  );
+}
 } else {
 $res = array('message'=>'some error occured! Please try again',
 'status'=>201
@@ -338,7 +351,8 @@ $data_insert = array(
 'image2'=>$image2,
 'token_id'=>$token_id,
 'ip' =>$ip,
-'date'=>$cur_date
+'date'=>$cur_date,
+'is_active'=>0
 
 );
 
@@ -488,7 +502,7 @@ $data_insert = array('name'=>$temp_data->name,
        'token_id'=>$temp_data->token_id,
  'authentication'=>$authentication,
        'ip' =>$ip,
-       'is_active' =>1,
+       'is_active' =>0,
        'date'=>$cur_date
 );
 
@@ -509,10 +523,8 @@ if (!empty($last_id2)) {
             $last_id3=$this->db->update('token_id', $data_insert);
         }
     }
-    $res = array('message'=>'success',
+    $res = array('message'=>'Request submitted successfully',
 'status'=>200,
-'user_id'=>$last_id2,
-'authentication'=>$authentication
 );
 
     echo json_encode($res);
