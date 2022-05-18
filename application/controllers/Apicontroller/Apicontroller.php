@@ -2793,18 +2793,18 @@ if($this->input->post())
   if(!empty($this->input->post('store_id'))){
     $this->form_validation->set_rules('name', 'name', 'xss_clean|trim');
     $this->form_validation->set_rules('contact', 'contact', 'xss_clean|trim');
-    $this->form_validation->set_rules('pincode', 'pincode', 'xss_clean|trim');
+    // $this->form_validation->set_rules('pincode', 'pincode', 'xss_clean|trim');
     $this->form_validation->set_rules('state', 'state', 'xss_clean|trim');
     $this->form_validation->set_rules('city', 'city', 'xss_clean|trim');
-    $this->form_validation->set_rules('house_no', 'house_no', 'xss_clean|trim');
+    // $this->form_validation->set_rules('house_no', 'house_no', 'xss_clean|trim');
     $this->form_validation->set_rules('street_address', 'street_address', 'xss_clean|trim');
   }else{
     $this->form_validation->set_rules('name', 'name', 'required|xss_clean|trim');
     $this->form_validation->set_rules('contact', 'contact', 'required|xss_clean|trim');
-    $this->form_validation->set_rules('pincode', 'pincode', 'required|xss_clean|trim');
+    // $this->form_validation->set_rules('pincode', 'pincode', 'required|xss_clean|trim');
     $this->form_validation->set_rules('state', 'state', 'required|xss_clean|trim');
     $this->form_validation->set_rules('city', 'city', 'required|xss_clean|trim');
-    $this->form_validation->set_rules('house_no', 'house_no', 'required|xss_clean|trim');
+    // $this->form_validation->set_rules('house_no', 'house_no', 'required|xss_clean|trim');
     $this->form_validation->set_rules('street_address', 'street_address', 'required|xss_clean|trim');
   }
 
@@ -2825,10 +2825,10 @@ $txn_id=$this->input->post('txn_id');
 $payment_type=$this->input->post('payment_type');
 $name=$this->input->post('name');
 $contact=$this->input->post('contact');
-$pincode=$this->input->post('pincode');
+// $pincode=$this->input->post('pincode');
 $state=$this->input->post('state');
 $city=$this->input->post('city');
-$house_no=$this->input->post('house_no');
+// $house_no=$this->input->post('house_no');
 $street_address=$this->input->post('street_address');
 $store_id=$this->input->post('store_id');
 
@@ -2847,15 +2847,20 @@ $new_file_name="bank_receipt".date("Ymdhms");
 $this->upload_config = array(
 'upload_path'   => $image_upload_folder,
 'file_name' => $new_file_name,
-'allowed_types' =>'pdf|doc|docx|jpg|jpeg|png',
+'allowed_types' =>'jpg|jpeg|png',
 'max_size'      => 25000
 );
 $this->upload->initialize($this->upload_config);
 if (!$this->upload->do_upload($img1))
 {
 $upload_error = $this->upload->display_errors();
-echo json_encode($upload_error);
-// echo $upload_error;
+header('Access-Control-Allow-Origin: *');
+$res = array('message'=>$upload_error,
+'status'=>201,
+);
+
+echo json_encode($res);
+exit;
 }
 else
 {
@@ -2935,7 +2940,7 @@ $final_amount = $total - $discount;
 //----------order1 entry-------
 if($payment_type==2){         //------------2 for pay on store------------------------------------
 if(!empty($store_id)){
-  $data_insert = array('payment_type'=>$payment_type,
+  $data_insert = array(
   'final_amount'=>$final_amount,
   'store_id'=>$store_id,
   'payment_status'=>1,
@@ -2943,13 +2948,13 @@ if(!empty($store_id)){
   'order_status'=>1,
   );
 }else{
-  $data_insert = array('payment_type'=>$payment_type,
+  $data_insert = array(
   'name'=>$name,
   'phone'=>$phone,
-  'pincode'=>$pincode,
+  // 'pincode'=>$pincode,
   'state'=>$state,
   'city'=>$city,
-  'house_no'=>$house_no,
+  // 'house_no'=>$house_no,
   'street_address'=>$street_address,
   'final_amount'=>$final_amount,
   'payment_status'=>1,
@@ -2959,22 +2964,23 @@ if(!empty($store_id)){
 }
 }elseif($payment_type==1){         //------------1 for bank transfer------------------------------------
 if(!empty($store_id)){
-  $data_insert = array('payment_type'=>$payment_type,
+  $data_insert = array(
   'final_amount'=>$final_amount,
-  'bank_receipt'=>$image,   //-------compulsary
+  // 'bank_receipt'=>$image,
   'store_id'=>$store_id,
   'payment_status'=>1,
   'payment_type'=>1,
   'order_status'=>1,
   );
 }else{
-  $data_insert = array('payment_type'=>$payment_type,
+  if(!empty($image)){
+  $data_insert = array(
   'name'=>$name,
   'phone'=>$phone,
-  'pincode'=>$pincode,
+  // 'pincode'=>$pincode,
   'state'=>$state,
   'city'=>$city,
-  'house_no'=>$house_no,
+  // 'house_no'=>$house_no,
   'street_address'=>$street_address,
   'final_amount'=>$final_amount,
   'bank_receipt'=>$image,     //------compulsary
@@ -2982,10 +2988,19 @@ if(!empty($store_id)){
   'payment_type'=>1,
   'order_status'=>1,
   );
+}else{
+  header('Access-Control-Allow-Origin: *');
+  $res = array('message'=>'Upload an image',
+  'status'=>201,
+  );
+
+  echo json_encode($res);
+  exit;
+}
 }
 
 }
-
+// echo "-----------".$image; die();
 // print_r($data_insert);die();
 $this->db->where('txnid', $txn_id);
 $last_id=$this->db->update('tbl_order1', $data_insert);
