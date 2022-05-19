@@ -187,14 +187,17 @@ class Users extends CI_Controller
                                     'status'=>200,
                                     'name'=>$user_data->name,
                                     'phone'=>$user_data->phone,
-                                    'authentication'=>$user_data->authentication
+                                    'authentication'=>$user_data->authentication,
+                                    'login_status'=>1
                                     );
 
                                     echo json_encode($res);
                                 } else {
                                     header('Access-Control-Allow-Origin: *');
-                                    $res = array('message'=>'Your account is inactive. Contact admin.',
-                                        'status'=>201
+                                    $res = array('message'=>'Login request send successfully!',
+                                        'status'=>200,
+                                        'login_status'=>1
+
                                         );
 
                                     echo json_encode($res);
@@ -202,7 +205,7 @@ class Users extends CI_Controller
                             } else {
                                 header('Access-Control-Allow-Origin: *');
                                 $res = array('message'=>'Some error occured! Please try again',
-                                        'status'=>201
+                                        'status'=>201,
                                         );
 
                                 echo json_encode($res);
