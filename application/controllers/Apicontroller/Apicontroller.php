@@ -2939,7 +2939,7 @@ $discount=0;
 $final_amount = $total - $discount;
 
 //----------order1 entry-------
-if($payment_type==2){         //------------2 for pay on store------------------------------------
+if($payment_type==1){         //------------2 for pay on store------------------------------------
 if(!empty($store_id)){
 $data_insert = array(
 'final_amount'=>$final_amount,
@@ -2963,7 +2963,7 @@ $data_insert = array(
 'order_status'=>1,
 );
 }
-}elseif($payment_type==1){         //------------1 for bank transfer------------------------------------
+}elseif($payment_type==2){         //------------1 for bank transfer------------------------------------
 if(!empty($store_id)){
 $data_insert = array(
 'final_amount'=>$final_amount,
