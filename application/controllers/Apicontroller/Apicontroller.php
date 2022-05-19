@@ -3597,6 +3597,7 @@ $this->form_validation->set_rules('wattage', 'wattage', 'xss_clean|trim');
 $this->form_validation->set_rules('size', 'size', 'xss_clean|trim');
 $this->form_validation->set_rules('filter_product', 'filter_product', 'xss_clean|trim');
 $this->form_validation->set_rules('color', 'color', 'xss_clean|trim');
+$this->form_validation->set_rules('model', 'model', 'xss_clean|trim');
 
 
 
@@ -3608,13 +3609,15 @@ $wattage=$this->input->post('wattage');
 $size=$this->input->post('size');
 $filter_product=$this->input->post('filter_product');
 $color=$this->input->post('color');
+$model=$this->input->post('model');
 
 
-$type = explode(',',$type);
-$wattage = explode(',',$wattage);
-$size = explode(',',$size);
-$filter_product = explode(',',$filter_product);
-$color = explode(',',$color);
+$type_info = explode(',',$type);
+$wattage_info = explode(',',$wattage);
+$size_info = explode(',',$size);
+$filter_product_info = explode(',',$filter_product);
+$color_info = explode(',',$color);
+$model_info = explode(',',$model);
 
 
 $this->db->select('*');
@@ -3639,6 +3642,10 @@ $this->db->or_where('filter_product',$data2, NULL, FALSE);
 if(!empty($color_info[0])){
 foreach($color_info as $data3) {
 $this->db->or_where('color',$data3, NULL, FALSE);
+}}
+if(!empty($model_info[0])){
+foreach($model_info as $data4) {
+$this->db->or_where('model_id',$data4, NULL, FALSE);
 }}
 
 
