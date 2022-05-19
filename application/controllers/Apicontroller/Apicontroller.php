@@ -3645,7 +3645,7 @@ $this->db->or_where('color',$data3, NULL, FALSE);
 }}
 if(!empty($model_info[0])){
 foreach($model_info as $data4) {
-$this->db->or_where('model_id',$data4, NULL, FALSE);
+$this->db->or_where('car_model_id',$data4, NULL, FALSE);
 }}
 
 
