@@ -3648,7 +3648,7 @@ foreach($model_info as $data4) {
 $this->db->or_where('car_model_id',$data4, NULL, FALSE);
 }}
 if(!empty($subcategory_id)){
-  $this->db->where('subcategory_id', $subcategory_id);
+  $this->db->or_where('subcategory_id', $subcategory_id, NULL, FALSE);
 }
 
 
