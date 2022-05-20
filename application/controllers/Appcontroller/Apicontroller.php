@@ -3852,4 +3852,54 @@ class Apicontroller extends CI_Controller
 
 
     }
+
+//==============get related products===========================================
+    public function get_rel_products($b_id="", $m_id="")
+    {
+    $this->db->select('*');
+    $this->db->from('tbl_products');
+    $this->db->where('is_active', 1);
+    if (!empty($b_id)) {
+    $this->db->where('brand_id', $b_id);
+    }
+    if (!empty($m_id)) {
+    $this->db->where('car_model_id', $m_id);
+    }
+    $products_data= $this->db->get();
+    $products=[];
+    if (!empty($b_id)) {
+    $this->db->select('*');
+    $this->db->from('tbl_brands');
+    $this->db->where('id', $b_id);
+    $this->db->where('is_active', 1);
+    $bdata= $this->db->get()->row();
+    $heading= $bdata->name;
+    } elseif (!empty($m_id)) {
+    $this->db->select('*');
+    $this->db->from('tbl_car_model');
+    $this->db->where('is_active', 1);
+    $this->db->where('id', $m_id);
+    $mdata= $this->db->get()->row();
+    $heading= $mdata->name;
+    } else {
+    $heading = "Shop By Car";
+    }
+    foreach ($products_data->result() as $data) {
+    $products[] = array(  'modelno'=>$data->modelno,
+    'product_id'=>$data->id,
+    'product_name'=>$data->productname,
+    'description'=> $data->productdescription,
+    'mrp'=> $data->mrp,
+    'price'=>$data->sellingpricegst,
+    'image'=>base_url().$data->image,
+    );
+    }
+    $res = array('message'=>"success",
+    'status'=>200,
+    'data'=>$products,
+    'heading'=>$heading
+    );
+
+    echo json_encode($res);
+    }
 }

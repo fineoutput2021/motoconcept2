@@ -764,7 +764,9 @@ echo json_encode($res);
 } else {
 header('Access-Control-Allow-Origin: *');
 $res = array('message'=>' Your cart is empty',
-'status'=>201
+'status'=>200,
+'data'=>[],
+'subtotal'=>0
 );
 
 echo json_encode($res);
