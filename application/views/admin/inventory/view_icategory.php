@@ -52,14 +52,14 @@
         <div class="btn-group" id="btns<?php echo $i ?>">
         <div class="btn-group">
         <button type="button" class="btn btn-default" >
-        <a href="<?=base_url()?>dcadmin/inventory/view_iproducts/<?=base64_encode($data->id);?>">View Products </a> </button>
+        <a href="<?=base_url()?>dcadmin/Inventory/view_iproducts/<?=base64_encode($data->id);?>">View Products </a> </button>
         </ul>
         </div>
         </div>
 
         <div style="display:none" id="cnfbox<?php echo $i ?>">
         <p> Are you sure delete this </p>
-        <a href="<?php echo base_url() ?>dcadmin/inventory/delete_inventory/<?php echo
+        <a href="<?php echo base_url() ?>dcadmin/Inventory/delete_inventory/<?php echo
         base64_encode($data->id); ?>" class="btn btn-danger" >Yes</a>
         <a href="javasript:;" class="cans btn btn-default" mydatas="<?php echo $i ?>" >No</a>
         </div>

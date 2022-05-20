@@ -157,7 +157,7 @@ public function add_users(){
 
                               $this->session->set_flashdata('smessage','Data inserted successfully');
 
-                              redirect("dcadmin/users/view_users","refresh");
+                              redirect("dcadmin/Users/view_users","refresh");
 
                                       }
 
@@ -250,7 +250,7 @@ public function delete_contactus($idd){
                          									 $zapak=$this->db->delete('tbl_users', array('id' => $id));
                          									 if($zapak!=0){
 
-                         								 	redirect("dcadmin/contactus/view_contactus","refresh");
+                         								 	redirect("dcadmin/Contactus/view_contactus","refresh");
                          								 					}
                          								 					else
                          								 					{
@@ -297,7 +297,7 @@ public function updatecontactusStatus($idd,$t){
         $zapak=$this->db->update('tbl_contactus', $data_update);
 
              if($zapak!=0){
-             redirect("dcadmin/contactus/view_contactus","refresh");
+             redirect("dcadmin/Contactus/view_contactus","refresh");
                      }
                      else
                      {
@@ -315,7 +315,7 @@ public function updatecontactusStatus($idd,$t){
           $zapak=$this->db->update('tbl_contactus', $data_update);
 
               if($zapak!=0){
-              redirect("dcadmin/contactus/view_contactus","refresh");
+              redirect("dcadmin/Contactus/view_contactus","refresh");
                       }
                       else
                       {

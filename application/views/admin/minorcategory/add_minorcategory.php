@@ -34,7 +34,7 @@
 
           <div class="panel-body">
             <div class="col-lg-10">
-              <form action=" <?php echo base_url()  ?>dcadmin/minorcategory/add_minorcategory_data/<?php echo base64_encode(1);  ?>" method="POST" id="slide_frm" enctype="multipart/form-data">
+              <form action=" <?php echo base_url()  ?>dcadmin/Minorcategory/add_minorcategory_data/<?php echo base64_encode(1);  ?>" method="POST" id="slide_frm" enctype="multipart/form-data">
                 <div class="table-responsive">
                   <table class="table table-hover">
                     <tr>
@@ -220,7 +220,7 @@
 
                     <tr>
                       <td colspan="2">
-                        <input type="submit" class="btn btn-success" value="save">
+                        <input type="submit" class="btn custom_btn" value="save">
                       </td>
                     </tr>
                   </table>
@@ -263,8 +263,8 @@
         $('#sid option').remove();
         var opton = "<option value=''>Please Select </option>";
         $.ajax({
-          url: base_url + "dcadmin/minorcategory/getSubcategory?isl=" + vf,
-          // url:base_url+"dcadmin/products/getMinorcategory?isl="+vf,
+          url: base_url + "dcadmin/Minorcategory/getSubcategory?isl=" + vf,
+          // url:base_url+"dcadmin/Products/getMinorcategory?isl="+vf,
           data: '',
           type: "get",
           success: function(html) {

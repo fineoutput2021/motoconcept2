@@ -4,9 +4,8 @@
 Update New Category
 </h1>
 <ol class="breadcrumb">
-<li><a href="<?php echo base_url() ?>dcadmin/dashboard"><i class="fa fa-dashboard"></i>Home</a></li>
-<li><a href="<?php echo base_url() ?>dcadmin/category/view_category"><i class="fa fa-dashboard"></i> Categories List</a></li>
-
+ <li><a href="<?php echo base_url() ?>dcadmin/Home"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+  <li><a href="<?php echo base_url() ?>dcadmin/Category/view_category"><i class="fa fa-dashboard"></i> View Categories</a></li>
 </ol>
 </section>
 <section class="content">
@@ -17,26 +16,25 @@ Update New Category
         <div class="panel-heading">
             <h3 class="panel-title"><i class="fa fa-money fa-fw"></i>Update New Category </h3>
         </div>
-
-                <? if(!empty($this->session->flashdata('smessage'))){ ?>
-                      <div class="alert alert-success alert-dismissible">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                  <h4><i class="icon fa fa-check"></i> Alert!</h4>
-                <? echo $this->session->flashdata('smessage'); ?>
-                </div>
-                  <? }
-                   if(!empty($this->session->flashdata('emessage'))){ ?>
-                   <div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-ban"></i> Alert!</h4>
-              <? echo $this->session->flashdata('emessage'); ?>
-              </div>
-                <? } ?>
+        <? if(!empty($this->session->flashdata('smessage'))){ ?>
+              <div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <h4><i class="icon fa fa-check"></i> Alert!</h4>
+        <? echo $this->session->flashdata('smessage'); ?>
+        </div>
+          <? }
+           if(!empty($this->session->flashdata('emessage'))){ ?>
+           <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+        <? echo $this->session->flashdata('emessage'); ?>
+        </div>
+        <? } ?>
 
 
         <div class="panel-body">
             <div class="col-lg-10">
-               <form action="<?php echo base_url() ?>dcadmin/category/add_category_data/<? echo base64_encode(2); ?>/<?= $id ?>" method="POST" id="slide_frm" enctype="multipart/form-data">
+               <form action="<?php echo base_url() ?>dcadmin/Category/add_category_data/<? echo base64_encode(2); ?>/<?= $id ?>" method="POST" id="slide_frm" enctype="multipart/form-data">
             <div class="table-responsive">
                 <table class="table table-hover">
 
@@ -74,7 +72,7 @@ Update New Category
           </tr>
       <tr>
         <td colspan="2" >
-          <input type="submit" class="btn btn-success" value="save">
+          <input type="submit" class="btn custom_btn" value="save">
         </td>
       </tr>
                     </table>

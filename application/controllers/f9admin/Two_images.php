@@ -112,7 +112,7 @@
                                $this->upload_config = array(
                              'upload_path'   => $image_upload_folder,
                              'file_name' => $new_file_name,
-                             'allowed_types' =>'xlsx|csv|xls|pdf|doc|docx|txt|jpg|jpeg|png',
+                             'allowed_types' =>'jpg|jpeg|png',
                              'max_size'      => 25000
                      );
                                $this->upload->initialize($this->upload_config);
@@ -148,7 +148,7 @@
                                $this->upload_config = array(
                              'upload_path'   => $image_upload_folder,
                              'file_name' => $new_file_name,
-                             'allowed_types' =>'xlsx|csv|xls|pdf|doc|docx|txt|jpg|jpeg|png',
+                             'allowed_types' =>'jpg|jpeg|png',
                              'max_size'      => 25000
                      );
                                $this->upload->initialize($this->upload_config);
@@ -185,6 +185,14 @@
 
 
                                $last_id=$this->base_model->insert_table("tbl_two_images", $data_insert, 1) ;
+                               if ($last_id!=0) {
+                                   $this->session->set_flashdata('smessage', 'Two images inserted successfully');
+                                   redirect("dcadmin/Two_images/view_two_images", "refresh");
+                               } else {
+                                   $this->session->set_flashdata('emessage', 'Sorry error occured');
+                                   redirect($_SERVER['HTTP_REFERER']);
+                               }
+
                            }
                            if ($typ==2) {
                                $idw=base64_decode($iw);
@@ -209,7 +217,7 @@
                                $this->upload_config = array(
                              'upload_path'   => $image_upload_folder,
                              'file_name' => $new_file_name,
-                             'allowed_types' =>'xlsx|csv|xls|pdf|doc|docx|txt|jpg|jpeg|png',
+                             'allowed_types' =>'jpg|jpeg|png',
                              'max_size'      => 25000
                      );
                                $this->upload->initialize($this->upload_config);
@@ -247,7 +255,7 @@
                                $this->upload_config = array(
                              'upload_path'   => $image_upload_folder,
                              'file_name' => $new_file_name,
-                             'allowed_types' =>'xlsx|csv|xls|pdf|doc|docx|txt|jpg|jpeg|png',
+                             'allowed_types' =>'jpg|jpeg|png',
                              'max_size'      => 25000
                      );
                                $this->upload->initialize($this->upload_config);
@@ -306,14 +314,15 @@
                      );
                                $this->db->where('id', $idw);
                                $last_id=$this->db->update('tbl_two_images', $data_insert);
+                               if ($last_id!=0) {
+                                   $this->session->set_flashdata('smessage', 'Two images updated successfully');
+                                   redirect("dcadmin/Two_images/view_two_images", "refresh");
+                               } else {
+                                   $this->session->set_flashdata('emessage', 'Sorry error occured');
+                                   redirect($_SERVER['HTTP_REFERER']);
+                               }
                            }
-                           if ($last_id!=0) {
-                               $this->session->set_flashdata('smessage', 'Data inserted successfully');
-                               redirect("dcadmin/Two_images/view_two_images", "refresh");
-                           } else {
-                               $this->session->set_flashdata('emessage', 'Sorry error occured');
-                               redirect($_SERVER['HTTP_REFERER']);
-                           }
+
                        } else {
                            $this->session->set_flashdata('emessage', validation_errors());
                            redirect($_SERVER['HTTP_REFERER']);
@@ -348,7 +357,9 @@
                        $zapak=$this->db->update('tbl_two_images', $data_update);
 
                        if ($zapak!=0) {
-                           redirect("dcadmin/two_images/view_two_images", "refresh");
+                         $this->session->set_flashdata('smessage', 'Two images status updated successfully');
+
+                           redirect("dcadmin/Two_images/view_two_images", "refresh");
                        } else {
                            $this->session->set_flashdata('emessage', 'Sorry error occured');
                            redirect($_SERVER['HTTP_REFERER']);
@@ -364,7 +375,9 @@
                        $zapak=$this->db->update('tbl_two_images', $data_update);
 
                        if ($zapak!=0) {
-                           redirect("dcadmin/two_images/view_two_images", "refresh");
+                         $this->session->set_flashdata('smessage', 'Two images status updated successfully');
+
+                           redirect("dcadmin/Two_images/view_two_images", "refresh");
                        } else {
                            $this->session->set_flashdata('emessage', 'Sorry error occured');
                            redirect($_SERVER['HTTP_REFERER']);
@@ -401,7 +414,9 @@
                        if ($zapak!=0) {
                            // $path = FCPATH .$img;
                            //   unlink($path);
-                           redirect("dcadmin/two_images/view_two_images", "refresh");
+                           $this->session->set_flashdata('smessage', 'Two images deleted successfully');
+
+                           redirect("dcadmin/Two_images/view_two_images", "refresh");
                        } else {
                            $this->session->set_flashdata('emessage', 'Sorry error occured');
                            redirect($_SERVER['HTTP_REFERER']);

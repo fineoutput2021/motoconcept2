@@ -4,15 +4,14 @@
            Slider
           </h1>
           <ol class="breadcrumb">
-           <li><a href="<?php echo base_url() ?>admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="<?php echo base_url() ?>dcadmin/Slider/view_slider"><i class="fa fa-dashboard"></i> All Slider Images </a></li>
+           <li><a href="<?php echo base_url() ?>dcadmin/Home"><i class="fa fa-dashboard"></i> Dashboard</a></li>
             <li class="active">View Slider Images</li>
           </ol>
         </section>
           <section class="content">
           <div class="row">
              <div class="col-lg-12">
-                 <a class="btn btn-info cticket" href="<?php echo base_url() ?>dcadmin/Slider/add_slider" role="button" style="margin-bottom:12px;"> Add Slider</a>
+                 <a class="btn custom_btn" href="<?php echo base_url() ?>dcadmin/Slider/add_slider" role="button" style="margin-bottom:12px;"> Add Slider</a>
                               <div class="panel panel-default">
                                   <div class="panel-heading">
                                       <h3 class="panel-title"><i class="fa fa-money fa-fw"></i>View Slider Images</h3>

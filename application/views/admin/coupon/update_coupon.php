@@ -4,9 +4,8 @@
           Add New Coupon
           </h1>
           <ol class="breadcrumb">
-           <li><a href="<?php echo base_url() ?>dcadmin/dashboard"><i class="fa fa-dashboard"></i>Home</a></li>
-            <li><a href="<?php echo base_url() ?>dcadmin/coupon/view_coupon"><i class="fa fa-dashboard"></i> All Coupon Codes </a></li>
-
+           <li><a href="<?php echo base_url() ?>dcadmin/Home"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li><a href="<?php echo base_url() ?>dcadmin/Coupon/view_coupon"><i class="fa fa-dashboard"></i> View Coupon</a></li>
           </ol>
         </section>
     <section class="content">
@@ -36,7 +35,7 @@
 
                             <div class="panel-body">
                                 <div class="col-lg-10">
-                                   <form action="<?php echo base_url() ?>dcadmin/coupon/add_coupon_data/<? echo base64_encode(2); ?>/<?= $id ?>" method="POST" id="slide_frm" enctype="multipart/form-data">
+                                   <form action="<?php echo base_url() ?>dcadmin/Coupon/add_coupon_data/<? echo base64_encode(2); ?>/<?= $id ?>" method="POST" id="slide_frm" enctype="multipart/form-data">
                                 <div class="table-responsive">
                                     <table class="table table-hover">
 
@@ -78,7 +77,7 @@
                                   </tr>
                           <tr>
                             <td colspan="2" >
-                              <input type="submit" class="btn btn-success" value="save">
+                              <input type="submit" class="btn custom_btn" value="save">
                             </td>
                           </tr>
                                         </table>

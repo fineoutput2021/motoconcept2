@@ -193,7 +193,7 @@
 </tr>
              <tr>
                                    <td colspan="2" >
-                                     <input type="submit" class="btn btn-success" value="save">
+                                     <input type="submit" class="btn custom_btn" value="save">
                                    </td>
                                  </tr>
                                                </table>
@@ -244,8 +244,8 @@ $(document).ready(function(){
 			$('#mid option').remove();
 			  var opton="<option value=''>Please Select </option>";
 			$.ajax({
-				url:base_url+"dcadmin/products/getMinorcategory?isl="+vf,
-				// url:base_url+"dcadmin/products/getMinorcategory?isl="+vf,
+				url:base_url+"dcadmin/Products/getMinorcategory?isl="+vf,
+				// url:base_url+"dcadmin/Products/getMinorcategory?isl="+vf,
 				data : '',
 				type: "get",
 				success : function(html){
@@ -325,7 +325,7 @@ $(document).ready(function(){
 			  var opton="<option value=''>Please Select Car Model</option>";
 			$.ajax({
 				url:base_url+"dcadmin/Products/getcarmodel?isf="+vf,
-				// url:base_url+"dcadmin/products/getMinorcategory?isl="+vf,
+				// url:base_url+"dcadmin/Products/getMinorcategory?isl="+vf,
 				data : '',
 				type: "get",
 				success : function(html){

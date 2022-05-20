@@ -32,7 +32,7 @@
 
                     <div class="panel-body">
                         <div class="col-lg-10">
-                           <form action=" <?php echo base_url(); ?>dcadmin/surveillance/add_surveillance_data/<? echo base64_encode(2); ?>/<?=$id;?>" method="POST" id="slide_frm" enctype="multipart/form-data">
+                           <form action=" <?php echo base_url(); ?>dcadmin/Surveillance/add_surveillance_data/<? echo base64_encode(2); ?>/<?=$id;?>" method="POST" id="slide_frm" enctype="multipart/form-data">
                         <div class="table-responsive">
                             <table class="table table-hover">
 <tr>
@@ -48,7 +48,7 @@
 
                   <tr>
                     <td colspan="2" >
-                      <input type="submit" class="btn btn-success" value="save">
+                      <input type="submit" class="btn custom_btn" value="save">
                     </td>
                   </tr>
                                 </table>

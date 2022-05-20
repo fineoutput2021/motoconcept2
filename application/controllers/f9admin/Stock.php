@@ -97,7 +97,7 @@ function __construct()
                             						$this->upload_config = array(
                             								'upload_path'   => $image_upload_folder,
                             								'file_name' => $new_file_name,
-                            								'allowed_types' =>'xlsx|csv|xls|pdf|doc|docx|txt|jpg|jpeg|png',
+                            								'allowed_types' =>'jpg|jpeg|png',
                             								'max_size'      => 25000
                             						);
                             						$this->upload->initialize($this->upload_config);
@@ -134,7 +134,7 @@ function __construct()
 						                            						$this->upload_config = array(
 						                            								'upload_path'   => $image_upload_folder,
 						                            								'file_name' => $new_file_name,
-						                            								'allowed_types' =>'xlsx|csv|xls|pdf|doc|docx|txt|jpg|jpeg|png',
+						                            								'allowed_types' =>'jpg|jpeg|png',
 						                            								'max_size'      => 25000
 						                            						);
 						                            						$this->upload->initialize($this->upload_config);
@@ -244,7 +244,7 @@ function __construct()
 
                                                     $this->session->set_flashdata('smessage','Data inserted successfully');
 
-                                                    redirect("dcadmin/stock/view_stock","refresh");
+                                                    redirect("dcadmin/Stock/view_stock","refresh");
 
                                                             }
 
@@ -336,7 +336,7 @@ function __construct()
                                     $zapak=$this->db->update('tbl_stock', $data_update);
 
                                          if($zapak!=0){
-                                         redirect("dcadmin/stock/view_stock","refresh");
+                                         redirect("dcadmin/Stock/view_stock","refresh");
                                                  }
                                                  else
                                                  {
@@ -354,7 +354,7 @@ function __construct()
                                       $zapak=$this->db->update('tbl_stock', $data_update);
 
                                           if($zapak!=0){
-                                          redirect("dcadmin/stock/view_stock","refresh");
+                                          redirect("dcadmin/Stock/view_stock","refresh");
                                                   }
                                                   else
                                                   {
@@ -400,7 +400,7 @@ function __construct()
                                                									 if($zapak!=0){
                                          $path = FCPATH .$img;
                                                										 unlink($path);
-                                               								 	redirect("dcadmin/stock/view_stock","refresh");
+                                               								 	redirect("dcadmin/Stock/view_stock","refresh");
                                                								 					}
                                                								 					else
                                                								 					{

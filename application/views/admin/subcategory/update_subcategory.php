@@ -5,7 +5,10 @@
    <h1>
   Update Subcategory
   </h1>
-
+  <ol class="breadcrumb">
+<li><a href="<?php echo base_url() ?>dcadmin/home"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+<li><a href="<?php echo base_url() ?>dcadmin/Subcategory/view_subcategory"><i class="fa fa-dashboard"></i> View Subcategory</a></li>
+</ol>
 </section>
 <section class="content">
 <div class="row">
@@ -152,7 +155,7 @@ foreach($category_data->result() as $value) {?>
 
                   <tr>
                     <td colspan="2" >
-                      <input type="submit" class="btn btn-success" value="save">
+                      <input type="submit" class="btn custom_btn" value="save">
                     </td>
                   </tr>
                                 </table>
@@ -194,8 +197,8 @@ foreach($category_data->result() as $value) {?>
         $('#sid option').remove();
         var opton = "<option value=''>Please Select </option>";
         $.ajax({
-          url: base_url + "dcadmin/minorcategory/getSubcategory?isl=" + vf,
-          // url:base_url+"dcadmin/products/getMinorcategory?isl="+vf,
+          url: base_url + "dcadmin/Minorcategory/getSubcategory?isl=" + vf,
+          // url:base_url+"dcadmin/Products/getMinorcategory?isl="+vf,
           data: '',
           type: "get",
           success: function(html) {

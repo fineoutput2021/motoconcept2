@@ -8,7 +8,7 @@
         <section class="content">
         <div class="row">
         <div class="col-lg-12">
-        <a class="btn btn-info cticket" href="<?php echo base_url() ?>dcadmin/minorcategory/add_minorcategory"
+        <a class="btn custom_btn" href="<?php echo base_url() ?>dcadmin/Minorcategory/add_minorcategory"
         role="button" style="margin-bottom:12px;"> Add Minor category</a>
         <div class="panel panel-default">
         <div class="panel-heading">
@@ -117,13 +117,13 @@ echo $subcategory_name ;
         <ul class="dropdown-menu" role="menu">
 
         <?php if($data->is_active==1){ ?>
-        <li><a href="<?php echo base_url() ?>dcadmin/minorcategory/updateminorcategoryStatus/<?php echo
+        <li><a href="<?php echo base_url() ?>dcadmin/Minorcategory/updateminorcategoryStatus/<?php echo
         base64_encode($data->id) ?>/inactive">Inactive</a></li>
         <?php } else { ?>
-        <li><a href="<?php echo base_url() ?>dcadmin/minorcategory/updateminorcategoryStatus/<?php echo
+        <li><a href="<?php echo base_url() ?>dcadmin/Minorcategory/updateminorcategoryStatus/<?php echo
         base64_encode($data->id) ?>/active">Active</a></li>
         <?php } ?>
-        <li><a href="<?php echo base_url() ?>dcadmin/minorcategory/update_minorcategory/<?php echo
+        <li><a href="<?php echo base_url() ?>dcadmin/Minorcategory/update_minorcategory/<?php echo
         base64_encode($data->id) ?>">Edit</a></li>
         <li><a href="javascript:;" class="dCnf" mydata="<?php echo $i ?>">Delete</a></li>
         </ul>
@@ -132,7 +132,7 @@ echo $subcategory_name ;
 
         <div style="display:none" id="cnfbox<?php echo $i ?>">
         <p> Are you sure delete this </p>
-        <a href="<?php echo base_url() ?>dcadmin/minorcategory/delete_minorcategory/<?php echo
+        <a href="<?php echo base_url() ?>dcadmin/Minorcategory/delete_minorcategory/<?php echo
         base64_encode($data->id); ?>" class="btn btn-danger" >Yes</a>
         <a href="javasript:;" class="cans btn btn-default" mydatas="<?php echo $i ?>" >No</a>
         </div>

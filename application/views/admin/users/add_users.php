@@ -4,9 +4,8 @@
 Add New User
 </h1>
 <ol class="breadcrumb">
-<li><a href="<?php echo base_url() ?>dcadmin/dashboard"><i class="fa fa-dashboard"></i>Home</a></li>
-<li><a href="<?php echo base_url() ?>dcadmin/users/view_users"><i class="fa fa-dashboard"></i> All Users </a></li>
-
+<li><a href="<?php echo base_url() ?>dcadmin/home"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+<li><a href="<?php echo base_url() ?>dcadmin/Users/view_users"><i class="fa fa-dashboard"></i> View Users</a></li>
 </ol>
 </section>
 <section class="content">
@@ -36,7 +35,7 @@ if(!empty($this->session->flashdata('emessage'))){ ?>
 
 <div class="panel-body">
 <div class="col-lg-10">
-<form action="<?php echo base_url() ?>dcadmin/users/add_user_data/<? echo base64_encode(1); ?>" method="POST" id="slide_frm" enctype="multipart/form-data">
+<form action="<?php echo base_url() ?>dcadmin/Users/add_user_data/<? echo base64_encode(1); ?>" method="POST" id="slide_frm" enctype="multipart/form-data">
 <div class="table-responsive">
 <table class="table table-hover">
 
@@ -66,7 +65,7 @@ if(!empty($this->session->flashdata('emessage'))){ ?>
 </tr> -->
 <tr>
 <td colspan="2" >
-<input type="submit" class="btn btn-success" value="save">
+<input type="submit" class="btn custom_btn" value="save">
 </td>
 </tr>
 </table>

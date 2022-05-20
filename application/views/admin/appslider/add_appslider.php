@@ -3,7 +3,10 @@
                   <h1>
                  Add New Appslider
                  </h1>
-
+                 <ol class="breadcrumb">
+                  <li><a href="<?php echo base_url() ?>dcadmin/Home"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                   <li><a href="<?php echo base_url() ?>dcadmin/Appslider/view_appslider"><i class="fa fa-dashboard"></i> View App slider</a></li>
+                 </ol>
                </section>
            <section class="content">
            <div class="row">
@@ -14,25 +17,25 @@
                                        <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Add New Appslider</h3>
                                    </div>
 
-                                            <? if(!empty($this->session->flashdata('smessage'))){  ?>
+                                            <?php if (!empty($this->session->flashdata('smessage'))) {  ?>
                                                  <div class="alert alert-success alert-dismissible">
                                              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                                              <h4><i class="icon fa fa-check"></i> Alert!</h4>
-                                            <? echo $this->session->flashdata('smessage');  ?>
+                                            <?php echo $this->session->flashdata('smessage');  ?>
                                            </div>
-                                              <? }
-                                              if(!empty($this->session->flashdata('emessage'))){  ?>
+                                              <?php }
+                                              if (!empty($this->session->flashdata('emessage'))) {  ?>
                                               <div class="alert alert-danger alert-dismissible">
                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                                            <h4><i class="icon fa fa-ban"></i> Alert!</h4>
-                                          <? echo $this->session->flashdata('emessage');  ?>
+                                          <?php echo $this->session->flashdata('emessage');  ?>
                                          </div>
-                                            <? }  ?>
+                                            <?php }  ?>
 
 
                                    <div class="panel-body">
                                        <div class="col-lg-10">
-                                          <form action=" <?php echo base_url()  ?>dcadmin/appslider/add_appslider_data/<? echo base64_encode(1);  ?>" method="POST" id="slide_frm" enctype="multipart/form-data">
+                                          <form action=" <?php echo base_url()  ?>dcadmin/Appslider/add_appslider_data/<?php echo base64_encode(1);  ?>" method="POST" id="slide_frm" enctype="multipart/form-data">
                                        <div class="table-responsive">
                                            <table class="table table-hover">
   <tr>
@@ -47,7 +50,7 @@
 
                                  <tr>
                                    <td colspan="2" >
-                                     <input type="submit" class="btn btn-success" value="save">
+                                     <input type="submit" class="btn custom_btn" value="save">
                                    </td>
                                  </tr>
                                                </table>
@@ -70,6 +73,4 @@
 
 
 <script type="text/javascript" src=" <?php echo base_url()  ?>assets/slider/ajaxupload.3.5.js"></script>
-     <link href=" <? echo base_url()  ?>assets/cowadmin/css/jqvmap.css" rel='stylesheet' type='text/css' />
-
-       
+     <link href=" <?php echo base_url()  ?>assets/cowadmin/css/jqvmap.css" rel='stylesheet' type='text/css' />

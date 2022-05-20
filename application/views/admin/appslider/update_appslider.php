@@ -3,7 +3,10 @@
    <h1>
   Update Appslider
   </h1>
-
+  <ol class="breadcrumb">
+   <li><a href="<?php echo base_url() ?>dcadmin/Home"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+    <li><a href="<?php echo base_url() ?>dcadmin/Appslider/view_appslider"><i class="fa fa-dashboard"></i> View App slider</a></li>
+  </ol>
 </section>
 <section class="content">
 <div class="row">
@@ -32,7 +35,7 @@
 
                     <div class="panel-body">
                         <div class="col-lg-10">
-                           <form action=" <?php echo base_url(); ?>dcadmin/appslider/add_appslider_data/<? echo base64_encode(2); ?>/<?=$id;?>" method="POST" id="slide_frm" enctype="multipart/form-data">
+                           <form action=" <?php echo base_url(); ?>dcadmin/Appslider/add_appslider_data/<? echo base64_encode(2); ?>/<?=$id;?>" method="POST" id="slide_frm" enctype="multipart/form-data">
                         <div class="table-responsive">
                             <table class="table table-hover">
 <tr>
@@ -48,7 +51,7 @@
 
                   <tr>
                     <td colspan="2" >
-                      <input type="submit" class="btn btn-success" value="save">
+                      <input type="submit" class="btn custom_btn" value="save">
                     </td>
                   </tr>
                                 </table>

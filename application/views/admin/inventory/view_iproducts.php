@@ -97,7 +97,7 @@ Sorry No image Found
 <div class="btn-group" id="btns<?php echo $i ?>">
 <div class="btn-group">
 <button type="button" class="btn btn-default">
-<a href="<?=base_url()?>dcadmin/inventory/update_inventory/<?=base64_encode($data->id);?>">
+<a href="<?=base_url()?>dcadmin/Inventory/update_inventory/<?=base64_encode($data->id);?>">
   Update Inventory </button>
 
 </div>

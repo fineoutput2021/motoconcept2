@@ -4,7 +4,10 @@
                   <h1>
                  Add New Subcategory
                  </h1>
-
+                 <ol class="breadcrumb">
+               <li><a href="<?php echo base_url() ?>dcadmin/home"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+               <li><a href="<?php echo base_url() ?>dcadmin/Subcategory/view_subcategory"><i class="fa fa-dashboard"></i> View Subcategory</a></li>
+               </ol>
                </section>
            <section class="content">
            <div class="row">
@@ -33,7 +36,7 @@
 
                                    <div class="panel-body">
                                        <div class="col-lg-10">
-                                          <form action=" <?php echo base_url()  ?>dcadmin/subcategory/add_subcategory_data/<? echo base64_encode(1);  ?>" method="POST" id="slide_frm" enctype="multipart/form-data">
+                                          <form action=" <?php echo base_url()  ?>dcadmin/Subcategory/add_subcategory_data/<? echo base64_encode(1);  ?>" method="POST" id="slide_frm" enctype="multipart/form-data">
                                        <div class="table-responsive">
                                            <table class="table table-hover">
   <tr>
@@ -108,7 +111,7 @@
 
                                  <tr>
                                    <td colspan="2" >
-                                     <input type="submit" class="btn btn-success" value="save">
+                                     <input type="submit" class="btn custom_btn" value="save">
                                    </td>
                                  </tr>
                                                </table>
@@ -151,8 +154,8 @@
              $('#sid option').remove();
              var opton = "<option value=''>Please Select </option>";
              $.ajax({
-               url: base_url + "dcadmin/minorcategory/getSubcategory?isl=" + vf,
-               // url:base_url+"dcadmin/products/getMinorcategory?isl="+vf,
+               url: base_url + "dcadmin/Minorcategory/getSubcategory?isl=" + vf,
+               // url:base_url+"dcadmin/Products/getMinorcategory?isl="+vf,
                data: '',
                type: "get",
                success: function(html) {

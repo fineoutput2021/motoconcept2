@@ -5,14 +5,14 @@
           </h1>
           <ol class="breadcrumb">
            <li><a href="<?php echo base_url() ?>admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="<?php echo base_url() ?>dcadmin/orders/view_orders"><i class="fa fa-dashboard"></i> All Orders </a></li>
+            <li><a href="<?php echo base_url() ?>dcadmin/Orders/view_orders"><i class="fa fa-dashboard"></i> All Orders </a></li>
             <li class="active">View Slider Images</li>
           </ol>
         </section>
           <section class="content">
           <div class="row">
              <div class="col-lg-12">
-                 <a class="btn btn-info cticket" href="<?php echo base_url() ?>dcadmin/orders/view_orders" role="button" style="margin-bottom:12px;">Orders</a>
+                 <a class="btn custom_btn" href="<?php echo base_url() ?>dcadmin/Orders/view_orders" role="button" style="margin-bottom:12px;">Orders</a>
                               <div class="panel panel-default">
                                   <div class="panel-heading">
                                       <h3 class="panel-title"><i class="fa fa-money fa-fw"></i>View Order Details</h3>

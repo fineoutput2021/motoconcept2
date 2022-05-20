@@ -4,9 +4,8 @@
 Add New Category
 </h1>
 <ol class="breadcrumb">
-<li><a href="<?php echo base_url() ?>dcadmin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
-<li><a href="<?php echo base_url() ?>dcadmin/category/view_category"><i class="fa fa-dashboard"></i> All Categories </a></li>
-
+ <li><a href="<?php echo base_url() ?>dcadmin/Home"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+  <li><a href="<?php echo base_url() ?>dcadmin/Category/view_category"><i class="fa fa-dashboard"></i> View Categories</a></li>
 </ol>
 </section>
 <section class="content">
@@ -36,7 +35,7 @@ Add New Category
 
       <div class="panel-body">
           <div class="col-lg-10">
-             <form action="<?php echo base_url() ?>dcadmin/category/add_category_data/<? echo base64_encode(1); ?>" method="POST" id="slide_frm" enctype="multipart/form-data">
+             <form action="<?php echo base_url() ?>dcadmin/Category/add_category_data/<? echo base64_encode(1); ?>" method="POST" id="slide_frm" enctype="multipart/form-data">
           <div class="table-responsive">
               <table class="table table-hover">
 
@@ -60,7 +59,7 @@ Add New Category
         </tr>
     <tr>
       <td colspan="2" >
-        <input type="submit" class="btn btn-success" value="save">
+        <input type="submit" class="btn custom_btn" value="save">
       </td>
     </tr>
                   </table>

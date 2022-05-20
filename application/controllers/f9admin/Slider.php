@@ -175,6 +175,23 @@ public function add_slider(){
 
 
           $last_id=$this->base_model->insert_table("tbl_slider",$data_insert,1) ;
+					if($last_id!=0){
+
+					$this->session->set_flashdata('smessage','Size inserted successfully');
+
+					redirect("dcadmin/Slider/view_slider","refresh");
+
+									}
+
+									else
+
+									{
+
+							 $this->session->set_flashdata('emessage','Sorry error occured');
+								 redirect($_SERVER['HTTP_REFERER']);
+
+
+									}
 
           }
           if($typ==2){
@@ -205,27 +222,27 @@ $data_insert = array('title'=>$title,
 
           	$this->db->where('id', $idw);
             $last_id=$this->db->update('tbl_slider', $data_insert);
+						if($last_id!=0){
 
+						$this->session->set_flashdata('smessage','Size updated successfully');
+
+						redirect("dcadmin/Slider/view_slider","refresh");
+
+										}
+
+										else
+
+										{
+
+								 $this->session->set_flashdata('emessage','Sorry error occured');
+									 redirect($_SERVER['HTTP_REFERER']);
+
+
+										}
           }
 
 
-                              if($last_id!=0){
 
-                              $this->session->set_flashdata('smessage','Data inserted successfully');
-
-                              redirect("dcadmin/Slider/view_slider","refresh");
-
-                                      }
-
-                                      else
-
-                                      {
-
-                                	 $this->session->set_flashdata('emessage','Sorry error occured');
-                              		   redirect($_SERVER['HTTP_REFERER']);
-
-
-                                      }
 
 
               }
@@ -305,7 +322,7 @@ public function delete_slider($idd){
 
                          									 $zapak=$this->db->delete('tbl_slider', array('id' => $id));
                          									 if($zapak!=0){
-																						 $this->session->set_flashdata('smessage','Delete successfully');
+																						 $this->session->set_flashdata('smessage','Slider Deleted successfully');
 																														 redirect($_SERVER['HTTP_REFERER']);
                          								 					}
                          								 					else
@@ -353,7 +370,7 @@ public function updatesliderStatus($idd,$t){
         $zapak=$this->db->update('tbl_slider', $data_update);
 
              if($zapak!=0){
-							 $this->session->set_flashdata('smessage','Update successfully');
+							 $this->session->set_flashdata('smessage','Slider status Updated successfully');
 															 redirect($_SERVER['HTTP_REFERER']);
                      }
                      else
@@ -372,7 +389,7 @@ public function updatesliderStatus($idd,$t){
           $zapak=$this->db->update('tbl_slider', $data_update);
 
               if($zapak!=0){
-								$this->session->set_flashdata('smessage','Update successfully');
+								$this->session->set_flashdata('smessage','Slider status Updated successfully');
 	 														 redirect($_SERVER['HTTP_REFERER']);
                       }
                       else

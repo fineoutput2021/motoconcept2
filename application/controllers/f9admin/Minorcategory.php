@@ -403,7 +403,7 @@
                            }
                            if ($last_id!=0) {
                                $this->session->set_flashdata('smessage', 'Data inserted successfully');
-                               redirect("dcadmin/minorcategory/view_minorcategory", "refresh");
+                               redirect("dcadmin/Minorcategory/view_minorcategory", "refresh");
                            } else {
                                $this->session->set_flashdata('emessage', 'Sorry error occured');
                                redirect($_SERVER['HTTP_REFERER']);
@@ -442,7 +442,7 @@
                        $zapak=$this->db->update('tbl_minorcategory', $data_update);
 
                        if ($zapak!=0) {
-                           redirect("dcadmin/minorcategory/view_minorcategory", "refresh");
+                           redirect("dcadmin/Minorcategory/view_minorcategory", "refresh");
                        } else {
                            $this->session->set_flashdata('emessage', 'Sorry error occured');
                            redirect($_SERVER['HTTP_REFERER']);
@@ -458,7 +458,7 @@
                        $zapak=$this->db->update('tbl_minorcategory', $data_update);
 
                        if ($zapak!=0) {
-                           redirect("dcadmin/minorcategory/view_minorcategory", "refresh");
+                           redirect("dcadmin/Minorcategory/view_minorcategory", "refresh");
                        } else {
                            $this->session->set_flashdata('emessage', 'Sorry error occured');
                            redirect($_SERVER['HTTP_REFERER']);
@@ -492,7 +492,7 @@
 
                        $zapak=$this->db->delete('tbl_minorcategory', array('id' => $id));
                        if ($zapak!=0) {
-                           redirect("dcadmin/minorcategory/view_minorcategory", "refresh");
+                           redirect("dcadmin/Minorcategory/view_minorcategory", "refresh");
                        } else {
                            $this->session->set_flashdata('emessage', 'Sorry error occured');
                            redirect($_SERVER['HTTP_REFERER']);

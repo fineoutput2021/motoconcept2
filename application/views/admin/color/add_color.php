@@ -3,7 +3,10 @@
                   <h1>
                  Add New Color
                  </h1>
-
+                 <ol class="breadcrumb">
+                  <li><a href="<?php echo base_url() ?>dcadmin/Home"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                   <li><a href="<?php echo base_url() ?>dcadmin/Color/view_color"><i class="fa fa-dashboard"></i> View Color</a></li>
+                 </ol>
                </section>
            <section class="content">
            <div class="row">
@@ -43,7 +46,7 @@
 
                                  <tr>
                                    <td colspan="2" >
-                                     <input type="submit" class="btn btn-success" value="save">
+                                     <input type="submit" class="btn custom_btn" value="save">
                                    </td>
                                  </tr>
                                                </table>

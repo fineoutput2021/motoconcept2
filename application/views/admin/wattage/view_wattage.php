@@ -4,11 +4,15 @@
         <h1>
           View Wattage
         </h1>
+        <ol class="breadcrumb">
+      <li><a href="<?php echo base_url() ?>dcadmin/home"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+      <li><a href="<?php echo base_url() ?>dcadmin/Wattage/view_wattage"><i class="fa fa-dashboard"></i> View Wattage</a></li>
+      </ol>
         </section>
         <section class="content">
         <div class="row">
         <div class="col-lg-12">
-        <a class="btn btn-info cticket" href="<?php echo base_url() ?>dcadmin/Wattage/add_wattage"
+        <a class="btn custom_btn" href="<?php echo base_url() ?>dcadmin/Wattage/add_wattage"
         role="button" style="margin-bottom:12px;"> Add wattage</a>
         <div class="panel panel-default">
         <div class="panel-heading">
@@ -145,7 +149,3 @@
         <!-- <script type="text/javascript" src="<?php echo base_url()
         ?>assets/slider/ajaxupload.3.5.js"></script>
         <script type="text/javascript" src="<?php echo base_url() ?>assets/slider/rs.js"></script> -->
-
-
-
-        

@@ -4,15 +4,15 @@
 Orders
 </h1>
 <ol class="breadcrumb">
-<li><a href="<?php echo base_url() ?>dcadmin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
-<li><a href="<?php echo base_url() ?>dcadmin/orders/view_orders"><i class="fa fa-dashboard"></i> All Orders List </a></li>
+<li><a href="<?php echo base_url() ?>dcadmin/Home"><i class="fa fa-dashboard"></i> Home</a></li>
+<li><a href="<?php echo base_url() ?>dcadmin/Orders/view_orders"><i class="fa fa-dashboard"></i> All Orders List </a></li>
 <li class="active">View Users</li>
 </ol>
 </section>
 <section class="content">
 <div class="row">
 <div class="col-lg-12">
-<!-- <a class="btn btn-info cticket" href="<?php echo base_url() ?>dcadmin/users/add_users" role="button" style="margin-bottom:12px;"> Add Users</a> -->
+<!-- <a class="btn custom_btn" href="<?php echo base_url() ?>dcadmin/Users/add_users" role="button" style="margin-bottom:12px;"> Add Users</a> -->
 <div class="panel panel-default">
 <div class="panel-heading">
 <h3 class="panel-title"><i class="fa fa-money fa-fw"></i>View Orders</h3>
@@ -64,7 +64,7 @@ if(!empty($this->session->flashdata('emessage'))){ ?>
 ?>
    <td><? echo $da->name?></td>
 
-<td><a href="<?php echo base_url() ?>dcadmin/orders/view_productdetails/<?php echo base64_encode($data->id) ?>">Orders Details</a></td>
+<td><a href="<?php echo base_url() ?>dcadmin/Orders/view_productdetails/<?php echo base64_encode($data->id) ?>">Orders Details</a></td>
 <td><?php if($data->order_status==1){ ?>
 <p class="label bg-green" >Approved</p>
 <?php } elseif ($data->order_status==2){ ?>
@@ -91,21 +91,21 @@ if(!empty($this->session->flashdata('emessage'))){ ?>
 <ul class="dropdown-menu" role="menu">
 
 <?php if($data->order_status==1){ ?>
-<li><a href="<?php echo base_url() ?>dcadmin/orders/updateorderprocessStatus/<?php echo base64_encode($data->id) ?>/hold">Hold</a></li>
-<li><a href="<?php echo base_url() ?>dcadmin/orders/updateorderprocessStatus/<?php echo base64_encode($data->id) ?>/dispatch">Dispatch</a></li>
-<li><a href="<?php echo base_url() ?>dcadmin/orders/updateorderprocessStatus/<?php echo base64_encode($data->id) ?>/reject">Reject</a></li>
+<li><a href="<?php echo base_url() ?>dcadmin/Orders/updateorderprocessStatus/<?php echo base64_encode($data->id) ?>/hold">Hold</a></li>
+<li><a href="<?php echo base_url() ?>dcadmin/Orders/updateorderprocessStatus/<?php echo base64_encode($data->id) ?>/dispatch">Dispatch</a></li>
+<li><a href="<?php echo base_url() ?>dcadmin/Orders/updateorderprocessStatus/<?php echo base64_encode($data->id) ?>/reject">Reject</a></li>
 <?php } elseif($data->order_status==2) { ?>
-<li><a href="<?php echo base_url() ?>dcadmin/orders/updateorderprocessStatus/<?php echo base64_encode($data->id) ?>/approved">Approved</a></li>
-<li><a href="<?php echo base_url() ?>dcadmin/orders/updateorderprocessStatus/<?php echo base64_encode($data->id) ?>/dispatch">Dispatch</a></li>
-<li><a href="<?php echo base_url() ?>dcadmin/orders/updateorderprocessStatus/<?php echo base64_encode($data->id) ?>/reject">Reject</a></li>
+<li><a href="<?php echo base_url() ?>dcadmin/Orders/updateorderprocessStatus/<?php echo base64_encode($data->id) ?>/approved">Approved</a></li>
+<li><a href="<?php echo base_url() ?>dcadmin/Orders/updateorderprocessStatus/<?php echo base64_encode($data->id) ?>/dispatch">Dispatch</a></li>
+<li><a href="<?php echo base_url() ?>dcadmin/Orders/updateorderprocessStatus/<?php echo base64_encode($data->id) ?>/reject">Reject</a></li>
 <?php		} elseif($data->order_status==3) { ?>
-<li><a href="<?php echo base_url() ?>dcadmin/orders/updateorderprocessStatus/<?php echo base64_encode($data->id) ?>/approved">Approved</a></li>
-<li><a href="<?php echo base_url() ?>dcadmin/orders/updateorderprocessStatus/<?php echo base64_encode($data->id) ?>/hold">Hold</a></li>
-<li><a href="<?php echo base_url() ?>dcadmin/orders/updateorderprocessStatus/<?php echo base64_encode($data->id) ?>/reject">Reject</a></li>
+<li><a href="<?php echo base_url() ?>dcadmin/Orders/updateorderprocessStatus/<?php echo base64_encode($data->id) ?>/approved">Approved</a></li>
+<li><a href="<?php echo base_url() ?>dcadmin/Orders/updateorderprocessStatus/<?php echo base64_encode($data->id) ?>/hold">Hold</a></li>
+<li><a href="<?php echo base_url() ?>dcadmin/Orders/updateorderprocessStatus/<?php echo base64_encode($data->id) ?>/reject">Reject</a></li>
 <?php		}  elseif($data->order_status==4) { ?>
-<li><a href="<?php echo base_url() ?>dcadmin/orders/updateorderprocessStatus/<?php echo base64_encode($data->id) ?>/approved">Approved</a></li>
-<li><a href="<?php echo base_url() ?>dcadmin/orders/updateorderprocessStatus/<?php echo base64_encode($data->id) ?>/hold">Hold</a></li>
-<li><a href="<?php echo base_url() ?>dcadmin/orders/updateorderprocessStatus/<?php echo base64_encode($data->id) ?>/dispatch">Dispatch</a></li>
+<li><a href="<?php echo base_url() ?>dcadmin/Orders/updateorderprocessStatus/<?php echo base64_encode($data->id) ?>/approved">Approved</a></li>
+<li><a href="<?php echo base_url() ?>dcadmin/Orders/updateorderprocessStatus/<?php echo base64_encode($data->id) ?>/hold">Hold</a></li>
+<li><a href="<?php echo base_url() ?>dcadmin/Orders/updateorderprocessStatus/<?php echo base64_encode($data->id) ?>/dispatch">Dispatch</a></li>
 <?php		}   ?>
 
 </ul>
@@ -120,12 +120,12 @@ if(!empty($this->session->flashdata('emessage'))){ ?>
 <ul class="dropdown-menu" role="menu">
 
 <?php if($data->is_active==1){ ?>
-<li><a href="<?php echo base_url() ?>dcadmin/orders/updateorderStatus/<?php echo base64_encode($data->id) ?>/inactive">Inactive</a></li>
+<li><a href="<?php echo base_url() ?>dcadmin/Orders/updateorderStatus/<?php echo base64_encode($data->id) ?>/inactive">Inactive</a></li>
 <?php } else { ?>
-<li><a href="<?php echo base_url() ?>dcadmin/orders/updateorderStatus/<?php echo base64_encode($data->id) ?>/active">Active</a></li>
+<li><a href="<?php echo base_url() ?>dcadmin/Orders/updateorderStatus/<?php echo base64_encode($data->id) ?>/active">Active</a></li>
 <?php		}   ?>
 
-<!-- <li><a href="<?php echo base_url() ?>dcadmin/users/update_users/<?php echo base64_encode($data->id) ?>">Edit</a></li> -->
+<!-- <li><a href="<?php echo base_url() ?>dcadmin/Users/update_users/<?php echo base64_encode($data->id) ?>">Edit</a></li> -->
 <li><a href="javascript:;" class="dCnf" mydata="<?php echo $i ?>">Delete</a></li>
 </ul>
 </div>
@@ -133,7 +133,7 @@ if(!empty($this->session->flashdata('emessage'))){ ?>
 
 <div style="display:none" id="cnfbox<?php echo $i ?>">
 <p> Are you sure delete this </p>
-<a href="<?php echo base_url() ?>dcadmin/users/delete_users/<?php echo base64_encode($data->id); ?>" class="btn btn-danger" >Yes</a>
+<a href="<?php echo base_url() ?>dcadmin/Users/delete_users/<?php echo base64_encode($data->id); ?>" class="btn btn-danger" >Yes</a>
 <a href="javasript:;" class="cans btn btn-default" mydatas="<?php echo $i ?>" >No</a>
 </div>
 </td>

@@ -4,9 +4,8 @@
             Update Slider Image
           </h1>
           <ol class="breadcrumb">
-           <li><a href="<?php echo base_url() ?>dcadmin/dashboard"><i class="fa fa-dashboard"></i>Home</a></li>
+           <li><a href="<?php echo base_url() ?>dcadmin/Home"><i class="fa fa-dashboard"></i>Dashboard</a></li>
             <li><a href="<?php echo base_url() ?>dcadmin/Slider/view_slider"><i class="fa fa-dashboard"></i> Slider List</a></li>
-
           </ol>
         </section>
     <section class="content">
@@ -80,7 +79,7 @@
                               </tr>
                           <tr>
                             <td colspan="2" >
-                              <input type="submit" class="btn btn-success" value="save">
+                              <input type="submit" class="btn custom_btn" value="save">
                             </td>
                           </tr>
                                         </table>

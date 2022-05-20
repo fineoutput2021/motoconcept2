@@ -138,7 +138,7 @@ $img1='image';
                      $this->upload_config = array(
                              'upload_path'   => $image_upload_folder,
                              'file_name' => $new_file_name,
-                             'allowed_types' =>'xlsx|csv|xls|pdf|doc|docx|txt|jpg|jpeg|png',
+                             'allowed_types' =>'jpg|jpeg|png',
                              'max_size'      => 25000
                      );
                      $this->upload->initialize($this->upload_config);
@@ -147,8 +147,8 @@ $img1='image';
                          $upload_error = $this->upload->display_errors();
                          // echo json_encode($upload_error);
 
-           //$this->session->set_flashdata('emessage',$upload_error);
-             //redirect($_SERVER['HTTP_REFERER']);
+           $this->session->set_flashdata('emessage',$upload_error);
+             redirect($_SERVER['HTTP_REFERER']);
                      }
                      else
                      {
@@ -179,6 +179,16 @@ $img1='image';
 
 
            $last_id=$this->base_model->insert_table("tbl_appslider",$data_insert,1) ;
+           if($last_id!=0){
+                   $this->session->set_flashdata('smessage','Appslider inserted successfully');
+                   redirect("dcadmin/Appslider/view_appslider","refresh");
+                  }
+                   else
+                       {
+
+                        $this->session->set_flashdata('emessage','Sorry error occured');
+                        redirect($_SERVER['HTTP_REFERER']);
+                      }
 
            }
            if($typ==2){
@@ -208,7 +218,7 @@ $img1='image';
                      $this->upload_config = array(
                              'upload_path'   => $image_upload_folder,
                              'file_name' => $new_file_name,
-                             'allowed_types' =>'xlsx|csv|xls|pdf|doc|docx|txt|jpg|jpeg|png',
+                             'allowed_types' =>'jpg|jpeg|png',
                              'max_size'      => 25000
                      );
                      $this->upload->initialize($this->upload_config);
@@ -247,17 +257,18 @@ if(!empty($img)) { if(empty($nnnn1)){ $nnnn1 = $img; } }else{ if(empty($nnnn1)){
                      );
              $this->db->where('id', $idw);
              $last_id=$this->db->update('tbl_appslider', $data_insert);
-           }
-                       if($last_id!=0){
-                               $this->session->set_flashdata('smessage','Data inserted successfully');
-                               redirect("dcadmin/appslider/view_appslider","refresh");
-                              }
-                               else
-                                   {
+             if($last_id!=0){
+                     $this->session->set_flashdata('smessage','App slider updated successfully');
+                     redirect("dcadmin/Appslider/view_appslider","refresh");
+                    }
+                     else
+                         {
 
-                                    $this->session->set_flashdata('emessage','Sorry error occured');
-                                    redirect($_SERVER['HTTP_REFERER']);
-                                  }
+                          $this->session->set_flashdata('emessage','Sorry error occured');
+                          redirect($_SERVER['HTTP_REFERER']);
+                        }
+           }
+
                }
              else{
 
@@ -307,7 +318,9 @@ if(!empty($img)) { if(empty($nnnn1)){ $nnnn1 = $img; } }else{ if(empty($nnnn1)){
                        $zapak=$this->db->update('tbl_appslider', $data_update);
 
                             if($zapak!=0){
-                            redirect("dcadmin/appslider/view_appslider","refresh");
+                              $this->session->set_flashdata('smessage','Appslider status updated successfully');
+
+                            redirect("dcadmin/Appslider/view_appslider","refresh");
                                     }
                                     else
                                     {
@@ -325,7 +338,9 @@ if(!empty($img)) { if(empty($nnnn1)){ $nnnn1 = $img; } }else{ if(empty($nnnn1)){
                          $zapak=$this->db->update('tbl_appslider', $data_update);
 
                              if($zapak!=0){
-                             redirect("dcadmin/appslider/view_appslider","refresh");
+                               $this->session->set_flashdata('smessage','Appslider status updated successfully');
+
+                             redirect("dcadmin/Appslider/view_appslider","refresh");
                                      }
                                      else
                                      {
@@ -373,7 +388,9 @@ if(!empty($img)) { if(empty($nnnn1)){ $nnnn1 = $img; } }else{ if(empty($nnnn1)){
  if($zapak!=0){
         // $path = FCPATH .$img;
         //   unlink($path);
-        redirect("dcadmin/appslider/view_appslider","refresh");
+        $this->session->set_flashdata('smessage','Appslider deleted successfully');
+
+        redirect("dcadmin/Appslider/view_appslider","refresh");
                 }
                 else
                 {

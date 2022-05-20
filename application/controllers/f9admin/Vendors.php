@@ -173,7 +173,7 @@ public function add_vendors(){
 
                               $this->session->set_flashdata('smessage','Data inserted successfully');
 
-                              redirect("dcadmin/vendors/view_vendors","refresh");
+                              redirect("dcadmin/Vendors/view_vendors","refresh");
 
                                       }
 
@@ -267,7 +267,7 @@ public function delete_vendors($idd){
                          									 $zapak=$this->db->delete('tbl_vendors', array('id' => $id));
                          									 if($zapak!=0){
 
-                         								 	redirect("dcadmin/vendors/view_vendors","refresh");
+                         								 	redirect("dcadmin/Vendors/view_vendors","refresh");
                          								 					}
                          								 					else
                          								 					{
@@ -314,7 +314,7 @@ public function updatevendorsStatus($idd,$t){
         $zapak=$this->db->update('tbl_user_temp', $data_update);
 
              if($zapak!=0){
-             redirect("dcadmin/vendors/view_vendors","refresh");
+             redirect("dcadmin/Vendors/view_vendors","refresh");
                      }
                      else
                      {
@@ -332,7 +332,7 @@ public function updatevendorsStatus($idd,$t){
           $zapak=$this->db->update('tbl_user_temp', $data_update);
 
               if($zapak!=0){
-              redirect("dcadmin/vendors/view_vendors","refresh");
+              redirect("dcadmin/Vendors/view_vendors","refresh");
                       }
                       else
                       {
@@ -377,7 +377,7 @@ public function updateVendorRequestStatus($idd,$stat){
         $zapak=$this->db->update('tbl_user_temp', $data_update);
 
              if($zapak!=0){
-             redirect("dcadmin/vendors/view_vendors","refresh");
+             redirect("dcadmin/Vendors/view_vendors","refresh");
                      }
                      else
                      {
@@ -395,7 +395,7 @@ public function updateVendorRequestStatus($idd,$stat){
           $zapak=$this->db->update('tbl_user_temp', $data_update);
 
               if($zapak!=0){
-              redirect("dcadmin/vendors/view_vendors","refresh");
+              redirect("dcadmin/Vendors/view_vendors","refresh");
                       }
                       else
                       {
@@ -415,7 +415,7 @@ public function updateVendorRequestStatus($idd,$stat){
           $zapak=$this->db->update('tbl_vendors', $data_update);
 
               if($zapak!=0){
-              redirect("dcadmin/vendors/view_vendors","refresh");
+              redirect("dcadmin/Vendors/view_vendors","refresh");
                       }
                       else
                       {

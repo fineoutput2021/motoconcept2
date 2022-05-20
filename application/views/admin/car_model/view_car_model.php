@@ -4,13 +4,17 @@
         <h1>
           View Car Model
         </h1>
+        <ol class="breadcrumb">
+         <li><a href="<?php echo base_url() ?>dcadmin/Home"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+          <li class="active">View Car Model</li>
+        </ol>
         </section>
         <section class="content">
         <div class="row">
         <div class="col-lg-12">
-        <a class="btn btn-info cticket" href="<?php echo base_url() ?>dcadmin/Car_model/add_car_model/<?php echo $id ?>"
+        <a class="btn custom_btn" href="<?php echo base_url() ?>dcadmin/Car_model/add_car_model/<?php echo $id ?>"
         role="button" style="margin-bottom:12px;"> Add car model</a>
-        <a class="btn btn-info cticket" href="<?php echo base_url() ?>dcadmin/Brands/view_brands"
+        <a class="btn custom_btn" href="<?php echo base_url() ?>dcadmin/Brands/view_brands"
         role="button" style="margin-bottom:12px;"> Back</a>
         <div class="panel panel-default">
         <div class="panel-heading">

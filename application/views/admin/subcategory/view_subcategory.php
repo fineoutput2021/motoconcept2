@@ -4,11 +4,15 @@
         <h1>
           View Subcategory
         </h1>
+        <ol class="breadcrumb">
+      <li><a href="<?php echo base_url() ?>dcadmin/home"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+      <li class="active">View subcategory</li>
+      </ol>
         </section>
         <section class="content">
         <div class="row">
         <div class="col-lg-12">
-        <a class="btn btn-info cticket" href="<?php echo base_url() ?>dcadmin/subcategory/add_subcategory"
+        <a class="btn custom_btn" href="<?php echo base_url() ?>dcadmin/Subcategory/add_subcategory"
         role="button" style="margin-bottom:12px;"> Add subcategory</a>
         <div class="panel panel-default">
         <div class="panel-heading">
@@ -86,13 +90,13 @@
         <ul class="dropdown-menu" role="menu">
 
         <?php if($data->is_active==1){ ?>
-        <li><a href="<?php echo base_url() ?>dcadmin/subcategory/updatesubcategoryStatus/<?php echo
+        <li><a href="<?php echo base_url() ?>dcadmin/Subcategory/updatesubcategoryStatus/<?php echo
         base64_encode($data->id) ?>/inactive">Inactive</a></li>
         <?php } else { ?>
-        <li><a href="<?php echo base_url() ?>dcadmin/subcategory/updatesubcategoryStatus/<?php echo
+        <li><a href="<?php echo base_url() ?>dcadmin/Subcategory/updatesubcategoryStatus/<?php echo
         base64_encode($data->id) ?>/active">Active</a></li>
         <?php } ?>
-        <li><a href="<?php echo base_url() ?>dcadmin/subcategory/update_subcategory/<?php echo
+        <li><a href="<?php echo base_url() ?>dcadmin/Subcategory/update_subcategory/<?php echo
         base64_encode($data->id) ?>">Edit</a></li>
         <li><a href="javascript:;" class="dCnf" mydata="<?php echo $i ?>">Delete</a></li>
         </ul>
@@ -101,7 +105,7 @@
 
         <div style="display:none" id="cnfbox<?php echo $i ?>">
         <p> Are you sure delete this </p>
-        <a href="<?php echo base_url() ?>dcadmin/subcategory/delete_subcategory/<?php echo
+        <a href="<?php echo base_url() ?>dcadmin/Subcategory/delete_subcategory/<?php echo
         base64_encode($data->id); ?>" class="btn btn-danger" >Yes</a>
         <a href="javasript:;" class="cans btn btn-default" mydatas="<?php echo $i ?>" >No</a>
         </div>

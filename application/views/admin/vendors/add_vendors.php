@@ -4,8 +4,8 @@
     Add New Vendor
     </h1>
     <ol class="breadcrumb">
-     <li><a href="<?php echo base_url() ?>dcadmin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="<?php echo base_url() ?>dcadmin/vendors/view_vendors"><i class="fa fa-dashboard"></i> All Vendors </a></li>
+     <li><a href="<?php echo base_url() ?>dcadmin/Home"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="<?php echo base_url() ?>dcadmin/Vendors/view_vendors"><i class="fa fa-dashboard"></i> All Vendors </a></li>
 
     </ol>
   </section>
@@ -36,7 +36,7 @@
 
                       <div class="panel-body">
                           <div class="col-lg-10">
-                             <form action="<?php echo base_url() ?>dcadmin/vendors/add_vendors_data/<? echo base64_encode(1); ?>" method="POST" id="slide_frm" enctype="multipart/form-data">
+                             <form action="<?php echo base_url() ?>dcadmin/Vendors/add_vendors_data/<? echo base64_encode(1); ?>" method="POST" id="slide_frm" enctype="multipart/form-data">
                           <div class="table-responsive">
                               <table class="table table-hover">
 
@@ -91,7 +91,7 @@
     										</tr>
                   	<tr>
 											<td colspan="2" >
-												<input type="submit" class="btn btn-success" value="save">
+												<input type="submit" class="btn custom_btn" value="save">
 											</td>
 										</tr>
                                   </table>

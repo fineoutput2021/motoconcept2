@@ -4,11 +4,15 @@
         <h1>
           View Car Brands
         </h1>
+        <ol class="breadcrumb">
+         <li><a href="<?php echo base_url() ?>dcadmin/Home"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+          <li class="active">View Brands</li>
+        </ol>
         </section>
         <section class="content">
         <div class="row">
         <div class="col-lg-12">
-        <a class="btn btn-info cticket" href="<?php echo base_url() ?>dcadmin/brands/add_brands"
+        <a class="btn custom_btn" href="<?php echo base_url() ?>dcadmin/Brands/add_brands"
         role="button" style="margin-bottom:12px;"> Add car brands</a>
         <div class="panel panel-default">
         <div class="panel-heading">
@@ -104,7 +108,7 @@
 
         <div style="display:none" id="cnfbox<?php echo $i ?>">
         <p> Are you sure delete this </p>
-        <a href="<?php echo base_url() ?>dcadmin/brands/delete_brands/<?php echo
+        <a href="<?php echo base_url() ?>dcadmin/Brands/delete_brands/<?php echo
         base64_encode($data->id); ?>" class="btn btn-danger" >Yes</a>
         <a href="javasript:;" class="cans btn btn-default" mydatas="<?php echo $i ?>" >No</a>
         </div>

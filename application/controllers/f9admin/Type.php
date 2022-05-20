@@ -215,7 +215,7 @@
                        $zapak=$this->db->update('tbl_type', $data_update);
 
                             if($zapak!=0){
-                            redirect("dcadmin/type/view_type","refresh");
+                            redirect("dcadmin/Type/view_type","refresh");
                                     }
                                     else
                                     {
@@ -233,7 +233,7 @@
                          $zapak=$this->db->update('tbl_type', $data_update);
 
                              if($zapak!=0){
-                             redirect("dcadmin/type/view_type","refresh");
+                             redirect("dcadmin/Type/view_type","refresh");
                                      }
                                      else
                                      {
@@ -278,7 +278,7 @@
  $zapak=$this->db->delete('tbl_type', array('id' => $id));
  if($zapak!=0){
       
-        redirect("dcadmin/type/view_type","refresh");
+        redirect("dcadmin/Type/view_type","refresh");
                 }
                 else
                 {

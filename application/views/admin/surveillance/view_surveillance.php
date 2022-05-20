@@ -8,7 +8,7 @@
         <section class="content">
         <div class="row">
         <div class="col-lg-12">
-        <a class="btn btn-info cticket" href="<?php echo base_url() ?>dcadmin/surveillance/add_surveillance"
+        <a class="btn custom_btn" href="<?php echo base_url() ?>dcadmin/Surveillance/add_surveillance"
         role="button" style="margin-bottom:12px;"> Add surveillance</a>
         <div class="panel panel-default">
         <div class="panel-heading">
@@ -85,13 +85,13 @@
         <ul class="dropdown-menu" role="menu">
 
         <?php if($data->is_active==1){ ?>
-        <li><a href="<?php echo base_url() ?>dcadmin/surveillance/updatesurveillanceStatus/<?php echo
+        <li><a href="<?php echo base_url() ?>dcadmin/Surveillance/updatesurveillanceStatus/<?php echo
         base64_encode($data->id) ?>/inactive">Inactive</a></li>
         <?php } else { ?>
-        <li><a href="<?php echo base_url() ?>dcadmin/surveillance/updatesurveillanceStatus/<?php echo
+        <li><a href="<?php echo base_url() ?>dcadmin/Surveillance/updatesurveillanceStatus/<?php echo
         base64_encode($data->id) ?>/active">Active</a></li>
         <?php } ?>
-        <li><a href="<?php echo base_url() ?>dcadmin/surveillance/update_surveillance/<?php echo
+        <li><a href="<?php echo base_url() ?>dcadmin/Surveillance/update_surveillance/<?php echo
         base64_encode($data->id) ?>">Edit</a></li>
         <li><a href="javascript:;" class="dCnf" mydata="<?php echo $i ?>">Delete</a></li>
         </ul>
@@ -100,7 +100,7 @@
 
         <div style="display:none" id="cnfbox<?php echo $i ?>">
         <p> Are you sure delete this </p>
-        <a href="<?php echo base_url() ?>dcadmin/surveillance/delete_surveillance/<?php echo
+        <a href="<?php echo base_url() ?>dcadmin/Surveillance/delete_surveillance/<?php echo
         base64_encode($data->id); ?>" class="btn btn-danger" >Yes</a>
         <a href="javasript:;" class="cans btn btn-default" mydatas="<?php echo $i ?>" >No</a>
         </div>

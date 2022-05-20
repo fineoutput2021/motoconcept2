@@ -30,6 +30,7 @@ if($ss==999){
 	$this->db->select('*');
 	$this->db->from('tbl_admin_sidebar');
 	// $this->db->where('id',$ss);
+	$this->db->order_by('sequence', 'asc');
 	$dsa= $this->db->get();
 foreach($dsa->result() as $dda){
 	$ss=$dda->id;
@@ -44,10 +45,14 @@ else{
 							$this->db->select('*');
 	            $this->db->from('tbl_admin_sidebar');
 	            $this->db->where('id',$ss);
+	            $this->db->order_by('sequence', 'asc');
 	            $dsa= $this->db->get();
-	            $da=$dsa->row();
+	            // $da=$dsa->row();
+							$dam=[];
+							foreach($dsa->result() as $services){
 							$n1=$da->name;
-							$dam[] = array('name' =>$n1,'id' =>$ss);
+							$dam[] = array('name' =>$n1,'id' =>$services->id, 'url' =>$services->url);
+						}
 }
 
 

@@ -496,7 +496,13 @@
 
 
                                $last_id=$this->base_model->insert_table("tbl_products", $data_insert, 1) ;
-
+                               if ($last_id!=0) {
+                                   $this->session->set_flashdata('smessage', 'Products inserted successfully');
+                                   redirect("dcadmin/Products/view_products/".base64_encode($category_id), "refresh");
+                               } else {
+                                   $this->session->set_flashdata('emessage', 'Sorry error occured');
+                                   redirect($_SERVER['HTTP_REFERER']);
+                               }
 
                            }
                            if ($typ==2) {
@@ -570,16 +576,17 @@
 
                                $this->db->where('id', $idw);
                                $last_id=$this->db->update('tbl_products', $data_insert);
+                               if ($last_id!=0) {
+                                   $this->session->set_flashdata('smessage', 'Products updated successfully');
+                                   redirect("dcadmin/Products/view_products/".base64_encode($category_id), "refresh");
+                               } else {
+                                   $this->session->set_flashdata('emessage', 'Sorry error occured');
+                                   redirect($_SERVER['HTTP_REFERER']);
+                               }
 
                            }
 
-                           if ($last_id!=0) {
-                               $this->session->set_flashdata('smessage', 'Data inserted successfully');
-                               redirect("dcadmin/Products/view_products/".base64_encode($category_id), "refresh");
-                           } else {
-                               $this->session->set_flashdata('emessage', 'Sorry error occured');
-                               redirect($_SERVER['HTTP_REFERER']);
-                           }
+
                        } else {
                            $this->session->set_flashdata('emessage', validation_errors());
                            redirect($_SERVER['HTTP_REFERER']);
@@ -614,7 +621,7 @@
                        $zapak=$this->db->update('tbl_products', $data_update);
 
                        if ($zapak!=0) {
-                           $this->session->set_flashdata('smessage', 'Update successfully');
+                           $this->session->set_flashdata('smessage', 'Product status updated successfully');
                            redirect($_SERVER['HTTP_REFERER']);
                        } else {
                            $this->session->set_flashdata('emessage', 'Sorry error occured');
@@ -631,7 +638,7 @@
                        $zapak=$this->db->update('tbl_products', $data_update);
 
                        if ($zapak!=0) {
-                           $this->session->set_flashdata('smessage', 'Update successfully');
+                         $this->session->set_flashdata('smessage', 'Product status updated successfully');
                            redirect($_SERVER['HTTP_REFERER']);
                        } else {
                            $this->session->set_flashdata('emessage', 'Sorry error occured');
@@ -668,7 +675,7 @@
                        if ($zapak!=0) {
                            // $path = FCPATH .$img;
                            //   unlink($path);
-                           $this->session->set_flashdata('smessage', 'Delete successfully');
+                           $this->session->set_flashdata('smessage', 'Product deleted successfully');
                            redirect($_SERVER['HTTP_REFERER']);
                        } else {
                            $this->session->set_flashdata('emessage', 'Sorry error occured');

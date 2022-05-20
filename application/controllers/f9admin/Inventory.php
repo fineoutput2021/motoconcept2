@@ -177,7 +177,7 @@ $this->db->select('*');
 
                               $this->session->set_flashdata('smessage','Data inserted successfully');
 
-                              redirect("dcadmin/inventory/view_iproducts/".base64_encode($c),"refresh");
+                              redirect("dcadmin/Inventory/view_iproducts/".base64_encode($c),"refresh");
 
                                       }
 

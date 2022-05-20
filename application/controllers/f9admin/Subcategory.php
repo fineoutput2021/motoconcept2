@@ -214,6 +214,16 @@
 
 
            $last_id=$this->base_model->insert_table("tbl_subcategory",$data_insert,1) ;
+           if($last_id!=0){
+                   $this->session->set_flashdata('smessage','Subcategory inserted successfully');
+                   redirect("dcadmin/Subcategory/view_subcategory","refresh");
+                  }
+                   else
+                       {
+
+                        $this->session->set_flashdata('emessage','Sorry error occured');
+                        redirect($_SERVER['HTTP_REFERER']);
+                      }
 
            }
            if($typ==2){
@@ -243,17 +253,18 @@
                      );
              $this->db->where('id', $idw);
              $last_id=$this->db->update('tbl_subcategory', $data_insert);
-           }
-                       if($last_id!=0){
-                               $this->session->set_flashdata('smessage','Data inserted successfully');
-                               redirect("dcadmin/Subcategory/view_subcategory","refresh");
-                              }
-                               else
-                                   {
+             if($last_id!=0){
+                     $this->session->set_flashdata('smessage','Subcategory updated successfully');
+                     redirect("dcadmin/Subcategory/view_subcategory","refresh");
+                    }
+                     else
+                         {
 
-                                    $this->session->set_flashdata('emessage','Sorry error occured');
-                                    redirect($_SERVER['HTTP_REFERER']);
-                                  }
+                          $this->session->set_flashdata('emessage','Sorry error occured');
+                          redirect($_SERVER['HTTP_REFERER']);
+                        }
+           }
+
                }
              else{
 
@@ -303,6 +314,8 @@
                        $zapak=$this->db->update('tbl_subcategory', $data_update);
 
                             if($zapak!=0){
+                              $this->session->set_flashdata('smessage','Subcategory status updated successfully');
+
                             redirect("dcadmin/Subcategory/view_subcategory","refresh");
                                     }
                                     else
@@ -321,6 +334,8 @@
                          $zapak=$this->db->update('tbl_subcategory', $data_update);
 
                              if($zapak!=0){
+                               $this->session->set_flashdata('smessage','Subcategory status updated successfully');
+
                              redirect("dcadmin/Subcategory/view_subcategory","refresh");
                                      }
                                      else
@@ -367,6 +382,7 @@
 
  $zapak=$this->db->delete('tbl_subcategory', array('id' => $id));
  if($zapak!=0){
+   $this->session->set_flashdata('smessage','Subcategory deleted successfully');
 
         redirect("dcadmin/Subcategory/view_subcategory","refresh");
                 }

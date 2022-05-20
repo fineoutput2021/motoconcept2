@@ -136,7 +136,7 @@ $img0='image';
                      $this->upload_config = array(
                              'upload_path'   => $image_upload_folder,
                              'file_name' => $new_file_name,
-                             'allowed_types' =>'xlsx|csv|xls|pdf|doc|docx|txt|jpg|jpeg|png',
+                             'allowed_types' =>'jpg|jpeg|png',
                              'max_size'      => 25000
                      );
                      $this->upload->initialize($this->upload_config);
@@ -176,6 +176,16 @@ $img0='image';
 
 
            $last_id=$this->base_model->insert_table("tbl_popup",$data_insert,1) ;
+           if($last_id!=0){
+                   $this->session->set_flashdata('smessage','Popup inserted successfully');
+                   redirect("dcadmin/Popup/view_popup","refresh");
+                  }
+                   else
+                       {
+
+                        $this->session->set_flashdata('emessage','Sorry error occured');
+                        redirect($_SERVER['HTTP_REFERER']);
+                      }
 
            }
            if($typ==2){
@@ -205,7 +215,7 @@ $img0='image';
                      $this->upload_config = array(
                              'upload_path'   => $image_upload_folder,
                              'file_name' => $new_file_name,
-                             'allowed_types' =>'xlsx|csv|xls|pdf|doc|docx|txt|jpg|jpeg|png',
+                             'allowed_types' =>'jpg|jpeg|png',
                              'max_size'      => 25000
                      );
                      $this->upload->initialize($this->upload_config);
@@ -243,17 +253,18 @@ if(!empty($img)) { if(empty($nnnn0)){ $nnnn0 = $img; } }else{ if(empty($nnnn0)){
                      );
              $this->db->where('id', $idw);
              $last_id=$this->db->update('tbl_popup', $data_insert);
-           }
-                       if($last_id!=0){
-                               $this->session->set_flashdata('smessage','Data inserted successfully');
-                               redirect("dcadmin/popup/view_popup","refresh");
-                              }
-                               else
-                                   {
+             if($last_id!=0){
+                     $this->session->set_flashdata('smessage','Popup updated successfully');
+                     redirect("dcadmin/Popup/view_popup","refresh");
+                    }
+                     else
+                         {
 
-                                    $this->session->set_flashdata('emessage','Sorry error occured');
-                                    redirect($_SERVER['HTTP_REFERER']);
-                                  }
+                          $this->session->set_flashdata('emessage','Sorry error occured');
+                          redirect($_SERVER['HTTP_REFERER']);
+                        }
+           }
+
       //          }
       //        else{
       //
@@ -303,7 +314,9 @@ if(!empty($img)) { if(empty($nnnn0)){ $nnnn0 = $img; } }else{ if(empty($nnnn0)){
                        $zapak=$this->db->update('tbl_popup', $data_update);
 
                             if($zapak!=0){
-                            redirect("dcadmin/popup/view_popup","refresh");
+                              $this->session->set_flashdata('smessage','Popup status updated successfully');
+
+                            redirect("dcadmin/Popup/view_popup","refresh");
                                     }
                                     else
                                     {
@@ -321,7 +334,9 @@ if(!empty($img)) { if(empty($nnnn0)){ $nnnn0 = $img; } }else{ if(empty($nnnn0)){
                          $zapak=$this->db->update('tbl_popup', $data_update);
 
                              if($zapak!=0){
-                             redirect("dcadmin/popup/view_popup","refresh");
+                               $this->session->set_flashdata('smessage','Popup status updated successfully');
+
+                             redirect("dcadmin/Popup/view_popup","refresh");
                                      }
                                      else
                                      {
@@ -369,7 +384,9 @@ if(!empty($img)) { if(empty($nnnn0)){ $nnnn0 = $img; } }else{ if(empty($nnnn0)){
  if($zapak!=0){
         // $path = FCPATH .$img;
         //   unlink($path);
-        redirect("dcadmin/popup/view_popup","refresh");
+        $this->session->set_flashdata('smessage','Popup deleted successfully');
+
+        redirect("dcadmin/Popup/view_popup","refresh");
                 }
                 else
                 {

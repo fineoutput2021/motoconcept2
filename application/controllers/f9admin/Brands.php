@@ -140,7 +140,7 @@ $img2='image';
                      $this->upload_config = array(
                              'upload_path'   => $image_upload_folder,
                              'file_name' => $new_file_name,
-                             'allowed_types' =>'xlsx|csv|xls|pdf|doc|docx|txt|jpg|jpeg|png',
+                             'allowed_types' =>'jpg|jpeg|png',
                              'max_size'      => 25000
                      );
                      $this->upload->initialize($this->upload_config);
@@ -149,8 +149,8 @@ $img2='image';
                          $upload_error = $this->upload->display_errors();
                          // echo json_encode($upload_error);
 
-           //$this->session->set_flashdata('emessage',$upload_error);
-             //redirect($_SERVER['HTTP_REFERER']);
+           $this->session->set_flashdata('emessage',$upload_error);
+             redirect($_SERVER['HTTP_REFERER']);
                      }
                      else
                      {
@@ -254,7 +254,7 @@ if(!empty($img)) { if(empty($nnnn2)){ $nnnn2 = $img; } }else{ if(empty($nnnn2)){
            }
                        if($last_id!=0){
                                $this->session->set_flashdata('smessage','Data inserted successfully');
-                               redirect("dcadmin/brands/view_brands","refresh");
+                               redirect("dcadmin/Brands/view_brands","refresh");
                               }
                                else
                                    {
@@ -311,7 +311,7 @@ if(!empty($img)) { if(empty($nnnn2)){ $nnnn2 = $img; } }else{ if(empty($nnnn2)){
                        $zapak=$this->db->update('tbl_brands', $data_update);
 
                             if($zapak!=0){
-                            redirect("dcadmin/brands/view_brands","refresh");
+                            redirect("dcadmin/Brands/view_brands","refresh");
                                     }
                                     else
                                     {
@@ -329,7 +329,7 @@ if(!empty($img)) { if(empty($nnnn2)){ $nnnn2 = $img; } }else{ if(empty($nnnn2)){
                          $zapak=$this->db->update('tbl_brands', $data_update);
 
                              if($zapak!=0){
-                             redirect("dcadmin/brands/view_brands","refresh");
+                             redirect("dcadmin/Brands/view_brands","refresh");
                                      }
                                      else
                                      {
@@ -377,7 +377,7 @@ if(!empty($img)) { if(empty($nnnn2)){ $nnnn2 = $img; } }else{ if(empty($nnnn2)){
  if($zapak!=0){
         $path = FCPATH .$img;
           unlink($path);
-        redirect("dcadmin/brands/view_brands","refresh");
+        redirect("dcadmin/Brands/view_brands","refresh");
                 }
                 else
                 {

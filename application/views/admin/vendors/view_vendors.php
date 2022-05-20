@@ -4,15 +4,15 @@
            Vendors
           </h1>
           <ol class="breadcrumb">
-           <li><a href="<?php echo base_url() ?>dcadmin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="<?php echo base_url() ?>dcadmin/vendors/view_vendors"><i class="fa fa-dashboard"></i> All Vendors </a></li>
+           <li><a href="<?php echo base_url() ?>dcadmin/Home"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="<?php echo base_url() ?>dcadmin/Vendors/view_vendors"><i class="fa fa-dashboard"></i> All Vendors </a></li>
             <li class="active">View Vendors</li>
           </ol>
         </section>
           <section class="content">
           <div class="row">
              <div class="col-lg-12">
-                 <!-- <a class="btn btn-info cticket" href="dcadmin/vendors/add_vendors" role="button" style="margin-bottom:12px;"> Add Vendors </a> -->
+                 <!-- <a class="btn custom_btn" href="dcadmin/Vendors/add_vendors" role="button" style="margin-bottom:12px;"> Add Vendors </a> -->
                               <div class="panel panel-default">
                                   <div class="panel-heading">
                                       <h3 class="panel-title"><i class="fa fa-money fa-fw"></i>View Vendors</h3>
@@ -116,15 +116,15 @@
 <ul class="dropdown-menu" role="menu">
 
 <?php if($data->is_active==1){ ?>
-<li><a href="<?php echo base_url() ?>dcadmin/vendors/updatevendorsStatus/<?php echo base64_encode($data->id) ?>/inactive">Inactive</a></li>
+<li><a href="<?php echo base_url() ?>dcadmin/Vendors/updatevendorsStatus/<?php echo base64_encode($data->id) ?>/inactive">Inactive</a></li>
 <?php } else { ?>
-<li><a href="<?php echo base_url() ?>dcadmin/vendors/updatevendorsStatus/<?php echo base64_encode($data->id) ?>/active">Active</a></li>
+<li><a href="<?php echo base_url() ?>dcadmin/Vendors/updatevendorsStatus/<?php echo base64_encode($data->id) ?>/active">Active</a></li>
 <?php		}   ?>
 <?php if($data->status==2){ ?>
-<li><a href="<?php echo base_url() ?>dcadmin/vendors/updateVendorRequestStatus/<?php echo base64_encode($data->id) ?>/approved">Approved</a></li>
-<li><a href="<?php echo base_url() ?>dcadmin/vendors/updateVendorRequestStatus/<?php echo base64_encode($data->id) ?>/reject">Reject</a></li>
+<li><a href="<?php echo base_url() ?>dcadmin/Vendors/updateVendorRequestStatus/<?php echo base64_encode($data->id) ?>/approved">Approved</a></li>
+<li><a href="<?php echo base_url() ?>dcadmin/Vendors/updateVendorRequestStatus/<?php echo base64_encode($data->id) ?>/reject">Reject</a></li>
 <?php	}  ?>
-<!-- <li><a href="dcadmin/vendors/update_vendors/">Edit</a></li>
+<!-- <li><a href="dcadmin/Vendors/update_vendors/">Edit</a></li>
 <li><a href="javascript:;" class="dCnf" mydata="">Delete</a></li> -->
 </ul>
 </div>
@@ -132,7 +132,7 @@
 
 <div style="display:none" id="cnfbox<?php echo $i ?>">
 <p> Are you sure delete this </p>
-<a href="<?php echo base_url() ?>dcadmin/vendors/delete_vendors/<?php echo base64_encode($data->id); ?>" class="btn btn-danger" >Yes</a>
+<a href="<?php echo base_url() ?>dcadmin/Vendors/delete_vendors/<?php echo base64_encode($data->id); ?>" class="btn btn-danger" >Yes</a>
 <a href="javasript:;" class="cans btn btn-default" mydatas="<?php echo $i ?>" >No</a>
 </div>
 </td>

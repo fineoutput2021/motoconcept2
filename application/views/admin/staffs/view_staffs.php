@@ -4,15 +4,15 @@
                                        Staffs
                                       </h1>
                                       <ol class="breadcrumb">
-                                       <li><a href="<?php echo base_url() ?>dcadmin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
-                                        <li><a href="<?php echo base_url() ?>dcadmin/staffs/view_staffs"><i class="fa fa-dashboard"></i> All Staffs </a></li>
+                                       <li><a href="<?php echo base_url() ?>dcadmin/Home"><i class="fa fa-dashboard"></i> Home</a></li>
+                                        <li><a href="<?php echo base_url() ?>dcadmin/Staffs/view_staffs"><i class="fa fa-dashboard"></i> All Staffs </a></li>
                                         <li class="active">View Team</li>
                                       </ol>
                                     </section>
                                   		<section class="content">
                                   		<div class="row">
                                          <div class="col-lg-12">
-                                  				   <a class="btn btn-info cticket" href="<?php echo base_url() ?>dcadmin/staffs/add_staffs" role="button" style="margin-bottom:12px;"> Add Team</a>
+                                  				   <a class="btn custom_btn" href="<?php echo base_url() ?>dcadmin/Staffs/add_staffs" role="button" style="margin-bottom:12px;"> Add Team</a>
                                                           <div class="panel panel-default">
                                                               <div class="panel-heading">
                                                                   <h3 class="panel-title"><i class="fa fa-money fa-fw"></i>View Staffs</h3>
@@ -72,11 +72,11 @@
 												  <ul class="dropdown-menu" role="menu">
 
 													<?php if($data->is_active==1){ ?>
-													<li><a href="<?php echo base_url() ?>dcadmin/staffs/updatestaffStatus/<?php echo base64_encode($data->id) ?>/inactive">Inactive</a></li>
+													<li><a href="<?php echo base_url() ?>dcadmin/Staffs/updatestaffStatus/<?php echo base64_encode($data->id) ?>/inactive">Inactive</a></li>
 													<?php } else { ?>
-													<li><a href="<?php echo base_url() ?>dcadmin/staffs/updatestaffStatus/<?php echo base64_encode($data->id) ?>/active">Active</a></li>
+													<li><a href="<?php echo base_url() ?>dcadmin/Staffs/updatestaffStatus/<?php echo base64_encode($data->id) ?>/active">Active</a></li>
 													<?php		}   ?>
-<li><a href="<?php echo base_url() ?>dcadmin/staffs/update_staffs/<?php echo base64_encode($data->id) ?>">Edit</a></li>
+<li><a href="<?php echo base_url() ?>dcadmin/Staffs/update_staffs/<?php echo base64_encode($data->id) ?>">Edit</a></li>
 													<li><a href="javascript:;" class="dCnf" mydata="<?php echo $i ?>">Delete</a></li>
 												  </ul>
 												</div>
@@ -84,7 +84,7 @@
 
 												  <div style="display:none" id="cnfbox<?php echo $i ?>">
 														<p> Are you sure delete this </p>
-														<a href="<?php echo base_url() ?>dcadmin/staffs/delete_staffs/<?php echo base64_encode($data->id); ?>" class="btn btn-danger" >Yes</a>
+														<a href="<?php echo base_url() ?>dcadmin/Staffs/delete_staffs/<?php echo base64_encode($data->id); ?>" class="btn btn-danger" >Yes</a>
 														<a href="javasript:;" class="cans btn btn-default" mydatas="<?php echo $i ?>" >No</a>
 												  </div>
 											</td>
