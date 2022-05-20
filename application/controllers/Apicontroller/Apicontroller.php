@@ -580,7 +580,7 @@ echo json_encode($res);
 }
 } else {
 header('Access-Control-Allow-Origin: *');
-$res = array('message'=>'Product is alredy in cart.',
+$res = array('message'=>'Product is already in cart.',
 'status'=>201
 );
 
@@ -671,7 +671,7 @@ echo json_encode($res);
 }
 } else {
 header('Access-Control-Allow-Origin: *');
-$res = array('message'=>'Product is alredy in cart.',
+$res = array('message'=>'Product is already in cart.',
 'status'=>201
 );
 
@@ -2802,7 +2802,7 @@ $product_data= $this->db->get()->row();
 $order2[]=array(
 'product_id' =>$product_data->id,
 'product_name' =>$product_data->productname,
-'product_image' =>base_url().$product_data->image1,
+'product_image' =>base_url().$product_data->image,
 'quantity'=> $data->quantity,
 'price'=>$data->product_mrp,
 'total amount'=>$data->total_amount,

@@ -622,7 +622,7 @@ class Apicontroller extends CI_Controller
                                     echo json_encode($res);
                                 }
                             } else {
-                                $res = array('message'=>'Product is alredy in cart.',
+                                $res = array('message'=>'Product is already in cart.',
 'status'=>201
 );
 
@@ -695,7 +695,7 @@ class Apicontroller extends CI_Controller
                             echo json_encode($res);
                         }
                     } else {
-                        $res = array('message'=>'Product is alredy in cart.',
+                        $res = array('message'=>'Product is already in cart.',
                           'status'=>201
                           );
 
