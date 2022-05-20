@@ -151,7 +151,6 @@ $product[] = array(
 'mrp'=> $data->mrp,
 'price'=>$data->sellingpricegst,
 'image'=>base_url().$data->image,
-'max'=>$data->max
 
 );
 
@@ -2632,7 +2631,6 @@ $search_data[]=array(
 'productdescription'=>$data->productdescription,
 'product_mrp'=>$data->mrp,
 'product_selling_price'=>$data->sellingpricegst,
-'max'=>$data->max
 
 
 
@@ -3598,6 +3596,7 @@ $this->form_validation->set_rules('size', 'size', 'xss_clean|trim');
 $this->form_validation->set_rules('filter_product', 'filter_product', 'xss_clean|trim');
 $this->form_validation->set_rules('color', 'color', 'xss_clean|trim');
 $this->form_validation->set_rules('model', 'model', 'xss_clean|trim');
+$this->form_validation->set_rules('subcategory_id', 'subcategory_id', 'xss_clean|trim');
 
 
 
@@ -3610,6 +3609,7 @@ $size=$this->input->post('size');
 $filter_product=$this->input->post('filter_product');
 $color=$this->input->post('color');
 $model=$this->input->post('model');
+$subcategory_id=$this->input->post('subcategory_id');
 
 
 $type_info = explode(',',$type);
@@ -3647,6 +3647,9 @@ if(!empty($model_info[0])){
 foreach($model_info as $data4) {
 $this->db->or_where('car_model_id',$data4, NULL, FALSE);
 }}
+if(!empty($subcategory_id)){
+  $this->db->where('subcategory_id', $subcategory_id);
+}
 
 
 $filter_data= $this->db->get();
