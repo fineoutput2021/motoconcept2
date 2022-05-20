@@ -153,7 +153,6 @@ class Apicontroller extends CI_Controller
                                     'price'=>$data->sellingpricegst,
                                     'image'=>base_url().$data->image,
                                     'wishlist'=>$data->wishlist,
-                                    'max'=>$data->max
 
                                   );
                 }
@@ -207,7 +206,6 @@ class Apicontroller extends CI_Controller
                                     'mrp'=> $data->mrp,
                                     'price'=>$data->sellingpricegst,
                                     'image'=>base_url().$data->image,
-                                    'max'=>$data->max
 
 
                                   );
@@ -268,7 +266,6 @@ class Apicontroller extends CI_Controller
                   'mrp'=> $data->mrp,
                   'price'=>$data->sellingpricegst,
                   'image'=>base_url().$data->image,
-                  'max'=>$data->max
 
 
                 );
@@ -2354,7 +2351,6 @@ class Apicontroller extends CI_Controller
                        'productdescription'=>$data->productdescription,
                        'product_mrp'=>$data->mrp,
                        'product_selling_price'=>$data->sellingpricegst,
-                       'max'=>$data->max
 
 
 
@@ -2898,7 +2894,6 @@ class Apicontroller extends CI_Controller
 'image'=>base_url().$data->image,
 'productdescription'=>$data->productdescription,
 'price'=>$data->sellingpricegst,
-'max'=>$data->max
 
 
 );
