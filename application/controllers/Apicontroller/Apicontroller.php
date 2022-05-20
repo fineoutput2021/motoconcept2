@@ -2399,6 +2399,7 @@ $store_id=$this->input->post('store_id');
 
 $this->load->library('upload');
 
+if(empty($store_id)){
 $image="";
 $img1='image';
 $file_check=($_FILES['image']['error']);
@@ -2434,6 +2435,9 @@ $image=$videoNAmePath;
 // echo json_encode($file_info);
 }
 }
+
+}
+
 
 $this->db->select('*');
 $this->db->from('tbl_users');
