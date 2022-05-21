@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <!-- Css file include -->
 <link rel="stylesheet" type="text/css" href="css/style.css">
-	<title>Supremetech Bill</title>
+	<title>Motoconcept Bill</title>
 </head>
 <body style="padding-top:75px;">
 <div class="container main_container">
@@ -25,11 +25,11 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm-6"><span class="font-weight-bold ">Sold By</span><br>
-<span class="seller_details">Supremetech <br>
+<span class="seller_details">Motoconcept <br>
 
 Rajasthan<br>India
 <br><br>
-		www.Supremetech.com<br></span>
+		www.Motoconcept.com<br></span>
 		</div>
 
 		<div class="col-sm-6 billing_content"><span class="font-weight-bold ">Billing Address:</span><br>

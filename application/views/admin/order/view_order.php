@@ -43,18 +43,18 @@
                                                   <th>Order_id</th>
                                                   <th>User</th>
                                                   <th>Total Amount</th>
-                                                  <th>promocode</th>
+                                                  <th>Promocode</th>
                                                   <th>User mob.</th>
                                                   <th>Address</th>
                                                   <th>City</th>
                                                   <th>State</th>
-                                                  <th>pincode</th>
-                                                  <th>payment type</th>
+                                                  <th>Pincode</th>
+                                                  <th>Payment type</th>
                                                   <th>Last updated date</th>
-                                                  <th>order date</th>
+                                                  <th>Order date</th>
                                                   <th>Bank Receipt</th>
-                                                  <th>order status</th>
-                                                <th>Action</th>
+                                                  <th>Order status</th>
+                                                  <th>Action</th>
 
 
 
@@ -104,7 +104,12 @@
                             $this->db->from('all_states');
                             $this->db->where('id',$data->state);
                             $state_data= $this->db->get()->row();
-                             echo $state_data->state_name  ?></td>
+                            if(!empty($state_data)){
+                               echo $state_data->state_name;
+                            }else{
+                              echo "No state found";
+                            }
+                             ?></td>
                             <td><?php echo $data->pincode  ?></td>
                             <td><?php $type=$data->payment_type;
                             $n1="";
@@ -241,10 +246,6 @@ base64_encode($data->id) ?>">view bill</a></li> -->
       <script type="text/javascript">
 
        $(document).ready(function(){
-      $('#userTable').DataTable({
-               responsive: true,
-               // bSort: true
-       });
 
       $(document.body).on('click', '.dCnf', function() {
        var i=$(this).attr("mydata");

@@ -128,10 +128,7 @@
         <script type="text/javascript">
 
         $(document).ready(function(){
-        $('#userTable').DataTable({
-        responsive: true,
-        // bSort: true
-        });
+
 
         $(document.body).on('click', '.dCnf', function() {
         var i=$(this).attr("mydata");
@@ -156,7 +153,3 @@
         <!-- <script type="text/javascript" src="<?php echo base_url()
         ?>assets/slider/ajaxupload.3.5.js"></script>
         <script type="text/javascript" src="<?php echo base_url() ?>assets/slider/rs.js"></script> -->
-
-
-
-        

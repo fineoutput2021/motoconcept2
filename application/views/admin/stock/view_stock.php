@@ -4,8 +4,7 @@
            Stock
           </h1>
           <ol class="breadcrumb">
-           <li><a href="<?php echo base_url() ?>dcadmin/Home"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="<?php echo base_url() ?>admin/college"><i class="fa fa-dashboard"></i> All Stock </a></li>
+           <li><a href="<?php echo base_url() ?>dcadmin/Home"><i class="fa fa-dashboard"></i> Dashboard</a></li>
             <li class="active">View Stock</li>
           </ol>
         </section>
@@ -137,10 +136,7 @@
       <script type="text/javascript">
 
        $(document).ready(function(){
-      $('#userTable').DataTable({
-               responsive: true,
-               // bSort: true
-       });
+
 
       $(document.body).on('click', '.dCnf', function() {
        var i=$(this).attr("mydata");
