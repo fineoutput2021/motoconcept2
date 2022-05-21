@@ -670,7 +670,8 @@
                        $dsa= $this->db->get();
                        $da=$dsa->row();
                        // $img=$da->image;
-
+                       $zapak1=$this->db->delete('tbl_cart', array('product_id' => $id));
+                       $zapak1=$this->db->delete('tbl_wishlist', array('product_id' => $id));                       
                        $zapak=$this->db->delete('tbl_products', array('id' => $id));
                        if ($zapak!=0) {
                            // $path = FCPATH .$img;

@@ -341,7 +341,7 @@ class Apicontroller extends CI_Controller
             echo json_encode($res);
         } else {
             header('Access-Control-Allow-Origin: *');
-            $res = array('message'=>"not valid",
+            $res = array('message'=>"Invalid",
 'status'=>201,
 );
             echo json_encode($res);
@@ -572,7 +572,7 @@ class Apicontroller extends CI_Controller
                                     }
                                 } else {
                                     header('Access-Control-Allow-Origin: *');
-                                    $res = array('message'=>'product_id is not exist',
+                                    $res = array('message'=>'product_id does not exist',
 'status'=>201
 );
 
@@ -580,7 +580,7 @@ class Apicontroller extends CI_Controller
                                 }
                             } else {
                                 header('Access-Control-Allow-Origin: *');
-                                $res = array('message'=>'Product is already in cart.',
+                                $res = array('message'=>'Product is already in your cart.',
 'status'=>201
 );
 
@@ -588,7 +588,7 @@ class Apicontroller extends CI_Controller
                             }
                         } else {
                             header('Access-Control-Allow-Origin: *');
-                            $res = array('message'=>'Authentication not exist',
+                            $res = array('message'=>'Authentication does not exist',
 'status'=>201
 );
 
@@ -663,7 +663,7 @@ class Apicontroller extends CI_Controller
                             }
                         } else {
                             header('Access-Control-Allow-Origin: *');
-                            $res = array('message'=>'Product_id not exist.',
+                            $res = array('message'=>'Product_id does not exist.',
 'status'=>201
 );
 
@@ -671,7 +671,7 @@ class Apicontroller extends CI_Controller
                         }
                     } else {
                         header('Access-Control-Allow-Origin: *');
-                        $res = array('message'=>'Product is already in cart.',
+                        $res = array('message'=>'Product is already in your cart.',
 'status'=>201
 );
 
@@ -763,7 +763,7 @@ class Apicontroller extends CI_Controller
                                 echo json_encode($res);
                             } else {
                                 header('Access-Control-Allow-Origin: *');
-                                $res = array('message'=>' Your cart is empty',
+                                $res = array('message'=>'Your cart is empty',
 'status'=>200,
 'data'=>[],
 'subtotal'=>0
@@ -773,7 +773,7 @@ class Apicontroller extends CI_Controller
                             }
                         } else {
                             header('Access-Control-Allow-Origin: *');
-                            $res = array('message'=>'Passwod does not match',
+                            $res = array('message'=>'Password does not match',
 'status'=>201
 );
 
@@ -781,7 +781,7 @@ class Apicontroller extends CI_Controller
                         }
                     } else {
                         header('Access-Control-Allow-Origin: *');
-                        $res = array('message'=>'Phone is not exist',
+                        $res = array('message'=>'Phone number not found',
 'status'=>201
 );
 
@@ -904,7 +904,7 @@ class Apicontroller extends CI_Controller
                             if ($inventory_data->inventory >= $quantity) {
                             } else {
                                 header('Access-Control-Allow-Origin: *');
-                                $res = array('message'=> " Product is out of stock",
+                                $res = array('message'=> "Product is out of stock",
 'status'=>201
 );
 
@@ -949,7 +949,7 @@ class Apicontroller extends CI_Controller
                         }
                     } else {
                         header('Access-Control-Allow-Origin: *');
-                        $res = array('message'=>'Phone is not exist',
+                        $res = array('message'=>'Phone does not exist',
 'status'=>201
 );
 
@@ -1059,9 +1059,9 @@ class Apicontroller extends CI_Controller
                             }
                             header('Access-Control-Allow-Origin: *');
                             $res = array('message'=>"success",
-'status'=>200,
-'data'=>$count
-);
+                            'status'=>200,
+                            'data'=>$count
+                            );
 
                             echo json_encode($res);
                         } else {
@@ -1178,7 +1178,7 @@ class Apicontroller extends CI_Controller
                         }
                     } else {
                         header('Access-Control-Allow-Origin: *');
-                        $res = array('message'=>'Email does not exist',
+                        $res = array('message'=>'Phone number does not exist',
 'status'=>201
 );
 
@@ -1543,7 +1543,7 @@ class Apicontroller extends CI_Controller
                                             }
                                         } else {
                                             header('Access-Control-Allow-Origin: *');
-                                            $res = array('message'=>"product Not found",
+                                            $res = array('message'=>"Product not found",
 'status'=>201,
 );
 
@@ -1713,7 +1713,7 @@ class Apicontroller extends CI_Controller
                                     }
                                 } else {
                                     header('Access-Control-Allow-Origin: *');
-                                    $res = array('message'=>'Promocode is already used',
+                                    $res = array('message'=>'Promocode already used',
 'status'=>201
 );
 
@@ -1805,7 +1805,7 @@ class Apicontroller extends CI_Controller
                     }
                 } else {
                     header('Access-Control-Allow-Origin: *');
-                    $res = array('message'=>'user not found',
+                    $res = array('message'=>'Phone number not found',
 'status'=>201
 );
 
@@ -1906,7 +1906,7 @@ class Apicontroller extends CI_Controller
                     }
                 } else {
                     header('Access-Control-Allow-Origin: *');
-                    $res = array('message'=>'user not found',
+                    $res = array('message'=>'Phone number not found',
 'status'=>201
 );
 
@@ -1994,7 +1994,7 @@ class Apicontroller extends CI_Controller
                             }
                         } else {
                             header('Access-Control-Allow-Origin: *');
-                            $res = array('message'=>'product is already in your wishist',
+                            $res = array('message'=>'Product is already in your wishlist',
 'status'=>201
 );
 
@@ -2010,7 +2010,7 @@ class Apicontroller extends CI_Controller
                     }
                 } else {
                     header('Access-Control-Allow-Origin: *');
-                    $res = array('message'=>'user not found',
+                    $res = array('message'=>'Phone number not found',
 'status'=>201
 );
 
@@ -2092,7 +2092,7 @@ class Apicontroller extends CI_Controller
                     }
                 } else {
                     header('Access-Control-Allow-Origin: *');
-                    $res = array('message'=>'user not found',
+                    $res = array('message'=>'Phone number not found',
 'status'=>201
 );
 
@@ -2181,7 +2181,7 @@ class Apicontroller extends CI_Controller
                     }
                 } else {
                     header('Access-Control-Allow-Origin: *');
-                    $res = array('message'=>'user not found',
+                    $res = array('message'=>'Phone number not found',
 'status'=>201
 );
 
@@ -2325,7 +2325,7 @@ class Apicontroller extends CI_Controller
                     }
                 } else {
                     header('Access-Control-Allow-Origin: *');
-                    $res = array('message'=>'user not found',
+                    $res = array('message'=>'Phone number not found',
 'status'=>201
 );
 
@@ -2603,7 +2603,7 @@ if (!empty($store_id)) {
                     }
                 } else {
                     header('Access-Control-Allow-Origin: *');
-                    $res = array('message'=>'user not found',
+                    $res = array('message'=>'Phone number not found',
 'status'=>201
 );
 
@@ -2729,7 +2729,7 @@ if (!empty($store_id)) {
                     }
                 } else {
                     header('Access-Control-Allow-Origin: *');
-                    $res = array('message'=>'user not found',
+                    $res = array('message'=>'Phone number not found',
 'status'=>201
 );
 
@@ -2829,7 +2829,7 @@ if (!empty($store_id)) {
                     }
                 } else {
                     header('Access-Control-Allow-Origin: *');
-                    $res = array('message'=>'user not found',
+                    $res = array('message'=>'Phone number not found',
 'status'=>201
 );
 
@@ -3015,7 +3015,7 @@ if (!empty($store_id)) {
                     }
                 } else {
                     header('Access-Control-Allow-Origin: *');
-                    $res = array('message'=>'user not found',
+                    $res = array('message'=>'Phone number not found',
 'status'=>201
 );
 

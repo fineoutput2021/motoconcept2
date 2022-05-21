@@ -3348,7 +3348,7 @@ class Apicontroller extends CI_Controller
                             $last_id=$this->base_model->insert_table("tbl_wishlist", $data_insert, 1) ;
 
                             if (!empty($last_id)) {
-                                $res = array('message'=>'Product succesfully addded in your wishist',
+                                $res = array('message'=>'Product succesfully addded in your wishlist',
   'status'=>200
   );
 
@@ -3361,7 +3361,7 @@ class Apicontroller extends CI_Controller
                                 echo json_encode($res);
                             }
                         } else {
-                            $res = array('message'=>'Product is already in your wishist',
+                            $res = array('message'=>'Product is already in your wishlist',
   'status'=>201
   );
 

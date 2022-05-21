@@ -40,13 +40,13 @@
                                     <table class="table table-hover">
 
                       <tr>
-                                                <td> <strong>Title</strong>  <span style="color:red;">*</span></strong> </td>
+                                                <td> <strong>Title</strong></td>
                                                 <td>
                           <input type="text" name="title"  class="form-control" placeholder="" required value="<?= $slider->title; ?>" />
                                               </td>
                         </tr>
                             <tr>
-                                                      <td> <strong>Image</strong>  <span style="color:red;">*</span></strong> </td>
+                                                      <td> <strong>Image</strong> </td>
                                                       <td>
                                 <input type="file" name="slider_image"  class="form-control" placeholder=""  value="<?= $slider->slider_image; ?>" />
                                                     </td>
@@ -62,7 +62,7 @@
 
                               </tr>
                             <tr>
-                                                      <td> <strong>App Image</strong>  <span style="color:red;">*</span></strong> </td>
+                                                      <td> <strong>App Image</strong></td>
                                                       <td>
                                 <input type="file" name="app_image"  class="form-control" placeholder=""  value="<?= $slider->app_image; ?>" />
                                                     </td>

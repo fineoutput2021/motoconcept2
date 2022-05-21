@@ -41,7 +41,7 @@
                     </tr>
                     <tr>
                       <td> <strong>Link1</strong> <span style="color:red;">*</span></strong> </td>
-                      <td> <input type="text" name="link1" class="form-control" placeholder="" required value="" /> </td>
+                      <td> <input type="url" required name="link1" class="form-control" placeholder="" required value="" /> </td>
                     </tr>
 
                     <tr>
@@ -50,7 +50,7 @@
                     </tr>
                     <tr>
                       <td> <strong>Link2</strong> <span style="color:red;">*</span></strong> </td>
-                      <td> <input type="text" name="link2" class="form-control" placeholder="" required value="" /> </td>
+                      <td> <input type="url" required name="link2" class="form-control" placeholder="" required value="" /> </td>
                     </tr>
 
                     <tr>

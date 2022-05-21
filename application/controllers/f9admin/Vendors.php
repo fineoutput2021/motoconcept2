@@ -23,8 +23,8 @@ function __construct()
                        // exit;
 
 											       			$this->db->select('*');
-											 $this->db->from('tbl_user_temp');
-											 //$this->db->where('id',$usr);
+											 $this->db->from('tbl_users');
+											 $this->db->order_by('id', 'desc');
 											 $data['vendors_data']= $this->db->get();
 
 
@@ -311,7 +311,7 @@ public function updatevendorsStatus($idd,$t){
          );
 
          $this->db->where('id', $id);
-        $zapak=$this->db->update('tbl_user_temp', $data_update);
+        $zapak=$this->db->update('tbl_users', $data_update);
 
              if($zapak!=0){
              redirect("dcadmin/Vendors/view_vendors","refresh");
@@ -329,7 +329,7 @@ public function updatevendorsStatus($idd,$t){
           );
 
           $this->db->where('id', $id);
-          $zapak=$this->db->update('tbl_user_temp', $data_update);
+          $zapak=$this->db->update('tbl_users', $data_update);
 
               if($zapak!=0){
               redirect("dcadmin/Vendors/view_vendors","refresh");
@@ -374,7 +374,7 @@ public function updateVendorRequestStatus($idd,$stat){
          );
 
          $this->db->where('id', $id);
-        $zapak=$this->db->update('tbl_user_temp', $data_update);
+        $zapak=$this->db->update('tbl_users', $data_update);
 
              if($zapak!=0){
              redirect("dcadmin/Vendors/view_vendors","refresh");
@@ -392,7 +392,7 @@ public function updateVendorRequestStatus($idd,$stat){
           );
 
           $this->db->where('id', $id);
-          $zapak=$this->db->update('tbl_user_temp', $data_update);
+          $zapak=$this->db->update('tbl_users', $data_update);
 
               if($zapak!=0){
               redirect("dcadmin/Vendors/view_vendors","refresh");

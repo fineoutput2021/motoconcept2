@@ -5,7 +5,7 @@
             Profile
             </h1>
             <ol class="breadcrumb">
-             <li><a href="<?php echo base_url() ?>admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+             <li><a href="<?php echo base_url() ?>dcadmin/Home"><i class="fa fa-dashboard"></i> Home</a></li>
               <li><a href="<?php echo base_url() ?>admin/college"><i class="fa fa-dashboard"></i> All Profile </a></li>
 
             </ol>
@@ -98,7 +98,9 @@
                                   </tr>
                           <tr>
     												<td colspan="2" >
+                              <a href="<?=base_url()?>dcadmin/Home">
     													<input type="submit" class="btn custom_btn" value="save">
+                            </a>
     												</td>
     											</tr>
 

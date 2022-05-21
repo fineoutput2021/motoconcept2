@@ -208,6 +208,7 @@ $img1='image';
 
 
 
+if(!empty($_FILES['image']['name'])){
 
          $image_upload_folder = FCPATH . "assets/uploads/appslider/";
                      if (!file_exists($image_upload_folder))
@@ -227,8 +228,8 @@ $img1='image';
                          $upload_error = $this->upload->display_errors();
                          // echo json_encode($upload_error);
 
-           //$this->session->set_flashdata('emessage',$upload_error);
-             //redirect($_SERVER['HTTP_REFERER']);
+           $this->session->set_flashdata('emessage',$upload_error);
+             redirect($_SERVER['HTTP_REFERER']);
                      }
                      else
                      {
@@ -243,6 +244,7 @@ $img1='image';
 
                          // echo json_encode($file_info);
                      }
+                   }
 
 
 

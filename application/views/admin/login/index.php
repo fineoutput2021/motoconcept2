@@ -73,11 +73,11 @@
 					</div>
 					<div class="sub-w3l">
 
-						<a href="#" id="butpas">Forgot Password?</a>
+						<!-- <a href="#" id="butpas">Forgot Password?</a> -->
 						<div class="clear"></div>
 					</div>
-					<div class="right-w3l">
-						<input type="submit" value="Login">
+					<div class="right-w3l text-center custom_button">
+						<input type="submit" style="background-color: hsl(353deg 91% 53%);" value="Login">
 					</div>
 					</form>
 				<br />

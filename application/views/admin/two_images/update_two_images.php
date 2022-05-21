@@ -44,7 +44,7 @@
                       <td>
                          <strong>Link1</strong> <span style="color:red;">*</span></strong></td>
                          <td>
-                           <input type="text" name="link1" class="form-control" value="<?=$two_images_data->link1?>">
+                           <input type="url" required name="link1" class="form-control" value="<?=$two_images_data->link1?>">
                          </td>
 
                     </tr>
@@ -57,7 +57,7 @@
                       <td>
                          <strong>Link2</strong> <span style="color:red;">*</span></strong></td>
                          <td>
-                           <input type="text" name="link2" class="form-control" value="<?=$two_images_data->link2?>">
+                           <input type="url" required name="link2" class="form-control" value="<?=$two_images_data->link2?>">
                          </td>
                     </tr>
 

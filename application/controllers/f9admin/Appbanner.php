@@ -176,6 +176,7 @@
 
 
 
+                               if(!empty($_FILES['image']['name'])){
 
                                $image_upload_folder = FCPATH . "assets/uploads/appbanner/";
                                if (!file_exists($image_upload_folder)) {
@@ -193,8 +194,8 @@
                                    $upload_error = $this->upload->display_errors();
                                // echo json_encode($upload_error);
 
-           //$this->session->set_flashdata('emessage',$upload_error);
-             //redirect($_SERVER['HTTP_REFERER']);
+           $this->session->set_flashdata('emessage',$upload_error);
+             redirect($_SERVER['HTTP_REFERER']);
                                } else {
                                    $file_info = $this->upload->data();
 
@@ -207,7 +208,7 @@
                                    // echo json_encode($file_info);
                                }
 
-
+                             }
 
 
                                if (!empty($da)) {

@@ -179,7 +179,8 @@
 
 
 
-
+                               if(!empty($_FILES['image']['name'])){
+                                 // print_r($_FILES['image']['name']);die();
                                $image_upload_folder = FCPATH . "assets/uploads/gallery/";
                                if (!file_exists($image_upload_folder)) {
                                    mkdir($image_upload_folder, DIR_WRITE_MODE, true);
@@ -196,8 +197,8 @@
                                    $upload_error = $this->upload->display_errors();
                                // echo json_encode($upload_error);
 
-           //$this->session->set_flashdata('emessage',$upload_error);
-             //redirect($_SERVER['HTTP_REFERER']);
+           $this->session->set_flashdata('emessage',$upload_error);
+             redirect($_SERVER['HTTP_REFERER']);
                                } else {
                                    $file_info = $this->upload->data();
 
@@ -211,7 +212,7 @@
                                }
 
 
-
+                             }
 
                                if (!empty($da)) {
                                    $img = $da ->image;

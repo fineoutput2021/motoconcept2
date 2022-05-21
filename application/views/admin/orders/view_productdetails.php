@@ -4,7 +4,7 @@
            Orders Details
           </h1>
           <ol class="breadcrumb">
-           <li><a href="<?php echo base_url() ?>admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+           <li><a href="<?php echo base_url() ?>dcadmin/Home"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="<?php echo base_url() ?>dcadmin/Orders/view_orders"><i class="fa fa-dashboard"></i> All Orders </a></li>
             <li class="active">View Slider Images</li>
           </ol>

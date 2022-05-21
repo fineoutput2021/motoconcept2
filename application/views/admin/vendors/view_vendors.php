@@ -55,7 +55,7 @@
 
                                                   <th>Registration date</th>
                                                   <th>Status</th>
-                                                  <th>Request Status</th>
+                                                  <!-- <th>Request Status</th> -->
                                                   <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -100,7 +100,7 @@
 
 <?php		}   ?>
       </td>
-      <td>
+      <!-- <td>
         <?php if($data->status==1){ ?>
         <p class="label bg-green">Approved</p>
       <?php } elseif($data->status==2){ ?>
@@ -108,7 +108,7 @@
       <?php	} elseif($data->status==3){ ?>
             <p class="label bg-red">Rejected</p>
       <?php	}   ?>
-      </td>
+      </td> -->
                     <td>
 <div class="btn-group" id="btns<?php echo $i ?>">
 <div class="btn-group">
@@ -120,10 +120,10 @@
 <?php } else { ?>
 <li><a href="<?php echo base_url() ?>dcadmin/Vendors/updatevendorsStatus/<?php echo base64_encode($data->id) ?>/active">Active</a></li>
 <?php		}   ?>
-<?php if($data->status==2){ ?>
+<!-- <?php if($data->status==2){ ?>
 <li><a href="<?php echo base_url() ?>dcadmin/Vendors/updateVendorRequestStatus/<?php echo base64_encode($data->id) ?>/approved">Approved</a></li>
 <li><a href="<?php echo base_url() ?>dcadmin/Vendors/updateVendorRequestStatus/<?php echo base64_encode($data->id) ?>/reject">Reject</a></li>
-<?php	}  ?>
+<?php	}  ?> -->
 <!-- <li><a href="dcadmin/Vendors/update_vendors/">Edit</a></li>
 <li><a href="javascript:;" class="dCnf" mydata="">Delete</a></li> -->
 </ul>

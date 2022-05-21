@@ -4,7 +4,7 @@
                                     Add New Staff
                                     </h1>
                                     <ol class="breadcrumb">
-                                     <li><a href="<?php echo base_url() ?>admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+                                     <li><a href="<?php echo base_url() ?>dcadmin/Home"><i class="fa fa-dashboard"></i> Home</a></li>
                                       <li><a href="<?php echo base_url() ?>dcadmin/Staffs/view_staffs"><i class="fa fa-dashboard"></i> All Staffs </a></li>
 
                                     </ol>

@@ -380,7 +380,22 @@
                      $da=$dsa->row();
 
 
+ $this->db->select('*');
+ $this->db->from('tbl_products');
+ $this->db->where('subcategory_id', $id);
+ $pro_data= $this->db->get();
+ foreach($pro_data->result() as $pro){
+   $this->db->select('*');
+   $this->db->from('tbl_cart');
+   $this->db->where('product_id', $pro->id);
+   $cart_data = $this->db->get()->row();
+   $zapak=$this->db->delete('tbl_cart', array('product_id' => $cart_data->id));
+   $zapak=$this->db->delete('tbl_wishlist', array('product_id' => $cart_data->id));
+
+ }
+ $zapak1=$this->db->delete('tbl_products', array('subcategory_id' => $id));
  $zapak=$this->db->delete('tbl_subcategory', array('id' => $id));
+
  if($zapak!=0){
    $this->session->set_flashdata('smessage','Subcategory deleted successfully');
 

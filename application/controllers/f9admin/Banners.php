@@ -73,48 +73,6 @@ class Banners extends CI_finecontrol
                     // Load library
                     $this->load->library('upload');
 
-                    $img1='banner_image';
-
-                    $file_check=($_FILES['banner_image']['error']);
-                    if ($file_check!=4) {
-                        $image_upload_folder = FCPATH . "assets/uploads/banner/";
-                        if (!file_exists($image_upload_folder)) {
-                            mkdir($image_upload_folder, DIR_WRITE_MODE, true);
-                        }
-                        $new_file_name="team".date("Ymdhms");
-                        $this->upload_config = array(
-                                                                'upload_path'   => $image_upload_folder,
-                                                                'file_name' => $new_file_name,
-                                                                'allowed_types' =>'jpg|jpeg|png',
-                                                                'max_size'      => 25000
-                                                        );
-                        $this->upload->initialize($this->upload_config);
-                        if (!$this->upload->do_upload($img1)) {
-                            $upload_error = $this->upload->display_errors();
-                            // echo json_encode($upload_error);
-
-                            $this->session->set_flashdata('emessage', $upload_error);
-                            redirect($_SERVER['HTTP_REFERER']);
-                        } else {
-                            $file_info = $this->upload->data();
-
-                            $image = "assets/uploads/banner/".$new_file_name.$file_info['file_ext'];
-                            // $file_info['new_name']=$videoNAmePath;
-                                                            // // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
-                                                            // $nn=$file_info['file_name'];
-                                                            // echo json_encode($file_info);
-                        }
-                    }
-
-                    // $banner = time() . '_' . $_FILES["banner_image"]["name"];
-                    // $liciense_tmp_name = $_FILES["banner_image"]["tmp_name"];
-                    // $error = $_FILES["banner_image"]["error"];
-                    // $liciense_path = 'assets/admin/banner/' . $banner;
-                    // move_uploaded_file($liciense_tmp_name, $liciense_path);
-                    // $image = $liciense_path;
-
-
-
                     $ip = $this->input->ip_address();
                     date_default_timezone_set("Asia/Calcutta");
                     $cur_date=date("Y-m-d H:i:s");
@@ -123,6 +81,38 @@ class Banners extends CI_finecontrol
 
                     $typ=base64_decode($t);
                     if ($typ==1) {
+                        $img1='banner_image';
+
+                        $file_check=($_FILES['banner_image']['error']);
+                        if ($file_check!=4) {
+                            $image_upload_folder = FCPATH . "assets/uploads/banner/";
+                            if (!file_exists($image_upload_folder)) {
+                                mkdir($image_upload_folder, DIR_WRITE_MODE, true);
+                            }
+                            $new_file_name="team".date("Ymdhms");
+                            $this->upload_config = array(
+                                                                  'upload_path'   => $image_upload_folder,
+                                                                  'file_name' => $new_file_name,
+                                                                  'allowed_types' =>'jpg|jpeg|png',
+                                                                  'max_size'      => 25000
+                                                          );
+                            $this->upload->initialize($this->upload_config);
+                            if (!$this->upload->do_upload($img1)) {
+                                $upload_error = $this->upload->display_errors();
+                                // echo json_encode($upload_error);
+
+                                $this->session->set_flashdata('emessage', $upload_error);
+                                redirect($_SERVER['HTTP_REFERER']);
+                            } else {
+                                $file_info = $this->upload->data();
+
+                                $image = "assets/uploads/banner/".$new_file_name.$file_info['file_ext'];
+                                // $file_info['new_name']=$videoNAmePath;
+                                                              // // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
+                                                              // $nn=$file_info['file_name'];
+                                                              // echo json_encode($file_info);
+                            }
+                        }
                         $data_insert = array('redirection_link'=>$redirection,
                     'banner_image'=>$image,
                     'added_by' =>$addedby,
@@ -135,45 +125,67 @@ class Banners extends CI_finecontrol
 
 
                         $last_id=$this->base_model->insert_table("tbl_banners", $data_insert, 1) ;
+
+                        if ($last_id!=0) {
+                            $this->session->set_flashdata('smessage', 'Banners inserted successfully');
+
+                            redirect("dcadmin/Banners/view_banners", "refresh");
+                        } else {
+                            $this->session->set_flashdata('emessage', 'Sorry error occured');
+                            redirect($_SERVER['HTTP_REFERER']);
+                        }
                     }
                     if ($typ==2) {
                         $idw=base64_decode($iw);
+                        $img1='banner_image';
 
-                        // $this->db->select('*');
-//     $this->db->from('tbl_minor_category');
-//    $this->db->where('name',$name);
-//     $damm= $this->db->get();
-//    foreach($damm->result() as $da) {
-//      $uid=$da->id;
-                        // if($uid==$idw)
-                        // {
-//
-                        //  }
-                        // else{
-//    echo "Multiple Entry of Same Name";
-//       exit;
-                        //  }
-//     }
+                        if (!empty($_FILES['image']['name'])) {
+                            $file_check=($_FILES['banner_image']['error']);
+                            if ($file_check!=4) {
+                                $image_upload_folder = FCPATH . "assets/uploads/banner/";
+                                if (!file_exists($image_upload_folder)) {
+                                    mkdir($image_upload_folder, DIR_WRITE_MODE, true);
+                                }
+                                $new_file_name="team".date("Ymdhms");
+                                $this->upload_config = array(
+                                                                    'upload_path'   => $image_upload_folder,
+                                                                    'file_name' => $new_file_name,
+                                                                    'allowed_types' =>'jpg|jpeg|png',
+                                                                    'max_size'      => 25000
+                                                            );
+                                $this->upload->initialize($this->upload_config);
+                                if (!$this->upload->do_upload($img1)) {
+                                    $upload_error = $this->upload->display_errors();
+                                    // echo json_encode($upload_error);
 
-                        $data_insert = array('redirection_link'=>$redirection,
+                                    $this->session->set_flashdata('emessage', $upload_error);
+                                    redirect($_SERVER['HTTP_REFERER']);
+                                } else {
+                                    $file_info = $this->upload->data();
+
+                                    $image = "assets/uploads/banner/".$new_file_name.$file_info['file_ext'];
+                                    // $file_info['new_name']=$videoNAmePath;
+                                                                // // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
+                                                                // $nn=$file_info['file_name'];
+                                                                // echo json_encode($file_info);
+                                }
+                            }
+                        }
+                     $data_insert = array('redirection_link'=>$redirection,
                     'banner_image'=>$image,
                     );
 
-
-
-
                         $this->db->where('id', $idw);
                         $last_id=$this->db->update('tbl_banners', $data_insert);
-                    }
 
+                        if ($last_id!=0) {
+                            $this->session->set_flashdata('smessage', 'Banners updated successfully');
 
-                    if ($last_id!=0) {
-                        $this->session->set_flashdata('smessage', 'Data inserted successfully');
-
-                        redirect("dcadmin/Banners/view_banners", "refresh");
-                    } else {
-                        $this->session->set_flashdata('emessage', 'Sorry error occured');
-                        redirect($_SERVER['HTTP_REFERER']);
+                            redirect("dcadmin/Banners/view_banners", "refresh");
+                        } else {
+                            $this->session->set_flashdata('emessage', 'Sorry error occured');
+                            redirect($_SERVER['HTTP_REFERER']);
+                        }
                     }
                 } else {
                     $this->session->set_flashdata('emessage', validation_errors());
@@ -231,6 +243,8 @@ class Banners extends CI_finecontrol
             if ($this->load->get_var('position')=="Super Admin") {
                 $zapak=$this->db->delete('tbl_banners', array('id' => $id));
                 if ($zapak!=0) {
+                    $this->session->set_flashdata('smessage', 'Banner deleted successfully');
+
                     redirect("dcadmin/Banners/view_banners", "refresh");
                 } else {
                     echo "Error";
@@ -267,6 +281,8 @@ class Banners extends CI_finecontrol
                 $zapak=$this->db->update('tbl_banners', $data_update);
 
                 if ($zapak!=0) {
+                    $this->session->set_flashdata('smessage', 'Banner status updated successfully');
+
                     redirect("dcadmin/Banners/view_banners", "refresh");
                 } else {
                     echo "Error";
@@ -283,6 +299,8 @@ class Banners extends CI_finecontrol
                 $zapak=$this->db->update('tbl_banners', $data_update);
 
                 if ($zapak!=0) {
+                    $this->session->set_flashdata('smessage', 'Banner status updated successfully');
+
                     redirect("dcadmin/Banners/view_banners", "refresh");
                 } else {
                     $data['e']="Error Occured";

@@ -80,83 +80,6 @@ class Category extends CI_finecontrol
                     // Load library
                     $this->load->library('upload');
 
-
-                    $img1='fileToUpload1';
-
-                    $file_check=($_FILES['fileToUpload1']['error']);
-                    if ($file_check!=4) {
-                        $image_upload_folder = FCPATH . "assets/uploads/category/";
-                        if (!file_exists($image_upload_folder)) {
-                            mkdir($image_upload_folder, DIR_WRITE_MODE, true);
-                        }
-                        $new_file_name="category".date("Ymdhms");
-                        $this->upload_config = array(
-                                                            'upload_path'   => $image_upload_folder,
-                                                            'file_name' => $new_file_name,
-                                                            'allowed_types' =>'jpg|jpeg|png',
-                                                            'max_size'      => 25000
-                                                    );
-                        $this->upload->initialize($this->upload_config);
-                        if (!$this->upload->do_upload($img1)) {
-                            $upload_error = $this->upload->display_errors();
-                            // echo json_encode($upload_error);
-
-                                       $this->session->set_flashdata('emessage',$upload_error);
-                                         redirect($_SERVER['HTTP_REFERER']);
-                        } else {
-                            $file_info = $this->upload->data();
-
-                            $videoNAmePath = "assets/uploads/category/".$new_file_name.$file_info['file_ext'];
-                            $file_info['new_name']=$videoNAmePath;
-                            // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
-                            //$nnnn=$file_info['file_name'];
-                            $nnnn2=$videoNAmePath;
-                            // echo json_encode($file_info);
-                        }
-                    }
-                    $img2='fileToUpload2';
-
-                    $file_check2=($_FILES['fileToUpload2']['error']);
-                    if ($file_check2!=4) {
-                        $image_upload_folder2 = FCPATH . "assets/uploads/category/";
-                        if (!file_exists($image_upload_folder2)) {
-                            mkdir($image_upload_folder2, DIR_WRITE_MODE, true);
-                        }
-                        $new_file_name2="category2".date("Ymdhms");
-                        $this->upload_config = array(
-                                                    'upload_path'   => $image_upload_folder2,
-                                                    'file_name' => $new_file_name2,
-                                                    'allowed_types' =>'jpg|jpeg|png',
-                                                    'max_size'      => 25000
-                                            );
-                        $this->upload->initialize($this->upload_config);
-                        if (!$this->upload->do_upload($img2)) {
-                            $upload_error2 = $this->upload->display_errors();
-                            // echo json_encode($upload_error);
-                            echo $upload_error2;
-                                       $this->session->set_flashdata('emessage',$upload_error);
-                                         redirect($_SERVER['HTTP_REFERER']);
-                        } else {
-                            $file_info2 = $this->upload->data();
-
-                            $videoNAmePath2= "assets/uploads/category/".$new_file_name2.$file_info2['file_ext'];
-                            $file_info2['new_name']=$videoNAmePath2;
-                            // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
-                            //$nnnn5=$file_info2['file_name'];
-                            $nnnn3=$videoNAmePath2;
-                            // echo json_encode($file_info);
-                        }
-                    }
-
-                    // $banner = time() . '_' . $_FILES["image"]["name"];
-                    // $liciense_tmp_name = $_FILES["image"]["tmp_name"];
-                    // $error = $_FILES["image"]["error"];
-                    // $liciense_path = 'assets/admin/category/' . $banner;
-                    // move_uploaded_file($liciense_tmp_name, $liciense_path);
-                    // $image = $liciense_path;
-
-
-
                     $ip = $this->input->ip_address();
                     date_default_timezone_set("Asia/Calcutta");
                     $cur_date=date("Y-m-d H:i:s");
@@ -165,6 +88,72 @@ class Category extends CI_finecontrol
 
                     $typ=base64_decode($t);
                     if ($typ==1) {
+                      $img1='fileToUpload1';
+
+                      $file_check=($_FILES['fileToUpload1']['error']);
+                      if ($file_check!=4) {
+                          $image_upload_folder = FCPATH . "assets/uploads/category/";
+                          if (!file_exists($image_upload_folder)) {
+                              mkdir($image_upload_folder, DIR_WRITE_MODE, true);
+                          }
+                          $new_file_name="category".date("Ymdhms");
+                          $this->upload_config = array(
+                                                              'upload_path'   => $image_upload_folder,
+                                                              'file_name' => $new_file_name,
+                                                              'allowed_types' =>'jpg|jpeg|png',
+                                                              'max_size'      => 25000
+                                                      );
+                          $this->upload->initialize($this->upload_config);
+                          if (!$this->upload->do_upload($img1)) {
+                              $upload_error = $this->upload->display_errors();
+                              // echo json_encode($upload_error);
+
+                                         $this->session->set_flashdata('emessage',$upload_error);
+                                           redirect($_SERVER['HTTP_REFERER']);
+                          } else {
+                              $file_info = $this->upload->data();
+
+                              $videoNAmePath = "assets/uploads/category/".$new_file_name.$file_info['file_ext'];
+                              $file_info['new_name']=$videoNAmePath;
+                              // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
+                              //$nnnn=$file_info['file_name'];
+                              $nnnn2=$videoNAmePath;
+                              // echo json_encode($file_info);
+                          }
+                      }
+                      $img2='fileToUpload2';
+
+                      $file_check2=($_FILES['fileToUpload2']['error']);
+                      if ($file_check2!=4) {
+                          $image_upload_folder2 = FCPATH . "assets/uploads/category/";
+                          if (!file_exists($image_upload_folder2)) {
+                              mkdir($image_upload_folder2, DIR_WRITE_MODE, true);
+                          }
+                          $new_file_name2="category2".date("Ymdhms");
+                          $this->upload_config = array(
+                                                      'upload_path'   => $image_upload_folder2,
+                                                      'file_name' => $new_file_name2,
+                                                      'allowed_types' =>'jpg|jpeg|png',
+                                                      'max_size'      => 25000
+                                              );
+                          $this->upload->initialize($this->upload_config);
+                          if (!$this->upload->do_upload($img2)) {
+                              $upload_error2 = $this->upload->display_errors();
+                              // echo json_encode($upload_error);
+                              echo $upload_error2;
+                                         $this->session->set_flashdata('emessage',$upload_error);
+                                           redirect($_SERVER['HTTP_REFERER']);
+                          } else {
+                              $file_info2 = $this->upload->data();
+
+                              $videoNAmePath2= "assets/uploads/category/".$new_file_name2.$file_info2['file_ext'];
+                              $file_info2['new_name']=$videoNAmePath2;
+                              // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
+                              //$nnnn5=$file_info2['file_name'];
+                              $nnnn3=$videoNAmePath2;
+                              // echo json_encode($file_info);
+                          }
+                      }
                         $data_insert = array('category'=>$category,
                     'image'=>$nnnn3,
                                         'image2'=>$nnnn2,
@@ -189,21 +178,76 @@ class Category extends CI_finecontrol
                     if ($typ==2) {
                         $idw=base64_decode($iw);
 
-                        // $this->db->select('*');
-//     $this->db->from('tbl_minor_category');
-//    $this->db->where('name',$name);
-//     $damm= $this->db->get();
-//    foreach($damm->result() as $da) {
-//      $uid=$da->id;
-                        // if($uid==$idw)
-                        // {
-//
-                        //  }
-                        // else{
-//    echo "Multiple Entry of Same Name";
-//       exit;
-                        //  }
-//     }
+                        $img1='fileToUpload1';
+                        if(!empty($_FILES['fileToUpload1']['name'])){
+
+                        $file_check=($_FILES['fileToUpload1']['error']);
+                        if ($file_check!=4) {
+                            $image_upload_folder = FCPATH . "assets/uploads/category/";
+                            if (!file_exists($image_upload_folder)) {
+                                mkdir($image_upload_folder, DIR_WRITE_MODE, true);
+                            }
+                            $new_file_name="category".date("Ymdhms");
+                            $this->upload_config = array(
+                                                                'upload_path'   => $image_upload_folder,
+                                                                'file_name' => $new_file_name,
+                                                                'allowed_types' =>'jpg|jpeg|png',
+                                                                'max_size'      => 25000
+                                                        );
+                            $this->upload->initialize($this->upload_config);
+                            if (!$this->upload->do_upload($img1)) {
+                                $upload_error = $this->upload->display_errors();
+                                // echo json_encode($upload_error);
+
+                                           $this->session->set_flashdata('emessage',$upload_error);
+                                             redirect($_SERVER['HTTP_REFERER']);
+                            } else {
+                                $file_info = $this->upload->data();
+
+                                $videoNAmePath = "assets/uploads/category/".$new_file_name.$file_info['file_ext'];
+                                $file_info['new_name']=$videoNAmePath;
+                                // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
+                                //$nnnn=$file_info['file_name'];
+                                $nnnn2=$videoNAmePath;
+                                // echo json_encode($file_info);
+                            }
+                        }
+                      }
+                        $img2='fileToUpload2';
+                        if(!empty($_FILES['fileToUpload2']['name'])){
+
+                        $file_check2=($_FILES['fileToUpload2']['error']);
+                        if ($file_check2!=4) {
+                            $image_upload_folder2 = FCPATH . "assets/uploads/category/";
+                            if (!file_exists($image_upload_folder2)) {
+                                mkdir($image_upload_folder2, DIR_WRITE_MODE, true);
+                            }
+                            $new_file_name2="category2".date("Ymdhms");
+                            $this->upload_config = array(
+                                                        'upload_path'   => $image_upload_folder2,
+                                                        'file_name' => $new_file_name2,
+                                                        'allowed_types' =>'jpg|jpeg|png',
+                                                        'max_size'      => 25000
+                                                );
+                            $this->upload->initialize($this->upload_config);
+                            if (!$this->upload->do_upload($img2)) {
+                                $upload_error2 = $this->upload->display_errors();
+                                // echo json_encode($upload_error);
+                                echo $upload_error2;
+                                           $this->session->set_flashdata('emessage',$upload_error);
+                                             redirect($_SERVER['HTTP_REFERER']);
+                            } else {
+                                $file_info2 = $this->upload->data();
+
+                                $videoNAmePath2= "assets/uploads/category/".$new_file_name2.$file_info2['file_ext'];
+                                $file_info2['new_name']=$videoNAmePath2;
+                                // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
+                                //$nnnn5=$file_info2['file_name'];
+                                $nnnn3=$videoNAmePath2;
+                                // echo json_encode($file_info);
+                            }
+                        }
+                      }
                         $this->db->select('*');
                         $this->db->from('tbl_category');
                         $this->db->where('id', $idw);
@@ -300,7 +344,23 @@ class Category extends CI_finecontrol
             $id=base64_decode($idd);
 
             if ($this->load->get_var('position')=="Super Admin") {
-                $zapak=$this->db->delete('tbl_category', array('id' => $id));
+
+                $this->db->select('*');
+                $this->db->from('tbl_products');
+                $this->db->where('category_id', $id);
+                $pro_data= $this->db->get();
+                foreach($pro_data->result() as $pro){
+                  $this->db->select('*');
+                  $this->db->from('tbl_cart');
+                  $this->db->where('product_id', $pro->id);
+                  $cart_data = $this->db->get()->row();
+                  $zapak=$this->db->delete('tbl_cart', array('product_id' => $cart_data->id));
+                  $zapak=$this->db->delete('tbl_wishlist', array('product_id' => $cart_data->id));
+
+                }
+                $zapak1=$this->db->delete('tbl_products', array('category_id' => $id));
+                $zapak=$this->db->delete('tbl_subcategory', array('category_id' => $id));
+                $zapak2=$this->db->delete('tbl_category', array('id' => $id));
                 if ($zapak!=0) {
 									$this->session->set_flashdata('smessage', 'Category deleted successfully');
 

@@ -4,9 +4,8 @@
            Completed Order
           </h1>
           <ol class="breadcrumb">
-           <li><a href="<?php echo base_url() ?>admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="<?php echo base_url() ?>admin/college"><i class="fa fa-dashboard"></i> All Completed Order </a></li>
-            <li class="active">View Completed Order</li>
+           <li><a href="<?php echo base_url() ?>dcadmin/Home"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li class="active">View Cancelled Order</li>
           </ol>
         </section>
           <section class="content">

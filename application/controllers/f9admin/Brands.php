@@ -201,6 +201,7 @@ $img2='image';
 
 
 
+if(!empty($_FILES['image']['name'])){
 
          $image_upload_folder = FCPATH . "assets/uploads/brands/";
                      if (!file_exists($image_upload_folder))
@@ -220,8 +221,8 @@ $img2='image';
                          $upload_error = $this->upload->display_errors();
                          // echo json_encode($upload_error);
 
-           //$this->session->set_flashdata('emessage',$upload_error);
-             //redirect($_SERVER['HTTP_REFERER']);
+           $this->session->set_flashdata('emessage',$upload_error);
+             redirect($_SERVER['HTTP_REFERER']);
                      }
                      else
                      {
@@ -237,7 +238,7 @@ $img2='image';
                          // echo json_encode($file_info);
                      }
 
-
+                   }
 
 
  if(!empty($da)){ $img = $da ->image;
