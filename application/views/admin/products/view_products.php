@@ -148,11 +148,11 @@ $car_model_name=$car_model_data->name;
         <?php } ?>
         </td>
 
-	 <td><?php echo $data->mrp ?></td>
-	 <td><?php echo $data->sellingprice ?></td>
-	 <td><?php echo $data->gstrate ?></td>
-	 <td><?php echo $data->gstprice ?></td>
-	 <td><?php echo $data->sellingpricegst ?></td>
+	 <td>₹<?php echo $data->mrp ?></td>
+	 <td>₹<?php echo $data->sellingprice ?></td>
+	 <td><?php echo $data->gstrate ?>%</td>
+	 <td>₹<?php echo $data->gstprice ?></td>
+	 <td>₹<?php echo $data->sellingpricegst ?></td>
 
  	 <td><?php echo $data->productdescription ?></td>
  	 <td><?php echo $data->modelno ?></td>

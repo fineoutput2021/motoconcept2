@@ -2,21 +2,21 @@
         <div class="content-wrapper">
         <section class="content-header">
         <h1>
-          View Filter_product
+          View Filter Product
         </h1>
         <ol class="breadcrumb">
          <li><a href="<?php echo base_url() ?>dcadmin/home"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-          <li class="active">View Filter product</li>
+          <li class="active">View Filter Products</li>
         </ol>
         </section>
         <section class="content">
         <div class="row">
         <div class="col-lg-12">
         <a class="btn custom_btn" href="<?php echo base_url() ?>dcadmin/Filter_product/add_filter_product"
-        role="button" style="margin-bottom:12px;"> Add filter_product</a>
+        role="button" style="margin-bottom:12px;"> Add Filter Product</a>
         <div class="panel panel-default">
         <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-money fa-fw"></i>View filter_product</h3>
+        <h3 class="panel-title"><i class="fa fa-money fa-fw"></i>View Filter Products</h3>
         </div>
         <div class="panel panel-default">
 

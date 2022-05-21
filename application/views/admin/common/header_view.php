@@ -195,7 +195,8 @@
 
       <header class="main-header">
         <!-- Logo -->
-        <a href="<?=base_url().ADMIN_URL ?>/home" class="logo custom_header"><b><? echo SITE_NAME; ?></b></a>
+        <!-- <a href="<?=base_url().ADMIN_URL ?>/home" class="logo custom_header"><b><? echo SITE_NAME; ?></b></a> -->
+        <a href="<?=base_url().ADMIN_URL ?>/home" class="logo custom_header">	<img src="<?=base_url()?>assets/mc_logo.png" style="width:35%"></a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top custom_header" role="navigation">
           <!-- Sidebar toggle button-->

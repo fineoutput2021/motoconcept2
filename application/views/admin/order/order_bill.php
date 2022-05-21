@@ -8,14 +8,14 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <!-- Css file include -->
-<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/frontend/css/style.css">
 	<title>Motoconcept Bill</title>
 </head>
 <body style="padding-top:75px;">
 <div class="container main_container">
 	<div class="row">
 		<div class="col-sm-6 oswal_logo">
-		<img src="https://www.supremetechnocom.com/application/views/website/themes/supreme/assets/img/logo.png" class="img-fluid" style="width:150px;">
+		<img src="<?=base_url()?>assets/mc_logo.png" class="img-fluid" style="width:150px;">
 		</div>
 		<div class="col-sm-6 content_part">Tax Invoice/Bill of Supply/Cash Memo
 			<p>(Original for Recipient)</p>
@@ -60,25 +60,6 @@ User: <?=$user_name;?>
 
       <?php
   if(!empty($order1_data)){
-    //             $this->db->select('*');
-    // $this->db->from('tbl_user_address');
-    // $this->db->where('id',$order1_data->address_id);
-    // $address= $this->db->get()->row();
-    //  $addres= $address->address;
-    //  // $location_addres= $address->location_address;
-    //  // $doorflat= $address->doorflat;
-    //  // $landmark= $address->landmark;
-    // if(!empty($addres)){
-  //     echo $addres;
-  //   }else{
-  //     echo "no address";
-  //   }
-  //   $state=$address->state;
-  //   $city=$address->city;
-  //   $zipcode=$address->zipcode;
-  //
-  //
-  // }
 
     $address=$order1_data->street_address;
     $state=$order1_data->state;
@@ -179,7 +160,7 @@ echo $product_name= $product_data->productname;
           <?
           if(!empty($product_data)){
             // $hsn_code= $product_data->hsn_code;
-          echo "Rs.".$product_price= $product_data->sellingprice;
+          echo "₹".$product_price= $product_data->sellingprice;
           }else{
             $product_price= "";
           }
@@ -201,7 +182,7 @@ echo $product_name= $product_data->productname;
         ?>
 
 
-        <td><?php echo "Rs. ".$data->total_amount;?></td>
+        <td><?php echo "₹".$data->total_amount;?></td>
       </tr>
   <?php $i++;} }?>
 
@@ -211,7 +192,7 @@ echo $product_name= $product_data->productname;
         <th class="product_table" ><?php if(!empty($order1_data)){ echo ""; }?></th>
         <th class="product_table" colspan="2"><?php if(!empty($order1_data)){ echo ""; }?></th>
 
-        <th class="product_table"><?php if(!empty($order1_data)){ echo "Rs. ".$order1_data->total_amount; }?></th>
+        <th class="product_table"><?php if(!empty($order1_data)){ echo "₹".$order1_data->total_amount; }?></th>
       </tr>
 
       <tr>
@@ -260,11 +241,11 @@ echo $product_name= $product_data->productname;
           }else{
             $promo_discount= 0;
           }
-             "- Rs. ".$promo_discount; }else{ echo "-Rs. 0"; }?>
+             "- ₹".$promo_discount; }else{ echo "-₹0"; }?>
 
 <!-- from table order1  start-->
 
-<?php if(!empty($order1_data)){ echo "- Rs. ".$order1_data->promo_deduction_amount; }else{ echo "-Rs. 0"; }?>
+<?php if(!empty($order1_data)){ echo "- ₹ ".$order1_data->promo_deduction_amount; }else{ echo "-₹0"; }?>
 
 <!-- from table order1  end-->
 
@@ -276,7 +257,7 @@ echo $product_name= $product_data->productname;
 
       <tr>
         <th colspan="4">SubTotal</th>
-        <th class="product_table"><?php if(!empty($order1_data)){ echo "Rs. ".$order1_data->total_amount; }?></th>
+        <th class="product_table"><?php if(!empty($order1_data)){ echo "₹".$order1_data->total_amount; }?></th>
 
       </tr>
 
