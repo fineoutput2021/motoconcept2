@@ -50,6 +50,7 @@
                       <th>State</th>
                       <th>Pincode</th>
                       <th>Payment type</th>
+                      <th>Payment mode</th>
                       <th>Last updated date</th>
                       <th>Order date</th>
                       <th>Bank Receipt</th>
@@ -113,17 +114,24 @@
                       <td><?php echo $data->pincode  ?></td>
                       <td><?php $type=$data->payment_type;
                             $n1="";
-                            if ($type==2) {
-                                $n1="Pay at store";
+                            if($type==2){
+                              $n1="Bank transfer";
                             }
-                            if ($type==1) {
-                                $n1="Bank Transfer";
+                            if($type==1){
+                              $n1="COD";
                             }
                             echo $n1;
 
 
 
                                        ?></td>
+                                       <td>
+                                         <?if(!empty($data->store_id)){
+                                           echo "Pay at store";
+                                         }else{
+                                           echo "Pay at place";
+                                         }?>
+                                       </td>
                       <td><?php echo $data->date  ?></td>
                       <td><?php $check_order_date= $data->id;
                             $this->db->select('*');

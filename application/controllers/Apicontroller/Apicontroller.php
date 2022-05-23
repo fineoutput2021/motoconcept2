@@ -2524,7 +2524,7 @@ if (!empty($store_id)) {
 // 'bank_receipt'=>$image,
 'store_id'=>$store_id,
 'payment_status'=>1,
-'payment_type'=>2,
+'payment_type'=>1,
 'order_status'=>1,
 );
     } else {
