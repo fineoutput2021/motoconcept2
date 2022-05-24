@@ -51,6 +51,7 @@
                       <th>Pincode</th>
                       <th>Payment type</th>
                       <th>Payment mode</th>
+                      <th>Store</th>
                       <th>Last updated date</th>
                       <th>Order date</th>
                       <th>Bank Receipt</th>
@@ -131,6 +132,23 @@
                                          }else{
                                            echo "Pay at place";
                                          }?>
+                                       </td>
+                                       <td>
+                                         <?
+                                         if(!empty($data->store_id)){
+                                         $this->db->select('*');
+                                         $this->db->from('tbl_store');
+                                         $this->db->where('id', $data->store_id);
+                                         $store= $this->db->get()->row();
+                                         if(!empty($store->name)){
+                                           echo $store->name;
+                                         }else{
+                                           echo "Store not found";
+                                         }
+                                       }else{
+                                         echo "-";
+                                       }
+                                         ?>
                                        </td>
                       <td><?php echo $data->date  ?></td>
                       <td><?php $check_order_date= $data->id;

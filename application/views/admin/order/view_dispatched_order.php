@@ -18,20 +18,20 @@
           </div>
           <div class="panel panel-default">
 
-            <? if(!empty($this->session->flashdata('smessage'))){ ?>
+            <?php if (!empty($this->session->flashdata('smessage'))) { ?>
             <div class="alert alert-success alert-dismissible">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
               <h4><i class="icon fa fa-check"></i> Alert!</h4>
-              <? echo $this->session->flashdata('smessage'); ?>
+              <?php echo $this->session->flashdata('smessage'); ?>
             </div>
-            <? }
-                                               if(!empty($this->session->flashdata('emessage'))){ ?>
+            <?php }
+                                               if (!empty($this->session->flashdata('emessage'))) { ?>
             <div class="alert alert-danger alert-dismissible">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
               <h4><i class="icon fa fa-ban"></i> Alert!</h4>
-              <? echo $this->session->flashdata('emessage'); ?>
+              <?php echo $this->session->flashdata('emessage'); ?>
             </div>
-            <? } ?>
+            <?php } ?>
 
 
             <div class="panel-body">
@@ -51,6 +51,7 @@
                       <th>pincode</th>
                       <th>Payment type</th>
                       <th>Payment mode</th>
+                      <th>Store</th>
                       <th>Last updated date</th>
                       <th>order date</th>
                       <th>Bank Receipt</th>
@@ -62,31 +63,31 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php $i=1; foreach($order_data->result() as $data) { ?>
+                    <?php $i=1; foreach ($order_data->result() as $data) { ?>
                     <tr>
                       <td><?php echo $i ?> </td>
                       <td><?php echo $data->id  ?></td>
                       <td><?php $user_name=$data->user_id;
                                $this->db->select('*');
                                            $this->db->from('tbl_users');
-                                           $this->db->where('id',$user_name);
+                                           $this->db->where('id', $user_name);
                                            $check_username= $this->db->get()->row();
-                                           if(!empty($check_username)){
-                                            echo $check_username->name;
-                                           }else{
-                                             echo "user_id not exist";
+                                           if (!empty($check_username)) {
+                                               echo $check_username->name;
+                                           } else {
+                                               echo "user_id not exist";
                                            }
                               ?></td>
                       <td>₹<?php echo $data->total_amount;  ?></td>
                       <td><?php $check_prmocode_id= $data->promocode_id;
                                $this->db->select('*');
                                            $this->db->from('tbl_promocode');
-                                           $this->db->where('id',$check_prmocode_id);
+                                           $this->db->where('id', $check_prmocode_id);
                                            $promocode_id= $this->db->get()->row();
-                                           if(!empty($promocode_id)){
-                                             echo $promocode_id->promocode;
-                                           }else{
-                                             echo "No promocode";
+                                           if (!empty($promocode_id)) {
+                                               echo $promocode_id->promocode;
+                                           } else {
+                                               echo "No promocode";
                                            }
 
 
@@ -99,74 +100,90 @@
                       <td><?php
                                           $this->db->select('*');
                               $this->db->from('all_states');
-                              $this->db->where('id',$data->state);
+                              $this->db->where('id', $data->state);
                               $state_data= $this->db->get()->row();
-                              if(!empty($state_data)){
-                                 echo $state_data->state_name;
-                              }else{
-                                echo "No state found";
+                              if (!empty($state_data)) {
+                                  echo $state_data->state_name;
+                              } else {
+                                  echo "No state found";
                               }  ?></td>
                       <td><?php echo $data->pincode  ?></td>
                       <td><?php $type=$data->payment_type;
                             $n1="";
-                            if($type==2){
-                              $n1="Bank transfer";
+                            if ($type==2) {
+                                $n1="Bank transfer";
                             }
-                            if($type==1){
-                              $n1="COD";
+                            if ($type==1) {
+                                $n1="COD";
                             }
                             echo $n1;
 
 
 
                                        ?></td>
-                                       <td>
-                                         <?if(!empty($data->store_id)){
+                      <td>
+                        <?if (!empty($data->store_id)) {
                                            echo "Pay at store";
-                                         }else{
+                                       } else {
                                            echo "Pay at place";
-                                         }?>
-                                       </td>
+                                       }?>
+                      </td>
+                      <td>
+                        <?php
+  if (!empty($data->store_id)) {
+      $this->db->select('*');
+      $this->db->from('tbl_store');
+      $this->db->where('id', $data->store_id);
+      $store= $this->db->get()->row();
+      if (!empty($store->name)) {
+          echo $store->name;
+      } else {
+          echo "Store not found";
+      }
+  } else {
+      echo "-";
+  }
+  ?>
+                      </td>
                       <td><?php echo $data->date  ?></td>
                       <td><?php $check_order_date= $data->id;
                             $this->db->select('*');
                                         $this->db->from('tbl_order2');
-                                        $this->db->where('main_id',$check_order_date);
+                                        $this->db->where('main_id', $check_order_date);
                                         $check_order2= $this->db->get()->row();
-                                        if(!empty($check_order2)){
-                                          echo $check_order2->date;
-                                        }else{
-                                          echo "no date found";
+                                        if (!empty($check_order2)) {
+                                            echo $check_order2->date;
+                                        } else {
+                                            echo "no date found";
                                         }
 
 
 
                               ?></td>
                       <td>
-                        <?
-                                if($data->bank_receipt){?>
+                        <?php
+                                if ($data->bank_receipt) {?>
                         <img src="<?=base_url().$data->bank_receipt?>" width="500" height="500">
-                        <?}else{
-                                  echo  "NA";
+                        <?} else {
+                                    echo  "NA";
                                 }
                                 ?>
                       </td>
                       <td><?php $status=$data->order_status;
-                            if( $status==1){
-                              $status="Placed";
+                            if ($status==1) {
+                                $status="Placed";
                             }
-                            if($status==2){
-                              $status="Accepted";
+                            if ($status==2) {
+                                $status="Accepted";
                             }
-                            if($status==3){
-                              $status="DISPATCHED";
+                            if ($status==3) {
+                                $status="DISPATCHED";
                             }
-                            if($status==4){
-                              $status="DELIVERED";
+                            if ($status==4) {
+                                $status="DELIVERED";
                             }
-                            if($status==5){
-                              $status="Cancel order";
-
+                            if ($status==5) {
+                                $status="Cancel order";
                             }
                         echo $status;
 
@@ -191,11 +208,11 @@ base64_encode($data->id) ?>/completed">complete order</a></li>
 
 
 
-  <!-- <li><a href="<?php echo base_url() ?>dcadmin/Neworder/update_cancel_status/<?php echo
+                              <!-- <li><a href="<?php echo base_url() ?>dcadmin/Neworder/update_cancel_status/<?php echo
   base64_encode($data->id) ?>/Cancel">Cancel order</a></li> -->
 
 
-  <li><a href="<?php echo base_url() ?>dcadmin/Orders/view_product_status/<?php echo
+                              <li><a href="<?php echo base_url() ?>dcadmin/Orders/view_product_status/<?php echo
 base64_encode($data->id) ?>">view product</a></li>
                               <li><a href="<?php echo base_url() ?>dcadmin/Orders/view_order_bill/<?php echo
 base64_encode($data->id) ?>">view bill</a></li>
