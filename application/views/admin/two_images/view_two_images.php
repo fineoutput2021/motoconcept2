@@ -91,13 +91,13 @@
                               Action <span class="caret"></span></button>
                             <ul class="dropdown-menu" role="menu">
 
-                              <?php if ($data->is_active==1) { ?>
+                              <!-- <?php if ($data->is_active==1) { ?>
                               <li><a href="<?php echo base_url() ?>dcadmin/Two_images/updatetwo_imagesStatus/<?php echo
         base64_encode($data->id) ?>/inactive">Inactive</a></li>
                               <?php } else { ?>
                               <li><a href="<?php echo base_url() ?>dcadmin/Two_images/updatetwo_imagesStatus/<?php echo
         base64_encode($data->id) ?>/active">Active</a></li>
-                              <?php } ?>
+                              <?php } ?> -->
                               <li><a href="<?php echo base_url() ?>dcadmin/Two_images/update_two_images/<?php echo
         base64_encode($data->id) ?>">Edit</a></li>
                               <!-- <li><a href="javascript:;" class="dCnf" mydata="<?php echo $i ?>">Delete</a></li> -->

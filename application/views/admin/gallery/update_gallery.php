@@ -44,7 +44,7 @@
                     </tr>
                     <tr>
                       <td> <strong>Link</strong> <span style="color:red;">*</span></strong> </td>
-                      <td> <input type="text" name="link" class="form-control" placeholder="" required value="<?=$gallery_data->link;?>" /> </td>
+                      <td> <input type="url" name="link" class="form-control" placeholder="" required value="<?=$gallery_data->link;?>" /> </td>
                     </tr>
                     <tr>
                       <td> <strong>Image</strong> <span style="color:red;">*</span></strong> </td>

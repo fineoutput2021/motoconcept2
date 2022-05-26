@@ -1311,9 +1311,9 @@ class Apicontroller extends CI_Controller
         foreach ($data->result() as $value) {
             $stock[]=array(
 'image'=>base_url().$value->image1,
-'link1'=>base_url().$value->link1,
+'link1'=>$value->link1,
 'image2'=>base_url().$value->image2,
-'link2'=>base_url().$value->link2,
+'link2'=>$value->link2,
 
 
 );
@@ -3367,6 +3367,7 @@ if (!empty($store_id)) {
     {
         $this->db->select('*');
         $this->db->from('tbl_gallery');
+        $this->db->where('is_active', 1);
         $gallerydata= $this->db->get();
         $gallery=[];
         foreach ($gallerydata->result() as $data) {
