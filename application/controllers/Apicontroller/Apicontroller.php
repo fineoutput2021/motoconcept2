@@ -1434,6 +1434,7 @@ class Apicontroller extends CI_Controller
             $this->form_validation->set_rules('phone', 'phone', 'required|xss_clean|trim');
             $this->form_validation->set_rules('authentication', 'authentication', 'required|xss_clean|trim');
             $this->form_validation->set_rules('token_id', 'token_id', 'required|xss_clean|trim');
+            $this->form_validation->set_rules('promocode', 'promocode', 'xss_clean|trim');
 
 
             if ($this->form_validation->run()== true) {
@@ -3119,7 +3120,7 @@ if (!empty($store_id)) {
                     }
                 }
                 if (!empty($subcategory_id)) {
-                    $this->db->or_where('subcategory_id', $subcategory_id, null, false);
+                    $this->db->where('subcategory_id', $subcategory_id, null, false);
                 }
 
 

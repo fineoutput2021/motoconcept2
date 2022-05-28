@@ -64,6 +64,10 @@
  <td> <strong>Max</strong>  <span style="color:red;">*</span></strong> </td>
  <td> <input type="number" name="max"  class="form-control" placeholder="" required value="<?=$promocode_data->max;?>" />  </td>
  </tr>
+ <tr>
+<td> <strong>Expiry</strong>  <span style="color:red;">*</span></strong> </td>
+<td> <input type="date" name="expiry"  class="form-control" placeholder="" required value="<?=$promocode_data->expiry?>" />  </td>
+</tr>
 
 
                           <tr>

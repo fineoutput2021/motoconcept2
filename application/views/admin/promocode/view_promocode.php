@@ -48,6 +48,7 @@
  	 <th>Giftpercent</th>
  	 <th>Minorder</th>
  	 <th>Max</th>
+ 	 <th>Expiry</th>
     <th>Status</th>
         <th>Action</th>
         </tr>
@@ -62,6 +63,7 @@
  	 <td><?php echo $data->giftpercent ?></td>
  	 <td><?php echo $data->minorder ?></td>
  	 <td><?php echo $data->max ?></td>
+ 	 <td><?php echo $data->expiry ?></td>
 
         <td><?php if($data->is_active==1){ ?>
         <p class="label bg-green" >Active</p>

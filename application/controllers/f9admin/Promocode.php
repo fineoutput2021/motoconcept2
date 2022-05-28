@@ -90,12 +90,14 @@ class Promocode extends CI_finecontrol
                 $this->form_validation->set_rules('giftpercent', 'giftpercent', 'required');
                 $this->form_validation->set_rules('minorder', 'minorder', 'required');
                 $this->form_validation->set_rules('max', 'max', 'required');
+                $this->form_validation->set_rules('expiry', 'expiry', 'required');
                 if ($this->form_validation->run()== true) {
                     $promocode=$this->input->post('promocode');
                     $ptype=$this->input->post('ptype');
                     $giftpercent=$this->input->post('giftpercent');
                     $minorder=$this->input->post('minorder');
                     $max=$this->input->post('max');
+                    $expiry=$this->input->post('expiry');
 
 
                     $ip = $this->input->ip_address();
@@ -112,6 +114,7 @@ class Promocode extends CI_finecontrol
 'giftpercent'=>$giftpercent,
 'minorder'=>$minorder,
 'max'=>$max,
+'expiry'=>$expiry,
 
 'ip' =>$ip,
 'added_by' =>$addedby,
@@ -150,10 +153,12 @@ class Promocode extends CI_finecontrol
 'giftpercent'=>$giftpercent,
 'minorder'=>$minorder,
 'max'=>$max,
+'expiry'=>$expiry,
 
 );
                         $this->db->where('id', $idw);
                         $last_id=$this->db->update('tbl_promocode', $data_insert);
+                        // die();
                         if ($last_id!=0) {
                             $this->session->set_flashdata('smessage', 'Promocode updated successfully');
                             redirect("dcadmin/Promocode/view_promocode", "refresh");
@@ -198,7 +203,7 @@ class Promocode extends CI_finecontrol
 
                 if ($zapak!=0) {
                   $this->session->set_flashdata('smessage', 'Promocode status updated successfully');
-                  
+
                     redirect("dcadmin/Promocode/view_promocode", "refresh");
                 } else {
                     $this->session->set_flashdata('emessage', 'Sorry error occured');
@@ -244,6 +249,8 @@ class Promocode extends CI_finecontrol
             if ($this->load->get_var('position')=="Super Admin") {
                 $zapak=$this->db->delete('tbl_promocode', array('id' => $id));
                 if ($zapak!=0) {
+                  $this->session->set_flashdata('smessage', 'Promocode deleted successfully');
+
                     redirect("dcadmin/Promocode/view_promocode", "refresh");
                 } else {
                     $this->session->set_flashdata('emessage', 'Sorry error occured');
