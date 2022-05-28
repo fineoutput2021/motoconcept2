@@ -1053,14 +1053,23 @@ class Apicontroller extends CI_Controller
                             $this->db->from('tbl_cart');
                             $this->db->where('user_id', $user_data->id);
                             $count= $this->db->count_all_results();
+                            $this->db->select('*');
+                            $this->db->from('tbl_wishlist');
+                            $this->db->where('user_id', $user_data->id);
+                            $wishlist_count= $this->db->count_all_results();
 
                             if (empty($count)) {
                                 $count = 0;
                             }
+                            if (empty($wishlist_count)) {
+                                $wishlist_count = 0;
+                            }
+
                             header('Access-Control-Allow-Origin: *');
                             $res = array('message'=>"success",
                             'status'=>200,
-                            'data'=>$count
+                            'data'=>$count,
+                            'wish_data'=>$wishlist_count,
                             );
 
                             echo json_encode($res);
@@ -1102,7 +1111,7 @@ class Apicontroller extends CI_Controller
             }
         } else {
             header('Access-Control-Allow-Origin: *');
-            $res = array('message'=>'No data are available',
+            $res = array('message'=>'No data available',
 'status'=>201
 );
 
@@ -1823,7 +1832,7 @@ class Apicontroller extends CI_Controller
         } else {
             header('Access-Control-Allow-Origin: *');
 
-            $res = array('message'=>'No data are available',
+            $res = array('message'=>'No data available',
 'status'=>201
 );
 
@@ -1924,7 +1933,7 @@ class Apicontroller extends CI_Controller
         } else {
             header('Access-Control-Allow-Origin: *');
 
-            $res = array('message'=>'No data are available',
+            $res = array('message'=>'No data available',
 'status'=>201
 );
 
@@ -2028,7 +2037,7 @@ class Apicontroller extends CI_Controller
         } else {
             header('Access-Control-Allow-Origin: *');
 
-            $res = array('message'=>'No data are available',
+            $res = array('message'=>'No data available',
 'status'=>201
 );
 
@@ -2110,7 +2119,7 @@ class Apicontroller extends CI_Controller
         } else {
             header('Access-Control-Allow-Origin: *');
 
-            $res = array('message'=>'No data are available',
+            $res = array('message'=>'No data available',
 'status'=>201
 );
 
@@ -2199,7 +2208,7 @@ class Apicontroller extends CI_Controller
         } else {
             header('Access-Control-Allow-Origin: *');
 
-            $res = array('message'=>'No data are available',
+            $res = array('message'=>'No data available',
 'status'=>201
 );
 
@@ -2262,7 +2271,7 @@ class Apicontroller extends CI_Controller
         } else {
             header('Access-Control-Allow-Origin: *');
 
-            $res = array('message'=>'No data are available',
+            $res = array('message'=>'No data available',
 'status'=>201
 );
 
@@ -2343,7 +2352,7 @@ class Apicontroller extends CI_Controller
         } else {
             header('Access-Control-Allow-Origin: *');
 
-            $res = array('message'=>'No data are available',
+            $res = array('message'=>'No data available',
 'status'=>201
 );
 
@@ -2621,7 +2630,7 @@ if (!empty($store_id)) {
         } else {
             header('Access-Control-Allow-Origin: *');
 
-            $res = array('message'=>'No data are available',
+            $res = array('message'=>'No data available',
 'status'=>201
 );
 
@@ -2919,7 +2928,7 @@ if (!empty($store_id)) {
             }
         } else {
             header('Access-Control-Allow-Origin: *');
-            $res = array('message'=>'No data are available',
+            $res = array('message'=>'No data available',
 'status'=>201
 );
 
@@ -3033,7 +3042,7 @@ if (!empty($store_id)) {
         } else {
             header('Access-Control-Allow-Origin: *');
 
-            $res = array('message'=>'No data are available',
+            $res = array('message'=>'No data available',
 'status'=>201
 );
 
@@ -3152,7 +3161,7 @@ if (!empty($store_id)) {
         } else {
             header('Access-Control-Allow-Origin: *');
 
-            $res = array('message'=>'No data are available',
+            $res = array('message'=>'No data available',
 'status'=>201
 );
 
