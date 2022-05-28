@@ -3058,42 +3058,44 @@ if (!empty($store_id)) {
         $this->load->library('form_validation');
         $this->load->helper('security');
         if ($this->input->post()) {
-            $this->form_validation->set_rules('type', 'type', 'xss_clean|trim');
-            $this->form_validation->set_rules('wattage', 'wattage', 'xss_clean|trim');
-            $this->form_validation->set_rules('size', 'size', 'xss_clean|trim');
-            $this->form_validation->set_rules('filter_product', 'filter_product', 'xss_clean|trim');
-            $this->form_validation->set_rules('color', 'color', 'xss_clean|trim');
+            $this->form_validation->set_rules('type_id', 'type_id', 'xss_clean|trim');
+            $this->form_validation->set_rules('wattage_id', 'wattage_id', 'xss_clean|trim');
+            $this->form_validation->set_rules('size_id', 'size_id', 'xss_clean|trim');
+            $this->form_validation->set_rules('filter_product_id', 'filter_product_id', 'xss_clean|trim');
+            $this->form_validation->set_rules('color_id', 'color_id', 'xss_clean|trim');
             $this->form_validation->set_rules('model', 'model', 'xss_clean|trim');
             $this->form_validation->set_rules('subcategory_id', 'subcategory_id', 'xss_clean|trim');
 
 
 
             if ($this->form_validation->run()== true) {
-                $type=$this->input->post('type');
-                $wattage=$this->input->post('wattage');
-                $size=$this->input->post('size');
-                $filter_product=$this->input->post('filter_product');
-                $color=$this->input->post('color');
+                $type_id=$this->input->post('type_id');
+                $wattage_id=$this->input->post('wattage_id');
+                $size_id=$this->input->post('size_id');
+                $filter_product_id=$this->input->post('filter_product_id');
+                $color_id=$this->input->post('color_id');
                 $model=$this->input->post('model');
                 $subcategory_id=$this->input->post('subcategory_id');
 
 
-                $type_info = explode(',', $type);
-                $wattage_info = explode(',', $wattage);
-                $size_info = explode(',', $size);
-                $filter_product_info = explode(',', $filter_product);
-                $color_info = explode(',', $color);
+                $type_info = explode(',', $type_id);
+                $wattage_info = explode(',', $wattage_id);
+                $size_info = explode(',', $size_id);
+                $filter_product_info = explode(',', $filter_product_id);
+                $color_info = explode(',', $color_id);
                 $model_info = explode(',', $model);
 
 
                 $this->db->select('*');
                 $this->db->from('tbl_products');
+                // print_r($type_info);die();
 
                 if (!empty($type_info[0])) {
                     foreach ($type_info as $data0) {
-                        $this->db->or_where('type', $data0, null, false);
+                      $this->db->or_where('type', $data0, null, false);
                     }
                 }
+                // die();
                 if (!empty($wattage_info[0])) {
                     foreach ($wattage_info as $data) {
                         $this->db->or_where('wattage', $data, null, false);
@@ -3122,6 +3124,7 @@ if (!empty($store_id)) {
                 if (!empty($subcategory_id)) {
                     $this->db->where('subcategory_id', $subcategory_id, null, false);
                 }
+
 
 
                 $filter_data= $this->db->get();
