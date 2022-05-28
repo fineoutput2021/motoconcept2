@@ -40,7 +40,7 @@
                       <th>Link1</th>
                       <th>Image2</th>
                       <th>Link2</th>
-                      <th>Status</th>
+                      <!-- <th>Status</th> -->
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -75,7 +75,7 @@
 
 
 
-                      <td><?php if ($data->is_active==1) { ?>
+                      <!-- <td><?php if ($data->is_active==1) { ?>
                         <p class="label bg-green">Active</p>
 
                         <?php } else { ?>
@@ -83,7 +83,7 @@
 
 
                         <?php } ?>
-                      </td>
+                      </td> -->
                       <td>
                         <div class="btn-group" id="btns<?php echo $i ?>">
                           <div class="btn-group">

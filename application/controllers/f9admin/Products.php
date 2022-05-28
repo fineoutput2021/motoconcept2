@@ -298,7 +298,7 @@
                            $size=$this->input->post('size');
                            $filter_product=$this->input->post('filter_product');
                            $color=$this->input->post('color');
-                           // echo $category_id;die();
+                           // echo base64_encode($category_id);die();
 
 
                            if ($feature_product == 'yes') {
@@ -432,7 +432,7 @@
                            $this->upload_config = array(
                              'upload_path'   => $image_upload_folder,
                              'file_name' => $new_file_name4,
-                             'allowed_types' =>'jpg|jpeg|png',
+                             'allowed_types' =>'mp4|MOV|WMV|FLV|AVI|WebM|MKV',
                              'max_size'      => 25000
                      );
                            $this->upload->initialize($this->upload_config);
@@ -503,7 +503,6 @@
                                    $this->session->set_flashdata('emessage', 'Sorry error occured');
                                    redirect($_SERVER['HTTP_REFERER']);
                                }
-
                            }
                            if ($typ==2) {
                                $idw=base64_decode($iw);
@@ -671,7 +670,7 @@
                        $da=$dsa->row();
                        // $img=$da->image;
                        $zapak1=$this->db->delete('tbl_cart', array('product_id' => $id));
-                       $zapak1=$this->db->delete('tbl_wishlist', array('product_id' => $id));                       
+                       $zapak1=$this->db->delete('tbl_wishlist', array('product_id' => $id));
                        $zapak=$this->db->delete('tbl_products', array('id' => $id));
                        if ($zapak!=0) {
                            // $path = FCPATH .$img;
