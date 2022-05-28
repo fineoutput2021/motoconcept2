@@ -141,7 +141,7 @@ class Apicontroller extends CI_Controller
 'product_name'=>$data->productname,
 'description'=> $data->productdescription,
 'mrp'=> $data->mrp,
-'price'=>$data->sellingpricegst,
+'price'=>$data->sellingprice,
 'image'=>base_url().$data->image,
 
 );
@@ -205,7 +205,7 @@ class Apicontroller extends CI_Controller
 'product_name'=>$data->productname,
 'description'=> $data->productdescription,
 'mrp'=> $data->mrp,
-'price'=>$data->sellingpricegst,
+'price'=>$data->sellingprice,
 'image'=>base_url().$data->image,
 // 'image1'=>$data->image1
 
@@ -278,7 +278,7 @@ class Apicontroller extends CI_Controller
 'product_name'=>$data->productname,
 'description'=> $data->productdescription,
 'mrp'=> $data->mrp,
-'price'=>$data->sellingpricegst,
+'price'=>$data->sellingprice,
 'image'=>base_url().$data->image,
 
 );
@@ -325,7 +325,7 @@ class Apicontroller extends CI_Controller
 'productimage3'=> base_url().$productsdata->image2,
 'productimage4'=> base_url().$productsdata->image3,
 'mrp'=> $productsdata->mrp,
-'price'=> $productsdata->sellingpricegst,
+'price'=> $productsdata->sellingprice,
 'productdescription'=> $productsdata->productdescription,
 'modelno'=> $productsdata->modelno,
 'stock'=> $stock,
@@ -746,8 +746,8 @@ class Apicontroller extends CI_Controller
 'product_name'=>$product_data->productname,
 'product_image'=>base_url().$product_data->image,
 'quantity'=>$data->quantity,
-'price'=>$product_data->sellingpricegst,
-'total='=>$total = $product_data->sellingpricegst * $data->quantity,
+'price'=>$product_data->sellingprice,
+'total='=>$total = $product_data->sellingprice * $data->quantity,
 
 );
                                     $sub_total= $sub_total + $total;
@@ -818,8 +818,8 @@ class Apicontroller extends CI_Controller
 'product_name'=>$product_data->productname,
 'product_image'=>base_url().$product_data->image,
 'quantity'=>$data->quantity,
-'price'=>$product_data->sellingpricegst,
-'total='=>$total = $product_data->sellingpricegst * $data->quantity
+'price'=>$product_data->sellingprice,
+'total='=>$total = $product_data->sellingprice * $data->quantity
 
 );
                             $sub_total= $sub_total + $total;
@@ -1294,7 +1294,7 @@ class Apicontroller extends CI_Controller
 'productimage2'=> base_url().$limit->image2,
 'productimage3'=> base_url().$limit->image3,
 'mrp'=> $limit->mrp,
-'price'=>$limit->sellingpricegst,
+'price'=>$limit->sellingprice,
 'productdescription'=> $limit->productdescription,
 // 'inventory'=> $data->inventory
 );
@@ -1410,7 +1410,7 @@ class Apicontroller extends CI_Controller
 'productimage'=>base_url().$data->image,
 'productdescription'=>$data->productdescription,
 'mrp'=>$data->mrp,
-'price'=>$data->sellingpricegst,
+'price'=>$data->sellingprice,
 );
         }
         header('Access-Control-Allow-Origin: *');
@@ -1434,7 +1434,6 @@ class Apicontroller extends CI_Controller
             $this->form_validation->set_rules('phone', 'phone', 'required|xss_clean|trim');
             $this->form_validation->set_rules('authentication', 'authentication', 'required|xss_clean|trim');
             $this->form_validation->set_rules('token_id', 'token_id', 'required|xss_clean|trim');
-            $this->form_validation->set_rules('promocode', 'promocode', 'xss_clean|trim');
 
 
             if ($this->form_validation->run()== true) {
@@ -1469,7 +1468,7 @@ class Apicontroller extends CI_Controller
                                 $product_data= $this->db->get()->row();
 
                                 if (!empty($product_data)) {
-                                    $total = $product_data->sellingpricegst * $data->quantity;
+                                    $total = $product_data->sellingprice * $data->quantity;
 
                                     $sub_total = $sub_total + $total;
                                 } else {
@@ -1519,7 +1518,7 @@ class Apicontroller extends CI_Controller
 
                                             if (!empty($product_data1)) {
                                                 if ($inventory_data->inventory >= $data1->quantity) {
-                                                    $total2 = $product_data1->sellingpricegst * $data1->quantity ;
+                                                    $total2 = $product_data1->sellingprice * $data1->quantity ;
                                                     $order2_insert = array('main_id'=>$last_id,
 'product_id'=>$data1->product_id,
 'quantity'=>$data1->quantity,
@@ -1692,15 +1691,50 @@ class Apicontroller extends CI_Controller
 
                             $final_amount = 0;
                             $promocode_id = $promocode_data->id;
-                            if ($promocode_data->ptype==1) {
-                                $this->db->select('*');
-                                $this->db->from('tbl_order1');
-                                $this->db->where('user_id', $user_data->id);
-                                $this->db->where('promocode_id', $promocode_data->id);
-                                $dsa= $this->db->get();
-                                $promo_check=$dsa->row();
+                            date_default_timezone_set("Asia/Calcutta");
+                            $cur_date=date("Y-m-d H:i:s");
+                            if (strtotime($cur_date) < strtotime($promocode_data->expiry)) {
+                                if ($promocode_data->ptype==1) {
+                                    $this->db->select('*');
+                                    $this->db->from('tbl_order1');
+                                    $this->db->where('user_id', $user_data->id);
+                                    $this->db->where('promocode_id', $promocode_data->id);
+                                    $dsa= $this->db->get();
+                                    $promo_check=$dsa->row();
 
-                                if (empty($promo_check)) {
+                                    if (empty($promo_check)) {
+                                        if ($order_data->total_amount > $promocode_data->minorder) { //----checking minorder for promocode
+                                            // echo "hii";
+
+                                            $discount_amt = $order_data->total_amount * $promocode_data->giftpercent/100;
+                                            if ($discount_amt > $promocode_data->max) {
+                                                // will get max amount
+                                                $discount =  $promocode_data->max;
+                                            } else {
+                                                $discount =  $discount_amt;
+                                            }
+                                        }//endif of minorder
+                                        else {
+                                            header('Access-Control-Allow-Origin: *');
+                                            $res = array('message'=>'Please add more products for promocode',
+'status'=>201
+);
+
+                                            echo json_encode($res);
+                                            exit;
+                                        }
+                                    } else {
+                                        header('Access-Control-Allow-Origin: *');
+                                        $res = array('message'=>'Promocode already used',
+'status'=>201
+);
+
+                                        echo json_encode($res);
+                                        exit;
+                                    }
+                                }
+                                //-----every time promocode---
+                                else {
                                     if ($order_data->total_amount > $promocode_data->minorder) { //----checking minorder for promocode
                                         // echo "hii";
 
@@ -1721,38 +1755,15 @@ class Apicontroller extends CI_Controller
                                         echo json_encode($res);
                                         exit;
                                     }
-                                } else {
-                                    header('Access-Control-Allow-Origin: *');
-                                    $res = array('message'=>'Promocode already used',
+                                }
+                            } else {
+                                header('Access-Control-Allow-Origin: *');
+                                $res = array('message'=>'Promocode expired',
 'status'=>201
 );
 
-                                    echo json_encode($res);
-                                    exit;
-                                }
-                            }
-                            //-----every time promocode---
-                            else {
-                                if ($order_data->total_amount > $promocode_data->minorder) { //----checking minorder for promocode
-                                    // echo "hii";
-
-                                    $discount_amt = $order_data->total_amount * $promocode_data->giftpercent/100;
-                                    if ($discount_amt > $promocode_data->max) {
-                                        // will get max amount
-                                        $discount =  $promocode_data->max;
-                                    } else {
-                                        $discount =  $discount_amt;
-                                    }
-                                }//endif of minorder
-                                else {
-                                    header('Access-Control-Allow-Origin: *');
-                                    $res = array('message'=>'Please add more products for promocode',
-'status'=>201
-);
-
-                                    echo json_encode($res);
-                                    exit;
-                                }
+                                echo json_encode($res);
+                                exit;
                             }
 
 
@@ -2171,7 +2182,7 @@ class Apicontroller extends CI_Controller
 'product_name'=>$product_data->productname,
 'product_image'=>base_url().$product_data->image1,
 'product_mrp'=>$product_data->mrp,
-'product_selling_price'=>$product_data->sellingpricegst,
+'product_selling_price'=>$product_data->sellingprice,
 );
                         }
                         header('Access-Control-Allow-Origin: *');
@@ -2248,7 +2259,7 @@ class Apicontroller extends CI_Controller
 'produt_image'=>base_url().$data->image,
 'productdescription'=>$data->productdescription,
 'product_mrp'=>$data->mrp,
-'product_selling_price'=>$data->sellingpricegst,
+'product_selling_price'=>$data->sellingprice,
 
 
 
@@ -3092,7 +3103,7 @@ if (!empty($store_id)) {
 
                 if (!empty($type_info[0])) {
                     foreach ($type_info as $data0) {
-                      $this->db->or_where('type', $data0, null, false);
+                        $this->db->or_where('type', $data0, null, false);
                     }
                 }
                 // die();
@@ -3139,7 +3150,7 @@ if (!empty($store_id)) {
 'product_image'=>base_url().$data->image,
 'productdescription'=>$data->productdescription,
 'MRP'=>$data->mrp,
-'price'=>$data->sellingpricegst,
+'price'=>$data->sellingprice,
 );
                         }
                     }
@@ -3507,7 +3518,7 @@ if (!empty($store_id)) {
 'product_name'=>$data->productname,
 'description'=> $data->productdescription,
 'mrp'=> $data->mrp,
-'price'=>$data->sellingpricegst,
+'price'=>$data->sellingprice,
 'image'=>base_url().$data->image,
 );
         }

@@ -1,11 +1,11 @@
 <div class="content-wrapper">
         <section class="content-header">
            <h1>
-          Add New stock
+          Add New Four Images
           </h1>
           <ol class="breadcrumb">
            <li><a href="<?php echo base_url() ?>dcadmin/Home"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li><a href="<?php echo base_url() ?>dcadmin/Stock/view_stock"><i class="fa fa-dashboard"></i> View stock </a></li>
+            <li><a href="<?php echo base_url() ?>dcadmin/Stock/view_stock"><i class="fa fa-dashboard"></i> View Four Images </a></li>
 
           </ol>
         </section>
@@ -15,7 +15,7 @@
 
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Add New stock</h3>
+                                <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Add New Four Images</h3>
                             </div>
 
                             			  <? if(!empty($this->session->flashdata('smessage'))){ ?>
