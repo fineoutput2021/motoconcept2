@@ -2750,136 +2750,73 @@ class Apicontroller extends CI_Controller
         $this->load->library('form_validation');
         $this->load->helper('security');
         if ($this->input->post()) {
-            $headers = apache_request_headers();
-            $phone=$headers['Phone'];
-            $authentication=$headers['Authentication'];
-            $token_id=$headers['Tokenid'];
-
-            $this->form_validation->set_rules('brand_id', 'brand_id', 'xss_clean|trim');
-            $this->form_validation->set_rules('resolution_id', 'resolution_id', 'xss_clean|trim');
-            $this->form_validation->set_rules('irdistance_id', 'irdistance_id', 'xss_clean|trim');
-            $this->form_validation->set_rules('cameratype_id', 'cameratype_id', 'xss_clean|trim');
-            $this->form_validation->set_rules('bodymaterial_id', 'bodymaterial_id', 'xss_clean|trim');
-            $this->form_validation->set_rules('videochannel_id', 'videochannel_id', 'xss_clean|trim');
-            $this->form_validation->set_rules('poeports_id', 'poeports_id', 'xss_clean|trim');
-            $this->form_validation->set_rules('poetype_id', 'poetype_id', 'xss_clean|trim');
-            $this->form_validation->set_rules('sataports_id', 'sataports_id', 'xss_clean|trim');
-            $this->form_validation->set_rules('length_id', 'length_id', 'xss_clean|trim');
-            $this->form_validation->set_rules('screensize_id', 'screensize_id', 'xss_clean|trim');
-            $this->form_validation->set_rules('ledtype_id', 'ledtype_id', 'xss_clean|trim');
+            $this->form_validation->set_rules('type_id', 'type_id', 'xss_clean|trim');
+            $this->form_validation->set_rules('wattage_id', 'wattage_id', 'xss_clean|trim');
             $this->form_validation->set_rules('size_id', 'size_id', 'xss_clean|trim');
-            $this->form_validation->set_rules('lens_id', 'lens_id', 'xss_clean|trim');
+            $this->form_validation->set_rules('filter_product_id', 'filter_product_id', 'xss_clean|trim');
+            $this->form_validation->set_rules('color_id', 'color_id', 'xss_clean|trim');
+            $this->form_validation->set_rules('model', 'model', 'xss_clean|trim');
+            $this->form_validation->set_rules('subcategory_id', 'subcategory_id', 'xss_clean|trim');
 
 
 
             if ($this->form_validation->run()== true) {
-                $brand_id=$this->input->post('brand_id');
-                $resolution_id=$this->input->post('resolution_id');
-                $irdistance_id=$this->input->post('irdistance_id');
-                $cameratype_id=$this->input->post('cameratype_id');
-                $bodymaterial_id=$this->input->post('bodymaterial_id');
-                $videochannel_id=$this->input->post('videochannel_id');
-                $poeports_id=$this->input->post('poeports_id');
-                $poetype_id=$this->input->post('poetype_id');
-
-                $sataports_id=$this->input->post('sataports_id');
-                $length_id=$this->input->post('length_id');
-                $screensize_id=$this->input->post('screensize_id');
-                $ledtype_id=$this->input->post('ledtype_id');
+                $type_id=$this->input->post('type_id');
+                $wattage_id=$this->input->post('wattage_id');
                 $size_id=$this->input->post('size_id');
-                $lens_id=$this->input->post('lens_id');
+                $filter_product_id=$this->input->post('filter_product_id');
+                $color_id=$this->input->post('color_id');
+                $model=$this->input->post('model');
+                $subcategory_id=$this->input->post('subcategory_id');
 
 
-                $brand_info = explode(',', $brand_id);
-                $resolution_info = explode(',', $resolution_id);
-                $irdistance_info = explode(',', $irdistance_id);
-                $cameratype_info = explode(',', $cameratype_id);
-                $bodymaterial_info = explode(',', $bodymaterial_id);
-                $videochannel_info = explode(',', $videochannel_id);
-                $poeports_info = explode(',', $poeports_id);
-                $poetype_info = explode(',', $poetype_id);
-                $sataports_info = explode(',', $sataports_id);
-                $length_info = explode(',', $length_id);
-                $screensize_info = explode(',', $screensize_id);
-                $ledtype_info = explode(',', $ledtype_id);
+                $type_info = explode(',', $type_id);
+                $wattage_info = explode(',', $wattage_id);
                 $size_info = explode(',', $size_id);
-                $lens_info = explode(',', $lens_id);
-
+                $filter_product_info = explode(',', $filter_product_id);
+                $color_info = explode(',', $color_id);
+                $model_info = explode(',', $model);
 
 
                 $this->db->select('*');
                 $this->db->from('tbl_products');
+                // print_r($type_info);die();
 
-                if (!empty($brand_info[0])) {
-                    foreach ($brand_info as $data0) {
-                        $this->db->or_where('brand', $data0, null, false);
+                if (!empty($type_info[0])) {
+                    foreach ($type_info as $data0) {
+                        $this->db->or_where('type', $data0, null, false);
                     }
                 }
-                if (!empty($resolution_info[0])) {
-                    foreach ($resolution_info as $data) {
-                        $this->db->or_where('resolution', $data, null, false);
-                    }
-                }
-                if (!empty($irdistance_info[0])) {
-                    foreach ($irdistance_info as $data1) {
-                        $this->db->or_where('irdistance', $data1, null, false);
-                    }
-                }
-                if (!empty($cameratype_info[0])) {
-                    foreach ($cameratype_info as $data2) {
-                        $this->db->or_where('cameratype', $data2, null, false);
-                    }
-                }
-                if (!empty($bodymaterial_info[0])) {
-                    foreach ($bodymaterial_info as $data3) {
-                        $this->db->or_where('bodymaterial', $data3, null, false);
-                    }
-                }
-                if (!empty($videochannel_info[0])) {
-                    foreach ($videochannel_info as $data4) {
-                        $this->db->or_where('videochannel', $data4, null, false);
-                    }
-                }
-                if (!empty($poeports_info[0])) {
-                    foreach ($poeports_info as $data5) {
-                        $this->db->or_where('poeports', $data5, null, false);
-                    }
-                }
-                if (!empty($poetype_info[0])) {
-                    foreach ($poetype_info as $data6) {
-                        $this->db->or_where('poetype', $data6, null, false);
-                    }
-                }
-                if (!empty($sataports_info[0])) {
-                    foreach ($sataports_info as $data7) {
-                        $this->db->or_where('sataports', $data7, null, false);
-                    }
-                }
-                if (!empty($length_info[0])) {
-                    foreach ($length_info as $data8) {
-                        $this->db->or_where('length', $data8, null, false);
-                    }
-                }
-                if (!empty($screensize_info[0])) {
-                    foreach ($screensize_info as $data9) {
-                        $this->db->or_where('screensize', $data9, null, false);
-                    }
-                }
-                if (!empty($ledtype_info[0])) {
-                    foreach ($ledtype_info as $data10) {
-                        $this->db->or_where('ledtype', $data10, null, false);
+                // die();
+                if (!empty($wattage_info[0])) {
+                    foreach ($wattage_info as $data) {
+                        $this->db->or_where('wattage', $data, null, false);
                     }
                 }
                 if (!empty($size_info[0])) {
-                    foreach ($size_info as $data11) {
-                        $this->db->or_where('size', $data11, null, false);
+                    foreach ($size_info as $data1) {
+                        $this->db->or_where('size', $data1, null, false);
                     }
                 }
-                if (!empty($lens_info[0])) {
-                    foreach ($lens_info as $data12) {
-                        $this->db->or_where('lens', $data12, null, false);
+                if (!empty($filter_product_info[0])) {
+                    foreach ($filter_product_info as $data2) {
+                        $this->db->or_where('filter_product', $data2, null, false);
                     }
                 }
+                if (!empty($color_info[0])) {
+                    foreach ($color_info as $data3) {
+                        $this->db->or_where('color', $data3, null, false);
+                    }
+                }
+                if (!empty($model_info[0])) {
+                    foreach ($model_info as $data4) {
+                        $this->db->or_where('car_model_id', $data4, null, false);
+                    }
+                }
+                if (!empty($subcategory_id)) {
+                    $this->db->where('subcategory_id', $subcategory_id, null, false);
+                }
+
 
 
                 $filter_data= $this->db->get();
@@ -2889,41 +2826,37 @@ class Apicontroller extends CI_Controller
                     foreach ($filter_data->result() as $data) {
                         if ($data->is_active==1) {
                             $filter_info[] = array(
-'product_id'=>$data->id,
-'product_name'=>$data->productname,
-'image'=>base_url().$data->image,
-'productdescription'=>$data->productdescription,
-'price'=>$data->sellingpricegst,
-
-
-);
+  'product_id'=>$data->id,
+  'product_name'=>$data->productname,
+  'product_image'=>base_url().$data->image,
+  'productdescription'=>$data->productdescription,
+  'MRP'=>$data->mrp,
+  'price'=>$data->sellingprice,
+  );
                         }
                     }
                 }
 
-                header('Access-Control-Allow-Origin: *');
 
                 $res = array('message'=>'success',
-'status'=>200,
-'data'=>$filter_info,
-);
+  'status'=>200,
+  'data'=>$filter_info,
+  );
 
                 echo json_encode($res);
             } else {
-                header('Access-Control-Allow-Origin: *');
 
                 $res = array('message'=>validation_errors(),
-              'status'=>201
-              );
+  'status'=>201
+  );
 
                 echo json_encode($res);
             }
         } else {
-            header('Access-Control-Allow-Origin: *');
 
-            $res = array('message'=>'No data are available',
-              'status'=>201
-              );
+            $res = array('message'=>'No data available',
+  'status'=>201
+  );
 
             echo json_encode($res);
         }
