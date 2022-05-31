@@ -97,10 +97,10 @@
                     </tr>
                     <!-- <tr> -->
                     <tr>
-                      <td> <strong>Selling Price(without Gst%)</strong> <span style="color:red;">*</span></strong> </td>
+                      <td> <strong>Selling Price</strong> <span style="color:red;">*</span></strong> </td>
                       <td> <input type="number" name="sellingprice" required class="form-control" id="sellingprice" placeholder="" value="" /> </td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                       <td> <strong>Gst %</strong> <span style="color:red;">*</span></strong> </td>
                       <td> <input type="number" name="gst" id="gst" required class="form-control" placeholder="" value="" /> </td>
                     </tr>
@@ -111,7 +111,7 @@
                     <tr>
                       <td> <strong>Selling price</strong> <span style="color:red;">*</span></strong> </td>
                       <td> <input type="number" name="sp" id="sp" class="form-control" placeholder="" required value="" /> </td>
-                    </tr>
+                    </tr> -->
                     <tr>
                       <td> <strong>Product Description</strong> </td>
                       <td> <textarea name="productdescription" id="editor1" rows="3" cols="80"></textarea> </td>

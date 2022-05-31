@@ -255,9 +255,9 @@
                        $this->form_validation->set_rules('car_model_id', 'car_model_id', 'trim');
                        $this->form_validation->set_rules('mrp', 'mrp', 'trim|integer');
                        $this->form_validation->set_rules('sellingprice', 'sellingprice', 'trim');
-                       $this->form_validation->set_rules('gst', 'gst', 'trim');
-                       $this->form_validation->set_rules('gstprice', 'gstprice', 'trim');
-                       $this->form_validation->set_rules('sp', 'sp', 'required|trim');
+                       // $this->form_validation->set_rules('gst', 'gst', 'trim');
+                       // $this->form_validation->set_rules('gstprice', 'gstprice', 'trim');
+                       // $this->form_validation->set_rules('sp', 'sp', 'required|trim');
 
                        $this->form_validation->set_rules('productdescription', 'productdescription', 'required|trim');
                        $this->form_validation->set_rules('modelno', 'modelno', 'required|trim');
@@ -283,9 +283,9 @@
                            $car_model_id=$this->input->post('car_model_id');
                            $mrp=$this->input->post('mrp');
                            $sellingprice=$this->input->post('sellingprice');
-                           $gst=$this->input->post('gst');
-                           $gstprice=$this->input->post('gstprice');
-                           $sp=$this->input->post('sp');
+                           // $gst=$this->input->post('gst');
+                           // $gstprice=$this->input->post('gstprice');
+                           // $sp=$this->input->post('sp');
                            $productdescription=$this->input->post('productdescription');
                            $inventory=$this->input->post('inventory');
                            $modelno=$this->input->post('modelno');
@@ -472,9 +472,9 @@
   'image3'=>$nnnn5,
   'mrp'=>$mrp,
   'sellingprice'=>$sellingprice,
-  'gstrate'=>$gst,
-  'gstprice'=>$gstprice,
-  'sellingpricegst'=>$sp,
+  // 'gstrate'=>$gst,
+  // 'gstprice'=>$gstprice,
+  // 'sellingpricegst'=>$sp,
   'inventory'=>$inventory,
   'productdescription'=>$productdescription,
   'modelno'=>$modelno,
@@ -556,9 +556,9 @@
                           'image3'=>$n4,
                           'mrp'=>$mrp,
                           'sellingprice'=>$sellingprice,
-                          'gstrate'=>$gst,
-                          'gstprice'=>$gstprice,
-                          'sellingpricegst'=>$sp,
+                          // 'gstrate'=>$gst,
+                          // 'gstprice'=>$gstprice,
+                          // 'sellingpricegst'=>$sp,
                           'inventory'=>$inventory,
                           'productdescription'=>$productdescription,
                           'modelno'=>$modelno,
