@@ -31,7 +31,6 @@ class Apicontroller extends CI_Controller
         $slider=[];
         foreach ($sliderdata->result() as $data) {
             $slider[] = array(
-    'name'=> $data->title,
     'image'=> base_url().$data->image
 );
         }
@@ -1334,12 +1333,12 @@ class Apicontroller extends CI_Controller
 'product_id'=>$limit->id,
 'productname'=> $limit->productname,
 'productimage'=> base_url().$limit->image,
-'productimage1'=> base_url().$limit->image1,
-'productimage2'=> base_url().$limit->image2,
-'productimage3'=> base_url().$limit->image3,
+// 'productimage1'=> base_url().$limit->image1,
+// 'productimage2'=> base_url().$limit->image2,
+// 'productimage3'=> base_url().$limit->image3,
 'mrp'=> $limit->mrp,
 'price'=>$limit->sellingprice,
-'productdescription'=> $limit->productdescription,
+// 'productdescription'=> $limit->productdescription,
 
 // 'colours'=> $limit->colours,
 // 'inventory'=> $data->inventory
@@ -1393,7 +1392,7 @@ class Apicontroller extends CI_Controller
             $brands_data[]=array(
 'id'=>$value->id,
 'name'=>$value->name,
-'message'=>$value->message,
+// 'message'=>$value->message,
 'image'=>base_url().$value->image
 
 );
@@ -1444,12 +1443,12 @@ class Apicontroller extends CI_Controller
             'product_id'=>$limit->id,
             'productname'=> $limit->productname,
             'productimage'=> base_url().$limit->image,
-            'productimage1'=> base_url().$limit->image1,
-            'productimage2'=> base_url().$limit->image2,
-            'productimage3'=> base_url().$limit->image3,
+            // 'productimage1'=> base_url().$limit->image1,
+            // 'productimage2'=> base_url().$limit->image2,
+            // 'productimage3'=> base_url().$limit->image3,
             'mrp'=> $limit->mrp,
             'price'=>$limit->sellingprice,
-            'productdescription'=> $limit->productdescription,
+            // 'productdescription'=> $limit->productdescription,
 
             );
         }
