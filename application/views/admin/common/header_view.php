@@ -319,7 +319,7 @@
 
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu custom_header">
-            <li class="header custom_header" style="color: #999;">MAIN NAVIGATION</li>
+              <li class="header custom_header" style="color: #999;">MAIN NAVIGATION</li>
 
 
             <?
