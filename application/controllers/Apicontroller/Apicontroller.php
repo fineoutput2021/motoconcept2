@@ -2522,6 +2522,7 @@ if (!empty($store_id)) {
 'payment_status'=>1,
 'payment_type'=>1,
 'order_status'=>1,
+'from'=>'web'
 );
 } else {
     $data_insert = array(
@@ -2536,6 +2537,7 @@ if (!empty($store_id)) {
 'payment_status'=>1,
 'payment_type'=>1,
 'order_status'=>1,
+'from'=>'web'
 );
 }
 } elseif ($payment_type==2) {         //------------2 for bank transfer------------------------------------
@@ -2547,6 +2549,7 @@ if (!empty($store_id)) {
 'payment_status'=>1,
 'payment_type'=>1,
 'order_status'=>1,
+'from'=>'web'
 );
     } else {
         $data_insert = array(
@@ -2562,6 +2565,7 @@ if (!empty($store_id)) {
 'payment_status'=>1,
 'payment_type'=>2,
 'order_status'=>1,
+'from'=>'web'
 );
     }
 }

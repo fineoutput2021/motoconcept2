@@ -1861,7 +1861,6 @@ class Apicontroller extends CI_Controller
                             echo json_encode($res);
                         }
                     } else {
-                        header('Access-Control-Allow-Origin: *');
                         $res = array('message'=>'user not found',
   'status'=>201
   );
@@ -2595,7 +2594,6 @@ class Apicontroller extends CI_Controller
                 $dsa= $this->db->get();
                 $da=$dsa->row();
                 if (!empty($da)) {
-                    header('Access-Control-Allow-Origin: *');
                     $res = array('message'=>"Already applied",
 'status'=>201
 );
@@ -2926,303 +2924,275 @@ class Apicontroller extends CI_Controller
         $this->load->library('form_validation');
         $this->load->helper('security');
         if ($this->input->post()) {
-            $headers = apache_request_headers();
+            $this->form_validation->set_rules('payment_type', 'payment_type', 'required|xss_clean|trim');
+            if (!empty($this->input->post('store_id'))) {
+                $this->form_validation->set_rules('name', 'name', 'xss_clean|trim');
+                $this->form_validation->set_rules('contact', 'contact', 'xss_clean|trim');
+                // $this->form_validation->set_rules('pincode', 'pincode', 'xss_clean|trim');
+                $this->form_validation->set_rules('state', 'state', 'xss_clean|trim');
+                $this->form_validation->set_rules('city', 'city', 'xss_clean|trim');
+                // $this->form_validation->set_rules('house_no', 'house_no', 'xss_clean|trim');
+                $this->form_validation->set_rules('street_address', 'street_address', 'xss_clean|trim');
+            } else {
+                $this->form_validation->set_rules('name', 'name', 'required|xss_clean|trim');
+                $this->form_validation->set_rules('contact', 'contact', 'required|xss_clean|trim');
+                // $this->form_validation->set_rules('pincode', 'pincode', 'required|xss_clean|trim');
+                $this->form_validation->set_rules('state', 'state', 'required|xss_clean|trim');
+                $this->form_validation->set_rules('city', 'city', 'required|xss_clean|trim');
+                // $this->form_validation->set_rules('house_no', 'house_no', 'required|xss_clean|trim');
+                $this->form_validation->set_rules('street_address', 'street_address', 'required|xss_clean|trim');
+            }
+
+            $this->form_validation->set_rules('phone', 'phone', 'required|xss_clean|trim');
+            $this->form_validation->set_rules('authentication', 'authentication', 'required|xss_clean|trim');
+            $this->form_validation->set_rules('token_id', 'token_id', 'required|xss_clean|trim');
+            $this->form_validation->set_rules('txn_id', 'txn_id', 'required|xss_clean|trim');
+            $this->form_validation->set_rules('store_id', 'store_id', 'xss_clean|trim');
 
 
+            if ($this->form_validation->run()== true) {
+                $phone=$this->input->post('phone');
+                $authentication=$this->input->post('authentication');
+                $token_id=$this->input->post('token_id');
+                $txn_id=$this->input->post('txn_id');
+                $payment_type=$this->input->post('payment_type');
+                $name=$this->input->post('name');
+                $contact=$this->input->post('contact');
+                // $pincode=$this->input->post('pincode');
+                $state=$this->input->post('state');
+                $city=$this->input->post('city');
+                // $house_no=$this->input->post('house_no');
+                $street_address=$this->input->post('street_address');
+                $store_id=$this->input->post('store_id');
 
-            $phone=$headers['Phone'];
-            $authentication=$headers['Authentication'];
-            $token_id=$headers['Tokenid'];
+                $this->load->library('upload');
 
-            if (!empty($phone) && !empty($authentication) && !empty($token_id)) {
-
-
-          //   $this->form_validation->set_rules('phone', 'phone', 'required|xss_clean|trim');
-                //   $this->form_validation->set_rules('authentication', 'authentication', 'required|xss_clean|trim');
-                // $this->form_validation->set_rules('token_id', 'token_id', 'required|xss_clean|trim');
-                if ($this->input->post('payment_type')==1) {
-                    $this->form_validation->set_rules('txn_id', 'txn_id', 'required|xss_clean|trim');
-                    $this->form_validation->set_rules('payment_type', 'payment_type', 'required|xss_clean|trim');
-                    $this->form_validation->set_rules('name', 'name', 'xss_clean|trim');
-                    $this->form_validation->set_rules('contact', 'contact', 'xss_clean|trim');
-                    $this->form_validation->set_rules('pincode', 'pincode', 'xss_clean|trim');
-                    $this->form_validation->set_rules('state', 'state', 'xss_clean|trim');
-                    $this->form_validation->set_rules('city', 'city', 'xss_clean|trim');
-                    $this->form_validation->set_rules('house_no', 'house_no', 'xss_clean|trim');
-                    $this->form_validation->set_rules('street_address', 'street_address', 'xss_clean|trim');
-                    $this->form_validation->set_rules('store_id', 'store_id', 'xss_clean|trim');
-                } else {
-                    $this->form_validation->set_rules('txn_id', 'txn_id', 'required|xss_clean|trim');
-                    $this->form_validation->set_rules('payment_type', 'payment_type', 'required|xss_clean|trim');
-                    $this->form_validation->set_rules('name', 'name', 'required|xss_clean|trim');
-                    $this->form_validation->set_rules('contact', 'contact', 'required|xss_clean|trim');
-                    $this->form_validation->set_rules('pincode', 'pincode', 'required|xss_clean|trim');
-                    $this->form_validation->set_rules('state', 'state', 'required|xss_clean|trim');
-                    $this->form_validation->set_rules('city', 'city', 'required|xss_clean|trim');
-                    $this->form_validation->set_rules('house_no', 'house_no', 'required|xss_clean|trim');
-                    $this->form_validation->set_rules('street_address', 'street_address', 'required|xss_clean|trim');
-                }
-                if ($this->form_validation->run()== true) {
-
-      //       $phone=$this->input->post('phone');
-                    // $authentication=$this->input->post('authentication');
-                    //     $token_id=$this->input->post('token_id');
-                    $txn_id=$this->input->post('txn_id');
-                    $payment_type=$this->input->post('payment_type');
-                    $name=$this->input->post('name');
-                    $contact=$this->input->post('contact');
-                    $pincode=$this->input->post('pincode');
-                    $state=$this->input->post('state');
-                    $city=$this->input->post('city');
-                    $house_no=$this->input->post('house_no');
-                    $street_address=$this->input->post('street_address');
-                    $store_id=$this->input->post('store_id');
-
-                    $this->load->library('upload');
-
+                if (empty($store_id) && $payment_type==2) {
                     $image="";
-                    if ($payment_type == 1) {
-                        $img1='image';
-                        $file_check=($_FILES['image']['error']);
-                        if ($file_check!=4) {
-                            $image_upload_folder = FCPATH . "assets/uploads/bank_receipts/";
-                            if (!file_exists($image_upload_folder)) {
-                                mkdir($image_upload_folder, DIR_WRITE_MODE, true);
-                            }
-                            $new_file_name="bank_receipt".date("Ymdhms");
-                            $this->upload_config = array(
-                                            'upload_path'   => $image_upload_folder,
-                                            'file_name' => $new_file_name,
-                                            'allowed_types' =>'pdf|doc|docx|jpg|jpeg|png',
-                                            'max_size'      => 25000
-                                    );
-                            $this->upload->initialize($this->upload_config);
-                            if (!$this->upload->do_upload($img1)) {
-                                $upload_error = $this->upload->display_errors();
-                                // echo json_encode($upload_error);
-                                echo $upload_error;
-                            } else {
-                                $file_info = $this->upload->data();
-
-                                $videoNAmePath = "assets/uploads/bank_receipts/".$new_file_name.$file_info['file_ext'];
-                                $file_info['new_name']=$videoNAmePath;
-                                // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
-                                $image=$videoNAmePath;
-                                // echo json_encode($file_info);
-                            }
+                    $img1='image';
+                    $file_check=($_FILES['image']['error']);
+                    if ($file_check!=4) {
+                        $image_upload_folder = FCPATH . "assets/uploads/bank_receipts/";
+                        if (!file_exists($image_upload_folder)) {
+                            mkdir($image_upload_folder, DIR_WRITE_MODE, true);
                         }
+                        $new_file_name="bank_receipt".date("Ymdhms");
+                        $this->upload_config = array(
+'upload_path'   => $image_upload_folder,
+'file_name' => $new_file_name,
+'allowed_types' =>'jpg|jpeg|png',
+'max_size'      => 25000
+);
+                        $this->upload->initialize($this->upload_config);
+                        if (!$this->upload->do_upload($img1)) {
+                            $upload_error = $this->upload->display_errors();
+                            $res = array('message'=>$upload_error,
+'status'=>201,
+);
 
+                            echo json_encode($res);
+                            exit;
+                        } else {
+                            $file_info = $this->upload->data();
+
+                            $videoNAmePath = "assets/uploads/bank_receipts/".$new_file_name.$file_info['file_ext'];
+                            $file_info['new_name']=$videoNAmePath;
+                            // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
+                            $image=$videoNAmePath;
+                            // echo json_encode($file_info);
+                        }
+                    }
+                }
+
+
+                $this->db->select('*');
+                $this->db->from('tbl_users');
+                $this->db->where('phone', $phone);
+                $user_data= $this->db->get()->row();
+
+                if (!empty($user_data)) {
+                    if ($user_data->authentication==$authentication) {
                         $this->db->select('*');
-                        $this->db->from('tbl_users');
-                        $this->db->where('phone', $phone);
-                        $user_data= $this->db->get()->row();
+                        $this->db->from('tbl_order1');
+                        $this->db->where('txnid', $txn_id);
+                        $order1_data= $this->db->get()->row();
 
-                        if (!empty($user_data)) {
-                            if ($user_data->authentication==$authentication) {
-                                $this->db->select('*');
-                                $this->db->from('tbl_order1');
-                                $this->db->where('txnid', $txn_id);
-                                $order1_data= $this->db->get()->row();
+                        if (!empty($order1_data)) {
+                            $this->db->select('*');
+                            $this->db->from('tbl_order2');
+                            $this->db->where('main_id', $order1_data->id);
+                            $order2_data= $this->db->get();
+                            $order2_check= $order2_data->row();
 
-                                if (!empty($order1_data)) {
-                                    $this->db->select('*');
-                                    $this->db->from('tbl_order2');
-                                    $this->db->where('main_id', $order1_data->id);
-                                    $order2_data= $this->db->get();
-                                    $order2_check= $order2_data->row();
-
-                                    if (!empty($order2_check)) {
+                            if (!empty($order2_check)) {
 
 
 //----------------inventory check---------
-                                        foreach ($order2_data->result() as $data) {
-                                            $this->db->select('*');
-                                            $this->db->from('tbl_products');
-                                            $this->db->where('id', $data->product_id);
-                                            $product_data= $this->db->get()->row();
-                                        }//end of foreach
-                                    }//end of order2
-                                    $total = $order1_data->total_amount;
-                                    $discount = $order1_data->discount;
-
-                                    if (empty($discount)) {
-                                        $discount=0;
-                                    }
-                                    $final_amount = $total - $discount;
-
-                                    //----------order1 entry-------
-
-                                    $data_insert = array('payment_type'=>$payment_type,
-          'name'=>$name,
-          'phone'=>$contact,
-          'pincode'=>$pincode,
-          'state'=>$state,
-          'city'=>$city,
-          'house_no'=>$house_no,
-          'street_address'=>$street_address,
-          'final_amount'=>$final_amount,
-          'bank_receipt'=>$image,
-          'store_id'=>$store_id,
-          'payment_status'=>1,
-          'order_status'=>1,
-          );
-
-                                    $this->db->where('txnid', $txn_id);
-                                    $last_id=$this->db->update('tbl_order1', $data_insert);
-
-                                    //------------cart clear--------------
+                                foreach ($order2_data->result() as $data) {
                                     $this->db->select('*');
-                                    $this->db->from('tbl_cart');
-                                    $this->db->where('user_id', $user_data->id);
-                                    $cart_data= $this->db->get();
-                                    $cart_check= $cart_data->row();
+                                    $this->db->from('tbl_products');
+                                    $this->db->where('is_active', 1);
+                                    $this->db->where('id', $data->product_id);
+                                    $product_data= $this->db->get()->row();
 
-                                    if (!empty($cart_check)) {
-                                        foreach ($cart_data->result() as $cart) {
-                                            $zapak=$this->db->delete('tbl_cart', array('id' => $cart->id));
-                                        }
+
+
+                                    if ($product_data->inventory >= $data->quantity) {
+                                    } else {
+                                        $res = array('message'=>$product_data->productname.'is out of stock! Please remove this before checkout',
+'status'=>201
+);
+
+                                        echo json_encode($res);
+                                        exit;
                                     }
-                                }// end of order1
+                                }//end of foreach
+                            }//end of order2
+$total = $order1_data->total_amount;
+                            $discount = $order1_data->discount;
 
-                                $res = array('message'=>'success',
+                            if (empty($discount)) {
+                                $discount=0;
+                            }
+                            $final_amount = $total - $discount;
+
+                            //----------order1 entry-------
+if ($payment_type==1) {         //------------1 for COD------------------------------------
+if (!empty($store_id)) {
+    $data_insert = array(
+'final_amount'=>$final_amount,
+'store_id'=>$store_id,
+'payment_status'=>1,
+'payment_type'=>1,
+'order_status'=>1,
+'from'=>'app'
+);
+} else {
+    $data_insert = array(
+'name'=>$name,
+'phone'=>$phone,
+// 'pincode'=>$pincode,
+'state'=>$state,
+'city'=>$city,
+// 'house_no'=>$house_no,
+'street_address'=>$street_address,
+'final_amount'=>$final_amount,
+'payment_status'=>1,
+'payment_type'=>1,
+'order_status'=>1,
+'from'=>'app'
+);
+}
+} elseif ($payment_type==2) {         //------------2 for bank transfer------------------------------------
+    if (!empty($store_id)) {
+        $data_insert = array(
+'final_amount'=>$final_amount,
+// 'bank_receipt'=>$image,
+'store_id'=>$store_id,
+'payment_status'=>1,
+'payment_type'=>1,
+'order_status'=>1,
+'from'=>'app'
+);
+    } else {
+        $data_insert = array(
+'name'=>$name,
+'phone'=>$phone,
+// 'pincode'=>$pincode,
+'state'=>$state,
+'city'=>$city,
+// 'house_no'=>$house_no,
+'street_address'=>$street_address,
+'final_amount'=>$final_amount,
+'bank_receipt'=>$image,     //------compulsary
+'payment_status'=>1,
+'payment_type'=>2,
+'order_status'=>1,
+'from'=>'app'
+);
+    }
+}
+                            // echo "-----------".$image; die();
+                            // print_r($data_insert);die();
+                            $this->db->where('txnid', $txn_id);
+                            $last_id=$this->db->update('tbl_order1', $data_insert);
+
+                            //----------------inventory update---------
+
+                            if (!empty($order2_check)) {
+                                foreach ($order2_data->result() as $data1) {
+                                    $this->db->select('*');
+                                    $this->db->from('tbl_products');
+                                    $this->db->where('is_active', 1);
+                                    $this->db->where('id', $data->product_id);
+                                    $product_data= $this->db->get()->row();
+
+
+
+                                    $updated_inventory = $product_data->inventory - $data1->quantity;
+
+
+                                    $data_update = array('inventory'=>$updated_inventory);
+
+                                    $this->db->where('id', $product_data->id);
+                                    $last_id=$this->db->update('tbl_products', $data_update);
+                                }//end of foreach
+                            }//end of order2
+
+//------------cart clear--------------
+                            $this->db->select('*');
+                            $this->db->from('tbl_cart');
+                            $this->db->where('user_id', $user_data->id);
+                            $cart_data= $this->db->get();
+                            $cart_check= $cart_data->row();
+
+                            if (!empty($cart_check)) {
+                                foreach ($cart_data->result() as $cart) {
+                                    $zapak=$this->db->delete('tbl_cart', array('id' => $cart->id));
+                                }
+                            }
+                        }// end of order1
+
+                        $res = array('message'=>'success',
 'status'=>200,
 'order_id'=>$order1_data->id,
 'amount'=>$final_amount,
 );
 
-                                echo json_encode($res);
-                            } else {
-                                $res = array('message'=>'Wrong Authentication',
-              'status'=>201
-              );
-
-                                echo json_encode($res);
-                            }
-                        } else {
-                            $res = array('message'=>'user not found',
-              'status'=>201
-              );
-
-                            echo json_encode($res);
-                        }
+                        echo json_encode($res);
                     } else {
-                        $this->db->select('*');
-                        $this->db->from('tbl_users');
-                        $this->db->where('phone', $phone);
-                        $user_data= $this->db->get()->row();
+                        $res = array('message'=>'Wrong Authentication',
+'status'=>201
+);
 
-                        if (!empty($user_data)) {
-                            if ($user_data->authentication==$authentication) {
-                                $this->db->select('*');
-                                $this->db->from('tbl_order1');
-                                $this->db->where('txnid', $txn_id);
-                                $order1_data= $this->db->get()->row();
-
-                                if (!empty($order1_data)) {
-                                    $this->db->select('*');
-                                    $this->db->from('tbl_order2');
-                                    $this->db->where('main_id', $order1_data->id);
-                                    $order2_data= $this->db->get();
-                                    $order2_check= $order2_data->row();
-
-                                    if (!empty($order2_check)) {
-
-
-  //----------------inventory check---------
-                                        foreach ($order2_data->result() as $data) {
-                                            $this->db->select('*');
-                                            $this->db->from('tbl_products');
-                                            $this->db->where('id', $data->product_id);
-                                            $product_data= $this->db->get()->row();
-                                        }//end of foreach
-                                    }//end of order2
-  $total = $order1_data->total_amount;
-                                    $discount = $order1_data->discount;
-
-                                    if (empty($discount)) {
-                                        $discount=0;
-                                    }
-                                    $final_amount = $total - $discount;
-
-                                    //----------order1 entry-------
-
-                                    $data_insert = array('payment_type'=>$payment_type,
-    'name'=>$name,
-    'phone'=>$contact,
-    'pincode'=>$pincode,
-    'state'=>$state,
-    'city'=>$city,
-    'house_no'=>$house_no,
-    'street_address'=>$street_address,
-    'final_amount'=>$final_amount,
-    'bank_receipt'=>$image,
-    'store_id'=>$store_id,
-    'payment_status'=>1,
-    'order_status'=>1,
-
-    );
-
-                                    $this->db->where('txnid', $txn_id);
-                                    $last_id=$this->db->update('tbl_order1', $data_insert);
-
-                                    //------------cart clear--------------
-                                    $this->db->select('*');
-                                    $this->db->from('tbl_cart');
-                                    $this->db->where('user_id', $user_data->id);
-                                    $cart_data= $this->db->get();
-                                    $cart_check= $cart_data->row();
-
-                                    if (!empty($cart_check)) {
-                                        foreach ($cart_data->result() as $cart) {
-                                            $zapak=$this->db->delete('tbl_cart', array('id' => $cart->id));
-                                        }
-                                    }
-                                }// end of order1
-
-                                $res = array('message'=>'success',
-  'status'=>200,
-  'order_id'=>$order1_data->id,
-  'amount'=>$final_amount,
-  );
-
-                                echo json_encode($res);
-                            } else {
-                                $res = array('message'=>'Wrong Authentication',
-        'status'=>201
-        );
-
-                                echo json_encode($res);
-                            }
-                        } else {
-                            $res = array('message'=>'user not found',
-        'status'=>201
-        );
-
-                            echo json_encode($res);
-                        }
+                        echo json_encode($res);
                     }
                 } else {
-                    $res = array('message'=>validation_errors(),
-              'status'=>201
-              );
+                    $res = array('message'=>'Phone number not found',
+'status'=>201
+);
 
                     echo json_encode($res);
                 }
             } else {
-                $res = array('message'=>"user detail required",
-  'status'=>201
-  );
+
+                $res = array('message'=>validation_errors(),
+'status'=>201
+);
 
                 echo json_encode($res);
             }
         } else {
-            $res = array('message'=>'No data are available',
-              'status'=>201
-              );
+
+            $res = array('message'=>'No data available',
+'status'=>201
+);
 
             echo json_encode($res);
         }
     }
+
+
 
     //----add to wishlist--------
     public function add_to_wishlist()
@@ -3449,7 +3419,6 @@ class Apicontroller extends CI_Controller
   'product_selling_price'=>$product_data->sellingprice,
 );
                     }
-                    header('Access-Control-Allow-Origin: *');
                     $res = array('message'=>'success',
 'status'=>200,
 'data'=>$wishlist_info,
@@ -3766,7 +3735,6 @@ class Apicontroller extends CI_Controller
     'image2'=> base_url().$data->image2,
       );
         }
-        header('Access-Control-Allow-Origin: *');
         $res = array('message'=>"success",
     'status'=>200,
     'data'=>$two_image
