@@ -286,8 +286,11 @@ $this->upload_config = array(
 $this->upload->initialize($this->upload_config);
 if (!$this->upload->do_upload($img1)) {
 $upload_error = $this->upload->display_errors();
-// echo json_encode($upload_error);
-echo $upload_error;
+$res = array('message'=>$upload_error,
+'status'=>201
+);
+echo json_encode($res);
+exit;
 } else {
 $file_info = $this->upload->data();
 
@@ -317,8 +320,11 @@ $this->upload_config = array(
 $this->upload->initialize($this->upload_config);
 if (!$this->upload->do_upload($img2)) {
 $upload_error = $this->upload->display_errors();
-// echo json_encode($upload_error);
-echo $upload_error;
+$res = array('message'=>$upload_error,
+'status'=>201
+);
+echo json_encode($res);
+exit;
 } else {
 $file_info = $this->upload->data();
 
