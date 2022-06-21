@@ -400,7 +400,7 @@
                            $this->upload_config = array(
                              'upload_path'   => $image_upload_folder,
                              'file_name' => $new_file_name3,
-                             'allowed_types' =>'jpg|jpeg|png',
+                             'allowed_types' =>'mp4|MOV|WMV|FLV|AVI|WebM|MKV',
                              'max_size'      => 25000
                      );
                            $this->upload->initialize($this->upload_config);

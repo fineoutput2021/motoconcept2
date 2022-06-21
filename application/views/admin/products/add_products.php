@@ -76,19 +76,19 @@
                       </td>
                     </tr>
                     <tr>
-                      <td> <strong>image</strong> <span style="color:red;">*</span></strong> </td>
+                      <td> <strong>Image</strong> <span style="color:red;">*</span></strong> </td>
                       <td> <input type="file" name="image" class="form-control" required placeholder="" value="" /> </td>
                     </tr>
                     <tr>
-                      <td> <strong>image1</strong> </strong> </td>
+                      <td> <strong>Image 1</strong> </strong> </td>
                       <td> <input type="file" name="image1" class="form-control" placeholder="" value="" /> </td>
                     </tr>
                     <tr>
-                      <td> <strong>image2</strong> </strong> </td>
+                      <td> <strong>Video </strong> </strong> </td>
                       <td> <input type="file" name="image2" class="form-control" placeholder="" value="" /> </td>
                     </tr>
                     <tr>
-                      <td> <strong>Video</strong> </strong> </td>
+                      <td> <strong>Video 2</strong> </strong> </td>
                       <td> <input type="file" name="image3" class="form-control" placeholder="" value="" /> </td>
                     </tr>
                     <tr>

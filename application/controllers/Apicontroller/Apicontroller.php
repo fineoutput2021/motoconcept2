@@ -272,6 +272,11 @@ class Apicontroller extends CI_Controller
 
                 $product=[];
                 foreach ($product_data->result() as $data) {
+                  if ($data->inventory>0) {
+                      $stock = 1;
+                  } else {
+                      $stock = 0;
+                  }
                     $product[] = array(
 'modelno'=>$data->modelno,
 'product_id'=>$data->id,
@@ -280,6 +285,7 @@ class Apicontroller extends CI_Controller
 'mrp'=> $data->mrp,
 'price'=>$data->sellingprice,
 'image'=>base_url().$data->image,
+'stock'=>$stock
 
 );
                 }
@@ -322,8 +328,8 @@ class Apicontroller extends CI_Controller
 'productname'=> $productsdata->productname,
 'productimage1'=> base_url().$productsdata->image,
 'productimage2'=> base_url().$productsdata->image1,
-'productimage3'=> base_url().$productsdata->image2,
-'productimage4'=> base_url().$productsdata->image3,
+'productvideo1'=> base_url().$productsdata->image2,
+'productvideo2'=> base_url().$productsdata->image3,
 'mrp'=> $productsdata->mrp,
 'price'=> $productsdata->sellingprice,
 'productdescription'=> $productsdata->productdescription,
@@ -1290,9 +1296,9 @@ class Apicontroller extends CI_Controller
 // 'sucategory'=> $s1,
 // 'minorcategory'=>$m1,
 'productimage'=> base_url().$limit->image,
-'productimage1'=> base_url().$limit->image1,
-'productimage2'=> base_url().$limit->image2,
-'productimage3'=> base_url().$limit->image3,
+// 'productimage1'=> base_url().$limit->image1,
+// 'productvideo1'=> base_url().$limit->image2,
+// 'productvideo2'=> base_url().$limit->image3,
 'mrp'=> $limit->mrp,
 'price'=>$limit->sellingprice,
 'productdescription'=> $limit->productdescription,
@@ -2180,7 +2186,7 @@ class Apicontroller extends CI_Controller
                             $wishlist_info[]=array(
 'product_id'=>$product_data->id,
 'product_name'=>$product_data->productname,
-'product_image'=>base_url().$product_data->image1,
+'product_image'=>base_url().$product_data->image,
 'product_mrp'=>$product_data->mrp,
 'product_selling_price'=>$product_data->sellingprice,
 );
@@ -3105,6 +3111,9 @@ if (!empty($store_id)) {
                 $this->db->select('*');
                 $this->db->from('tbl_products');
                 // print_r($type_info);die();
+                if (!empty($subcategory_id)) {
+                    $this->db->where('subcategory_id', $subcategory_id, null, false);
+                }
 
                 if (!empty($type_info[0])) {
                     foreach ($type_info as $data0) {
@@ -3137,10 +3146,6 @@ if (!empty($store_id)) {
                         $this->db->or_where('car_model_id', $data4, null, false);
                     }
                 }
-                if (!empty($subcategory_id)) {
-                    $this->db->where('subcategory_id', $subcategory_id, null, false);
-                }
-
 
 
                 $filter_data= $this->db->get();

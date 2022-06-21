@@ -278,6 +278,12 @@ class Apicontroller extends CI_Controller
 
                 $product=[];
                 foreach ($product_data->result() as $data) {
+                  if ($data->inventory>0) {
+                      $stock = 1;
+                  } else {
+                      $stock = 0;
+                  }
+
                     $product[] = array(
                       'modelno'=>$data->modelno,
                       'product_id'=>$data->id,
@@ -286,6 +292,7 @@ class Apicontroller extends CI_Controller
                       'mrp'=> $data->mrp,
                       'price'=>$data->sellingprice,
                       'image'=>base_url().$data->image,
+                      'stock'=>$stock,
 
                       );
                 }
@@ -324,8 +331,8 @@ class Apicontroller extends CI_Controller
             $images=array(
       'image1'=> base_url().$productsdata->image,
       'image2'=> base_url().$productsdata->image1,
-      'image3'=> base_url().$productsdata->image2,
-      'image4'=> base_url().$productsdata->image3,
+      'video1'=> base_url().$productsdata->image2,
+      'video2'=> base_url().$productsdata->image3,
     );
             $products[] = array(
     'id'=> $productsdata->id,
@@ -2260,7 +2267,7 @@ class Apicontroller extends CI_Controller
                                 $order2[]=array(
 'product_id' =>$product_data->id,
 'product_name' =>$product_data->productname,
-'product_image' =>base_url().$product_data->image1,
+'product_image' =>base_url().$product_data->image,
 'quantity'=> $data->quantity,
 'price'=>$data->product_mrp,
 'total_amount'=>$data->total_amount,
@@ -3418,7 +3425,7 @@ if (!empty($store_id)) {
                         $wishlist_info[]=array(
   'product_id'=>$product_data->id,
   'product_name'=>$product_data->productname,
-  'product_image'=>base_url().$product_data->image1,
+  'product_image'=>base_url().$product_data->image,
   'product_mrp'=>$product_data->mrp,
   'product_selling_price'=>$product_data->sellingprice,
 );

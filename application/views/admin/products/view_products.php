@@ -129,8 +129,9 @@ $car_model_name=$car_model_data->name;
 
                       <td>
                         <?php if($data->image2!=""){ ?>
-                        <img id="slide_img_path" height=50 width=100 src="<?php echo base_url().$data->image2
-        ?>">
+                          <video id="slide_img_path" height=50 width=100 autoplay>
+                            <source src="<?php echo base_url().$data->image2?>" type="video/mp4">
+                          </video>
                         <?php }else { ?>
                         Sorry No File Found
                         <?php } ?>
@@ -139,7 +140,9 @@ $car_model_name=$car_model_data->name;
 
                       <td>
                         <?php if($data->image3!=""){ ?>
-                          <video id="slide_img_path" height=50 width=100 src="<?php echo base_url() ?><?php echo $data->image3; ?>" autoplay poster="">
+                          <video id="slide_img_path" height=50 width=100 autoplay>
+                            <source src="<?php echo base_url() ?><?php echo $data->image3; ?>" type="video/mp4">
+                          </video>
                         <?php }else { ?>
                         Sorry No File Found
                         <?php } ?>

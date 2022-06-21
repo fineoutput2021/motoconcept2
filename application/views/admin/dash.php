@@ -116,7 +116,7 @@
                 </div></a><!-- /.info-box -->
               </div><!-- /.col -->
             <div class="col-md-3 col-sm-6 col-xs-12">
-              <a href="<?=base_url()?>dcadmin/Products/view_product_categories">
+              <a href="javascript:;">
 
               <div class="info-box">
                 <span class="info-box-icon bg-grey"><i class="ion ion-ios-pricetags-outline"></i></span>

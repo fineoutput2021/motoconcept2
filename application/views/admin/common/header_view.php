@@ -327,7 +327,8 @@
 // exit;
             foreach($sidebar as $sd){
 
-
+              $currentURL = current_url();
+              $urls= base_url().ADMIN_URL."/".$sd['url'];
 
                             ?>
                             <li class="treeview">
@@ -340,7 +341,7 @@
                               if(empty($dawwa)){
                                 echo base_url().ADMIN_URL."/".$sd['url'].'">';?>
                                 <i class="fa fa-circle-o"></i>
-                                <span><? echo $sd['name'] ?></span>
+                                <span style="<?php if($currentURL == $urls){ echo 'color:#d7314a;';}?>"><? echo $sd['name'] ?></span>
                                 <span class="label label-primary pull-right"></span>
                                 </a>
 

@@ -88,14 +88,14 @@
                       </td>
                     </tr>
                     <tr>
-                      <td> <strong>image2</strong> </strong> </td>
+                      <td> <strong>Video</strong> </strong> </td>
                       <td> <input type="file" name="image2" class="form-control" placeholder="" value="" />
                         <img src="<?=base_url().$products_data->image2?>"  height=50 width=100 >
                       </td>
                       </td>
                     </tr>
                     <tr>
-                      <td> <strong>Video</strong> </strong> </td>
+                      <td> <strong>Video 2</strong> </strong> </td>
                       <td> <input type="file" name="image3" class="form-control" placeholder="" value="" />
                       <video id="slide_img_path"  height=50 width=100 src="<?php echo base_url() ?><?php echo $products_data->image3; ?>" autoplay poster="">
                       </td>

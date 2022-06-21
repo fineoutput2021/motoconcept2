@@ -286,7 +286,7 @@ $this->upload_config = array(
 $this->upload->initialize($this->upload_config);
 if (!$this->upload->do_upload($img1)) {
 $upload_error = $this->upload->display_errors();
-$res = array('message'=>$upload_error,
+$res = array('message'=> 'The filetype you are attempting to upload is not allowed!',
 'status'=>201
 );
 echo json_encode($res);
