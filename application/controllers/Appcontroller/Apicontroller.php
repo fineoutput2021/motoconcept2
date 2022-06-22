@@ -332,7 +332,7 @@ class Apicontroller extends CI_Controller
             $products[] = array(
     'id'=> $productsdata->id,
     'productname'=> $productsdata->productname,
-    'image'=> $images,
+
     'mrp'=> $productsdata->mrp,
     'price'=> $productsdata->sellingprice,
     'productdescription'=> $productsdata->productdescription,
@@ -343,6 +343,7 @@ class Apicontroller extends CI_Controller
 
             $res = array('message'=>"success",
     'status'=>200,
+    'image'=> $images,
     'data'=>$products
     );
 
