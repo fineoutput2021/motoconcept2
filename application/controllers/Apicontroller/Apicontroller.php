@@ -286,7 +286,6 @@ class Apicontroller extends CI_Controller
 'price'=>$data->sellingprice,
 'image'=>base_url().$data->image,
 'stock'=>$stock
-
 );
                 }
 
@@ -1249,6 +1248,11 @@ class Apicontroller extends CI_Controller
         $productslimitdata= $this->db->get();
         $products=[];
         foreach ($productslimitdata->result() as $limit) {
+          if ($limit->inventory>0) {
+                      $stock = 1;
+                  } else {
+                      $stock = 0;
+                  }
 
 //category
             //   $this->db->select('*');
@@ -1302,6 +1306,7 @@ class Apicontroller extends CI_Controller
 'mrp'=> $limit->mrp,
 'price'=>$limit->sellingprice,
 'productdescription'=> $limit->productdescription,
+'stock'=>$stock
 // 'inventory'=> $data->inventory
 );
         }
@@ -1409,6 +1414,11 @@ class Apicontroller extends CI_Controller
         $related_info = [];
         foreach ($related_data->result() as $data) {
             if ($data->id!=$id) {
+              if ($data->inventory>0) {
+                      $stock = 1;
+                  } else {
+                      $stock = 0;
+                  }
             $related_info[]  = array(
 'product_id'=>$data->id,
 'productname'=>$data->productname,
@@ -1416,6 +1426,7 @@ class Apicontroller extends CI_Controller
 'productdescription'=>$data->productdescription,
 'mrp'=>$data->mrp,
 'price'=>$data->sellingprice,
+'stock'=>$stock
 );
 }
         }
@@ -3607,6 +3618,11 @@ if (!empty($store_id)) {
             $heading = "Shop By Car";
         }
         foreach ($products_data->result() as $data) {
+          if ($data->inventory>0) {
+              $stock = 1;
+          } else {
+              $stock = 0;
+          }
             $products[] = array(  'modelno'=>$data->modelno,
 'product_id'=>$data->id,
 'product_name'=>$data->productname,
@@ -3614,6 +3630,7 @@ if (!empty($store_id)) {
 'mrp'=> $data->mrp,
 'price'=>$data->sellingprice,
 'image'=>base_url().$data->image,
+'stock'=>$stock
 );
         }
         header('Access-Control-Allow-Origin: *');

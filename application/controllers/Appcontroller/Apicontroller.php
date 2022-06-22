@@ -1331,6 +1331,11 @@ class Apicontroller extends CI_Controller
         $productslimitdata= $this->db->get();
         $products=[];
         foreach ($productslimitdata->result() as $limit) {
+          if ($limit->inventory>0) {
+                  $stock = 1;
+              } else {
+                  $stock = 0;
+              }
             $products[] = array(
 'product_id'=>$limit->id,
 'productname'=> $limit->productname,
@@ -1340,6 +1345,7 @@ class Apicontroller extends CI_Controller
 // 'productimage3'=> base_url().$limit->image3,
 'mrp'=> $limit->mrp,
 'price'=>$limit->sellingprice,
+'stock'=>$stock,
 // 'productdescription'=> $limit->productdescription,
 
 // 'colours'=> $limit->colours,
@@ -1441,6 +1447,11 @@ class Apicontroller extends CI_Controller
         $data= $this->db->get();
         $feature=[];
         foreach ($data->result() as $limit) {
+          if ($limit->inventory>0) {
+                  $stock = 1;
+              } else {
+                  $stock = 0;
+              }
             $feature[] = array(
             'product_id'=>$limit->id,
             'productname'=> $limit->productname,
@@ -1450,6 +1461,7 @@ class Apicontroller extends CI_Controller
             // 'productimage3'=> base_url().$limit->image3,
             'mrp'=> $limit->mrp,
             'price'=>$limit->sellingprice,
+            'stock'=>$stock,
             // 'productdescription'=> $limit->productdescription,
 
             );
@@ -1503,6 +1515,11 @@ class Apicontroller extends CI_Controller
         $related_info = [];
         foreach ($related_data->result() as $data) {
             if ($data->id!=$id) {
+              if ($data->inventory>0) {
+                  $stock = 1;
+              } else {
+                  $stock = 0;
+              }
 
             $related_info[]  = array(
 'product_id'=>$data->id,
@@ -1511,6 +1528,7 @@ class Apicontroller extends CI_Controller
 'productdescription'=>$data->productdescription,
 'mrp'=>$data->mrp,
 'price'=>$data->sellingprice,
+'stock'=>$stock
 );
     }
         }
@@ -2347,6 +2365,11 @@ class Apicontroller extends CI_Controller
                 // exit;
                 $search_data=[];
                 foreach ($search_string->result() as $data) {
+                  if ($data->inventory>0) {
+                      $stock = 1;
+                  } else {
+                      $stock = 0;
+                  }
                     $search_data[]=array(
                        'product_id'=>$data->id,
                        'product_name'=>$data->productname,
@@ -2354,6 +2377,7 @@ class Apicontroller extends CI_Controller
                        'productdescription'=>$data->productdescription,
                        'product_mrp'=>$data->mrp,
                        'product_selling_price'=>$data->sellingprice,
+                       'stock'=>$stock
 
 
 
@@ -3961,4 +3985,59 @@ if (!empty($store_id)) {
 
         echo json_encode($res);
     }
+
+    //----view store_details-------
+public function store_details()
+{
+    $this->load->helper(array('form', 'url'));
+    $this->load->library('form_validation');
+    $this->load->helper('security');
+    $headers = apache_request_headers();
+
+    $phone=$headers['Phone'];
+    $authentication=$headers['Authentication'];
+    $token_id=$headers['Tokenid'];
+
+    $this->db->select('*');
+    $this->db->from('tbl_users');
+    $this->db->where('phone', $phone);
+    $user_data= $this->db->get()->row();
+
+    if (!empty($user_data)) {
+        if ($user_data->authentication==$authentication) {
+            $this->db->select('*');
+            $this->db->from('tbl_store');
+            $store_data= $this->db->get();
+            $store_info = [];
+            foreach ($store_data->result() as $data) {
+                $store_info[]=array(
+'id'=>$data->id,
+'name'=>$data->name,
+'address'=>$data->address,
+'pincode'=>$data->pincode,
+'contact1'=>$data->contact1,
+'contact2'=>$data->contact2,
+);
+            }
+            $res = array('message'=>'success',
+'status'=>200,
+'data'=>$store_info,
+);
+
+            echo json_encode($res);
+        } else {
+            $res = array('message'=>'Wrong Authentication',
+'status'=>201
+);
+
+            echo json_encode($res);
+        }
+    } else {
+        $res = array('message'=>'user not found',
+'status'=>201
+);
+
+        echo json_encode($res);
+    }
+}
 }
