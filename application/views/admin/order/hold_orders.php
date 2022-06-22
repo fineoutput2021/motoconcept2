@@ -1,11 +1,11 @@
 <div class="content-wrapper">
   <section class="content-header">
     <h1>
-      View Hold Order
+      View On Hold Order
     </h1>
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url() ?>dcadmin/home"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-      <li class="active">View hold order</li>
+      <li class="active">View On Hold order</li>
     </ol>
   </section>
   <section class="content">
@@ -14,7 +14,7 @@
 
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title"><i class="fa fa-money fa-fw"></i>View Hold order</h3>
+            <h3 class="panel-title"><i class="fa fa-money fa-fw"></i>View On Hold order</h3>
           </div>
           <div class="panel panel-default">
 
@@ -212,7 +212,7 @@
 
 
                               <li><a href="<?php echo base_url() ?>dcadmin/Orders/update_order_status/<?php echo
-base64_encode($data->id) ?>/accept">Accept order</a></li>
+base64_encode($data->id) ?>/accept">Accept Order</a></li>
 
 
                               <!-- <li><a href="<?php echo base_url() ?>dcadmin/Neworder/update_dispatch_status/<?php echo
@@ -221,11 +221,13 @@ base64_encode($data->id) ?>/dispatch">Dispatch order</a></li> -->
 
 
                               <li><a href="<?php echo base_url() ?>dcadmin/Orders/update_cancel_status/<?php echo
-  base64_encode($data->id) ?>/Cancel">Cancel order</a></li>
+  base64_encode($data->id) ?>/Cancel">Cancel Order</a></li>
+  <li><a href="<?php echo base_url() ?>dcadmin/Orders/view_order_bill/<?php echo
+base64_encode($data->id) ?>">view bill</a></li>
 
 
                               <li><a href="<?php echo base_url() ?>dcadmin/Orders/view_product_status/<?php echo
-base64_encode($data->id) ?>">view product</a></li>
+base64_encode($data->id) ?>">View Product</a></li>
                               <!-- <li><a href="<?php echo base_url() ?>dcadmin/Neworder/view_order_bill/<?php echo
 base64_encode($data->id) ?>">view bill</a></li> -->
 

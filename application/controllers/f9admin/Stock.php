@@ -336,6 +336,7 @@ class Stock extends CI_finecontrol
                 $zapak=$this->db->update('tbl_stock', $data_update);
 
                 if ($zapak!=0) {
+                  $this->session->set_flashdata('smessage', 'Stock status updated successfully');
                     redirect("dcadmin/Stock/view_stock", "refresh");
                 } else {
                     echo "Error";
@@ -352,6 +353,7 @@ class Stock extends CI_finecontrol
                 $zapak=$this->db->update('tbl_stock', $data_update);
 
                 if ($zapak!=0) {
+                  $this->session->set_flashdata('smessage', 'Stock status updated successfully');
                     redirect("dcadmin/Stock/view_stock", "refresh");
                 } else {
                     $data['e']="Error Occured";
@@ -384,8 +386,7 @@ class Stock extends CI_finecontrol
 
                 $zapak=$this->db->delete('tbl_stock', array('id' => $id));
                 if ($zapak!=0) {
-                    $path = FCPATH .$img;
-                    unlink($path);
+                    $this->session->set_flashdata('smessage', 'Stock deleted successfully');
                     redirect("dcadmin/Stock/view_stock", "refresh");
                 } else {
                     echo "Error";

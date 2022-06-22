@@ -213,6 +213,8 @@
 
                               <li><a href="<?php echo base_url() ?>dcadmin/Orders/update_cancel_status/<?php echo
   base64_encode($data->id) ?>/Cancel">Cancel order</a></li>
+  <li><a href="<?php echo base_url() ?>dcadmin/Orders/view_order_bill/<?php echo
+base64_encode($data->id) ?>">view bill</a></li>
 
 
                               <!-- <li><a href="<?php echo base_url() ?>dcadmin/Neworder/view_product_status/<?php echo
