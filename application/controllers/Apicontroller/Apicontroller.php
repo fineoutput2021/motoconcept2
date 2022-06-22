@@ -1409,7 +1409,6 @@ class Apicontroller extends CI_Controller
         $related_info = [];
         foreach ($related_data->result() as $data) {
             if ($data->id!=$id) {
-            }
             $related_info[]  = array(
 'product_id'=>$data->id,
 'productname'=>$data->productname,
@@ -1418,6 +1417,7 @@ class Apicontroller extends CI_Controller
 'mrp'=>$data->mrp,
 'price'=>$data->sellingprice,
 );
+}
         }
         header('Access-Control-Allow-Origin: *');
         $res = array('message'=>"success",
