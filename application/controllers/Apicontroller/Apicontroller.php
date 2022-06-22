@@ -538,8 +538,8 @@ class Apicontroller extends CI_Controller
                                     } else {
                                         header('Access-Control-Allow-Origin: *');
                                         $res = array('message'=> "$check_product_id->productname Product is out of stock",
-'status'=>201
-);
+                                              'status'=>201
+                                              );
 
                                         echo json_encode($res);
                                         exit;

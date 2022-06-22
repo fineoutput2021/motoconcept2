@@ -597,24 +597,20 @@ class Apicontroller extends CI_Controller
                                 $check_product_id=$check_product->row();
 
                                 if (!empty($check_product_id)) {
+                                  if($check_product_id->inventory >= $quantity){
                                     $data_insert = array('product_id'=>$product_id,
-'quantity'=>$quantity,
-'user_id'=>$check_id->id,
-'token_id'=>$token_id,
-'ip' =>$ip,
-'date'=>$cur_date
-
-);
-
+                                              'quantity'=>$quantity,
+                                              'user_id'=>$check_id->id,
+                                              'token_id'=>$token_id,
+                                              'ip' =>$ip,
+                                              'date'=>$cur_date
+                                              );
                                     $last_id=$this->base_model->insert_table("tbl_cart", $data_insert, 1) ;
-
-
                                     if (!empty($last_id)) {
                                         $res = array('message'=>'success',
-        'status'=>200,
-        'product_id'=>$product_id,
-        );
-
+                                              'status'=>200,
+                                              'product_id'=>$product_id,
+                                              );
                                         echo json_encode($res);
                                     } else {
                                         $res = array('message'=>'Some error occured',
@@ -623,6 +619,12 @@ class Apicontroller extends CI_Controller
 
                                         echo json_encode($res);
                                     }
+                                  }else{
+                                    $res = array('message'=>'Product is out of stock',
+                                                    'status'=>201
+                                                    );
+                                    echo json_encode($res);
+                                  }
                                 } else {
                                     $res = array('message'=>'product_id does not exist',
 'status'=>201
