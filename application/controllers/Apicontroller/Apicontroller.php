@@ -3285,6 +3285,7 @@ if (!empty($store_id)) {
         //type
         $this->db->select('*');
         $this->db->from('tbl_type');
+        $this->db->where('is_active', 1);
         $type_id= $this->db->get();
         $type_data=[];
         $type=json_decode($subcategory_data->type);
@@ -3307,6 +3308,7 @@ if (!empty($store_id)) {
         //wattage
         $this->db->select('*');
         $this->db->from('tbl_wattage');
+        $this->db->where('is_active', 1);
         $wattage_id= $this->db->get();
         $wattage_data=[];
         $wattage=json_decode($subcategory_data->wattage);
@@ -3329,6 +3331,7 @@ if (!empty($store_id)) {
         //size
         $this->db->select('*');
         $this->db->from('tbl_size');
+        $this->db->where('is_active', 1);
         $size_id= $this->db->get();
         $size_data=[];
         $size=json_decode($subcategory_data->size);
@@ -3351,6 +3354,7 @@ if (!empty($store_id)) {
         //filter_product
         $this->db->select('*');
         $this->db->from('tbl_filter_product');
+        $this->db->where('is_active', 1);
         $filter_product_id= $this->db->get();
         $filter_product_data=[];
         $filter_product=json_decode($subcategory_data->filter_product);
@@ -3373,6 +3377,7 @@ if (!empty($store_id)) {
         //color
         $this->db->select('*');
         $this->db->from('tbl_color');
+        $this->db->where('is_active', 1);
         $color_id= $this->db->get();
         $color_data=[];
         $color=json_decode($subcategory_data->color);
