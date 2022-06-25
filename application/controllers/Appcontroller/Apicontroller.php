@@ -278,11 +278,11 @@ class Apicontroller extends CI_Controller
 
                 $product=[];
                 foreach ($product_data->result() as $data) {
-                  if ($data->inventory>0) {
-                      $stock = 1;
-                  } else {
-                      $stock = 0;
-                  }
+                    if ($data->inventory>0) {
+                        $stock = 1;
+                    } else {
+                        $stock = 0;
+                    }
 
                     $product[] = array(
                       'modelno'=>$data->modelno,
@@ -597,34 +597,34 @@ class Apicontroller extends CI_Controller
                                 $check_product_id=$check_product->row();
 
                                 if (!empty($check_product_id)) {
-                                  if($check_product_id->inventory >= $quantity){
-                                    $data_insert = array('product_id'=>$product_id,
+                                    if ($check_product_id->inventory >= $quantity) {
+                                        $data_insert = array('product_id'=>$product_id,
                                               'quantity'=>$quantity,
                                               'user_id'=>$check_id->id,
                                               'token_id'=>$token_id,
                                               'ip' =>$ip,
                                               'date'=>$cur_date
                                               );
-                                    $last_id=$this->base_model->insert_table("tbl_cart", $data_insert, 1) ;
-                                    if (!empty($last_id)) {
-                                        $res = array('message'=>'success',
+                                        $last_id=$this->base_model->insert_table("tbl_cart", $data_insert, 1) ;
+                                        if (!empty($last_id)) {
+                                            $res = array('message'=>'success',
                                               'status'=>200,
                                               'product_id'=>$product_id,
                                               );
-                                        echo json_encode($res);
-                                    } else {
-                                        $res = array('message'=>'Some error occured',
+                                            echo json_encode($res);
+                                        } else {
+                                            $res = array('message'=>'Some error occured',
     'status'=>201
     );
 
-                                        echo json_encode($res);
-                                    }
-                                  }else{
-                                    $res = array('message'=>'Product is out of stock',
+                                            echo json_encode($res);
+                                        }
+                                    } else {
+                                        $res = array('message'=>'Product is out of stock',
                                                     'status'=>201
                                                     );
-                                    echo json_encode($res);
-                                  }
+                                        echo json_encode($res);
+                                    }
                                 } else {
                                     $res = array('message'=>'product_id does not exist',
 'status'=>201
@@ -1333,11 +1333,11 @@ class Apicontroller extends CI_Controller
         $productslimitdata= $this->db->get();
         $products=[];
         foreach ($productslimitdata->result() as $limit) {
-          if ($limit->inventory>0) {
-                  $stock = 1;
-              } else {
-                  $stock = 0;
-              }
+            if ($limit->inventory>0) {
+                $stock = 1;
+            } else {
+                $stock = 0;
+            }
             $products[] = array(
 'product_id'=>$limit->id,
 'productname'=> $limit->productname,
@@ -1449,11 +1449,11 @@ class Apicontroller extends CI_Controller
         $data= $this->db->get();
         $feature=[];
         foreach ($data->result() as $limit) {
-          if ($limit->inventory>0) {
-                  $stock = 1;
-              } else {
-                  $stock = 0;
-              }
+            if ($limit->inventory>0) {
+                $stock = 1;
+            } else {
+                $stock = 0;
+            }
             $feature[] = array(
             'product_id'=>$limit->id,
             'productname'=> $limit->productname,
@@ -1517,13 +1517,13 @@ class Apicontroller extends CI_Controller
         $related_info = [];
         foreach ($related_data->result() as $data) {
             if ($data->id!=$id) {
-              if ($data->inventory>0) {
-                  $stock = 1;
-              } else {
-                  $stock = 0;
-              }
+                if ($data->inventory>0) {
+                    $stock = 1;
+                } else {
+                    $stock = 0;
+                }
 
-            $related_info[]  = array(
+                $related_info[]  = array(
 'product_id'=>$data->id,
 'productname'=>$data->productname,
 'productimage'=>base_url().$data->image,
@@ -1532,7 +1532,7 @@ class Apicontroller extends CI_Controller
 'price'=>$data->sellingprice,
 'stock'=>$stock
 );
-    }
+            }
         }
 
         $res = array('message'=>"success",
@@ -2367,11 +2367,11 @@ class Apicontroller extends CI_Controller
                 // exit;
                 $search_data=[];
                 foreach ($search_string->result() as $data) {
-                  if ($data->inventory>0) {
-                      $stock = 1;
-                  } else {
-                      $stock = 0;
-                  }
+                    if ($data->inventory>0) {
+                        $stock = 1;
+                    } else {
+                        $stock = 0;
+                    }
                     $search_data[]=array(
                        'product_id'=>$data->id,
                        'product_name'=>$data->productname,
@@ -2805,202 +2805,208 @@ class Apicontroller extends CI_Controller
                 $model_info = explode(',', $model);
 
 
-  //               $this->db->select('*');
-  //               $this->db->from('tbl_products');
-  //               // print_r($type_info);die();
-  //
-  //               if (!empty($type_info[0])) {
-  //                   foreach ($type_info as $data0) {
-  //                       $this->db->or_where('type', $data0, null, false);
-  //                   }
-  //               }
-  //               // die();
-  //               if (!empty($wattage_info[0])) {
-  //                   foreach ($wattage_info as $data) {
-  //                       $this->db->or_where('wattage', $data, null, false);
-  //                   }
-  //               }
-  //               if (!empty($size_info[0])) {
-  //                   foreach ($size_info as $data1) {
-  //                       $this->db->or_where('size', $data1, null, false);
-  //                   }
-  //               }
-  //               if (!empty($filter_product_info[0])) {
-  //                   foreach ($filter_product_info as $data2) {
-  //                       $this->db->or_where('filter_product', $data2, null, false);
-  //                   }
-  //               }
-  //               if (!empty($color_info[0])) {
-  //                   foreach ($color_info as $data3) {
-  //                       $this->db->or_where('color', $data3, null, false);
-  //                   }
-  //               }
-  //               if (!empty($model_info[0])) {
-  //                   foreach ($model_info as $data4) {
-  //                       $this->db->or_where('car_model_id', $data4, null, false);
-  //                   }
-  //               }
-  //               if (!empty($subcategory_id)) {
-  //                   $this->db->where('subcategory_id', $subcategory_id, null, false);
-  //               }
-  //
-  //
-  //
-  //               $filter_data= $this->db->get();
-  //               $filter_check = $filter_data->row();
-  //               $filter_info = [];
-  //               if (!empty($filter_check)) {
-  //                   foreach ($filter_data->result() as $data) {
-  //                       if ($data->is_active==1) {
-  //                           $filter_info[] = array(
-  // 'product_id'=>$data->id,
-  // 'product_name'=>$data->productname,
-  // 'product_image'=>base_url().$data->image,
-  // 'productdescription'=>$data->productdescription,
-  // 'MRP'=>$data->mrp,
-  // 'price'=>$data->sellingprice,
-  // );
-  //                       }
-  //                   }
-  //               }
+                //               $this->db->select('*');
+                //               $this->db->from('tbl_products');
+                //               // print_r($type_info);die();
+                //
+                //               if (!empty($type_info[0])) {
+                //                   foreach ($type_info as $data0) {
+                //                       $this->db->or_where('type', $data0, null, false);
+                //                   }
+                //               }
+                //               // die();
+                //               if (!empty($wattage_info[0])) {
+                //                   foreach ($wattage_info as $data) {
+                //                       $this->db->or_where('wattage', $data, null, false);
+                //                   }
+                //               }
+                //               if (!empty($size_info[0])) {
+                //                   foreach ($size_info as $data1) {
+                //                       $this->db->or_where('size', $data1, null, false);
+                //                   }
+                //               }
+                //               if (!empty($filter_product_info[0])) {
+                //                   foreach ($filter_product_info as $data2) {
+                //                       $this->db->or_where('filter_product', $data2, null, false);
+                //                   }
+                //               }
+                //               if (!empty($color_info[0])) {
+                //                   foreach ($color_info as $data3) {
+                //                       $this->db->or_where('color', $data3, null, false);
+                //                   }
+                //               }
+                //               if (!empty($model_info[0])) {
+                //                   foreach ($model_info as $data4) {
+                //                       $this->db->or_where('car_model_id', $data4, null, false);
+                //                   }
+                //               }
+                //               if (!empty($subcategory_id)) {
+                //                   $this->db->where('subcategory_id', $subcategory_id, null, false);
+                //               }
+                //
+                //
+                //
+                //               $filter_data= $this->db->get();
+                //               $filter_check = $filter_data->row();
+                //               $filter_info = [];
+                //               if (!empty($filter_check)) {
+                //                   foreach ($filter_data->result() as $data) {
+                //                       if ($data->is_active==1) {
+                //                           $filter_info[] = array(
+                // 'product_id'=>$data->id,
+                // 'product_name'=>$data->productname,
+                // 'product_image'=>base_url().$data->image,
+                // 'productdescription'=>$data->productdescription,
+                // 'MRP'=>$data->mrp,
+                // 'price'=>$data->sellingprice,
+                // );
+                //                       }
+                //                   }
+                //               }
 
-                    $this->db->select('*');
-                    $this->db->from('tbl_products');
-                    // print_r($type_info);die();
-                    if (!empty($subcategory_id)) {
-                        $this->db->where('subcategory_id', $subcategory_id);
-                    }
-                    $filter_data= $this->db->get();
-                    // $filter_check = $filter_data->row();
-                     $send = [];
-                    $content = [];
-                    foreach($filter_data->result() as $filterrr){
-                      if($filterrr->is_active == 1){
-                      if (!empty($type_info[0])) {
-                          foreach ($type_info as $data0) {
-                              if($filterrr->type == $data0){
-                                //    $send = [];
-                                $send[] = array('product_id'=>$filterrr->id,
+                $this->db->select('*');
+                $this->db->from('tbl_products');
+                // print_r($type_info);die();
+                if (!empty($subcategory_id)) {
+                    $this->db->where('subcategory_id', $subcategory_id);
+                }
+                $filter_data= $this->db->get();
+                // $filter_check = $filter_data->row();
+                $send = [];
+                $content = [];
+                foreach ($filter_data->result() as $filterrr) {
+                    if ($filterrr->is_active == 1) {
+                        if (!empty($type_info[0])) {
+                            foreach ($type_info as $data0) {
+                                if ($filterrr->type == $data0) {
+                                    //    $send = [];
+                                    $send[] = array('product_id'=>$filterrr->id,
                                 'product_name'=>$filterrr->productname,
                                 'product_image'=>base_url().$filterrr->image,
                                 'productdescription'=>$filterrr->productdescription,
                                 'MRP'=>$filterrr->mrp,
                                 'price'=>$filterrr->sellingprice,
                               );
-                              //  array_push($content, $send);
-                              }
-                          }
-                      }
-                      if (!empty($wattage_info[0])) {
-                          foreach ($wattage_info as $data1) {
-                              if($filterrr->wattage == $data1){
-                                //    $send = [];
-                                $send[] = array('product_id'=>$filterrr->id,
-                                'product_name'=>$filterrr->productname,
-                                'product_image'=>base_url().$filterrr->image,
-                                'productdescription'=>$filterrr->productdescription,
-                                'MRP'=>$filterrr->mrp,
-                                'price'=>$filterrr->sellingprice,
-                              );
-                              //  array_push($content, $send);
-                              }
-                          }
-                      }
-                      if (!empty($size_info[0])) {
-                          foreach ($size_info as $data2) {
-                              if($filterrr->size == $data2){
-                                //    $send = [];
-                                $send[] = array('product_id'=>$filterrr->id,
-                                'product_name'=>$filterrr->productname,
-                                'product_image'=>base_url().$filterrr->image,
-                                'productdescription'=>$filterrr->productdescription,
-                                'MRP'=>$filterrr->mrp,
-                                'price'=>$filterrr->sellingprice,
-                              );
-                              //  array_push($content, $send);
-                              }
-                          }
-                      }
-                      if (!empty($filter_product_info[0])) {
-                          foreach ($filter_product_info as $data3) {
-                              if($filterrr->filter_product == $data3){
-                                //    $send = [];
-                                $send[] = array('product_id'=>$filterrr->id,
-                                'product_name'=>$filterrr->productname,
-                                'product_image'=>base_url().$filterrr->image,
-                                'productdescription'=>$filterrr->productdescription,
-                                'MRP'=>$filterrr->mrp,
-                                'price'=>$filterrr->sellingprice,
-                              );
-                              //  array_push($content, $send);
-                              }
-                          }
-                      }
-                      if (!empty($color_info[0])) {
-                          foreach ($color_info as $data4) {
-                              if($filterrr->color == $data4){
-                                //    $send = [];
-                                $send[] = array('product_id'=>$filterrr->id,
-                                'product_name'=>$filterrr->productname,
-                                'product_image'=>base_url().$filterrr->image,
-                                'productdescription'=>$filterrr->productdescription,
-                                'MRP'=>$filterrr->mrp,
-                                'price'=>$filterrr->sellingprice,
-                              );
-                              //  array_push($content, $send);
-                              }
-                          }
-                      }
-                      if (!empty($model_info[0])) {
-                          foreach ($model_info as $data5) {
-                              if($filterrr->model == $data5){
-                                //    $send = [];
-                                $send[] = array('product_id'=>$filterrr->id,
-                                'product_name'=>$filterrr->productname,
-                                'product_image'=>base_url().$filterrr->image,
-                                'productdescription'=>$filterrr->productdescription,
-                                'MRP'=>$filterrr->mrp,
-                                'price'=>$filterrr->sellingprice,
-                              );
-                              //  array_push($content, $send);
-                              }
+                                    //  array_push($content, $send);
+                                }
                             }
-                          }
                         }
-                      }
-
-                    // array_unique($content);
-                    // print_r(json_encode($send));exit;
-                    $content = [];
-                  //   $content = array('product_id'=>0);
-                    $count = 0;
-                  //   print_r($content);
-                    foreach ($send as $object) {
-                      foreach($content as $pushin){
-                    if($count > 0){
-                     if($object['product_id'] == $pushin['product_id']){
-                       // echo "1";
-                     }else{
-                       $content[] = array('product_id'=>$object['product_id'],
-                          'product_name'=>$object['product_name'],
-                          'product_image'=>$object['product_image'],
-                          'productdescription'=>$object['productdescription'],
-                          'MRP'=>$object['MRP'],
-                          'price'=>$object['price'],
-                          );
-                     }
+                        if (!empty($wattage_info[0])) {
+                            foreach ($wattage_info as $data1) {
+                                if ($filterrr->wattage == $data1) {
+                                    //    $send = [];
+                                    $send[] = array('product_id'=>$filterrr->id,
+                                'product_name'=>$filterrr->productname,
+                                'product_image'=>base_url().$filterrr->image,
+                                'productdescription'=>$filterrr->productdescription,
+                                'MRP'=>$filterrr->mrp,
+                                'price'=>$filterrr->sellingprice,
+                              );
+                                    //  array_push($content, $send);
+                                }
+                            }
+                        }
+                        if (!empty($size_info[0])) {
+                            foreach ($size_info as $data2) {
+                                if ($filterrr->size == $data2) {
+                                    //    $send = [];
+                                    $send[] = array('product_id'=>$filterrr->id,
+                                'product_name'=>$filterrr->productname,
+                                'product_image'=>base_url().$filterrr->image,
+                                'productdescription'=>$filterrr->productdescription,
+                                'MRP'=>$filterrr->mrp,
+                                'price'=>$filterrr->sellingprice,
+                              );
+                                    //  array_push($content, $send);
+                                }
+                            }
+                        }
+                        if (!empty($filter_product_info[0])) {
+                            foreach ($filter_product_info as $data3) {
+                                if ($filterrr->filter_product == $data3) {
+                                    //    $send = [];
+                                    $send[] = array('product_id'=>$filterrr->id,
+                                'product_name'=>$filterrr->productname,
+                                'product_image'=>base_url().$filterrr->image,
+                                'productdescription'=>$filterrr->productdescription,
+                                'MRP'=>$filterrr->mrp,
+                                'price'=>$filterrr->sellingprice,
+                              );
+                                    //  array_push($content, $send);
+                                }
+                            }
+                        }
+                        if (!empty($color_info[0])) {
+                            foreach ($color_info as $data4) {
+                                if ($filterrr->color == $data4) {
+                                    //    $send = [];
+                                    $send[] = array('product_id'=>$filterrr->id,
+                                'product_name'=>$filterrr->productname,
+                                'product_image'=>base_url().$filterrr->image,
+                                'productdescription'=>$filterrr->productdescription,
+                                'MRP'=>$filterrr->mrp,
+                                'price'=>$filterrr->sellingprice,
+                              );
+                                    //  array_push($content, $send);
+                                }
+                            }
+                        }
+                        if (!empty($model_info[0])) {
+                            foreach ($model_info as $data5) {
+                                if ($filterrr->model == $data5) {
+                                    //    $send = [];
+                                    $send[] = array('product_id'=>$filterrr->id,
+                                'product_name'=>$filterrr->productname,
+                                'product_image'=>base_url().$filterrr->image,
+                                'productdescription'=>$filterrr->productdescription,
+                                'MRP'=>$filterrr->mrp,
+                                'price'=>$filterrr->sellingprice,
+                              );
+                                    //  array_push($content, $send);
+                                }
+                            }
+                        }
                     }
-                  }
-                  $count++;
-                  if($count==1){ $content[] = array('product_id'=>$object['product_id'],
-                     'product_name'=>$object['product_name'],
-                     'product_image'=>$object['product_image'],
-                     'productdescription'=>$object['productdescription'],
-                     'MRP'=>$object['MRP'],
-                     'price'=>$object['price'],
-                   );
-                   }
-                  }
+                }
+
+                // array_unique($content);
+                // print_r(json_encode($send));exit;
+                $content = [];
+                //   $content = array('product_id'=>0);
+                $count = 0;
+                //   print_r($content);
+                foreach ($send as $object) {
+                    $a=0;
+                    if ($count==0) {
+                        $content[] = array('product_id'=>$object['product_id'],
+                  'product_name'=>$object['product_name'],
+                  'product_image'=>$object['product_image'],
+                  'productdescription'=>$object['productdescription'],
+                  'MRP'=>$object['MRP'],
+                  'price'=>$object['price']
+                );
+                    } else {
+                        // print_r($content);
+                        foreach ($content as $pushin) {
+                            // echo $object['product_id']."-----------".$pushin['product_id']."<br />";
+                            if ($pushin['product_id']==$object['product_id']) {
+                                // echo "ji";
+                                $a=1;
+                            }
+                        }
+                        if ($a==0) {
+                            $content[] = array('product_id'=>$object['product_id'],
+                    'product_name'=>$object['product_name'],
+                    'product_image'=>$object['product_image'],
+                    'productdescription'=>$object['productdescription'],
+                    'MRP'=>$object['MRP'],
+                    'price'=>$object['price'],
+                    );
+                        }
+                    }
+
+                    $count++;
+                }
 
 
                 $res = array('message'=>'success',
@@ -3091,10 +3097,10 @@ class Apicontroller extends CI_Controller
         $this->load->library('form_validation');
         $this->load->helper('security');
         if ($this->input->post()) {
-          $headers = apache_request_headers();
-          $phone=$headers['Phone'];
-          $authentication=$headers['Authentication'];
-          $token_id=$headers['Tokenid'];
+            $headers = apache_request_headers();
+            $phone=$headers['Phone'];
+            $authentication=$headers['Authentication'];
+            $token_id=$headers['Tokenid'];
             $this->form_validation->set_rules('payment_type', 'payment_type', 'required|xss_clean|trim');
             if (!empty($this->input->post('store_id'))) {
                 $this->form_validation->set_rules('name', 'name', 'xss_clean|trim');
@@ -3346,7 +3352,6 @@ if (!empty($store_id)) {
                     echo json_encode($res);
                 }
             } else {
-
                 $res = array('message'=>validation_errors(),
 'status'=>201
 );
@@ -3354,7 +3359,6 @@ if (!empty($store_id)) {
                 echo json_encode($res);
             }
         } else {
-
             $res = array('message'=>'No data available',
 'status'=>201
 );
@@ -3989,30 +3993,30 @@ if (!empty($store_id)) {
     }
 
     //----view store_details-------
-public function store_details()
-{
-    $this->load->helper(array('form', 'url'));
-    $this->load->library('form_validation');
-    $this->load->helper('security');
-    $headers = apache_request_headers();
+    public function store_details()
+    {
+        $this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
+        $this->load->helper('security');
+        $headers = apache_request_headers();
 
-    $phone=$headers['Phone'];
-    $authentication=$headers['Authentication'];
-    $token_id=$headers['Tokenid'];
+        $phone=$headers['Phone'];
+        $authentication=$headers['Authentication'];
+        $token_id=$headers['Tokenid'];
 
-    $this->db->select('*');
-    $this->db->from('tbl_users');
-    $this->db->where('phone', $phone);
-    $user_data= $this->db->get()->row();
+        $this->db->select('*');
+        $this->db->from('tbl_users');
+        $this->db->where('phone', $phone);
+        $user_data= $this->db->get()->row();
 
-    if (!empty($user_data)) {
-        if ($user_data->authentication==$authentication) {
-            $this->db->select('*');
-            $this->db->from('tbl_store');
-            $store_data= $this->db->get();
-            $store_info = [];
-            foreach ($store_data->result() as $data) {
-                $store_info[]=array(
+        if (!empty($user_data)) {
+            if ($user_data->authentication==$authentication) {
+                $this->db->select('*');
+                $this->db->from('tbl_store');
+                $store_data= $this->db->get();
+                $store_info = [];
+                foreach ($store_data->result() as $data) {
+                    $store_info[]=array(
 'id'=>$data->id,
 'name'=>$data->name,
 'address'=>$data->address,
@@ -4020,26 +4024,26 @@ public function store_details()
 'contact1'=>$data->contact1,
 'contact2'=>$data->contact2,
 );
-            }
-            $res = array('message'=>'success',
+                }
+                $res = array('message'=>'success',
 'status'=>200,
 'data'=>$store_info,
 );
 
-            echo json_encode($res);
+                echo json_encode($res);
+            } else {
+                $res = array('message'=>'Wrong Authentication',
+'status'=>201
+);
+
+                echo json_encode($res);
+            }
         } else {
-            $res = array('message'=>'Wrong Authentication',
+            $res = array('message'=>'user not found',
 'status'=>201
 );
 
             echo json_encode($res);
         }
-    } else {
-        $res = array('message'=>'user not found',
-'status'=>201
-);
-
-        echo json_encode($res);
     }
-}
 }
