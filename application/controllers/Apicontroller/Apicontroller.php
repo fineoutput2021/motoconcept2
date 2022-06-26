@@ -3229,31 +3229,37 @@ if (!empty($store_id)) {
               //   $content = array('product_id'=>0);
                 $count = 0;
               //   print_r($content);
-                foreach ($send as $object) {
-                  foreach($content as $pushin){
-                if($count > 0){
-                 if($object['product_id'] == $pushin['product_id']){
-                   // echo "1";
-                 }else{
-                   $content[] = array('product_id'=>$object['product_id'],
-                      'product_name'=>$object['product_name'],
-                      'product_image'=>$object['product_image'],
-                      'productdescription'=>$object['productdescription'],
-                      'MRP'=>$object['MRP'],
-                      'price'=>$object['price'],
-                      );
-                 }
-                }
-              }
-              $count++;
-              if($count==1){ $content[] = array('product_id'=>$object['product_id'],
-                 'product_name'=>$object['product_name'],
-                 'product_image'=>$object['product_image'],
-                 'productdescription'=>$object['productdescription'],
-                 'MRP'=>$object['MRP'],
-                 'price'=>$object['price'],
-               );
-               }
+              foreach ($send as $object) {
+                  $a=0;
+                  if ($count==0) {
+                    $content[] = array('product_id'=>$object['product_id'],
+                       'product_name'=>$object['product_name'],
+                       'product_image'=>$object['product_image'],
+                       'productdescription'=>$object['productdescription'],
+                       'MRP'=>$object['MRP'],
+                       'price'=>$object['price'],
+                       );
+                  } else {
+                      // print_r($content);
+                      foreach ($content as $pushin) {
+                          // echo $object['product_id']."-----------".$pushin['product_id']."<br />";
+                          if ($pushin['product_id']==$object['product_id']) {
+                              // echo "ji";
+                              $a=1;
+                          }
+                      }
+                      if ($a==0) {
+                        $content[] = array('product_id'=>$object['product_id'],
+                           'product_name'=>$object['product_name'],
+                           'product_image'=>$object['product_image'],
+                           'productdescription'=>$object['productdescription'],
+                           'MRP'=>$object['MRP'],
+                           'price'=>$object['price'],
+                           );
+                      }
+                  }
+
+                  $count++;
               }
                 //  print_r($content);
                 // exit;
