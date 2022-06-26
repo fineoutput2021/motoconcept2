@@ -3489,7 +3489,7 @@ if (!empty($store_id)) {
                                 if ($filterrr->type == $data0) {
                                   $this->db->select('*');
                       $this->db->from('tbl_inventory');
-                      $this->db->where('product_id', $data0->id);
+                      $this->db->where('product_id', $filterrr->id);
                       $inventory_data = $this->db->get()->row();
                       if (!empty($inventory_data)) {
                           if ($inventory_data->quantity>0) {
@@ -3518,7 +3518,7 @@ if (!empty($store_id)) {
                                 if ($filterrr->wattage == $data1) {
                                   $this->db->select('*');
                       $this->db->from('tbl_inventory');
-                      $this->db->where('product_id', $data1->id);
+                      $this->db->where('product_id', $filterrr->id);
                       $inventory_data = $this->db->get()->row();
                       if (!empty($inventory_data)) {
                           if ($inventory_data->quantity>0) {
@@ -3546,7 +3546,7 @@ if (!empty($store_id)) {
                                 if ($filterrr->size == $data2) {
                                   $this->db->select('*');
                       $this->db->from('tbl_inventory');
-                      $this->db->where('product_id', $data2->id);
+                      $this->db->where('product_id', $filterrr->id);
                       $inventory_data = $this->db->get()->row();
                       if (!empty($inventory_data)) {
                           if ($inventory_data->quantity>0) {
@@ -3574,7 +3574,7 @@ if (!empty($store_id)) {
                                 if ($filterrr->filter_product == $data3) {
                                   $this->db->select('*');
                       $this->db->from('tbl_inventory');
-                      $this->db->where('product_id', $data3->id);
+                      $this->db->where('product_id', $filterrr->id);
                       $inventory_data = $this->db->get()->row();
                       if (!empty($inventory_data)) {
                           if ($inventory_data->quantity>0) {
@@ -3603,7 +3603,7 @@ if (!empty($store_id)) {
                                 if ($filterrr->color == $data4) {
                                   $this->db->select('*');
                       $this->db->from('tbl_inventory');
-                      $this->db->where('product_id', $data4->id);
+                      $this->db->where('product_id', $filterrr->id);
                       $inventory_data = $this->db->get()->row();
                       if (!empty($inventory_data)) {
                           if ($inventory_data->quantity>0) {
@@ -3632,7 +3632,7 @@ if (!empty($store_id)) {
                                 if ($filterrr->car_model_id == $data5) {
                                   $this->db->select('*');
                     $this->db->from('tbl_inventory');
-                    $this->db->where('product_id', $data5->id);
+                    $this->db->where('product_id', $filterrr->id);
                     $inventory_data = $this->db->get()->row();
                     if (!empty($inventory_data)) {
                         if ($inventory_data->quantity>0) {
@@ -3692,7 +3692,7 @@ if (!empty($store_id)) {
                            'MRP'=>$object['MRP'],
                            'price'=>$object['price'],
                            'stock'=>$object['stock']
-                           
+
                            );
                         }
                     }
