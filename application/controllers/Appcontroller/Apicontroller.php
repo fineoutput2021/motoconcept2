@@ -2978,13 +2978,13 @@ class Apicontroller extends CI_Controller
                 foreach ($send as $object) {
                     $a=0;
                     if ($count==0) {
-                        $content[] = array('product_id'=>$object['product_id'],
-                  'product_name'=>$object['product_name'],
-                  'product_image'=>$object['product_image'],
-                  'productdescription'=>$object['productdescription'],
-                  'MRP'=>$object['MRP'],
-                  'price'=>$object['price']
-                );
+                      $content[] = array('product_id'=>$object['product_id'],
+                         'product_name'=>$object['product_name'],
+                         'product_image'=>$object['product_image'],
+                         'productdescription'=>$object['productdescription'],
+                         'MRP'=>$object['MRP'],
+                         'price'=>$object['price'],
+                         );
                     } else {
                         // print_r($content);
                         foreach ($content as $pushin) {
@@ -2995,19 +2995,18 @@ class Apicontroller extends CI_Controller
                             }
                         }
                         if ($a==0) {
-                            $content[] = array('product_id'=>$object['product_id'],
-                    'product_name'=>$object['product_name'],
-                    'product_image'=>$object['product_image'],
-                    'productdescription'=>$object['productdescription'],
-                    'MRP'=>$object['MRP'],
-                    'price'=>$object['price'],
-                    );
+                          $content[] = array('product_id'=>$object['product_id'],
+                             'product_name'=>$object['product_name'],
+                             'product_image'=>$object['product_image'],
+                             'productdescription'=>$object['productdescription'],
+                             'MRP'=>$object['MRP'],
+                             'price'=>$object['price'],
+                             );
                         }
                     }
 
                     $count++;
                 }
-
 
                 $res = array('message'=>'success',
   'status'=>200,
