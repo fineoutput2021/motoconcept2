@@ -47,8 +47,8 @@
                       <th>Car Model</th>
                       <th>Image 1</th>
                       <th>Image 2</th>
-                      <th>Image 3</th>
-                      <th>Video</th>
+                      <th>Video 1</th>
+                      <th>Video 2</th>
                       <th>MRP</th>
                       <th>Selling Price</th>
                       <!-- <th>Gst %</th>

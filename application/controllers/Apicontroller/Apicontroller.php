@@ -1700,21 +1700,33 @@ class Apicontroller extends CI_Controller
         $this->db->select('*');
         $this->db->from('tbl_products');
         $this->db->where('id', $id);
+
         $product_data= $this->db->get()->row();
 
         $this->db->select('*');
         $this->db->from('tbl_products');
+        $this->db->where('is_active', 1);
         $this->db->where('subcategory_id', $product_data->subcategory_id);
         $related_data= $this->db->get();
 
         $related_info = [];
         foreach ($related_data->result() as $data) {
+          $this->db->select('*');
+            $this->db->from('tbl_category');
+            $this->db->where('id', $data->category_id);
+            $this->db->where('is_active', 1);
+            $cat_check = $this->db->get()->row();
+            $this->db->from('tbl_subcategory');
+            $this->db->where('is_active', 1);
+            $this->db->where('id', $data->subcategory_id);
+            $subcat_check = $this->db->get()->row();
             if ($data->id!=$id) {
                 if ($data->inventory>0) {
                     $stock = 1;
                 } else {
                     $stock = 0;
                 }
+                if (!empty($cat_check) && !empty($subcat_check)) {
                 $related_info[]  = array(
 'product_id'=>$data->id,
 'productname'=>$data->productname,
@@ -1725,6 +1737,7 @@ class Apicontroller extends CI_Controller
 'stock'=>$stock
 );
             }
+          }
         }
         header('Access-Control-Allow-Origin: *');
         $res = array('message'=>"success",
