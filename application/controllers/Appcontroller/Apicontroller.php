@@ -2953,7 +2953,7 @@ class Apicontroller extends CI_Controller
                         }
                         if (!empty($model_info[0])) {
                             foreach ($model_info as $data5) {
-                                if ($filterrr->model == $data5) {
+                                if ($filterrr->car_model_id == $data5) {
                                     //    $send = [];
                                     $send[] = array('product_id'=>$filterrr->id,
                                 'product_name'=>$filterrr->productname,
