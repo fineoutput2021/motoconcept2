@@ -1599,7 +1599,6 @@ class Apicontroller extends CI_Controller
     'mrp'=> $limit->mrp,
     'price'=>$limit->sellingprice,
     'productdescription'=> $limit->productdescription,
-    'max'=>$limit->max,
     'stock'=>$stock
     );
                 }
