@@ -2715,9 +2715,9 @@ if (!empty($store_id)) {
 
                             foreach ($data->result() as $value) {
                                 if ($value->payment_type == 1) {
-                                    $payment_type="Bank Tranfer";
+                                  $payment_type="Pay at store";
                                 } elseif ($value->payment_type == 2) {
-                                    $payment_type="Pay at store";
+                                  $payment_type="Bank Tranfer";
                                 } else {
                                     $payment_type = "NA";
                                 }
