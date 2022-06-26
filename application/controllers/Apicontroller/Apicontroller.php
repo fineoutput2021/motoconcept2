@@ -916,13 +916,8 @@ class Apicontroller extends CI_Controller
                                 $check_product_id=$check_product->row();
 
                                 if (!empty($check_product_id)) {
-                                    $this->db->select('*');
-                                    $this->db->from('tbl_inventory');
-                                    $this->db->where('product_id', $product_id);
-                                    $check_inventory= $this->db->get();
-                                    $check_inventory_id=$check_inventory->row();
 
-                                    if ($check_inventory_id->quantity >= $quantity) {
+                                    if ($check_product_id->inventory >= $quantity) {
                                     } else {
                                         header('Access-Control-Allow-Origin: *');
                                         $res = array('message'=> "$check_product_id->productname Product is out of stock",
@@ -932,16 +927,16 @@ class Apicontroller extends CI_Controller
                                         echo json_encode($res);
                                         exit;
                                     }
-                                    if ($check_product_id->max >= $quantity) {
-                                    } else {
-                                        header('Access-Control-Allow-Origin: *');
-                                        $res = array('message'=> "Maximum purchase limit exceeded",
-  'status'=>201
-  );
-
-                                        echo json_encode($res);
-                                        exit;
-                                    }
+  //                                   if ($check_product_id->max >= $quantity) {
+  //                                   } else {
+  //                                       header('Access-Control-Allow-Origin: *');
+  //                                       $res = array('message'=> "Maximum purchase limit exceeded",
+  // 'status'=>201
+  // );
+  //
+  //                                       echo json_encode($res);
+  //                                       exit;
+  //                                   }
 
 
 
@@ -1025,14 +1020,10 @@ class Apicontroller extends CI_Controller
                         $check_product_id=$check_product->row();
 
                         if (!empty($check_product_id)) {
-                            $this->db->select('*');
-                            $this->db->from('tbl_inventory');
-                            $this->db->where('product_id', $product_id);
-                            $check_inventory= $this->db->get();
-                            $check_inventory_id=$check_inventory->row();
 
 
-                            if ($check_inventory_id->quantity >= $quantity) {
+
+                            if ($check_inventory_id->inventory >= $quantity) {
                             } else {
                                 header('Access-Control-Allow-Origin: *');
                                 $res = array('message'=> "$check_product_id->productname Product is out of stock",
@@ -1595,20 +1586,11 @@ class Apicontroller extends CI_Controller
                 $subcat_check = $this->db->get()->row();
 
                 if (!empty($cat_check) && !empty($subcat_check)) {
-                    $this->db->select('*');
-                    $this->db->from('tbl_inventory');
-                    $this->db->where('product_id', $limit->id);
-                    $inventory_data= $this->db->get()->row();
-
-                    if (!empty($inventory_data)) {
-                        if ($inventory_data->quantity>0) {
-                            $stock = 1;
-                        } else {
-                            $stock =0;
-                        }
-                    } else {
-                        $stock =0;
-                    }
+                  if ($limit->inventory>0) {
+              $stock = 1;
+          } else {
+              $stock = 0;
+          }
 
                     $products[] = array(
     'product_id'=>$limit->id,
@@ -2509,18 +2491,10 @@ class Apicontroller extends CI_Controller
                             $dsa= $this->db->get();
                             $product_data=$dsa->row();
 
-                            $this->db->select('*');
-                            $this->db->from('tbl_inventory');
-                            $this->db->where('product_id', $data->product_id);
-                            $inventory_data = $this->db->get()->row();
-                            if (!empty($inventory_data)) {
-                                if ($inventory_data->quantity>0) {
-                                    $stock = 1;
-                                } else {
-                                    $stock =0;
-                                }
+                            if ($product_data->inventory>0) {
+                                $stock = 1;
                             } else {
-                                $stock =0;
+                                $stock = 0;
                             }
 
                             $wishlist_info[]=array(
@@ -2612,19 +2586,11 @@ class Apicontroller extends CI_Controller
                   $this->db->where('id', $data->subcategory_id);
                   $subcat_check = $this->db->get()->row();
                   if (!empty($cat_check) && !empty($subcat_check)) {
-                    $this->db->select('*');
-                      $this->db->from('tbl_inventory');
-                      $this->db->where('product_id', $data->id);
-                      $inventory_data = $this->db->get()->row();
-                      if (!empty($inventory_data)) {
-                          if ($inventory_data->quantity>0) {
-                              $stock = 1;
-                          } else {
-                              $stock =0;
-                          }
-                      } else {
-                          $stock =0;
-                      }
+                    if ($data->inventory>0) {
+                  $stock = 1;
+              } else {
+                  $stock = 0;
+              }
                     $search_data[]=array(
 'product_id'=>$data->id,
 'product_name'=>$data->productname,
@@ -3487,19 +3453,11 @@ if (!empty($store_id)) {
                         if (!empty($type_info[0])) {
                             foreach ($type_info as $data0) {
                                 if ($filterrr->type == $data0) {
-                                  $this->db->select('*');
-                      $this->db->from('tbl_inventory');
-                      $this->db->where('product_id', $filterrr->id);
-                      $inventory_data = $this->db->get()->row();
-                      if (!empty($inventory_data)) {
-                          if ($inventory_data->quantity>0) {
-                              $stock = 1;
-                          } else {
-                              $stock =0;
-                          }
-                      } else {
-                          $stock =0;
-                      }
+                                  if ($filterrr->inventory>0) {
+                  $stock = 1;
+              } else {
+                  $stock = 0;
+              }
                                     //    $send = [];
                                     $send[] = array('product_id'=>$filterrr->id,
                             'product_name'=>$filterrr->productname,
@@ -3516,19 +3474,11 @@ if (!empty($store_id)) {
                         if (!empty($wattage_info[0])) {
                             foreach ($wattage_info as $data1) {
                                 if ($filterrr->wattage == $data1) {
-                                  $this->db->select('*');
-                      $this->db->from('tbl_inventory');
-                      $this->db->where('product_id', $filterrr->id);
-                      $inventory_data = $this->db->get()->row();
-                      if (!empty($inventory_data)) {
-                          if ($inventory_data->quantity>0) {
-                              $stock = 1;
-                          } else {
-                              $stock =0;
-                          }
-                      } else {
-                          $stock =0;
-                      }
+                                  if ($filterrr->inventory>0) {
+                  $stock = 1;
+              } else {
+                  $stock = 0;
+              }
                                     $send[] = array('product_id'=>$filterrr->id,
                             'product_name'=>$filterrr->productname,
                             'product_image'=>base_url().$filterrr->image,
@@ -3544,19 +3494,11 @@ if (!empty($store_id)) {
                         if (!empty($size_info[0])) {
                             foreach ($size_info as $data2) {
                                 if ($filterrr->size == $data2) {
-                                  $this->db->select('*');
-                      $this->db->from('tbl_inventory');
-                      $this->db->where('product_id', $filterrr->id);
-                      $inventory_data = $this->db->get()->row();
-                      if (!empty($inventory_data)) {
-                          if ($inventory_data->quantity>0) {
-                              $stock = 1;
-                          } else {
-                              $stock =0;
-                          }
-                      } else {
-                          $stock =0;
-                      }
+                                  if ($filterrr->inventory>0) {
+                  $stock = 1;
+              } else {
+                  $stock = 0;
+              }
                                     $send[] = array('product_id'=>$filterrr->id,
                             'product_name'=>$filterrr->productname,
                             'product_image'=>base_url().$filterrr->image,
@@ -3572,19 +3514,11 @@ if (!empty($store_id)) {
                         if (!empty($filter_product_info[0])) {
                             foreach ($filter_product_info as $data3) {
                                 if ($filterrr->filter_product == $data3) {
-                                  $this->db->select('*');
-                      $this->db->from('tbl_inventory');
-                      $this->db->where('product_id', $filterrr->id);
-                      $inventory_data = $this->db->get()->row();
-                      if (!empty($inventory_data)) {
-                          if ($inventory_data->quantity>0) {
-                              $stock = 1;
-                          } else {
-                              $stock =0;
-                          }
-                      } else {
-                          $stock =0;
-                      }
+                                  if ($filterrr->inventory>0) {
+                  $stock = 1;
+              } else {
+                  $stock = 0;
+              }
                                     //    $send = [];
                                     $send[] = array('product_id'=>$filterrr->id,
                             'product_name'=>$filterrr->productname,
@@ -3601,19 +3535,11 @@ if (!empty($store_id)) {
                         if (!empty($color_info[0])) {
                             foreach ($color_info as $data4) {
                                 if ($filterrr->color == $data4) {
-                                  $this->db->select('*');
-                      $this->db->from('tbl_inventory');
-                      $this->db->where('product_id', $filterrr->id);
-                      $inventory_data = $this->db->get()->row();
-                      if (!empty($inventory_data)) {
-                          if ($inventory_data->quantity>0) {
-                              $stock = 1;
-                          } else {
-                              $stock =0;
-                          }
-                      } else {
-                          $stock =0;
-                      }
+                                  if ($filterrr->inventory>0) {
+                  $stock = 1;
+              } else {
+                  $stock = 0;
+              }
                                     //    $send = [];
                                     $send[] = array('product_id'=>$filterrr->id,
                             'product_name'=>$filterrr->productname,
@@ -3630,19 +3556,11 @@ if (!empty($store_id)) {
                         if (!empty($model_info[0])) {
                             foreach ($model_info as $data5) {
                                 if ($filterrr->car_model_id == $data5) {
-                                  $this->db->select('*');
-                    $this->db->from('tbl_inventory');
-                    $this->db->where('product_id', $filterrr->id);
-                    $inventory_data = $this->db->get()->row();
-                    if (!empty($inventory_data)) {
-                        if ($inventory_data->quantity>0) {
-                            $stock = 1;
-                        } else {
-                            $stock =0;
-                        }
-                    } else {
-                        $stock =0;
-                    }
+                                  if ($filterrr->inventory>0) {
+                  $stock = 1;
+              } else {
+                  $stock = 0;
+              }
                                     $send[] = array('product_id'=>$filterrr->id,
                             'product_name'=>$filterrr->productname,
                             'product_image'=>base_url().$filterrr->image,
