@@ -1778,6 +1778,10 @@ class Apicontroller extends CI_Controller
                                     $promo_check=$dsa->row();
 
                                     if (empty($promo_check)) {
+
+                                                 date_default_timezone_set("Asia/Calcutta");
+                                                 $cur_date=date("Y-m-d");
+                                        if($promo_check->expiry >= $cur_date) {
                                         if ($order_data->total_amount > $promocode_data->minorder) { //----checking minorder for promocode
                                             // echo "hii";
 
@@ -1797,6 +1801,14 @@ class Apicontroller extends CI_Controller
                                             echo json_encode($res);
                                             exit;
                                         }
+                                    }else{
+                                      $res = array('message'=>'Invalid Promocode',
+'status'=>201
+);
+
+                                      echo json_encode($res);
+                                      exit;
+                                    }
                                     } else {
                                         $res = array('message'=>'Promocode already used',
   'status'=>201
@@ -2102,6 +2114,7 @@ class Apicontroller extends CI_Controller
                     $this->db->select('*');
                     $this->db->from('tbl_order1');
                     $this->db->where('user_id', $user_data->id);
+                    $this->db->order_by('id', 'desc');
                     $this->db->where('payment_status', 1);
                     $data= $this->db->get();
                     $data_id=$data->row();
@@ -2361,12 +2374,22 @@ class Apicontroller extends CI_Controller
                 $this->db->select('*');
                 $this->db->from('tbl_products');
                 $this->db->like('productname', $string);
-                $this->db->where('is_active', 1);
                 $search_string= $this->db->get();
                 // print_r ($string_check);
                 // exit;
                 $search_data=[];
                 foreach ($search_string->result() as $data) {
+                  $this->db->select('*');
+                  $this->db->from('tbl_category');
+                  $this->db->where('id', $data->category_id);
+                  $this->db->where('is_active', 1);
+                  $cat_check = $this->db->get()->row();
+                  $this->db->from('tbl_subcategory');
+                  $this->db->where('is_active', 1);
+                  $this->db->where('id', $data->subcategory_id);
+                  $subcat_check = $this->db->get()->row();
+                  if (!empty($cat_check) && !empty($subcat_check)) {
+                  if($data->is_active==1){
                     if ($data->inventory>0) {
                         $stock = 1;
                     } else {
@@ -2386,6 +2409,8 @@ class Apicontroller extends CI_Controller
 
    );
                 }
+              }
+              }
 
                 $res = array('message'=>"success",
 'status'=>200,
@@ -3121,6 +3146,7 @@ class Apicontroller extends CI_Controller
 
             $this->form_validation->set_rules('txn_id', 'txn_id', 'required|xss_clean|trim');
             $this->form_validation->set_rules('store_id', 'store_id', 'xss_clean|trim');
+            $this->form_validation->set_rules('promocode_id', 'promocode_id', 'xss_clean|trim');
 
 
             if ($this->form_validation->run()== true) {
@@ -3134,6 +3160,7 @@ class Apicontroller extends CI_Controller
                 // $house_no=$this->input->post('house_no');
                 $street_address=$this->input->post('street_address');
                 $store_id=$this->input->post('store_id');
+                $promocode_id=$this->input->post('promocode_id');
 
                 $this->load->library('upload');
 
