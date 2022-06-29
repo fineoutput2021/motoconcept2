@@ -46,6 +46,35 @@
                    redirect("login/admin_login", "refresh");
                }
            }
+
+           public function view_outofstock()
+           {
+               if (!empty($this->session->userdata('admin_data'))) {
+                   $data['user_name']=$this->load->get_var('user_name');
+
+                   // echo SITE_NAME;
+                   // echo $this->session->userdata('image');
+                   // echo $this->session->userdata('position');
+                   // exit;
+                   //  $id=base64_decode($idd);
+
+                   $this->db->select('*');
+                   $this->db->from('tbl_products');
+                   $this->db->where('inventory', 0);
+                   $data['products_data']= $this->db->get();
+
+                   //             $this->db->select('*');
+                   // $this->db->from('tbl_inventory');
+                   // // $this->db->where('',$usr);
+                   // $data['inventory_data']= $this->db->get();
+
+                   $this->load->view('admin/common/header_view', $data);
+                   $this->load->view('admin/products/view_outofstock');
+                   $this->load->view('admin/common/footer_view');
+               } else {
+                   redirect("login/admin_login", "refresh");
+               }
+           }
            public function view_product_categories()
            {
                if (!empty($this->session->userdata('admin_data'))) {

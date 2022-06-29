@@ -138,7 +138,6 @@ class Users extends CI_finecontrol
 
                     if ($last_id!=0) {
                         $this->session->set_flashdata('smessage', 'Data inserted successfully');
-
                         redirect("dcadmin/Users/view_users", "refresh");
                     } else {
                         $this->session->set_flashdata('emessage', 'Sorry error occured');

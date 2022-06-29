@@ -24,6 +24,13 @@ function __construct()
 				// $this->db->where('student_shift',$cvf);
 				$data['sidebar_data']= $this->db->get();
 
+				$this->db->select('*');
+			 $this->db->from('tbl_products');
+			 $this->db->where('inventory',0);
+			 $data['out_of_stock']= $this->db->count_all_results();
+
+
+
 				// $this->db->select('*');
 				//             $this->db->from('tbl_vendors');
 				//             // $this->db->where('id',$id);
@@ -44,7 +51,6 @@ function __construct()
 		}
 
 		}
-
 
 
 }

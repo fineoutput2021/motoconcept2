@@ -131,7 +131,10 @@
 
 
            $last_id=$this->base_model->insert_table("tbl_type",$data_insert,1) ;
-
+           if($last_id!=0){
+                   $this->session->set_flashdata('smessage','Data updated successfully');
+                   redirect("dcadmin/Type/view_type","refresh");
+                  }
            }
            if($typ==2){
 
@@ -215,6 +218,7 @@
                        $zapak=$this->db->update('tbl_type', $data_update);
 
                             if($zapak!=0){
+                               $this->session->set_flashdata('smessage','Status updated successfully');
                             redirect("dcadmin/Type/view_type","refresh");
                                     }
                                     else
@@ -233,6 +237,7 @@
                          $zapak=$this->db->update('tbl_type', $data_update);
 
                              if($zapak!=0){
+                                $this->session->set_flashdata('smessage','Status updated successfully');
                              redirect("dcadmin/Type/view_type","refresh");
                                      }
                                      else
@@ -277,7 +282,7 @@
 
  $zapak=$this->db->delete('tbl_type', array('id' => $id));
  if($zapak!=0){
-      
+
         redirect("dcadmin/Type/view_type","refresh");
                 }
                 else

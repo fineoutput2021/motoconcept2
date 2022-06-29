@@ -96,7 +96,7 @@ $this->db->where('id', $id);
 $zapak=$this->db->update('tbl_order1', $data_update);
 
 if($zapak!=0){
-redirect("dcadmin/Orders/view_accept_order","refresh");
+redirect($_SERVER['HTTP_REFERER']);
 }
 else
 {
@@ -115,7 +115,7 @@ $this->db->where('id', $id);
 $zapak=$this->db->update('tbl_order1', $data_update);
 
 if($zapak!=0){
-redirect("dcadmin/Orders/view_accept_order","refresh");
+redirect($_SERVER['HTTP_REFERER']);
 }
 else
 {

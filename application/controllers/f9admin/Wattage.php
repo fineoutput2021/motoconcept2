@@ -135,7 +135,10 @@
 
 
            $last_id=$this->base_model->insert_table("tbl_wattage",$data_insert,1) ;
-
+           if($last_id!=0){
+                   $this->session->set_flashdata('smessage','Data inserted successfully');
+                   redirect("dcadmin/Wattage/view_wattage","refresh");
+                  }
            }
            if($typ==2){
 
@@ -160,7 +163,7 @@
              $last_id=$this->db->update('tbl_wattage', $data_insert);
            }
                        if($last_id!=0){
-                               $this->session->set_flashdata('smessage','Data inserted successfully');
+                               $this->session->set_flashdata('smessage','Data updated successfully');
                                redirect("dcadmin/Wattage/view_wattage","refresh");
                               }
                                else
@@ -218,6 +221,7 @@
                        $zapak=$this->db->update('tbl_wattage', $data_update);
 
                             if($zapak!=0){
+                               $this->session->set_flashdata('smessage','Status updated successfully');
                             redirect("dcadmin/Wattage/view_wattage","refresh");
                                     }
                                     else
@@ -236,6 +240,7 @@
                          $zapak=$this->db->update('tbl_wattage', $data_update);
 
                              if($zapak!=0){
+                                $this->session->set_flashdata('smessage','Status updated successfully');
                              redirect("dcadmin/Wattage/view_wattage","refresh");
                                      }
                                      else

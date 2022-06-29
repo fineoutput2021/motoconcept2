@@ -172,7 +172,6 @@ public function add_vendors(){
                               if($last_id!=0){
 
                               $this->session->set_flashdata('smessage','Data inserted successfully');
-
                               redirect("dcadmin/Vendors/view_vendors","refresh");
 
                                       }
@@ -314,6 +313,7 @@ public function updatevendorsStatus($idd,$t){
         $zapak=$this->db->update('tbl_users', $data_update);
 
              if($zapak!=0){
+						 $this->session->set_flashdata('smessage','Vendors data approved successfully');
              redirect("dcadmin/Vendors/view_vendors","refresh");
                      }
                      else
@@ -332,6 +332,7 @@ public function updatevendorsStatus($idd,$t){
           $zapak=$this->db->update('tbl_users', $data_update);
 
               if($zapak!=0){
+								 $this->session->set_flashdata('smessage','Vendors data inactive successfully');
               redirect("dcadmin/Vendors/view_vendors","refresh");
                       }
                       else

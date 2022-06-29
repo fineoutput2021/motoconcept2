@@ -15,7 +15,12 @@
     <!-- Info boxes -->
     <div class="row">
       <div class="col-md-3 col-sm-6 col-xs-12">
-        <a href="javascript:;">
+          <? if ($this->load->get_var('position')=="Super Admin") {?>
+          <a href="<?=base_url()?>dcadmin/Vendors/view_vendors">
+        <!-- <a href="javascript:;"> -->
+        <?}else{?>
+                <a href="javascript:void(0);">
+                <?}?>
           <div class="info-box">
             <span class="info-box-icon bg-red"><i class="ion ion-ios-people-outline"></i></span>
             <div class="info-box-content">
@@ -85,7 +90,11 @@ echo $tot_orders;
         </a><!-- /.info-box -->
       </div><!-- /.col -->
       <div class="col-md-3 col-sm-6 col-xs-12">
+        <? if ($this->load->get_var('position')=="Super Admin") {?>
         <a href="<?=base_url()?>dcadmin/Orders/view_orders">
+          <?}else{?>
+                  <a href="javascript:void(0);">
+                  <?}?>
           <div class="info-box">
             <span class="info-box-icon bg-aqua"><i class="ion ion-ios-cart-outline"></i></span>
             <div class="info-box-content">
@@ -96,7 +105,7 @@ date_default_timezone_set("Asia/Calcutta");
 $cur_date=date("Y-m-d");
 $this->db->select('*');
 $this->db->from('tbl_order1');
-$this->db->like('date', $cur_date);
+  $this->db->where('order_status',1);
 $new_order_count= $this->db->count_all_results();
 echo $new_order_count;
 ?>
@@ -109,7 +118,11 @@ echo $new_order_count;
       <!-- fix for small devices only -->
       <div class="clearfix visible-sm-block"></div>
       <div class="col-md-3 col-sm-6 col-xs-12">
+          <? if ($this->load->get_var('position')=="Super Admin") {?>
         <a href="<?=base_url()?>dcadmin/Orders/view_hold_orders">
+          <?}else{?>
+                  <a href="javascript:void(0);">
+                  <?}?>
           <div class="info-box">
             <span class="info-box-icon bg-grey"><i class="ion ion-ios-cart-outline"></i></span>
             <div class="info-box-content">
@@ -126,17 +139,14 @@ echo $tot_orders;?>
         </a><!-- /.info-box -->
       </div><!-- /.col -->
       <div class="col-md-3 col-sm-6 col-xs-12">
-        <a href="javascript:;">
-
+          <a href="<?=base_url()?>dcadmin/Products/view_outofstock">
+        <!-- <a href="javascript:;"> -->
           <div class="info-box">
             <span class="info-box-icon bg-grey"><i class="ion ion-ios-pricetags-outline"></i></span>
             <div class="info-box-content">
               <span class="info-box-text">OUT OF STOCK PRODUCTS</span>
               <span class="info-box-number">
-                <?$this->db->select('*');
-$this->db->from('tbl_products');
-$this->db->where('inventory', 0);
-$out_of_stock= $this->db->count_all_results(); echo $out_of_stock;?>
+                <?=$out_of_stock;?>
               </span>
             </div><!-- /.info-box-content -->
           </div>
