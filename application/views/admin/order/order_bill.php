@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <html lang="en">
-<input type="hidden" value="<?php if(!empty($order1_data)){ echo $order1_data->total_amount; }?>" id="tot_amnt">
+<input type="hidden" value="<?php if(!empty($order1_data)){ echo round($order1_data->final_amount); }?>" id="tot_amnt">
 <head>
  <meta charset="utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -200,64 +200,17 @@ echo $product_name= $product_data->productname;
 
       </tr>
 
+      <tr>
+            <th>Promocode discount:</th>
 
-      <?php if(!empty($order1_data->promocode) && $order1_data->promocode != "Apply coupon" ){
-                    $this->db->select('*');
-        $this->db->from('tbl_promocode');
-        $this->db->where('id',$order1_data->promocode);
-        $promo_da= $this->db->get()->row();
-
-        if(!empty($promo_da)){
-          $peomocode_id= $promo_da->id;
-          $promocode_name= $promo_da->promocode;
-        }else{
-          $peomocode_id="";
-          $promocode_name="";
-        }
-        ?>
-        <tr>
-          <th colspan="9">Promocode:<?=$promocode_name;?> </th>
-          <th class="product_table"><?php if(!empty($order1_data)){ echo " "; }?></th>
-          <th class="product_table"><?php if(!empty($order1_data->promocode)){
-                      $this->db->select('*');
-          $this->db->from('tbl_promocode');
-          $this->db->where('id',$order1_data->promocode);
-          $promo_da= $this->db->get()->row();
-          if(!empty($promo_da)){
-            $percent= $promo_da->percent;
-            $db_promocode_maximum_gift_amount= $promo_da->maximum_gift_amount;
-            // $f_amount= $order1_data->total_amount + $order1_data->order_shipping_amount;
-            $f_amount= $order1_data->total_amount ;
-
-            $promocodes_discount= $f_amount * $percent/100;
-            $promo_discount= round($promocodes_discount);
-
-//check maximum gift amount
-            if($promo_discount > $db_promocode_maximum_gift_amount){
-              $promo_discount = $db_promocode_maximum_gift_amount;
-            }
-
-
-          }else{
-            $promo_discount= 0;
-          }
-             "- ₹".$promo_discount; }else{ echo "-₹0"; }?>
-
-<!-- from table order1  start-->
-
-<?php if(!empty($order1_data)){ echo "- ₹ ".$order1_data->promo_deduction_amount; }else{ echo "-₹0"; }?>
-
-<!-- from table order1  end-->
-
-          </th>
-
-        </tr>
-      <?php }?>
-
+            <th class="product_table" ><?php if(!empty($order1_data)){ echo ""; }?></th>
+            <th class="product_table" colspan="2"><?php if(!empty($order1_data)){ echo ""; }?></th>
+            <th class="product_table"><?php if(!empty($order1_data->promocode_id)){ echo "₹".$order1_data->discount; }else{"NA";}?></th>
+          </tr>
 
       <tr>
         <th colspan="4">SubTotal</th>
-        <th class="product_table"><?php if(!empty($order1_data)){ echo "₹".$order1_data->total_amount; }?></th>
+        <th class="product_table"><?php if(!empty($order1_data)){ echo "₹".$order1_data->final_amount; }?></th>
 
       </tr>
 

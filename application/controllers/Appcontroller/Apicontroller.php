@@ -3208,6 +3208,7 @@ class Apicontroller extends CI_Controller
                 $user_data= $this->db->get()->row();
 
                 if (!empty($user_data)) {
+                    if($user_data->is_active==1){
                     if ($user_data->authentication==$authentication) {
                         $this->db->select('*');
                         $this->db->from('tbl_order1');
@@ -3364,6 +3365,12 @@ if (!empty($store_id)) {
 
                         echo json_encode($res);
                     }
+                  }else{
+                    header('Access-Control-Allow-Origin: *');
+                    $res = array('message'=>'Your account is inactive! Please contact to admin',
+'status'=>201
+);
+                  }
                 } else {
                     $res = array('message'=>'Phone number not found',
 'status'=>201

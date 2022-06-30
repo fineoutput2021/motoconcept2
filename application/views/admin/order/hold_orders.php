@@ -42,8 +42,10 @@
                       <th>#</th>
                       <th>Order_id</th>
                       <th>User</th>
+                      <th>Promocode</th>
+                      <th>Discount</th>
                       <th>Total Amount</th>
-                      <th>promocode</th>
+                      <th>Final Amount</th>
                       <th>User mob.</th>
                       <th>Address</th>
                       <th>City</th>
@@ -77,27 +79,24 @@
                                            }else{
                                              echo "user_id not exist";
                                            }
-
-
-
-
                               ?></td>
-                      <td>₹<?php echo $data->total_amount;  ?></td>
-                      <td><?php $check_prmocode_id= $data->promocode_id;
-                               $this->db->select('*');
-                                           $this->db->from('tbl_promocode');
-                                           $this->db->where('id',$check_prmocode_id);
-                                           $promocode_id= $this->db->get()->row();
-                                           if(!empty($promocode_id)){
-                                             echo $promocode_id->promocode;
-                                           }else{
-                                             echo "No promocode";
-                                           }
+                              <td><?php
+                              if(!empty($data->promocode_id)){
+                                       $this->db->select('*');
+                                                   $this->db->from('tbl_promocode');
+                                                   $this->db->where('id', $data->promocode_id);
+                                                   $promocode_id= $this->db->get()->row();
+                                                   if (!empty($promocode_id)) {
+                                                       echo $promocode_id->promocode;
+                                                 }
+                                               } else {
+                                                       echo "No promocode";
+                                                   }
+                                      ?></td>
+                                      <td>₹<?php echo $data->discount  ?></td>
+                                                 <td>₹<?php echo $data->total_amount;  ?></td>
+                                                 <td>₹<?php echo $data->final_amount;  ?></td>
 
-
-
-
-                              ?></td>
                       <td><?php echo $data->phone  ?></td>
                       <td><?php echo $data->street_address  ?></td>
                       <td><?php echo $data->city  ?></td>
