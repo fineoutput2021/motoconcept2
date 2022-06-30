@@ -2135,7 +2135,7 @@ class Apicontroller extends CI_Controller
                                 }
                             } else {
                                 header('Access-Control-Allow-Origin: *');
-                                $res = array('message'=>'Promocode expired',
+                                $res = array('message'=>'Invalid Promocode',
 'status'=>201
 );
 
