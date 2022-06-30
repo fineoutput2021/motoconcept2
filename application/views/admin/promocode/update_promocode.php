@@ -47,8 +47,8 @@
 <td>
 <select class="form-control" required name="ptype">
 
-  <option value="first time" <?php if(!empty($promocode_data->ptype)){ echo "selected" ; } ?>>first time</option>
-  <option value="Every time">Every time</option>
+  <option value="1" <?php if($promocode_data->ptype==1){ echo "selected" ; } ?>>One Time</option>
+  <option value="2" <?php if($promocode_data->ptype==2){ echo "selected" ; } ?>>Every Time</option>
 </select>
 </td>
 </tr>

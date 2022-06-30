@@ -59,7 +59,7 @@
         <td><?php echo $i ?> </td>
 
  	 <td><?php echo $data->promocode ?></td>
- 	 <td><?php echo $data->ptype ?></td>
+ 	 <td><?php if($data->ptype==1){echo 'One Time';}else{echo 'Every Time';}  ?></td>
  	 <td><?php echo $data->giftpercent ?></td>
  	 <td><?php echo $data->minorder ?></td>
  	 <td><?php echo $data->max ?></td>

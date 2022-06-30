@@ -47,8 +47,8 @@
  <td>
   <select class="form-control" required name="ptype">
     <option value="" selected>select type</option>
-    <option value="first time">first time</option>
-    <option value="Every time">Every time</option>
+    <option value="1">One Time</option>
+    <option value="2">Every Time</option>
   </select>
   </td>
  </tr>
