@@ -54,10 +54,10 @@
                                         </td>
 									</tr>
 								<tr>
-                                          <td> <strong>Date Of Birth</strong>  <span style="color:red;">*</span></strong> </td>
+                                          <!-- <td> <strong>Date Of Birth</strong>  <span style="color:red;">*</span></strong> </td>
                                           <td>
 										<input type="date" name="dateofbirth"  class="form-control" placeholder="" required value="" />
-                                        </td>
+                                        </td> -->
 									</tr>
                   <tr>
                                             <td> <strong>Email</strong>  <span style="color:red;">*</span></strong> </td>

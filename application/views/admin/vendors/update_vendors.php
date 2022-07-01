@@ -53,12 +53,12 @@ Add New Sellers
   										<input type="text" name="lastname"  class="form-control" placeholder=""  value="<?= $vendors->lastname; ?>" />
                                           </td>
   									</tr>
-  								<tr>
+  								<!-- <tr>
                                             <td> <strong>Date Of Birth</strong>  <span style="color:red;">*</span></strong> </td>
                                             <td>
   										<input type="date" name="dateofbirth"  class="form-control" placeholder="" required value="<?= $vendors->dateofbirth; ?>" />
                                           </td>
-  									</tr>
+  									</tr> -->
                     <tr>
                                               <td> <strong>Email</strong>  <span style="color:red;">*</span></strong> </td>
                                               <td>

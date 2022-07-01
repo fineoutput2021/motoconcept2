@@ -312,6 +312,7 @@ if(!empty($img)) { if(empty($nnnn2)){ $nnnn2 = $img; } }else{ if(empty($nnnn2)){
                        $zapak=$this->db->update('tbl_brands', $data_update);
 
                             if($zapak!=0){
+                                 $this->session->set_flashdata('smessage','Status active successfully');
                             redirect("dcadmin/Brands/view_brands","refresh");
                                     }
                                     else
@@ -327,6 +328,7 @@ if(!empty($img)) { if(empty($nnnn2)){ $nnnn2 = $img; } }else{ if(empty($nnnn2)){
                          );
 
                          $this->db->where('id', $id);
+                            $this->session->set_flashdata('smessage','Status inactive successfully');
                          $zapak=$this->db->update('tbl_brands', $data_update);
 
                              if($zapak!=0){

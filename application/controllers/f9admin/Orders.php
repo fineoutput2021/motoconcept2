@@ -95,7 +95,7 @@ $data_update = array(
 $this->db->where('id', $id);
 $zapak=$this->db->update('tbl_order1', $data_update);
 
-if($zapak!=0){
+if($zapak!=0){  $this->session->set_flashdata('smessage', 'Order Status changed Successfully');
 redirect($_SERVER['HTTP_REFERER']);
 }
 else
@@ -115,6 +115,7 @@ $this->db->where('id', $id);
 $zapak=$this->db->update('tbl_order1', $data_update);
 
 if($zapak!=0){
+  $this->session->set_flashdata('smessage', 'Order Status changed Successfully');
 redirect($_SERVER['HTTP_REFERER']);
 }
 else
@@ -180,7 +181,7 @@ $this->db->where('id', $id);
 $zapak=$this->db->update('tbl_order1', $data_update);
 
 if($zapak!=0){
-$this->session->set_flashdata('smessage', 'Successfully Updated');
+$this->session->set_flashdata('smessage', 'Order Status changed Successfully');
 redirect($_SERVER['HTTP_REFERER']);
 }
 else
@@ -225,7 +226,8 @@ $this->db->where('id', $id);
 $zapak=$this->db->update('tbl_order1', $data_update);
 
 if($zapak!=0){
-redirect("dcadmin/Orders/view_dispatched_orders","refresh");
+$this->session->set_flashdata('smessage', 'Order Status changed Successfully');
+redirect($_SERVER['HTTP_REFERER']);
 }
 else
 {
@@ -269,7 +271,8 @@ $this->db->where('id', $id);
 $zapak=$this->db->update('tbl_order1', $data_update);
 
 if($zapak!=0){
-redirect("dcadmin/Orders/view_completed_orders","refresh");
+$this->session->set_flashdata('smessage', 'Order Status changed Successfully');
+redirect($_SERVER['HTTP_REFERER']);
 }
 else
 {
