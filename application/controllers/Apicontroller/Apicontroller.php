@@ -2930,7 +2930,7 @@ if (!empty($store_id)) {
 } else {
     $data_insert = array(
 'name'=>$name,
-'phone'=>$phone,
+'phone'=>$contact,
 // 'pincode'=>$pincode,
 'state'=>$state,
 'city'=>$city,
@@ -2957,7 +2957,7 @@ if (!empty($store_id)) {
     } else {
         $data_insert = array(
 'name'=>$name,
-'phone'=>$phone,
+'phone'=>$contact,
 // 'pincode'=>$pincode,
 'state'=>$state,
 'city'=>$city,
