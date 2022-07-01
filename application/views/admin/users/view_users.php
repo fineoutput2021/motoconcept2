@@ -42,7 +42,7 @@ if(!empty($this->session->flashdata('emessage'))){ ?>
 <th>#</th>
 <th>Name</th>
 <th>Email</th>
-<!-- <th>Address</th> -->
+
 <th>Status</th>
 <th>Action</th>
 </tr>
@@ -54,6 +54,7 @@ if(!empty($this->session->flashdata('emessage'))){ ?>
 <td><?php echo $data->name ?></td>
 <td><?php echo $data->email ?></td>
 <!-- <td><?php echo $data->address ?></td> -->
+
 <td><?php if($data->is_active==1){ ?>
 <p class="label bg-green" >Active</p>
 

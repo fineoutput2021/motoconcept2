@@ -42,6 +42,7 @@
                       <th>#</th>
                       <th>Order_id</th>
                       <th>User</th>
+                      <th>Address Name</th>
                       <th>promocode</th>
                       <th>Discount</th>
                       <th>Total Amount</th>
@@ -80,6 +81,7 @@
                                              echo "user_id not exist";
                                            }
                               ?></td>
+                              <td><?php echo $data->name  ?></td>
                               <td><?php
                               if(!empty($data->promocode_id)){
                                        $this->db->select('*');
@@ -94,7 +96,13 @@
                                                    }
                                       ?></td>
 
-                     <td>₹<?php echo $data->discount  ?></td>
+                                      <td><?php
+                                      if(empty($data->promocode_id)){
+                                        echo "₹0";
+                                      }else{
+                                        echo "₹".$data->discount;
+                                      }
+                                      ?></td>
                                 <td>₹<?php echo $data->total_amount;  ?></td>
                                 <td>₹<?php echo $data->final_amount;  ?></td>
                       <td><?php echo $data->phone  ?></td>

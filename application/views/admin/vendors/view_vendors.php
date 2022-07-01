@@ -43,6 +43,7 @@
                       <th>Full Name</th>
                       <th>Company Name</th>
                       <th>Address</th>
+                      <th>Email</th>
                       <th>District</th>
                       <th>City</th>
                       <th>State</th>
@@ -64,6 +65,7 @@
                       <td><?php echo $data->name ?></td>
                       <td><?php echo $data->company_name ?></td>
                       <td><?php echo $data->address ?></td>
+                      <td><?php echo $data->email ?></td>
                       <td><?php
                                   $this->db->select('*');
                       $this->db->from('all_cities');

@@ -102,6 +102,7 @@ class Vendors extends CI_finecontrol
                 $this->form_validation->set_rules('dateofbirth', 'dateofbirth', 'required|xss_clean|trim');
                 $this->form_validation->set_rules('email', 'email', 'required|valid_email|xss_clean|trim');
                 $this->form_validation->set_rules('password', 'password', 'required|xss_clean|trim');
+                // $this->form_validation->set_rules('adname', 'adname', 'required|xss_clean|trim');
                 $this->form_validation->set_rules('gstin', 'gstin', 'required|xss_clean|trim');
                 $this->form_validation->set_rules('address', 'address', 'required|xss_clean|trim');
                 $this->form_validation->set_rules('cityname', 'cityname', 'required|xss_clean|trim');
@@ -112,6 +113,7 @@ class Vendors extends CI_finecontrol
                     $dateofbirth=$this->input->post('dateofbirth');
                     $email=$this->input->post('email');
                     $password=$this->input->post('password');
+                    // $password=$this->input->post('adname');
                     $gstin=$this->input->post('gstin');
                     $address=$this->input->post('address');
                     $cityname=$this->input->post('cityname');
@@ -129,6 +131,7 @@ class Vendors extends CI_finecontrol
                     'dateofbirth'=>$dateofbirth,
                     'email'=>$email,
                     'password'=>$password,
+                    // 'adname'=>$adname,
                     'gstin'=>$gstin,
                     'address'=>$address,
                     'cityname'=>$cityname,
@@ -177,6 +180,7 @@ class Vendors extends CI_finecontrol
                     'dateofbirth'=>$dateofbirth,
                     'email'=>$email,
                     'password'=>$password,
+                    // 'adname'=>$adname,
                     'gstin'=>$gstin,
                     'address'=>$address,
                     'cityname'=>$cityname,
@@ -189,7 +193,6 @@ class Vendors extends CI_finecontrol
                         $last_id=$this->db->update('tbl_vendors', $data_insert);
 												if ($last_id!=0) {
 		                        $this->session->set_flashdata('smessage', 'Vendor updated successfully');
-
 		                        redirect("dcadmin/Vendors/view_vendors", "refresh");
 		                    } else {
 		                        $this->session->set_flashdata('emessage', 'Sorry error occured');
