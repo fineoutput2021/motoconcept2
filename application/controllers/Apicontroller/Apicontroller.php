@@ -3034,6 +3034,7 @@ if (!empty($store_id)) {
                     $res = array('message'=>'Your account is inactive! Please contact to admin',
 'status'=>201
 );
+echo json_encode($res);
                   }
                 } else {
                     header('Access-Control-Allow-Origin: *');
