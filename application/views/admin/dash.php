@@ -37,7 +37,12 @@ echo $app_vendors;
         </a><!-- /.info-box -->
       </div><!-- /.col -->
       <div class="col-md-3 col-sm-6 col-xs-12">
-        <a href="javascript:;">
+        <? if ($this->load->get_var('position')=="Super Admin") {?>
+        <a href="<?=base_url()?>dcadmin/vendors/view_pending_vendors">
+      <!-- <a href="javascript:;"> -->
+      <?}else{?>
+              <a href="javascript:void(0);">
+              <?}?>
           <div class="info-box">
             <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
             <div class="info-box-content">
@@ -53,11 +58,16 @@ echo $tot_vendors;?>
           </div><!-- /.info-box -->
       </div></a><!-- /.col -->
       <div class="col-md-3 col-sm-6 col-xs-12">
-        <a href="javascript:;">
+        <? if ($this->load->get_var('position')=="Super Admin") {?>
+        <a href="<?=base_url()?>dcadmin/Vendors/view_vendors">
+      <!-- <a href="javascript:;"> -->
+      <?}else{?>
+              <a href="javascript:void(0);">
+              <?}?>
           <div class="info-box">
             <span class="info-box-icon bg-green"><i class="ion ion-ios-people-outline"></i></span>
             <div class="info-box-content">
-              <span class="info-box-text">APPROVED VENDORS</span>
+              <span class="info-box-text">ACCEPTED VENDORS</span>
               <span class="info-box-number">
                 <?$this->db->select('*');
 $this->db->from('tbl_users');

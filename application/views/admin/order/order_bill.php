@@ -62,9 +62,18 @@ User: <?=$user_name;?>
   if(!empty($order1_data)){
     $name=$order1_data->name;
     $address=$order1_data->street_address;
-    $state=$order1_data->state;
+        $phone=$order1_data->phone;
+     $this->db->select('*');
+$this->db->from('all_states');
+$this->db->where('id',$order1_data->state);
+$state_data= $this->db->get()->row();
+if(!empty($state_data)){
+ $state=$state_data->state_name;
+}else{
+ $state="No state found";
+}
     $city=$order1_data->city;
-    $zipcode=$order1_data->pincode;
+    // $zipcode=$order1_data->pincode;
   }
 
       ?>
@@ -101,8 +110,9 @@ if(!empty($address)){
 ?> <br>
 
 Place of supply: <?php echo $city;?><br>
-Place of delivery: <?php echo $city.", ".$state;?><br>
-Zipcode: <?php echo $zipcode;?><br>
+Place of delivery: <?php echo $state;?><br>
+Phone: <?php echo $phone;?><br>
+
 </div>
 </div>
 <div class="row">

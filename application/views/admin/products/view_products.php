@@ -153,7 +153,6 @@ $car_model_name=$car_model_data->name;
                       <!-- <td><?php echo $data->gstrate ?>%</td>
                       <td>₹<?php echo $data->gstprice ?></td>
                       <td>₹<?php echo $data->sellingpricegst ?></td> -->
-
                       <td><?php echo $data->productdescription ?></td>
                       <td><?php echo $data->modelno ?></td>
                       <td><?php echo $data->inventory ?></td>
