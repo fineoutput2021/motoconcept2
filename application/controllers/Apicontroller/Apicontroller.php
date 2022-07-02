@@ -2071,7 +2071,7 @@ class Apicontroller extends CI_Controller
                             $final_amount = 0;
                             $promocode_id = $promocode_data->id;
                             date_default_timezone_set("Asia/Calcutta");
-                            $cur_date=date("Y-m-d H:i:s");
+                            $cur_date=date("Y-m-d");
                             if (strtotime($cur_date) <= strtotime($promocode_data->expiry)) {
                                 if ($promocode_data->ptype==1) {
                                     $this->db->select('*');
