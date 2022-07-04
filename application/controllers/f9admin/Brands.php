@@ -327,6 +327,14 @@ if(!empty($img)) { if(empty($nnnn2)){ $nnnn2 = $img; } }else{ if(empty($nnnn2)){
 
                          );
 
+                         $this->db->select('*');
+                         $this->db->from('tbl_products');
+                         $this->db->where('brand_id', $id);
+                         $brand_product = $this->db->get();
+                         foreach($brand_product->result() as $brand){
+                           $zapak=$this->db->delete('tbl_cart', array('product_id' => $brand->id));
+                           $zapak=$this->db->delete('tbl_wishlist', array('product_id' => $brand->id));
+                         }
                          $this->db->where('id', $id);
                             $this->session->set_flashdata('smessage','Status inactive successfully');
                          $zapak=$this->db->update('tbl_brands', $data_update);
@@ -369,17 +377,26 @@ if(!empty($img)) { if(empty($nnnn2)){ $nnnn2 = $img; } }else{ if(empty($nnnn2)){
 
                        if($this->load->get_var('position')=="Super Admin"){
 
-                     $this->db->select('image');
+                     $this->db->select('*');
                      $this->db->from('tbl_brands');
                      $this->db->where('id',$id);
                      $dsa= $this->db->get();
                      $da=$dsa->row();
-                     $img=$da->image;
 
+ $this->db->select('*');
+ $this->db->from('tbl_products');
+ $this->db->where('brand_id', $id);
+ $brand_product = $this->db->get();
+ foreach($brand_product->result() as $brand){
+   $zapak=$this->db->delete('tbl_cart', array('product_id' => $brand->id));
+   $zapak=$this->db->delete('tbl_wishlist', array('product_id' => $brand->id));
+ }
+ $zapak=$this->db->delete('tbl_products', array('brand_id' => $id));
+ $zapak=$this->db->delete('tbl_car_model', array('brand_id' => $id));
  $zapak=$this->db->delete('tbl_brands', array('id' => $id));
  if($zapak!=0){
-        $path = FCPATH .$img;
-          unlink($path);
+        // $path = FCPATH .$img;
+        //   unlink($path);
         redirect("dcadmin/Brands/view_brands","refresh");
                 }
                 else

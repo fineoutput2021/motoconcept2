@@ -208,7 +208,14 @@
                          'is_active'=>0
 
                          );
-
+                         $this->db->select('*');
+                         $this->db->from('tbl_products');
+                         $this->db->where('car_model_id', $id);
+                         $brand_product = $this->db->get();
+                         foreach($brand_product->result() as $brand){
+                           $zapak=$this->db->delete('tbl_cart', array('product_id' => $brand->id));
+                           $zapak=$this->db->delete('tbl_wishlist', array('product_id' => $brand->id));
+                         }
                        $this->db->where('id', $id);
                        $zapak=$this->db->update('tbl_car_model', $data_update);
 
@@ -245,6 +252,15 @@
                        $dsa= $this->db->get();
                        $da=$dsa->row();
 
+                        $this->db->select('*');
+                        $this->db->from('tbl_products');
+                        $this->db->where('car_model_id', $id);
+                        $brand_product = $this->db->get();
+                        foreach($brand_product->result() as $brand){
+                          $zapak=$this->db->delete('tbl_cart', array('product_id' => $brand->id));
+                          $zapak=$this->db->delete('tbl_wishlist', array('product_id' => $brand->id));
+                        }
+                        $zapak=$this->db->delete('tbl_products', array('car_model_id' => $id));
                        $zapak=$this->db->delete('tbl_car_model', array('id' => $id));
                        if ($zapak!=0) {
                            $this->session->set_flashdata('smessage', 'Car model deleted successfully');
