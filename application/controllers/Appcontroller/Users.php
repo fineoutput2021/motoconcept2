@@ -107,7 +107,7 @@ echo json_encode($res);
 }
 }else{
   $res=array(
-    'message'=>'Waiting for admin to accept account request',
+    'message'=>'Your account is inactive at the moment. Contact admin',
     'code'=>201,
   );
   echo json_encode($res);
@@ -183,7 +183,7 @@ $res = array('message'=>'success',
 
 echo json_encode($res);
 }else{
-  $res = array('message'=>'Your account is inactive. Please contact admin.',
+  $res = array('message'=>'Your account is inactive at the moment. Contact admin',
   'status'=>201
   );
 }
@@ -530,7 +530,7 @@ if (!empty($last_id2)) {
             $last_id3=$this->db->update('token_id', $data_insert);
         }
     }
-    $res = array('message'=>'Request submitted successfully',
+    $res = array('message'=>'You have scuccessfully signed up. Please wait for admin approval',
 'status'=>200,
 );
 

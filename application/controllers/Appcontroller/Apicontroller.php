@@ -2158,6 +2158,8 @@ class Apicontroller extends CI_Controller
                                     $order_status= "Delivered";
                                 } elseif ($value->order_status==5) {
                                     $order_status= "Canceled";
+                                }elseif($value->order_status==6){
+                                    $order_status= "Hold";
                                 }
 
                                 $newdate = new DateTime($value->date);

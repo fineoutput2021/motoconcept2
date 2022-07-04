@@ -2785,7 +2785,7 @@ class Apicontroller extends CI_Controller
             if (!empty($this->input->post('store_id'))) {
                 $this->form_validation->set_rules('name', 'name', 'xss_clean|trim');
                 $this->form_validation->set_rules('contact', 'contact', 'xss_clean|trim');
-                // $this->form_validation->set_rules('pincode', 'pincode', 'xss_clean|trim');
+                $this->form_validation->set_rules('pincode', 'pincode', 'xss_clean|trim');
                 $this->form_validation->set_rules('state', 'state', 'xss_clean|trim');
                 $this->form_validation->set_rules('city', 'city', 'xss_clean|trim');
                 // $this->form_validation->set_rules('house_no', 'house_no', 'xss_clean|trim');
@@ -2793,7 +2793,7 @@ class Apicontroller extends CI_Controller
             } else {
                 $this->form_validation->set_rules('name', 'name', 'required|xss_clean|trim');
                 $this->form_validation->set_rules('contact', 'contact', 'required|xss_clean|trim');
-                // $this->form_validation->set_rules('pincode', 'pincode', 'required|xss_clean|trim');
+                $this->form_validation->set_rules('pincode', 'pincode', 'required|xss_clean|trim');
                 $this->form_validation->set_rules('state', 'state', 'required|xss_clean|trim');
                 $this->form_validation->set_rules('city', 'city', 'required|xss_clean|trim');
                 // $this->form_validation->set_rules('house_no', 'house_no', 'required|xss_clean|trim');
@@ -2815,7 +2815,7 @@ class Apicontroller extends CI_Controller
                 $payment_type=$this->input->post('payment_type');
                 $name=$this->input->post('name');
                 $contact=$this->input->post('contact');
-                // $pincode=$this->input->post('pincode');
+                $pincode=$this->input->post('pincode');
                 $state=$this->input->post('state');
                 $city=$this->input->post('city');
                 // $house_no=$this->input->post('house_no');
@@ -2931,7 +2931,7 @@ if (!empty($store_id)) {
     $data_insert = array(
 'name'=>$name,
 'phone'=>$contact,
-// 'pincode'=>$pincode,
+'pincode'=>$pincode,
 'state'=>$state,
 'city'=>$city,
 // 'house_no'=>$house_no,
@@ -2958,7 +2958,7 @@ if (!empty($store_id)) {
         $data_insert = array(
 'name'=>$name,
 'phone'=>$contact,
-// 'pincode'=>$pincode,
+'pincode'=>$pincode,
 'state'=>$state,
 'city'=>$city,
 // 'house_no'=>$house_no,
@@ -3130,6 +3130,8 @@ echo json_encode($res);
                                     $order_status= "Delivered";
                                 } elseif ($value->order_status==5) {
                                     $order_status= "Canceled";
+                                }elseif($value->order_status==6){
+                                    $order_status= "Hold";
                                 }
 
                                 $newdate = new DateTime($value->date);
