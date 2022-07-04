@@ -174,7 +174,7 @@
                       <td>
                         <?
                                 if($data->bank_receipt){?>
-                        <img src="<?=base_url().$data->bank_receipt?>" width="500" height="500">
+                        <img src="<?=base_url().$data->bank_receipt?>" width="300" height="300">
                         <?}else{
                                   echo  "NA";
                                 }

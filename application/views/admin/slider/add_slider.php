@@ -52,13 +52,13 @@
                             <input type="file" name="slider_image" class="form-control" placeholder="" required value="" />
                           </td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                           <td> <strong>App Image</strong> <span style="color:red;">*</span></strong> </td>
                           <td>
                             <span style="color:red;">1920*620</span>
                             <input type="file" name="app_image" class="form-control" placeholder="" required value="" />
                           </td>
-                        </tr>
+                        </tr> -->
                         <tr>
                           <td colspan="2">
                             <input type="submit" class="btn custom_btn" value="save">

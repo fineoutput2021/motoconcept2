@@ -41,7 +41,7 @@
                     <tr>
                       <th>#</th>
                       <th>Slider Image</th>
-                      <th>App Image</th>
+                      <!-- <th>App Image</th> -->
                       <!-- <th>Title</th> -->
                       <th>Status</th>
                       <th>Action</th>
@@ -58,13 +58,13 @@
                         Sorry No image Found
                         <?php } ?>
                       </td>
-                      <td>
+                      <!-- <td>
                         <?php if($data->app_image!=""){  ?>
                         <img id="slide_img_path" height=50 width=100 src="<?php echo base_url() ?><?php echo $data->app_image; ?>">
                         <?php }else {  ?>
                         Sorry No image Found
                         <?php } ?>
-                      </td>
+                      </td> -->
                       <!-- <td><?php echo $data->title ?></td> -->
 
                       <td><?php if($data->is_active==1){ ?>

@@ -63,7 +63,7 @@
                       </td>
 
                     </tr>
-                    <tr>
+                    <!-- <tr>
                       <td> <strong>App Image</strong></td>
                       <td>
                         <span style="color:red;">1920*620</span>
@@ -79,7 +79,7 @@
                         <?php } ?>
                       </td>
 
-                    </tr>
+                    </tr> -->
                     <tr>
                       <td colspan="2">
                         <input type="submit" class="btn custom_btn" value="save">

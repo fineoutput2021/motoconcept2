@@ -140,7 +140,7 @@ $car_model_name=$car_model_data->name;
 
                       <td>
                         <?php if($data->image3!=""){ ?>
-                          <video id="slide_img_path" height=50 width=100 autoplay>
+                          <video id="slide_img_path" height=50 width=100 autoplay muted>
                             <source src="<?php echo base_url() ?><?php echo $data->image3; ?>" type="video/mp4">
                           </video>
                         <?php }else { ?>

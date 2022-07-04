@@ -64,10 +64,10 @@ class Slider extends CI_finecontrol
             $this->load->helper(array('form', 'url'));
             $this->load->library('form_validation');
             $this->load->helper('security');
-            if ($this->input->post()) {
+            // if ($this->input->post()) {
                 // $this->form_validation->set_rules('title', 'title', 'required|xss_clean|trim');
 
-                if ($this->form_validation->run()== true) {
+                // if ($this->form_validation->run()== true) {
                     // $title=$this->input->post('title');
 
                     // Load library
@@ -110,40 +110,12 @@ class Slider extends CI_finecontrol
                                 // echo json_encode($file_info);
                             }
                         }
-                        $img2='app_image';
 
-                        $file_check=($_FILES['app_image']['error']);
-                        if ($file_check!=4) {
-                            $image_upload_folder = FCPATH . "assets/uploads/slider/";
-                            if (!file_exists($image_upload_folder)) {
-                                mkdir($image_upload_folder, DIR_WRITE_MODE, true);
-                            }
-                            $new_file_name="app_image".date("Ymdhms");
-                            $this->upload_config = array(
-                                                                                      'upload_path'   => $image_upload_folder,
-                                                                                      'file_name' => $new_file_name,
-                                                                                      'allowed_types' =>'jpg|jpeg|png',
-                                                                                      'max_size'      => 25000
-                                                                              );
-                            $this->upload->initialize($this->upload_config);
-                            if (!$this->upload->do_upload($img2)) {
-                                $upload_error = $this->upload->display_errors();
-                                // echo json_encode($upload_error);
-                                // echo $upload_error;
-                                $this->session->set_flashdata('emessage', $upload_error);
-                                redirect($_SERVER['HTTP_REFERER']);
-                            } else {
-                                $file_info = $this->upload->data();
 
-                                $image2 = "assets/uploads/slider/".$new_file_name.$file_info['file_ext'];
-                                $nnn1=$image2;
-                                // echo json_encode($file_info);
-                            }
-                        }
                         $data_insert = array(
                           // 'title'=>$title,
                     'slider_image'=>$image,
-                    'app_image'=>$image2,
+                    // 'app_image'=>$image2,
                     'added_by' =>$addedby,
                     'is_active' =>1,
                     'date'=>$cur_date
@@ -198,38 +170,7 @@ class Slider extends CI_finecontrol
                                 }
                             }
                         }
-                        $img2='app_image';
 
-                        if (!empty($_FILES['app_image']['name'])) {
-                            $file_check=($_FILES['app_image']['error']);
-                            if ($file_check!=4) {
-                                $image_upload_folder = FCPATH . "assets/uploads/slider/";
-                                if (!file_exists($image_upload_folder)) {
-                                    mkdir($image_upload_folder, DIR_WRITE_MODE, true);
-                                }
-                                $new_file_name="app_image".date("Ymdhms");
-                                $this->upload_config = array(
-                                                                                        'upload_path'   => $image_upload_folder,
-                                                                                        'file_name' => $new_file_name,
-                                                                                        'allowed_types' =>'jpg|jpeg|png',
-                                                                                        'max_size'      => 25000
-                                                                                );
-                                $this->upload->initialize($this->upload_config);
-                                if (!$this->upload->do_upload($img2)) {
-                                    $upload_error = $this->upload->display_errors();
-                                    // echo json_encode($upload_error);
-                                    // echo $upload_error;
-                                    $this->session->set_flashdata('emessage', $upload_error);
-                                    redirect($_SERVER['HTTP_REFERER']);
-                                } else {
-                                    $file_info = $this->upload->data();
-
-                                    $image2 = "assets/uploads/slider/".$new_file_name.$file_info['file_ext'];
-                                    $nnn1=$image2;
-                                    // echo json_encode($file_info);
-                                }
-                            }
-                        }
                         $this->db->select('*');
                         $this->db->from('tbl_slider');
                         $this->db->where('id', $idw);
@@ -240,17 +181,13 @@ class Slider extends CI_finecontrol
                         } else {
                             $d1=$data->slider_image;
                         }
-                        if (!empty($nnn1)) {
-                            $d2=$nnn1;
-                        } else {
-                            $d2=$data->app_image;
-                        }
+
 
 
                         $data_insert = array(
                           // 'title'=>$title,
           'slider_image'=>$d1,
-          'app_image'=>$d2,
+          // 'app_image'=>$d2,
           );
 
 
@@ -265,14 +202,14 @@ class Slider extends CI_finecontrol
                             redirect($_SERVER['HTTP_REFERER']);
                         }
                     }
-                } else {
-                    $this->session->set_flashdata('emessage', validation_errors());
-                    redirect($_SERVER['HTTP_REFERER']);
-                }
-            } else {
-                $this->session->set_flashdata('emessage', 'Please insert some data, No data available');
-                redirect($_SERVER['HTTP_REFERER']);
-            }
+            //     } else {
+            //         $this->session->set_flashdata('emessage', validation_errors());
+            //         redirect($_SERVER['HTTP_REFERER']);
+            //     }
+            // } else {
+            //     $this->session->set_flashdata('emessage', 'Please insert some data, No data available');
+            //     redirect($_SERVER['HTTP_REFERER']);
+            // }
         } else {
             redirect("login/admin_login", "refresh");
         }

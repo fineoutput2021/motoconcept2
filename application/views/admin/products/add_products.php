@@ -93,12 +93,12 @@
                     </tr>
                     <tr>
                       <td> <strong>MRP</strong> <span style="color:red;"></span>*</strong> </td>
-                      <td> <input type="number" name="mrp" required class="form-control" id="mrp" placeholder="" value="" /> </td>
+                      <td> <input type="text" onkeypress="return isNumberKey(event)" name="mrp" required class="form-control" id="mrp" placeholder="" value="" /> </td>
                     </tr>
                     <!-- <tr> -->
                     <tr>
                       <td> <strong>Selling Price</strong> <span style="color:red;">*</span></strong> </td>
-                      <td> <input type="number" name="sellingprice" required class="form-control" id="sellingprice" placeholder="" value="" /> </td>
+                      <td> <input type="text" onkeypress="return isNumberKey(event)" name="sellingprice" required class="form-control" id="sellingprice" placeholder="" value="" /> </td>
                     </tr>
                     <!-- <tr>
                       <td> <strong>Gst %</strong> <span style="color:red;">*</span></strong> </td>
@@ -122,7 +122,7 @@
                     </tr>
                     <tr>
                       <td> <strong>Inventory</strong> <span style="color:red;">*</span></strong> </td>
-                      <td> <input type="number" name="inventory" class="form-control" placeholder="" required value="" /> </td>
+                      <td> <input type="text" onkeypress="return isNumberKey(event)" name="inventory" class="form-control" placeholder="" required value="" /> </td>
                     </tr>
                     <tr>
                       <td> <strong>Feature Product</strong> <span style="color:red;">*</span></strong> </td>

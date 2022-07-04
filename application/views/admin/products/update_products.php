@@ -90,25 +90,25 @@
                     <tr>
                       <td> <strong>Video</strong> </strong> </td>
                       <td> <input type="file" name="image2" class="form-control" placeholder="" value="" />
-                        <img src="<?=base_url().$products_data->image2?>"  height=50 width=100 >
+                        <video id="slide_img_path"  height=50 width=100 src="<?php echo base_url() ?><?php echo $products_data->image2; ?>" autoplay muted poster="">
                       </td>
                       </td>
                     </tr>
                     <tr>
                       <td> <strong>Video 2</strong> </strong> </td>
                       <td> <input type="file" name="image3" class="form-control" placeholder="" value="" />
-                      <video id="slide_img_path"  height=50 width=100 src="<?php echo base_url() ?><?php echo $products_data->image3; ?>" autoplay poster="">
+                      <video id="slide_img_path"  height=50 width=100 src="<?php echo base_url() ?><?php echo $products_data->image3; ?>" autoplay muted poster="">
                       </td>
                       </td>
                     </tr>
                     <tr>
                       <td> <strong>MRP</strong> <span style="color:red;"></span></strong> </td>
-                      <td> <input type="number" name="mrp" class="form-control" id="mrp" placeholder="" value="<?=$products_data->mrp?>" /> </td>
+                      <td> <input type="text" onkeypress="return isNumberKey(event)" name="mrp" class="form-control" id="mrp" placeholder="" value="<?=$products_data->mrp?>" /> </td>
                     </tr>
                     <!-- <tr> -->
                     <tr>
                       <td> <strong>Selling Price</strong> <span style="color:red;"></span></strong> </td>
-                      <td> <input type="number" name="sellingprice" class="form-control" id="sellingprice" placeholder="" value="<?=$products_data->sellingprice?>" /> </td>
+                      <td> <input type="text" onkeypress="return isNumberKey(event)" name="sellingprice" class="form-control" id="sellingprice" placeholder="" value="<?=$products_data->sellingprice?>" /> </td>
                     </tr>
                     <!-- <tr>
                       <td> <strong>Gst %</strong> <span style="color:red;"></span></strong> </td>
@@ -132,7 +132,7 @@
                     </tr>
                     <tr>
                       <td> <strong>Inventory</strong> <span style="color:red;">*</span></strong> </td>
-                      <td> <input type="number" name="inventory" class="form-control" placeholder="" required value="<?=$products_data->inventory?>" /> </td>
+                      <td> <input type="text" onkeypress="return isNumberKey(event)" name="inventory" class="form-control" placeholder="" required value="<?=$products_data->inventory?>" /> </td>
                     </tr>
                     <tr>
                       <td> <strong>Feature Product</strong> <span style="color:red;">*</span></strong> </td>
@@ -281,6 +281,15 @@
 
     })
   });
+</script>
+
+<script>
+function isNumberKey(evt){
+    var charCode = (evt.which) ? evt.which : evt.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57))
+        return false;
+    return true;
+}
 </script>
 <script>
   // Replace the <textarea id="editor1"> with a CKEditor
